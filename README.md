@@ -22,7 +22,7 @@ BitBean Specifications
 
 **Proof of Work Algorithm**: SHA-256
 
-**PoW Block Reward**: 100000 BEANS
+**PoW Block Reward**: 100000 BITB
 
 **PoW Blocks**: 10000
                           
@@ -34,7 +34,7 @@ BitBean Specifications
 
 **Time to Maturity**: 100 Confirmations
 
-**Proof of Stake Reward**: 1000 Beans per block
+**Proof of Stake Reward**: 1000 BITB per block
 
 **Minimum Coin Stake Age**: 6 hours
 
