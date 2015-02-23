@@ -1123,7 +1123,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+6"/>
-        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 5.00 recommended.</source>
         <translation>İşlemlerinizin hızlıca gerçekleştirilmesini sağlayan kB başına opsiyonel işlem ücreti. Birçok işlem 1 kB&apos;tır. Tavsiye edilen ücret 0.01&apos;dir.</translation>
     </message>
     <message>

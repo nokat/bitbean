@@ -1124,7 +1124,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+6"/>
-        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 5.00 recommended.</source>
         <translation>手続きを早めるためのオプショナル料金。だいたいの処理は1KB。料金の0.01が勧めです。</translation>
     </message>
     <message>
