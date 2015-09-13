@@ -125,11 +125,11 @@ void WalletModel::updateAddressBook(const QString &address, const QString &label
 
 bool WalletModel::validateAddress(const QString &address)
 {
-    CBitcoinAddress addressParsed(address.toStdString());
+    CBitbeanAddress addressParsed(address.toStdString());
     return addressParsed.IsValid();
 }
 
-WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipient> &recipients, const CCoinControl *coinControl)
+WalletModel::SendBeansReturn WalletModel::sendBeans(const QList<SendBeansRecipient> &recipients, const CBeanControl *beanControl)
 {
     qint64 total = 0;
     QSet<QString> setAddress;
@@ -141,7 +141,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
     }
 
     // Pre-check input data for validity
-    foreach(const SendCoinsRecipient &rcp, recipients)
+    foreach(const SendBeansRecipient &rcp, recipients)
     {
         if(!validateAddress(rcp.address))
         {
@@ -162,10 +162,10 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
     }
 
     int64_t nBalance = 0;
-    std::vector<COutput> vCoins;
-    wallet->AvailableCoins(vCoins, true, coinControl);
+    std::vector<COutput> vBeans;
+    wallet->AvailableBeans(vBeans, true, beanControl);
 
-    BOOST_FOREACH(const COutput& out, vCoins)
+    BOOST_FOREACH(const COutput& out, vBeans)
         nBalance += out.tx->vout[out.i].nValue;
 
     if(total > nBalance)
@@ -175,7 +175,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
 
     if((total + nTransactionFee) > nBalance)
     {
-        return SendCoinsReturn(AmountWithFeeExceedsBalance, nTransactionFee);
+        return SendBeansReturn(AmountWithFeeExceedsBalance, nTransactionFee);
     }
 
     {
@@ -183,23 +183,23 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
 
         // Sendmany
         std::vector<std::pair<CScript, int64_t> > vecSend;
-        foreach(const SendCoinsRecipient &rcp, recipients)
+        foreach(const SendBeansRecipient &rcp, recipients)
         {
             CScript scriptPubKey;
-            scriptPubKey.SetDestination(CBitcoinAddress(rcp.address.toStdString()).Get());
+            scriptPubKey.SetDestination(CBitbeanAddress(rcp.address.toStdString()).Get());
             vecSend.push_back(make_pair(scriptPubKey, rcp.amount));
         }
 
         CWalletTx wtx;
         CReserveKey keyChange(wallet);
         int64_t nFeeRequired = 0;
-        bool fCreated = wallet->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, coinControl);
+        bool fCreated = wallet->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, beanControl);
 
         if(!fCreated)
         {
             if((total + nFeeRequired) > nBalance) // FIXME: could cause collisions in the future
             {
-                return SendCoinsReturn(AmountWithFeeExceedsBalance, nFeeRequired);
+                return SendBeansReturn(AmountWithFeeExceedsBalance, nFeeRequired);
             }
             return TransactionCreationFailed;
         }
@@ -215,10 +215,10 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
     }
 
     // Add addresses / update labels that we've sent to to the address book
-    foreach(const SendCoinsRecipient &rcp, recipients)
+    foreach(const SendBeansRecipient &rcp, recipients)
     {
         std::string strAddress = rcp.address.toStdString();
-        CTxDestination dest = CBitcoinAddress(strAddress).Get();
+        CTxDestination dest = CBitbeanAddress(strAddress).Get();
         std::string strLabel = rcp.label.toStdString();
         {
             LOCK(wallet->cs_wallet);
@@ -233,7 +233,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
         }
     }
 
-    return SendCoinsReturn(OK, 0, hex);
+    return SendBeansReturn(OK, 0, hex);
 }
 
 OptionsModel *WalletModel::getOptionsModel()
@@ -320,9 +320,9 @@ static void NotifyKeyStoreStatusChanged(WalletModel *walletmodel, CCryptoKeyStor
 
 static void NotifyAddressBookChanged(WalletModel *walletmodel, CWallet *wallet, const CTxDestination &address, const std::string &label, bool isMine, ChangeType status)
 {
-    OutputDebugStringF("NotifyAddressBookChanged %s %s isMine=%i status=%i\n", CBitcoinAddress(address).ToString().c_str(), label.c_str(), isMine, status);
+    OutputDebugStringF("NotifyAddressBookChanged %s %s isMine=%i status=%i\n", CBitbeanAddress(address).ToString().c_str(), label.c_str(), isMine, status);
     QMetaObject::invokeMethod(walletmodel, "updateAddressBook", Qt::QueuedConnection,
-                              Q_ARG(QString, QString::fromStdString(CBitcoinAddress(address).ToString())),
+                              Q_ARG(QString, QString::fromStdString(CBitbeanAddress(address).ToString())),
                               Q_ARG(QString, QString::fromStdString(label)),
                               Q_ARG(bool, isMine),
                               Q_ARG(int, status));
@@ -414,24 +414,24 @@ void WalletModel::getOutputs(const std::vector<COutPoint>& vOutpoints, std::vect
     }
 }
 
-// AvailableCoins + LockedCoins grouped by wallet address (put change in one group with wallet address) 
-void WalletModel::listCoins(std::map<QString, std::vector<COutput> >& mapCoins) const
+// AvailableBeans + LockedBeans grouped by wallet address (put change in one group with wallet address) 
+void WalletModel::listBeans(std::map<QString, std::vector<COutput> >& mapBeans) const
 {
-    std::vector<COutput> vCoins;
-    wallet->AvailableCoins(vCoins);
-    std::vector<COutPoint> vLockedCoins;
+    std::vector<COutput> vBeans;
+    wallet->AvailableBeans(vBeans);
+    std::vector<COutPoint> vLockedBeans;
 
-    // add locked coins
-    BOOST_FOREACH(const COutPoint& outpoint, vLockedCoins)
+    // add locked beans
+    BOOST_FOREACH(const COutPoint& outpoint, vLockedBeans)
     {
         if (!wallet->mapWallet.count(outpoint.hash)) continue;
         int nDepth = wallet->mapWallet[outpoint.hash].GetDepthInMainChain();
         if (nDepth < 0) continue;
         COutput out(&wallet->mapWallet[outpoint.hash], outpoint.n, nDepth);
-        vCoins.push_back(out);
+        vBeans.push_back(out);
     }
 
-    BOOST_FOREACH(const COutput& out, vCoins)
+    BOOST_FOREACH(const COutput& out, vBeans)
     {
         COutput cout = out;
 
@@ -443,26 +443,26 @@ void WalletModel::listCoins(std::map<QString, std::vector<COutput> >& mapCoins) 
 
         CTxDestination address;
         if(!ExtractDestination(cout.tx->vout[cout.i].scriptPubKey, address)) continue;
-        mapCoins[CBitcoinAddress(address).ToString().c_str()].push_back(out);
+        mapBeans[CBitbeanAddress(address).ToString().c_str()].push_back(out);
     }
 }
 
-bool WalletModel::isLockedCoin(uint256 hash, unsigned int n) const
+bool WalletModel::isLockedBean(uint256 hash, unsigned int n) const
 {
     return false;
 }
 
-void WalletModel::lockCoin(COutPoint& output)
+void WalletModel::lockBean(COutPoint& output)
 {
     return;
 }
 
-void WalletModel::unlockCoin(COutPoint& output)
+void WalletModel::unlockBean(COutPoint& output)
 {
     return;
 }
 
-void WalletModel::listLockedCoins(std::vector<COutPoint>& vOutpts)
+void WalletModel::listLockedBeans(std::vector<COutPoint>& vOutpts)
 {
     return;
 }

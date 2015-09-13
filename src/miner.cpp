@@ -1,6 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2013 The NovaCoin developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
+// Copyright (c) 2013 The Novacoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,7 +13,7 @@ using namespace std;
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// BitcoinMiner
+// BitbeanMiner
 //
 
 extern unsigned int nMinerSleep;
@@ -80,7 +81,7 @@ public:
 
 uint64_t nLastBlockTx = 0;
 uint64_t nLastBlockSize = 0;
-int64_t nLastCoinStakeSearchInterval = 0;
+int64_t nLastBeanStakeSearchInterval = 0;
 
 // We want to sort transactions by priority and fee, so:
 typedef boost::tuple<double, double, CTransaction*> TxPriority;
@@ -116,7 +117,7 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
 
     CBlockIndex* pindexPrev = pindexBest;
 
-    // Create coinbase tx
+    // Create beanbase tx
     CTransaction txNew;
     txNew.vin.resize(1);
     txNew.vin[0].prevout.SetNull();
@@ -132,14 +133,14 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
     }
     else
     {
-        // Height first in coinbase required for block.version=2
-        txNew.vin[0].scriptSig = (CScript() << pindexPrev->nHeight+1) + COINBASE_FLAGS;
+        // Height first in beanbase required for block.version=2
+        txNew.vin[0].scriptSig = (CScript() << pindexPrev->nHeight+1) + beanBASE_FLAGS;
         assert(txNew.vin[0].scriptSig.size() <= 100);
 
         txNew.vout[0].SetEmpty();
     }
 
-    // Add our coinbase tx as first transaction
+    // Add our beanbase tx as first transaction
     pblock->vtx.push_back(txNew);
 
     // Largest block you're willing to create:
@@ -184,7 +185,7 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
         for (map<uint256, CTransaction>::iterator mi = mempool.mapTx.begin(); mi != mempool.mapTx.end(); ++mi)
         {
             CTransaction& tx = (*mi).second;
-            if (tx.IsCoinBase() || tx.IsCoinStake() || !tx.IsFinal())
+            if (tx.IsBeanBase() || tx.IsBeanStake() || !tx.IsFinal())
                 continue;
 
             COrphan* porphan = NULL;
@@ -293,7 +294,7 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
             // Prioritize by fee once past the priority size or we run out of high-priority
             // transactions:
             if (!fSortedByFee &&
-                ((nBlockSize + nTxSize >= nBlockPrioritySize) || (dPriority < COIN * 144 / 250)))
+                ((nBlockSize + nTxSize >= nBlockPrioritySize) || (dPriority < bean * 144 / 250)))
             {
                 fSortedByFee = true;
                 comparer = TxPriorityCompare(fSortedByFee);
@@ -388,8 +389,8 @@ void IncrementExtraNonce(CBlock* pblock, CBlockIndex* pindexPrev, unsigned int& 
     }
     ++nExtraNonce;
 
-    unsigned int nHeight = pindexPrev->nHeight+1; // Height first in coinbase required for block.version=2
-    pblock->vtx[0].vin[0].scriptSig = (CScript() << nHeight << CBigNum(nExtraNonce)) + COINBASE_FLAGS;
+    unsigned int nHeight = pindexPrev->nHeight+1; // Height first in beanbase required for block.version=2
+    pblock->vtx[0].vin[0].scriptSig = (CScript() << nHeight << CBigNum(nExtraNonce)) + beanBASE_FLAGS;
     assert(pblock->vtx[0].vin[0].scriptSig.size() <= 100);
 
     pblock->hashMerkleRoot = pblock->BuildMerkleTree();
@@ -489,7 +490,7 @@ bool CheckStake(CBlock* pblock, CWallet& wallet)
     if(!pblock->IsProofOfStake())
         return error("CheckStake() : %s is not a proof-of-stake block", hashBlock.GetHex().c_str());
 
-    // verify hash target and signature of coinstake tx
+    // verify hash target and signature of beansprout tx
     if (!CheckProofOfStake(pblock->vtx[1], pblock->nBits, proofHash, hashTarget))
         return error("CheckStake() : proof-of-stake checking failed");
 
@@ -534,7 +535,7 @@ void StakeMiner(CWallet *pwallet)
 
         while (pwallet->IsLocked())
         {
-            nLastCoinStakeSearchInterval = 0;
+            nLastBeanStakeSearchInterval = 0;
             MilliSleep(1000);
             if (fShutdown)
                 return;
@@ -542,7 +543,7 @@ void StakeMiner(CWallet *pwallet)
 
         while (vNodes.empty() || IsInitialBlockDownload())
         {
-            nLastCoinStakeSearchInterval = 0;
+            nLastBeanStakeSearchInterval = 0;
             fTryToSync = true;
             MilliSleep(1000);
             if (fShutdown)

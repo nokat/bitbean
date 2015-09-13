@@ -1,5 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +9,7 @@
 #include "txdb.h"
 #include "init.h"
 #include "miner.h"
-#include "bitcoinrpc.h"
+#include "bitbeanrpc.h"
 
 using namespace json_spirit;
 using namespace std;
@@ -40,7 +41,7 @@ Value getmininginfo(const Array& params, bool fHelp)
 
     diff.push_back(Pair("Proof of Work",        GetDifficulty()));
     diff.push_back(Pair("Proof of Stake",       GetDifficulty(GetLastBlockIndex(pindexBest, true))));
-    diff.push_back(Pair("Search Interval",      (int)nLastCoinStakeSearchInterval));
+    diff.push_back(Pair("Search Interval",      (int)nLastBeanStakeSearchInterval));
     obj.push_back(Pair("Difficulty",    diff));
 
     obj.push_back(Pair("Block Value",    (uint64_t)GetProofOfWorkReward(0)));
@@ -54,7 +55,7 @@ Value getmininginfo(const Array& params, bool fHelp)
     weight.push_back(Pair("Combined",  (uint64_t)nWeight));
     obj.push_back(Pair("Stake Weight", weight));
 
-    obj.push_back(Pair("Stake Interest",    (uint64_t)COIN_YEAR_REWARD));
+    obj.push_back(Pair("Stake Interest",    (uint64_t)bean_YEAR_REWARD));
     obj.push_back(Pair("Testnet",       fTestNet));
     return obj;
 }
@@ -70,7 +71,7 @@ Value getstakinginfo(const Array& params, bool fHelp)
     pwalletMain->GetStakeWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
 
     uint64_t nNetworkWeight = GetPoSKernelPS();
-    bool staking = nLastCoinStakeSearchInterval && nWeight;
+    bool staking = nLastBeanStakeSearchInterval && nWeight;
     int nExpectedTime = staking ? (nTargetSpacing * nNetworkWeight / nWeight) : -1;
 
     Object obj;
@@ -84,7 +85,7 @@ Value getstakinginfo(const Array& params, bool fHelp)
     obj.push_back(Pair("Pooled Tx", (uint64_t)mempool.size()));
 
     obj.push_back(Pair("Difficulty", GetDifficulty(GetLastBlockIndex(pindexBest, true))));
-    obj.push_back(Pair("Search Interval", (int)nLastCoinStakeSearchInterval));
+    obj.push_back(Pair("Search Interval", (int)nLastBeanStakeSearchInterval));
 
     obj.push_back(Pair("Weight", (uint64_t)nWeight));
     obj.push_back(Pair("Net Stake Weight", (uint64_t)nNetworkWeight));
@@ -98,8 +99,8 @@ Value getworkex(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 2)
         throw runtime_error(
-            "getworkex [data, coinbase]\n"
-            "If [data, coinbase] is not specified, returns extended work data.\n"
+            "getworkex [data, beanbase]\n"
+            "If [data, beanbase] is not specified, returns extended work data.\n"
         );
 
     if (vNodes.empty())
@@ -164,7 +165,7 @@ Value getworkex(const Array& params, bool fHelp)
 
         uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
 
-        CTransaction coinbaseTx = pblock->vtx[0];
+        CTransaction beanbaseTx = pblock->vtx[0];
         std::vector<uint256> merkle = pblock->GetMerkleBranch(0);
 
         Object result;
@@ -172,8 +173,8 @@ Value getworkex(const Array& params, bool fHelp)
         result.push_back(Pair("target",   HexStr(BEGIN(hashTarget), END(hashTarget))));
 
         CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
-        ssTx << coinbaseTx;
-        result.push_back(Pair("coinbase", HexStr(ssTx.begin(), ssTx.end())));
+        ssTx << beanbaseTx;
+        result.push_back(Pair("beanbase", HexStr(ssTx.begin(), ssTx.end())));
 
         Array merkle_arr;
 
@@ -190,10 +191,10 @@ Value getworkex(const Array& params, bool fHelp)
     {
         // Parse parameters
         vector<unsigned char> vchData = ParseHex(params[0].get_str());
-        vector<unsigned char> coinbase;
+        vector<unsigned char> beanbase;
 
         if(params.size() == 2)
-            coinbase = ParseHex(params[1].get_str());
+            beanbase = ParseHex(params[1].get_str());
 
         if (vchData.size() != 128)
             throw JSONRPCError(-8, "Invalid parameter");
@@ -212,10 +213,10 @@ Value getworkex(const Array& params, bool fHelp)
         pblock->nTime = pdata->nTime;
         pblock->nNonce = pdata->nNonce;
 
-        if(coinbase.size() == 0)
+        if(beanbase.size() == 0)
             pblock->vtx[0].vin[0].scriptSig = mapNewBlock[pdata->hashMerkleRoot].second;
         else
-            CDataStream(coinbase, SER_NETWORK, PROTOCOL_VERSION) >> pblock->vtx[0]; // FIXME - HACK!
+            CDataStream(beanbase, SER_NETWORK, PROTOCOL_VERSION) >> pblock->vtx[0]; // FIXME - HACK!
 
         pblock->hashMerkleRoot = pblock->BuildMerkleTree();
 
@@ -348,9 +349,9 @@ Value getblocktemplate(const Array& params, bool fHelp)
             "Returns data needed to construct a block to work on:\n"
             "  \"version\" : block version\n"
             "  \"previousblockhash\" : hash of current highest block\n"
-            "  \"transactions\" : contents of non-coinbase transactions that should be included in the next block\n"
-            "  \"coinbaseaux\" : data that should be included in coinbase\n"
-            "  \"coinbasevalue\" : maximum allowable input to coinbase transaction, including the generation award and transaction fees\n"
+            "  \"transactions\" : contents of non-beanbase transactions that should be included in the next block\n"
+            "  \"beanbaseaux\" : data that should be included in beanbase\n"
+            "  \"beanbasevalue\" : maximum allowable input to beanbase transaction, including the generation award and transaction fees\n"
             "  \"target\" : hash target\n"
             "  \"mintime\" : minimum timestamp appropriate for next block\n"
             "  \"curtime\" : current timestamp\n"
@@ -360,7 +361,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
             "  \"sizelimit\" : limit of block size\n"
             "  \"bits\" : compressed target of next block\n"
             "  \"height\" : height of the next block\n"
-            "See https://en.bitcoin.it/wiki/BIP_0022 for full specification.");
+            "See https://en.bitbean.it/wiki/BIP_0022 for full specification.");
 
     std::string strMode = "template";
     if (params.size() > 0)
@@ -434,7 +435,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
         uint256 txHash = tx.GetHash();
         setTxIndex[txHash] = i++;
 
-        if (tx.IsCoinBase() || tx.IsCoinStake())
+        if (tx.IsBeanBase() || tx.IsBeanStake())
             continue;
 
         Object entry;
@@ -469,7 +470,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
     }
 
     Object aux;
-    aux.push_back(Pair("flags", HexStr(COINBASE_FLAGS.begin(), COINBASE_FLAGS.end())));
+    aux.push_back(Pair("flags", HexStr(beanBASE_FLAGS.begin(), beanBASE_FLAGS.end())));
 
     uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
 
@@ -485,8 +486,8 @@ Value getblocktemplate(const Array& params, bool fHelp)
     result.push_back(Pair("version", pblock->nVersion));
     result.push_back(Pair("previousblockhash", pblock->hashPrevBlock.GetHex()));
     result.push_back(Pair("transactions", transactions));
-    result.push_back(Pair("coinbaseaux", aux));
-    result.push_back(Pair("coinbasevalue", (int64_t)pblock->vtx[0].vout[0].nValue));
+    result.push_back(Pair("beanbaseaux", aux));
+    result.push_back(Pair("beanbasevalue", (int64_t)pblock->vtx[0].vout[0].nValue));
     result.push_back(Pair("target", hashTarget.GetHex()));
     result.push_back(Pair("mintime", (int64_t)pindexPrev->GetPastTimeLimit()+1));
     result.push_back(Pair("mutable", aMutable));
@@ -507,7 +508,7 @@ Value submitblock(const Array& params, bool fHelp)
             "submitblock <hex data> [optional-params-obj]\n"
             "[optional-params-obj] parameter is currently ignored.\n"
             "Attempts to submit new block to network.\n"
-            "See https://en.bitcoin.it/wiki/BIP_0022 for full specification.");
+            "See https://en.bitbean.it/wiki/BIP_0022 for full specification.");
 
     vector<unsigned char> blockData(ParseHex(params[0].get_str()));
     CDataStream ssBlock(blockData, SER_NETWORK, PROTOCOL_VERSION);

@@ -1,7 +1,7 @@
 #include "guiutil.h"
-#include "bitcoinaddressvalidator.h"
+#include "bitbeanaddressvalidator.h"
 #include "walletmodel.h"
-#include "bitcoinunits.h"
+#include "bitbeanunits.h"
 #include "util.h"
 #include "init.h"
 
@@ -52,7 +52,7 @@ QString dateTimeStr(qint64 nTime)
     return dateTimeStr(QDateTime::fromTime_t((qint32)nTime));
 }
 
-QFont bitcoinAddressFont()
+QFont bitbeanAddressFont()
 {
     QFont font("Monospace");
 #if QT_VERSION >= 0x040800
@@ -65,9 +65,9 @@ QFont bitcoinAddressFont()
 
 void setupAddressWidget(QLineEdit *widget, QWidget *parent)
 {
-    widget->setMaxLength(BitcoinAddressValidator::MaxAddressLength);
-    widget->setValidator(new BitcoinAddressValidator(parent));
-    widget->setFont(bitcoinAddressFont());
+    widget->setMaxLength(BitbeanAddressValidator::MaxAddressLength);
+    widget->setValidator(new BitbeanAddressValidator(parent));
+    widget->setFont(bitbeanAddressFont());
 }
 
 void setupAmountWidget(QLineEdit *widget, QWidget *parent)
@@ -79,13 +79,13 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
     widget->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
 }
 
-bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
+bool parseBitbeanURI(const QUrl &uri, SendBeansRecipient *out)
 {
-    // NovaCoin: check prefix
+    // Bitbean: check prefix
     if(uri.scheme() != QString("BitBean"))
         return false;
 
-    SendCoinsRecipient rv;
+    SendBeansRecipient rv;
     rv.address = uri.path();
     rv.amount = 0;
     QList<QPair<QString, QString> > items = uri.queryItems();
@@ -107,7 +107,7 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!BitcoinUnits::parse(BitcoinUnits::BTC, i->second, &rv.amount))
+                if(!BitbeanUnits::parse(BitbeanUnits::BitB, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -125,18 +125,18 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
     return true;
 }
 
-bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
+bool parseBitbeanURI(QString uri, SendBeansRecipient *out)
 {
     // Convert BitBean:// to BitBean:
     //
-    //    Cannot handle this later, because bitcoin:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because bitbean:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
     if(uri.startsWith("BitBean://"))
     {
         uri.replace(0, 12, "BitBean:");
     }
     QUrl uriInstance(uri);
-    return parseBitcoinURI(uriInstance, out);
+    return parseBitbeanURI(uriInstance, out);
 }
 
 QString HtmlEscape(const QString& str, bool fMultiLine)
@@ -282,7 +282,7 @@ boost::filesystem::path static StartupShortcutPath()
 
 bool GetStartOnSystemStartup()
 {
-    // check for Bitcoin.lnk
+    // check for Bitbean.lnk
     return boost::filesystem::exists(StartupShortcutPath());
 }
 
@@ -293,7 +293,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 
     if (fAutoStart)
     {
-        CoInitialize(NULL);
+        beanitialize(NULL);
 
         // Get a pointer to the IShellLink interface.
         IShellLink* psl = NULL;
@@ -397,7 +397,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         boost::filesystem::ofstream optionFile(GetAutostartFilePath(), std::ios_base::out|std::ios_base::trunc);
         if (!optionFile.good())
             return false;
-        // Write a bitcoin.desktop file to the autostart directory:
+        // Write a bitbean.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         optionFile << "Name=BitBean\n";

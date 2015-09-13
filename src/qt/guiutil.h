@@ -13,9 +13,9 @@ class QDateTime;
 class QUrl;
 class QAbstractItemView;
 QT_END_NAMESPACE
-class SendCoinsRecipient;
+class SendBeansRecipient;
 
-/** Utility functions used by the Bitcoin Qt UI.
+/** Utility functions used by the Bitbean Qt UI.
  */
 namespace GUIUtil
 {
@@ -23,17 +23,17 @@ namespace GUIUtil
     QString dateTimeStr(const QDateTime &datetime);
     QString dateTimeStr(qint64 nTime);
 
-    // Render Bitcoin addresses in monospace font
-    QFont bitcoinAddressFont();
+    // Render Bitbean addresses in monospace font
+    QFont bitbeanAddressFont();
 
     // Set up widgets for address and amounts
     void setupAddressWidget(QLineEdit *widget, QWidget *parent);
     void setupAmountWidget(QLineEdit *widget, QWidget *parent);
 
     // Parse "BitBean:" URI into recipient object, return true on successful parsing
-    // See Bitcoin URI definition discussion here: https://bitcointalk.org/index.php?topic=33490.0
-    bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out);
-    bool parseBitcoinURI(QString uri, SendCoinsRecipient *out);
+    // See Bitbean URI definition discussion here: https://bitbeantalk.org/index.php?topic=33490.0
+    bool parseBitbeanURI(const QUrl &uri, SendBeansRecipient *out);
+    bool parseBitbeanURI(QString uri, SendBeansRecipient *out);
 
     // HTML escaping for rich text controls
     QString HtmlEscape(const QString& str, bool fMultiLine=false);
@@ -95,7 +95,7 @@ namespace GUIUtil
     bool GetStartOnSystemStartup();
     bool SetStartOnSystemStartup(bool fAutoStart);
 
-    /** Help message for Bitcoin-Qt, shown with --help. */
+    /** Help message for Bitbean-Qt, shown with --help. */
     class HelpMessageBox : public QMessageBox
     {
         Q_OBJECT

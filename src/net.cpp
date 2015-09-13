@@ -1,9 +1,9 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "irc.h"
 #include "db.h"
 #include "net.h"
 #include "init.h"
@@ -1232,9 +1232,7 @@ void MapPort()
 // The first name is used as information source for addrman.
 // The second name should resolve to a list of seed addresses.
 static const char *strDNSSeed[][2] = {
-    //{"rat4.BitBean.co", "seed.BitBean.co"},
-    //{"maarx.BitBean.co", "seed2.BitBean.co"},
-    //{"archon.darkfox.id.au", "foxy.seeds.darkfox.id.au"},
+    {"bitbean.org", "stalk1.bitbean.org"}
 };
 
 void ThreadDNSAddressSeed(void* parg)
@@ -1305,14 +1303,13 @@ void ThreadDNSAddressSeed2(void* parg)
 
 unsigned int pnSeed[] =
 {
-    0xdf4bd379, 0x7934d29b, 0x26bc02ad, 0x7ab743ad, 0x0ab3a7bc,
-    0x375ab5bc, 0xc90b1617, 0x5352fd17, 0x5efc6c18, 0xccdc7d18,
-    0x443d9118, 0x84031b18, 0x347c1e18, 0x86512418, 0xfcfe9031,
-    0xdb5eb936, 0xef8d2e3a, 0xcf51f23c, 0x18ab663e, 0x36e0df40,
-    0xde48b641, 0xad3e4e41, 0xd0f32b44, 0x09733b44, 0x6a51f545,
-    0xe593ef48, 0xc5f5ef48, 0x96f4f148, 0xd354d34a, 0x36206f4c,
-    0xceefe953, 0x50468c55, 0x89d38d55, 0x65e61a5a, 0x16b1b95d,
-    0x702b135e, 0x0f57245e, 0xdaab5f5f, 0xba15ef63,
+    0x72894883, 0x25ce1c2e, 0x7d2c66c7, 0x47b48368, 0x0995c068,
+    0x2e668c6b, 0xbb0d286c, 0xdb433f6c, 0xed685e77, 0x37755e77,
+    0x72894883, 0x77398789, 0x42ef4c90, 0x7b404c90, 0x67bd8f9b,
+    0xb5d3afad, 0x439df5ad, 0x57ec1ead, 0xd3714fad, 0xe74e8eb2,
+    0x9302a5bc, 0x904a06bd, 0x28907ec7, 0xebbe6002, 0x570e6302,
+    0xe9ed0bcc, 0xc25d81d5, 0x88ddbed5, 0x207ec118, 0x7780dc18,
+    0x05a8df53,
 };
 
 void DumpAddresses()
@@ -1457,7 +1454,7 @@ void ThreadOpenConnections2(void* parg)
         if (fShutdown)
             return;
 
-        // Add seed nodes if IRC isn't working
+        // Add Beanstalk nodes
         if (addrman.size()==0 && (GetTime() - nStart > 60) && !fTestNet)
         {
             std::vector<CAddress> vAdd;
@@ -1942,10 +1939,6 @@ void StartNode(void* parg)
     // Map ports with UPnP
     if (fUseUPnP)
         MapPort();
-
-    // Get addresses from IRC and advertise ours
-    if (!NewThread(ThreadIRCSeed, NULL))
-        printf("Error: NewThread(ThreadIRCSeed) failed\n");
 
     // Send and receive from sockets, accept connections
     if (!NewThread(ThreadSocketHandler, NULL))
