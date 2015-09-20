@@ -2,7 +2,7 @@
 #define QTIPCSERVER_H
 
 // Define BitBean-Qt message queue name
-#define BITCOINURI_QUEUE_NAME "BitBeanURI"
+#define BITBEANURI_QUEUE_NAME "BitBeanURI"
 
 void ipcScanRelay(int argc, char *argv[]);
 void ipcInit(int argc, char *argv[]);

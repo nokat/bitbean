@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = BitBean-qt
-VERSION = 1.0.7
+VERSION = 1.1.0
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
@@ -82,14 +82,15 @@ contains(USE_DBUS, 1) {
     QT += dbus
 }
 
-contains(BITCOIN_NEED_QT_PLUGINS, 1) {
-    DEFINES += BITCOIN_NEED_QT_PLUGINS
+contains(BITBEAN_NEED_QT_PLUGINS, 1) {
+    DEFINES += BITBEAN_NEED_QT_PLUGINS
     QTPLUGIN += qcncodecs qjpcodecs qtwcodecs qkrcodecs qtaccessiblewidgets
 }
 
 INCLUDEPATH += src/leveldb/include src/leveldb/helpers
 LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
-SOURCES += src/txdb-leveldb.cpp
+SOURCES += src/txdb-leveldb.cpp \
+
 !win32 {
     # we use QMAKE_CXXFLAGS_RELEASE even without RELEASE=1 because we use RELEASE to indicate linking preferences not -O preferences
     genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a
@@ -137,42 +138,31 @@ QMAKE_CXXFLAGS_WARN_ON = -fdiagnostics-show-option -Wall -Wextra -Wno-ignored-qu
 
 # Input
 DEPENDPATH += src src/json src/qt
-HEADERS += src/qt/bitcoingui.h \
+HEADERS += src/qt/bitbeangui.h \
     src/qt/transactiontablemodel.h \
     src/qt/addresstablemodel.h \
     src/qt/optionsdialog.h \
-    src/qt/coincontroldialog.h \
-    src/qt/coincontroltreewidget.h \
-    src/qt/sendcoinsdialog.h \
+    src/qt/beancontroldialog.h \
+    src/qt/beancontroltreewidget.h \
+    src/qt/sendbeansdialog.h \
     src/qt/addressbookpage.h \
     src/qt/signverifymessagedialog.h \
     src/qt/aboutdialog.h \
     src/qt/editaddressdialog.h \
-    src/qt/bitcoinaddressvalidator.h \
+    src/qt/bitbeanaddressvalidator.h \
     src/alert.h \
     src/addrman.h \
     src/base58.h \
     src/bignum.h \
     src/checkpoints.h \
     src/compat.h \
-    src/coincontrol.h \
+    src/beancontrol.h \
     src/sync.h \
     src/util.h \
     src/uint256.h \
     src/kernel.h \
     src/scrypt.h \
     src/pbkdf2.h \
-    src/zerocoin/Accumulator.h \
-    src/zerocoin/AccumulatorProofOfKnowledge.h \
-    src/zerocoin/Coin.h \
-    src/zerocoin/CoinSpend.h \
-    src/zerocoin/Commitment.h \
-    src/zerocoin/ParamGeneration.h \
-    src/zerocoin/Params.h \
-    src/zerocoin/SerialNumberSignatureOfKnowledge.h \
-    src/zerocoin/SpendMetaData.h \
-    src/zerocoin/ZeroTest.h \
-    src/zerocoin/Zerocoin.h \
     src/serialize.h \
     src/strlcpy.h \
     src/main.h \
@@ -184,7 +174,6 @@ HEADERS += src/qt/bitcoingui.h \
     src/walletdb.h \
     src/script.h \
     src/init.h \
-    src/irc.h \
     src/mruset.h \
     src/json/json_spirit_writer_template.h \
     src/json/json_spirit_writer.h \
@@ -203,19 +192,19 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/monitoreddatamapper.h \
     src/qt/transactiondesc.h \
     src/qt/transactiondescdialog.h \
-    src/qt/bitcoinamountfield.h \
+    src/qt/bitbeanamountfield.h \
     src/wallet.h \
     src/keystore.h \
     src/qt/transactionfilterproxy.h \
     src/qt/transactionview.h \
     src/qt/walletmodel.h \
-    src/bitcoinrpc.h \
+    src/bitbeanrpc.h \
     src/qt/overviewpage.h \
     src/qt/csvmodelwriter.h \
     src/crypter.h \
-    src/qt/sendcoinsentry.h \
+    src/qt/sendbeansentry.h \
     src/qt/qvalidatedlineedit.h \
-    src/qt/bitcoinunits.h \
+    src/qt/bitbeanunits.h \
     src/qt/qvaluecombobox.h \
     src/qt/askpassphrasedialog.h \
     src/protocol.h \
@@ -226,20 +215,20 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/rpcconsole.h \
     src/version.h \
     src/netbase.h \
-    src/clientversion.h
+    src/clientversion.h \
 
-SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
+SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/qt/transactiontablemodel.cpp \
     src/qt/addresstablemodel.cpp \
     src/qt/optionsdialog.cpp \
-    src/qt/sendcoinsdialog.cpp \
-    src/qt/coincontroldialog.cpp \
-    src/qt/coincontroltreewidget.cpp \
+    src/qt/sendbeansdialog.cpp \
+    src/qt/beancontroldialog.cpp \
+    src/qt/beancontroltreewidget.cpp \
     src/qt/addressbookpage.cpp \
     src/qt/signverifymessagedialog.cpp \
     src/qt/aboutdialog.cpp \
     src/qt/editaddressdialog.cpp \
-    src/qt/bitcoinaddressvalidator.cpp \
+    src/qt/bitbeanaddressvalidator.cpp \
     src/alert.cpp \
     src/version.cpp \
     src/sync.cpp \
@@ -251,7 +240,6 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/miner.cpp \
     src/init.cpp \
     src/net.cpp \
-    src/irc.cpp \
     src/checkpoints.cpp \
     src/addrman.cpp \
     src/db.cpp \
@@ -263,14 +251,14 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/monitoreddatamapper.cpp \
     src/qt/transactiondesc.cpp \
     src/qt/transactiondescdialog.cpp \
-    src/qt/bitcoinstrings.cpp \
-    src/qt/bitcoinamountfield.cpp \
+    src/qt/bitbeanstrings.cpp \
+    src/qt/bitbeanamountfield.cpp \
     src/wallet.cpp \
     src/keystore.cpp \
     src/qt/transactionfilterproxy.cpp \
     src/qt/transactionview.cpp \
     src/qt/walletmodel.cpp \
-    src/bitcoinrpc.cpp \
+    src/bitbeanrpc.cpp \
     src/rpcdump.cpp \
     src/rpcnet.cpp \
     src/rpcmining.cpp \
@@ -280,9 +268,9 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/overviewpage.cpp \
     src/qt/csvmodelwriter.cpp \
     src/crypter.cpp \
-    src/qt/sendcoinsentry.cpp \
+    src/qt/sendbeansentry.cpp \
     src/qt/qvalidatedlineedit.cpp \
-    src/qt/bitcoinunits.cpp \
+    src/qt/bitbeanunits.cpp \
     src/qt/qvaluecombobox.cpp \
     src/qt/askpassphrasedialog.cpp \
     src/protocol.cpp \
@@ -296,33 +284,23 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/scrypt-x86_64.S \
     src/scrypt.cpp \
     src/pbkdf2.cpp \
-    src/zerocoin/Accumulator.cpp \
-    src/zerocoin/AccumulatorProofOfKnowledge.cpp \
-    src/zerocoin/Coin.cpp \
-    src/zerocoin/CoinSpend.cpp \
-    src/zerocoin/Commitment.cpp \
-    src/zerocoin/ParamGeneration.cpp \
-    src/zerocoin/Params.cpp \
-    src/zerocoin/SerialNumberSignatureOfKnowledge.cpp \
-    src/zerocoin/SpendMetaData.cpp \
-    src/zerocoin/ZeroTest.cpp
 
 RESOURCES += \
-    src/qt/bitcoin.qrc
+    src/qt/bitbean.qrc
 
 FORMS += \
-    src/qt/forms/coincontroldialog.ui \
-    src/qt/forms/sendcoinsdialog.ui \
+    src/qt/forms/beancontroldialog.ui \
+    src/qt/forms/sendbeansdialog.ui \
     src/qt/forms/addressbookpage.ui \
     src/qt/forms/signverifymessagedialog.ui \
     src/qt/forms/aboutdialog.ui \
     src/qt/forms/editaddressdialog.ui \
     src/qt/forms/transactiondescdialog.ui \
     src/qt/forms/overviewpage.ui \
-    src/qt/forms/sendcoinsentry.ui \
+    src/qt/forms/sendbeansentry.ui \
     src/qt/forms/askpassphrasedialog.ui \
     src/qt/forms/rpcconsole.ui \
-    src/qt/forms/optionsdialog.ui
+    src/qt/forms/optionsdialog.ui \
 
 contains(USE_QRCODE, 1) {
 HEADERS += src/qt/qrcodedialog.h
@@ -333,8 +311,8 @@ FORMS += src/qt/forms/qrcodedialog.ui
 CODECFORTR = UTF-8
 
 # for lrelease/lupdate
-# also add new translations to src/qt/bitcoin.qrc under translations/
-TRANSLATIONS = $$files(src/qt/locale/bitcoin_*.ts)
+# also add new translations to src/qt/bitbean.qrc under translations/
+TRANSLATIONS = $$files(src/qt/locale/bitbean_*.ts)
 
 isEmpty(QMAKE_LRELEASE) {
     win32:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\\lrelease.exe
@@ -351,7 +329,7 @@ QMAKE_EXTRA_COMPILERS += TSQM
 
 # "Other files" to show in Qt Creator
 OTHER_FILES += \
-    doc/*.rst doc/*.txt doc/README README.md res/bitcoin-qt.rc
+    doc/*.rst doc/*.txt doc/README README.md res/bitbean-qt.rc
 
 # platform specific defaults, if not overridden on command line
 isEmpty(BOOST_LIB_SUFFIX) {
@@ -385,7 +363,7 @@ isEmpty(BOOST_INCLUDE_PATH) {
 }
 
 windows:DEFINES += WIN32
-windows:RC_FILE = src/qt/res/bitcoin-qt.rc
+windows:RC_FILE = src/qt/res/bitbean-qt.rc
 
 windows:!contains(MINGW_THREAD_BUGFIX, 0) {
     # At least qmake's win32-g++-cross profile is missing the -lmingwthrd
@@ -402,7 +380,7 @@ macx:HEADERS += src/qt/macdockiconhandler.h
 macx:OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm
 macx:LIBS += -framework Foundation -framework ApplicationServices -framework AppKit
 macx:DEFINES += MAC_OSX MSG_NOSIGNAL=0
-macx:ICON = src/qt/res/icons/bitcoin.icns
+macx:ICON = src/qt/res/icons/bitbean.icns
 macx:TARGET = "BitBean-Qt"
 macx:QMAKE_CFLAGS_THREAD += -pthread
 macx:QMAKE_LFLAGS_THREAD += -pthread

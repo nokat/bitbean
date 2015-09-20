@@ -2,7 +2,7 @@
 #include "ui_rpcconsole.h"
 
 #include "clientmodel.h"
-#include "bitcoinrpc.h"
+#include "bitbeanrpc.h"
 #include "guiutil.h"
 
 #include <QTime>
@@ -194,6 +194,7 @@ RPCConsole::RPCConsole(QWidget *parent) :
 
 #ifndef Q_OS_MAC
     ui->openDebugLogfileButton->setIcon(QIcon(":/icons/export"));
+    ui->openConfigfileButton->setIcon(QIcon(":/icons/export"));
     ui->showCLOptionsButton->setIcon(QIcon(":/icons/options"));
 #endif
 
@@ -424,6 +425,11 @@ void RPCConsole::on_openDebugLogfileButton_clicked()
     GUIUtil::openDebugLogfile();
 }
 
+void RPCConsole::on_openConfigfileButton_clicked()
+{
+    GUIUtil::openConfigfile();
+}
+
 void RPCConsole::scrollToEnd()
 {
     QScrollBar *scrollbar = ui->messagesWidget->verticalScrollBar();
@@ -434,4 +440,9 @@ void RPCConsole::on_showCLOptionsButton_clicked()
 {
     GUIUtil::HelpMessageBox help;
     help.exec();
+}
+
+void RPCConsole::on_closeButton_clicked()
+{
+    close();
 }

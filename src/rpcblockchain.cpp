@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "main.h"
-#include "bitcoinrpc.h"
+#include "bitbeanrpc.h"
 
 using namespace json_spirit;
 using namespace std;
@@ -178,7 +178,7 @@ Value getdifficulty(const Array& params, bool fHelp)
     Object obj;
     obj.push_back(Pair("proof-of-work",        GetDifficulty()));
     obj.push_back(Pair("proof-of-stake",       GetDifficulty(GetLastBlockIndex(pindexBest, true))));
-    obj.push_back(Pair("search-interval",      (int)nLastCoinStakeSearchInterval));
+    obj.push_back(Pair("search-interval",      (int)nLastBeanStakeSearchInterval));
     return obj;
 }
 
@@ -274,7 +274,7 @@ Value getblockbynumber(const Array& params, bool fHelp)
     return blockToJSON(block, pblockindex, params.size() > 1 ? params[1].get_bool() : false);
 }
 
-// ppcoin: get information of sync-checkpoint
+// ppbean: get information of sync-checkpoint
 Value getcheckpoint(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)

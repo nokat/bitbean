@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The Bitcoin Developers
+// Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,8 +13,8 @@
 // - E-mail usually won't line-break if there's no punctuation to break at.
 // - Double-clicking selects the whole number as one word if it's all alphanumeric.
 //
-#ifndef BITCOIN_BASE58_H
-#define BITCOIN_BASE58_H
+#ifndef BITBEAN_BASE58_H
+#define BITBEAN_BASE58_H
 
 #include <string>
 #include <vector>
@@ -258,19 +259,19 @@ public:
  * Script-hash-addresses have version 85 (or 196 testnet).
  * The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
  */
-class CBitcoinAddress;
-class CBitcoinAddressVisitor : public boost::static_visitor<bool>
+class CBitbeanAddress;
+class CBitbeanAddressVisitor : public boost::static_visitor<bool>
 {
 private:
-    CBitcoinAddress *addr;
+    CBitbeanAddress *addr;
 public:
-    CBitcoinAddressVisitor(CBitcoinAddress *addrIn) : addr(addrIn) { }
+    CBitbeanAddressVisitor(CBitbeanAddress *addrIn) : addr(addrIn) { }
     bool operator()(const CKeyID &id) const;
     bool operator()(const CScriptID &id) const;
     bool operator()(const CNoDestination &no) const;
 };
 
-class CBitcoinAddress : public CBase58Data
+class CBitbeanAddress : public CBase58Data
 {
 public:
     enum
@@ -293,7 +294,7 @@ public:
 
     bool Set(const CTxDestination &dest)
     {
-        return boost::apply_visitor(CBitcoinAddressVisitor(this), dest);
+        return boost::apply_visitor(CBitbeanAddressVisitor(this), dest);
     }
 
     bool IsValid() const
@@ -326,21 +327,21 @@ public:
         return fExpectTestNet == fTestNet && vchData.size() == nExpectedSize;
     }
 
-    CBitcoinAddress()
+    CBitbeanAddress()
     {
     }
 
-    CBitcoinAddress(const CTxDestination &dest)
+    CBitbeanAddress(const CTxDestination &dest)
     {
         Set(dest);
     }
 
-    CBitcoinAddress(const std::string& strAddress)
+    CBitbeanAddress(const std::string& strAddress)
     {
         SetString(strAddress);
     }
 
-    CBitcoinAddress(const char* pszAddress)
+    CBitbeanAddress(const char* pszAddress)
     {
         SetString(pszAddress);
     }
@@ -393,18 +394,18 @@ public:
     }
 };
 
-bool inline CBitcoinAddressVisitor::operator()(const CKeyID &id) const         { return addr->Set(id); }
-bool inline CBitcoinAddressVisitor::operator()(const CScriptID &id) const      { return addr->Set(id); }
-bool inline CBitcoinAddressVisitor::operator()(const CNoDestination &id) const { return false; }
+bool inline CBitbeanAddressVisitor::operator()(const CKeyID &id) const         { return addr->Set(id); }
+bool inline CBitbeanAddressVisitor::operator()(const CScriptID &id) const      { return addr->Set(id); }
+bool inline CBitbeanAddressVisitor::operator()(const CNoDestination &id) const { return false; }
 
 /** A base58-encoded secret key */
-class CBitcoinSecret : public CBase58Data
+class CBitbeanSecret : public CBase58Data
 {
 public:
     void SetSecret(const CSecret& vchSecret, bool fCompressed)
     {
         assert(vchSecret.size() == 32);
-        SetData(128 + (fTestNet ? CBitcoinAddress::PUBKEY_ADDRESS_TEST : CBitcoinAddress::PUBKEY_ADDRESS), &vchSecret[0], vchSecret.size());
+        SetData(128 + (fTestNet ? CBitbeanAddress::PUBKEY_ADDRESS_TEST : CBitbeanAddress::PUBKEY_ADDRESS), &vchSecret[0], vchSecret.size());
         if (fCompressed)
             vchData.push_back(1);
     }
@@ -423,10 +424,10 @@ public:
         bool fExpectTestNet = false;
         switch(nVersion)
         {
-            case (128 + CBitcoinAddress::PUBKEY_ADDRESS):
+            case (128 + CBitbeanAddress::PUBKEY_ADDRESS):
                 break;
 
-            case (128 + CBitcoinAddress::PUBKEY_ADDRESS_TEST):
+            case (128 + CBitbeanAddress::PUBKEY_ADDRESS_TEST):
                 fExpectTestNet = true;
                 break;
 
@@ -446,12 +447,12 @@ public:
         return SetString(strSecret.c_str());
     }
 
-    CBitcoinSecret(const CSecret& vchSecret, bool fCompressed)
+    CBitbeanSecret(const CSecret& vchSecret, bool fCompressed)
     {
         SetSecret(vchSecret, fCompressed);
     }
 
-    CBitcoinSecret()
+    CBitbeanSecret()
     {
     }
 };

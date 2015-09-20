@@ -7,8 +7,186 @@
     <x>0</x>
     <y>0</y>
     <width>340</width>
-    <height>530</height>
+    <height>563</height>
    </rect>
+  </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Highlight">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>159</red>
+        <green>213</green>
+        <blue>85</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="AlternateBase">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ToolTipBase">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Highlight">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>159</red>
+        <green>213</green>
+        <blue>85</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="AlternateBase">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ToolTipBase">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Highlight">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>128</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="AlternateBase">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ToolTipBase">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>211</red>
+        <green>238</green>
+        <blue>175</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
+  <property name="font">
+   <font>
+    <family>Liberation Sans</family>
+    <pointsize>12</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>QR Code Dialog</string>
@@ -53,6 +231,11 @@
        <height>50</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <family>Monospace</family>
+      </font>
+     </property>
      <property name="tabChangesFocus">
       <bool>true</bool>
      </property>
@@ -68,6 +251,11 @@
        <widget class="QCheckBox" name="chkReqPayment">
         <property name="enabled">
          <bool>true</bool>
+        </property>
+        <property name="font">
+         <font>
+          <italic>false</italic>
+         </font>
         </property>
         <property name="text">
          <string>Request Payment</string>
@@ -140,7 +328,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="BitcoinAmountField" name="lnReqAmount">
+         <widget class="BitbeanAmountField" name="lnReqAmount">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -149,6 +337,11 @@
             <width>80</width>
             <height>0</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Monospace</family>
+           </font>
           </property>
          </widget>
         </item>
@@ -171,8 +364,18 @@
         </item>
         <item>
          <widget class="QPushButton" name="btnSaveAs">
+          <property name="font">
+           <font>
+            <family>Sans Serif</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>&amp;Save As...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../bitbean.qrc">
+            <normaloff>:/icons/filesave</normaloff>:/icons/filesave</iconset>
           </property>
          </widget>
         </item>
@@ -185,12 +388,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>BitcoinAmountField</class>
+   <class>BitbeanAmountField</class>
    <extends>QSpinBox</extends>
-   <header>bitcoinamountfield.h</header>
+   <header>bitbeanamountfield.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../bitbean.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>chkReqPayment</sender>

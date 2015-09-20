@@ -1,4 +1,5 @@
 // Copyright (c) 2009-2012 Bitcoin Developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,7 +7,7 @@
 #include <fstream>
 
 #include "init.h" // for pwalletMain
-#include "bitcoinrpc.h"
+#include "bitbeanrpc.h"
 #include "ui_interface.h"
 #include "base58.h"
 
@@ -116,7 +117,7 @@ Value importprivkey(const Array& params, bool fHelp)
     string strLabel = "";
     if (params.size() > 1)
         strLabel = params[1].get_str();
-    CBitcoinSecret vchSecret;
+    CBitbeanSecret vchSecret;
     bool fGood = vchSecret.SetString(strSecret);
 
     if (!fGood) throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid private key");
@@ -181,7 +182,7 @@ Value importwallet(const Array& params, bool fHelp)
         boost::split(vstr, line, boost::is_any_of(" "));
         if (vstr.size() < 2)
             continue;
-        CBitcoinSecret vchSecret;
+        CBitbeanSecret vchSecret;
         if (!vchSecret.SetString(vstr[0]))
             continue;
 
@@ -192,7 +193,7 @@ Value importwallet(const Array& params, bool fHelp)
         CKeyID keyid = key.GetPubKey().GetID();
 
         if (pwalletMain->HaveKey(keyid)) {
-            printf("Skipping import of %s (key already present)\n", CBitcoinAddress(keyid).ToString().c_str());
+            printf("Skipping import of %s (key already present)\n", CBitbeanAddress(keyid).ToString().c_str());
             continue;
         }
         int64_t nTime = DecodeDumpTime(vstr[1]);
@@ -210,7 +211,7 @@ Value importwallet(const Array& params, bool fHelp)
                 fLabel = true;
             }
         }
-        printf("Importing %s...\n", CBitcoinAddress(keyid).ToString().c_str());
+        printf("Importing %s...\n", CBitbeanAddress(keyid).ToString().c_str());
         if (!pwalletMain->AddKey(key)) {
             fGood = false;
             continue;
@@ -251,7 +252,7 @@ Value dumpprivkey(const Array& params, bool fHelp)
     EnsureWalletIsUnlocked();
 
     string strAddress = params[0].get_str();
-    CBitcoinAddress address;
+    CBitbeanAddress address;
     if (!address.SetString(strAddress))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BitBean address");
     if (fWalletUnlockStakingOnly)
@@ -263,7 +264,7 @@ Value dumpprivkey(const Array& params, bool fHelp)
     bool fCompressed;
     if (!pwalletMain->GetSecret(keyID, vchSecret, fCompressed))
         throw JSONRPCError(RPC_WALLET_ERROR, "Private key for address " + strAddress + " is not known");
-    return CBitcoinSecret(vchSecret, fCompressed).ToString();
+    return CBitbeanSecret(vchSecret, fCompressed).ToString();
 }
 
 Value dumpwallet(const Array& params, bool fHelp)
@@ -305,20 +306,20 @@ Value dumpwallet(const Array& params, bool fHelp)
     for (std::vector<std::pair<int64_t, CKeyID> >::const_iterator it = vKeyBirth.begin(); it != vKeyBirth.end(); it++) {
         const CKeyID &keyid = it->second;
         std::string strTime = EncodeDumpTime(it->first);
-        std::string strAddr = CBitcoinAddress(keyid).ToString();
+        std::string strAddr = CBitbeanAddress(keyid).ToString();
         bool IsCompressed;
 
         CKey key;
         if (pwalletMain->GetKey(keyid, key)) {
             if (pwalletMain->mapAddressBook.count(keyid)) {
                 CSecret secret = key.GetSecret(IsCompressed);
-                file << strprintf("%s %s label=%s # addr=%s\n", CBitcoinSecret(secret, IsCompressed).ToString().c_str(), strTime.c_str(), EncodeDumpString(pwalletMain->mapAddressBook[keyid]).c_str(), strAddr.c_str());
+                file << strprintf("%s %s label=%s # addr=%s\n", CBitbeanSecret(secret, IsCompressed).ToString().c_str(), strTime.c_str(), EncodeDumpString(pwalletMain->mapAddressBook[keyid]).c_str(), strAddr.c_str());
             } else if (setKeyPool.count(keyid)) {
                 CSecret secret = key.GetSecret(IsCompressed);
-                file << strprintf("%s %s reserve=1 # addr=%s\n", CBitcoinSecret(secret, IsCompressed).ToString().c_str(), strTime.c_str(), strAddr.c_str());
+                file << strprintf("%s %s reserve=1 # addr=%s\n", CBitbeanSecret(secret, IsCompressed).ToString().c_str(), strTime.c_str(), strAddr.c_str());
             } else {
                 CSecret secret = key.GetSecret(IsCompressed);
-                file << strprintf("%s %s change=1 # addr=%s\n", CBitcoinSecret(secret, IsCompressed).ToString().c_str(), strTime.c_str(), strAddr.c_str());
+                file << strprintf("%s %s change=1 # addr=%s\n", CBitbeanSecret(secret, IsCompressed).ToString().c_str(), strTime.c_str(), strAddr.c_str());
             }
         }
     }

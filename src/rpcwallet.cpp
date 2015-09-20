@@ -1,11 +1,12 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "wallet.h"
 #include "walletdb.h"
-#include "bitcoinrpc.h"
+#include "bitbeanrpc.h"
 #include "init.h"
 #include "base58.h"
 
@@ -48,7 +49,7 @@ void WalletTxToJSON(const CWalletTx& wtx, Object& entry)
 {
     int confirms = wtx.GetDepthInMainChain();
     entry.push_back(Pair("confirmations", confirms));
-    if (wtx.IsCoinBase() || wtx.IsCoinStake())
+    if (wtx.IsBeanBase() || wtx.IsBeanStake())
         entry.push_back(Pair("generated", true));
     if (confirms > 0)
     {
@@ -116,7 +117,7 @@ Value getnewpubkey(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "getnewpubkey [account]\n"
-            "Returns new public key for coinbase generation.");
+            "Returns new public key for beanbase generation.");
 
     // Parse the account first so we don't generate a key if there's an error
     string strAccount;
@@ -164,11 +165,11 @@ Value getnewaddress(const Array& params, bool fHelp)
 
     pwalletMain->SetAddressBookName(keyID, strAccount);
 
-    return CBitcoinAddress(keyID).ToString();
+    return CBitbeanAddress(keyID).ToString();
 }
 
 
-CBitcoinAddress GetAccountAddress(string strAccount, bool bForceNew=false)
+CBitbeanAddress GetAccountAddress(string strAccount, bool bForceNew=false)
 {
     CWalletDB walletdb(pwalletMain->strWalletFile);
 
@@ -203,7 +204,7 @@ CBitcoinAddress GetAccountAddress(string strAccount, bool bForceNew=false)
         walletdb.WriteAccount(strAccount, account);
     }
 
-    return CBitcoinAddress(account.vchPubKey.GetID());
+    return CBitbeanAddress(account.vchPubKey.GetID());
 }
 
 Value getaccountaddress(const Array& params, bool fHelp)
@@ -232,7 +233,7 @@ Value setaccount(const Array& params, bool fHelp)
             "setaccount <BitBeanaddress> <account>\n"
             "Sets the account associated with the given address.");
 
-    CBitcoinAddress address(params[0].get_str());
+    CBitbeanAddress address(params[0].get_str());
     if (!address.IsValid())
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BitBean address");
 
@@ -262,7 +263,7 @@ Value getaccount(const Array& params, bool fHelp)
             "getaccount <BitBeanaddress>\n"
             "Returns the account associated with the given address.");
 
-    CBitcoinAddress address(params[0].get_str());
+    CBitbeanAddress address(params[0].get_str());
     if (!address.IsValid())
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BitBean address");
 
@@ -285,9 +286,9 @@ Value getaddressesbyaccount(const Array& params, bool fHelp)
 
     // Find all addresses that have the given account
     Array ret;
-    BOOST_FOREACH(const PAIRTYPE(CBitcoinAddress, string)& item, pwalletMain->mapAddressBook)
+    BOOST_FOREACH(const PAIRTYPE(CBitbeanAddress, string)& item, pwalletMain->mapAddressBook)
     {
-        const CBitcoinAddress& address = item.first;
+        const CBitbeanAddress& address = item.first;
         const string& strName = item.second;
         if (strName == strAccount)
             ret.push_back(address.ToString());
@@ -303,7 +304,7 @@ Value sendtoaddress(const Array& params, bool fHelp)
             "<amount> is a real and is rounded to the nearest 0.000001"
             + HelpRequiringPassphrase());
 
-    CBitcoinAddress address(params[0].get_str());
+    CBitbeanAddress address(params[0].get_str());
     if (!address.IsValid())
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BitBean address");
 
@@ -344,12 +345,12 @@ Value listaddressgroupings(const Array& params, bool fHelp)
         BOOST_FOREACH(CTxDestination address, grouping)
         {
             Array addressInfo;
-            addressInfo.push_back(CBitcoinAddress(address).ToString());
+            addressInfo.push_back(CBitbeanAddress(address).ToString());
             addressInfo.push_back(ValueFromAmount(balances[address]));
             {
                 LOCK(pwalletMain->cs_wallet);
-                if (pwalletMain->mapAddressBook.find(CBitcoinAddress(address).Get()) != pwalletMain->mapAddressBook.end())
-                    addressInfo.push_back(pwalletMain->mapAddressBook.find(CBitcoinAddress(address).Get())->second);
+                if (pwalletMain->mapAddressBook.find(CBitbeanAddress(address).Get()) != pwalletMain->mapAddressBook.end())
+                    addressInfo.push_back(pwalletMain->mapAddressBook.find(CBitbeanAddress(address).Get())->second);
             }
             jsonGrouping.push_back(addressInfo);
         }
@@ -370,7 +371,7 @@ Value signmessage(const Array& params, bool fHelp)
     string strAddress = params[0].get_str();
     string strMessage = params[1].get_str();
 
-    CBitcoinAddress addr(strAddress);
+    CBitbeanAddress addr(strAddress);
     if (!addr.IsValid())
         throw JSONRPCError(RPC_TYPE_ERROR, "Invalid address");
 
@@ -404,7 +405,7 @@ Value verifymessage(const Array& params, bool fHelp)
     string strSign     = params[1].get_str();
     string strMessage  = params[2].get_str();
 
-    CBitcoinAddress addr(strAddress);
+    CBitbeanAddress addr(strAddress);
     if (!addr.IsValid())
         throw JSONRPCError(RPC_TYPE_ERROR, "Invalid address");
 
@@ -437,8 +438,8 @@ Value getreceivedbyaddress(const Array& params, bool fHelp)
             "getreceivedbyaddress <BitBeanaddress> [minconf=1]\n"
             "Returns the total amount received by <BitBeanaddress> in transactions with at least [minconf] confirmations.");
 
-    // Bitcoin address
-    CBitcoinAddress address = CBitcoinAddress(params[0].get_str());
+    // Bitbean address
+    CBitbeanAddress address = CBitbeanAddress(params[0].get_str());
     CScript scriptPubKey;
     if (!address.IsValid())
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BitBean address");
@@ -456,7 +457,7 @@ Value getreceivedbyaddress(const Array& params, bool fHelp)
     for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); ++it)
     {
         const CWalletTx& wtx = (*it).second;
-        if (wtx.IsCoinBase() || wtx.IsCoinStake() || !wtx.IsFinal())
+        if (wtx.IsBeanBase() || wtx.IsBeanStake() || !wtx.IsFinal())
             continue;
 
         BOOST_FOREACH(const CTxOut& txout, wtx.vout)
@@ -504,7 +505,7 @@ Value getreceivedbyaccount(const Array& params, bool fHelp)
     for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); ++it)
     {
         const CWalletTx& wtx = (*it).second;
-        if (wtx.IsCoinBase() || wtx.IsCoinStake() || !wtx.IsFinal())
+        if (wtx.IsBeanBase() || wtx.IsBeanStake() || !wtx.IsFinal())
             continue;
 
         BOOST_FOREACH(const CTxOut& txout, wtx.vout)
@@ -516,7 +517,7 @@ Value getreceivedbyaccount(const Array& params, bool fHelp)
         }
     }
 
-    return (double)nAmount / (double)COIN;
+    return (double)nAmount / (double)bean;
 }
 
 
@@ -667,7 +668,7 @@ Value sendfrom(const Array& params, bool fHelp)
             + HelpRequiringPassphrase());
 
     string strAccount = AccountFromValue(params[0]);
-    CBitcoinAddress address(params[1].get_str());
+    CBitbeanAddress address(params[1].get_str());
     if (!address.IsValid())
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BitBean address");
     int64_t nAmount = AmountFromValue(params[2]);
@@ -718,13 +719,13 @@ Value sendmany(const Array& params, bool fHelp)
     if (params.size() > 3 && params[3].type() != null_type && !params[3].get_str().empty())
         wtx.mapValue["comment"] = params[3].get_str();
 
-    set<CBitcoinAddress> setAddress;
+    set<CBitbeanAddress> setAddress;
     vector<pair<CScript, int64_t> > vecSend;
 
     int64_t totalAmount = 0;
     BOOST_FOREACH(const Pair& s, sendTo)
     {
-        CBitcoinAddress address(s.name_);
+        CBitbeanAddress address(s.name_);
         if (!address.IsValid())
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid BitBean address: ")+s.name_);
 
@@ -794,8 +795,8 @@ Value addmultisigaddress(const Array& params, bool fHelp)
     {
         const std::string& ks = keys[i].get_str();
 
-        // Case 1: Bitcoin address and we have full public key:
-        CBitcoinAddress address(ks);
+        // Case 1: Bitbean address and we have full public key:
+        CBitbeanAddress address(ks);
         if (address.IsValid())
         {
             CKeyID keyID;
@@ -831,7 +832,7 @@ Value addmultisigaddress(const Array& params, bool fHelp)
         throw runtime_error("AddCScript() failed");
 
     pwalletMain->SetAddressBookName(innerID, strAccount);
-    return CBitcoinAddress(innerID).ToString();
+    return CBitbeanAddress(innerID).ToString();
 }
 
 Value addredeemscript(const Array& params, bool fHelp)
@@ -856,7 +857,7 @@ Value addredeemscript(const Array& params, bool fHelp)
         throw runtime_error("AddCScript() failed");
 
     pwalletMain->SetAddressBookName(innerID, strAccount);
-    return CBitcoinAddress(innerID).ToString();
+    return CBitbeanAddress(innerID).ToString();
 }
 
 struct tallyitem
@@ -883,12 +884,12 @@ Value ListReceived(const Array& params, bool fByAccounts)
         fIncludeEmpty = params[1].get_bool();
 
     // Tally
-    map<CBitcoinAddress, tallyitem> mapTally;
+    map<CBitbeanAddress, tallyitem> mapTally;
     for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); ++it)
     {
         const CWalletTx& wtx = (*it).second;
 
-        if (wtx.IsCoinBase() || wtx.IsCoinStake() || !wtx.IsFinal())
+        if (wtx.IsBeanBase() || wtx.IsBeanStake() || !wtx.IsFinal())
             continue;
 
         int nDepth = wtx.GetDepthInMainChain();
@@ -910,11 +911,11 @@ Value ListReceived(const Array& params, bool fByAccounts)
     // Reply
     Array ret;
     map<string, tallyitem> mapAccountTally;
-    BOOST_FOREACH(const PAIRTYPE(CBitcoinAddress, string)& item, pwalletMain->mapAddressBook)
+    BOOST_FOREACH(const PAIRTYPE(CBitbeanAddress, string)& item, pwalletMain->mapAddressBook)
     {
-        const CBitcoinAddress& address = item.first;
+        const CBitbeanAddress& address = item.first;
         const string& strAccount = item.second;
-        map<CBitcoinAddress, tallyitem>::iterator it = mapTally.find(address);
+        map<CBitbeanAddress, tallyitem>::iterator it = mapTally.find(address);
         if (it == mapTally.end() && !fIncludeEmpty)
             continue;
 
@@ -995,7 +996,7 @@ Value listreceivedbyaccount(const Array& params, bool fHelp)
 
 static void MaybePushAddress(Object & entry, const CTxDestination &dest)
 {
-    CBitcoinAddress addr;
+    CBitbeanAddress addr;
     if (addr.Set(dest))
         entry.push_back(Pair("address", addr.ToString()));
 }
@@ -1012,7 +1013,7 @@ void ListTransactions(const CWalletTx& wtx, const string& strAccount, int nMinDe
     bool fAllAccounts = (strAccount == string("*"));
 
     // Sent
-    if ((!wtx.IsCoinStake()) && (!listSent.empty() || nFee != 0) && (fAllAccounts || strAccount == strSentAccount))
+    if ((!wtx.IsBeanStake()) && (!listSent.empty() || nFee != 0) && (fAllAccounts || strAccount == strSentAccount))
     {
         BOOST_FOREACH(const PAIRTYPE(CTxDestination, int64_t)& s, listSent)
         {
@@ -1042,7 +1043,7 @@ void ListTransactions(const CWalletTx& wtx, const string& strAccount, int nMinDe
                 Object entry;
                 entry.push_back(Pair("account", account));
                 MaybePushAddress(entry, r.first);
-                if (wtx.IsCoinBase() || wtx.IsCoinStake())
+                if (wtx.IsBeanBase() || wtx.IsBeanStake())
                 {
                     if (wtx.GetDepthInMainChain() < 1)
                         entry.push_back(Pair("category", "orphan"));
@@ -1055,12 +1056,12 @@ void ListTransactions(const CWalletTx& wtx, const string& strAccount, int nMinDe
                 {
                     entry.push_back(Pair("category", "receive"));
                 }
-                if (!wtx.IsCoinStake())
+                if (!wtx.IsBeanStake())
                     entry.push_back(Pair("amount", ValueFromAmount(r.second)));
                 else
                 {
                     entry.push_back(Pair("amount", ValueFromAmount(-nFee)));
-                    stop = true; // only one coinstake output
+                    stop = true; // only one beansprout output
                 }
                 if (fLong)
                     WalletTxToJSON(wtx, entry);
@@ -1457,7 +1458,7 @@ Value walletpassphrase(const Array& params, bool fHelp)
     int64_t* pnSleepTime = new int64_t(params[1].get_int64());
     NewThread(ThreadCleanWalletPassphrase, pnSleepTime);
 
-    // ppcoin: if user OS account compromised prevent trivial sendmoney commands
+    // ppbean: if user OS account compromised prevent trivial sendmoney commands
     if (params.size() > 2)
         fWalletUnlockStakingOnly = params[2].get_bool();
     else
@@ -1583,7 +1584,7 @@ public:
         obj.push_back(Pair("hex", HexStr(subscript.begin(), subscript.end())));
         Array a;
         BOOST_FOREACH(const CTxDestination& addr, addresses)
-            a.push_back(CBitcoinAddress(addr).ToString());
+            a.push_back(CBitbeanAddress(addr).ToString());
         obj.push_back(Pair("addresses", a));
         if (whichType == TX_MULTISIG)
             obj.push_back(Pair("sigsrequired", nRequired));
@@ -1598,7 +1599,7 @@ Value validateaddress(const Array& params, bool fHelp)
             "validateaddress <BitBeanaddress>\n"
             "Return information about <BitBeanaddress>.");
 
-    CBitcoinAddress address(params[0].get_str());
+    CBitbeanAddress address(params[0].get_str());
     bool isValid = address.IsValid();
 
     Object ret;
@@ -1634,7 +1635,7 @@ Value validatepubkey(const Array& params, bool fHelp)
     bool isCompressed = pubKey.IsCompressed();
     CKeyID keyID = pubKey.GetID();
 
-    CBitcoinAddress address;
+    CBitbeanAddress address;
     address.Set(keyID);
 
     Object ret;
@@ -1657,7 +1658,7 @@ Value validatepubkey(const Array& params, bool fHelp)
     return ret;
 }
 
-// ppcoin: reserve balance from being staked for network protection
+// ppbean: reserve balance from being staked for network protection
 Value reservebalance(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 2)
@@ -1696,7 +1697,7 @@ Value reservebalance(const Array& params, bool fHelp)
 }
 
 
-// ppcoin: check wallet integrity
+// ppbean: check wallet integrity
 Value checkwallet(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 0)
@@ -1706,20 +1707,20 @@ Value checkwallet(const Array& params, bool fHelp)
 
     int nMismatchSpent;
     int64_t nBalanceInQuestion;
-    pwalletMain->FixSpentCoins(nMismatchSpent, nBalanceInQuestion, true);
+    pwalletMain->FixSpentBeans(nMismatchSpent, nBalanceInQuestion, true);
     Object result;
     if (nMismatchSpent == 0)
         result.push_back(Pair("wallet check passed", true));
     else
     {
-        result.push_back(Pair("mismatched spent coins", nMismatchSpent));
+        result.push_back(Pair("mismatched spent beans", nMismatchSpent));
         result.push_back(Pair("amount in question", ValueFromAmount(nBalanceInQuestion)));
     }
     return result;
 }
 
 
-// ppcoin: repair wallet
+// ppbean: repair wallet
 Value repairwallet(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 0)
@@ -1729,19 +1730,19 @@ Value repairwallet(const Array& params, bool fHelp)
 
     int nMismatchSpent;
     int64_t nBalanceInQuestion;
-    pwalletMain->FixSpentCoins(nMismatchSpent, nBalanceInQuestion);
+    pwalletMain->FixSpentBeans(nMismatchSpent, nBalanceInQuestion);
     Object result;
     if (nMismatchSpent == 0)
         result.push_back(Pair("wallet check passed", true));
     else
     {
-        result.push_back(Pair("mismatched spent coins", nMismatchSpent));
+        result.push_back(Pair("mismatched spent beans", nMismatchSpent));
         result.push_back(Pair("amount affected by repair", ValueFromAmount(nBalanceInQuestion)));
     }
     return result;
 }
 
-// NovaCoin: resend unconfirmed wallet transactions
+// Bitbean: resend unconfirmed wallet transactions
 Value resendtx(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 1)
@@ -1755,7 +1756,7 @@ Value resendtx(const Array& params, bool fHelp)
     return Value::null;
 }
 
-// ppcoin: make a public-private key pair
+// ppbean: make a public-private key pair
 Value makekeypair(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 1)

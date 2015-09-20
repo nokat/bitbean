@@ -2,6 +2,23 @@
 #define OVERVIEWPAGE_H
 
 #include <QWidget>
+#include "clientmodel.h"
+#include "main.h"
+#include "wallet.h"
+#include "base58.h"
+
+#include <QDir>
+#include <QFile>
+#include <QProcess>
+#include <QTime>
+#include <QTimer>
+#include <QStringList>
+#include <QMap>
+#include <QSettings>
+#include <QSlider>
+
+QT_BEGIN_NAMESPACE
+class QModelIndex;
 
 QT_BEGIN_NAMESPACE
 class QModelIndex;
@@ -26,8 +43,20 @@ public:
     void setModel(WalletModel *model);
     void showOutOfSyncWarning(bool fShow);
 
+    int heightPrevious;
+    int weightPrevious;
+    int difficultyPrevious;
+    int connectionsPrevious;
+    int totalbeansPrevious;
+
+
+
+
 public slots:
     void setBalance(qint64 balance, qint64 stake, qint64 unconfirmedBalance, qint64 immatureBalance);
+    void setNetworkinfo(ClientModel *modelNetworkinfo);
+    void updateNetworkinfo();
+    void updatePrevious(int, int, double, int, double);
 
 signals:
     void transactionClicked(const QModelIndex &index);
@@ -35,6 +64,7 @@ signals:
 private:
     Ui::OverviewPage *ui;
     WalletModel *model;
+    ClientModel *modelNetworkinfo;
     qint64 currentBalance;
     qint64 currentStake;
     qint64 currentUnconfirmedBalance;

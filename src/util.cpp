@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -369,8 +370,8 @@ string FormatMoney(int64_t n, bool fPlus)
     // Note: not using straight sprintf here because we do NOT want
     // localized number formatting.
     int64_t n_abs = (n > 0 ? n : -n);
-    int64_t quotient = n_abs/COIN;
-    int64_t remainder = n_abs%COIN;
+    int64_t quotient = n_abs/bean;
+    int64_t remainder = n_abs%bean;
     string str = strprintf("%"PRId64".%08"PRId64, quotient, remainder);
 
     // Right-trim excess zeros before the decimal point:
@@ -424,10 +425,10 @@ bool ParseMoney(const char* pszIn, int64_t& nRet)
             return false;
     if (strWhole.size() > 10) // guard against 63 bit overflow
         return false;
-    if (nUnits < 0 || nUnits > COIN)
+    if (nUnits < 0 || nUnits > bean)
         return false;
     int64_t nWhole = atoi64(strWhole);
-    int64_t nValue = nWhole*COIN + nUnits;
+    int64_t nValue = nWhole*bean + nUnits;
 
     nRet = nValue;
     return true;
@@ -1076,14 +1077,14 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
 {
     boost::filesystem::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good())
-        return; // No bitcoin.conf file is OK
+        return; // No bitbean.conf file is OK
 
     set<string> setOptions;
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
     {
-        // Don't overwrite existing settings so command line settings override bitcoin.conf
+        // Don't overwrite existing settings so command line settings override bitbean.conf
         string strKey = string("-") + it->string_key;
         if (mapSettingsRet.count(strKey) == 0)
         {
@@ -1263,7 +1264,7 @@ string FormatFullVersion()
     return CLIENT_BUILD;
 }
 
-// Format the subversion field according to BIP 14 spec (https://en.bitcoin.it/wiki/BIP_0014)
+// Format the subversion field according to BIP 14 spec (https://en.bitbean.it/wiki/BIP_0014)
 std::string FormatSubVersion(const std::string& name, int nClientVersion, const std::vector<std::string>& comments)
 {
     std::ostringstream ss;

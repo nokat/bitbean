@@ -1,5 +1,5 @@
 #include "optionsmodel.h"
-#include "bitcoinunits.h"
+#include "bitbeanunits.h"
 #include <QSettings>
 
 #include "init.h"
@@ -39,16 +39,16 @@ void OptionsModel::Init()
     QSettings settings;
 
     // These are Qt-only settings:
-    nDisplayUnit = settings.value("nDisplayUnit", BitcoinUnits::BTC).toInt();
+    nDisplayUnit = settings.value("nDisplayUnit", BitbeanUnits::BitB).toInt();
     bDisplayAddresses = settings.value("bDisplayAddresses", false).toBool();
     fMinimizeToTray = settings.value("fMinimizeToTray", false).toBool();
     fMinimizeOnClose = settings.value("fMinimizeOnClose", false).toBool();
-    fCoinControlFeatures = settings.value("fCoinControlFeatures", false).toBool();
+    fBeanControlFeatures = settings.value("fBeanControlFeatures", false).toBool();
     nTransactionFee = settings.value("nTransactionFee").toLongLong();
     nReserveBalance = settings.value("nReserveBalance").toLongLong();
     language = settings.value("language", "").toString();
 
-    // These are shared with core Bitcoin; we want
+    // These are shared with core Bitbean; we want
     // command-line options to override the GUI settings:
     if (settings.contains("fUseUPnP"))
         SoftSetBoolArg("-upnp", settings.value("fUseUPnP").toBool());
@@ -112,8 +112,8 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return QVariant(bitdb.GetDetach());
         case Language:
             return settings.value("language", "");
-        case CoinControlFeatures:
-            return QVariant(fCoinControlFeatures);
+        case BeanControlFeatures:
+            return QVariant(fBeanControlFeatures);
         default:
             return QVariant();
         }
@@ -208,10 +208,10 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
         case Language:
             settings.setValue("language", value);
             break;
-        case CoinControlFeatures: {
-            fCoinControlFeatures = value.toBool();
-            settings.setValue("fCoinControlFeatures", fCoinControlFeatures);
-            emit coinControlFeaturesChanged(fCoinControlFeatures);
+        case BeanControlFeatures: {
+            fBeanControlFeatures = value.toBool();
+            settings.setValue("fBeanControlFeatures", fBeanControlFeatures);
+            emit beanControlFeaturesChanged(fBeanControlFeatures);
             }
             break;
         default:
@@ -233,9 +233,9 @@ qint64 OptionsModel::getReserveBalance()
     return nReserveBalance;
 }
 
-bool OptionsModel::getCoinControlFeatures()
+bool OptionsModel::getBeanControlFeatures()
 {
-    return fCoinControlFeatures;
+    return fBeanControlFeatures;
 }
 
 bool OptionsModel::getMinimizeToTray()

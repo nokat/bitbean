@@ -1,16 +1,16 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BITCOIN_MAIN_H
-#define BITCOIN_MAIN_H
+#ifndef BITBEAN_MAIN_H
+#define BITBEAN_MAIN_H
 
 #include "bignum.h"
 #include "sync.h"
 #include "net.h"
 #include "script.h"
 #include "scrypt.h"
-#include "zerocoin/Zerocoin.h"
 
 #include "util.h"
 
@@ -39,8 +39,8 @@ static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
 static const unsigned int MAX_INV_SZ = 50000;
 static const int64_t MIN_TX_FEE =  1000000;
 static const int64_t MIN_RELAY_TX_FEE = MIN_TX_FEE;
-static const int64_t MAX_MONEY = 50000000000 * COIN;
-static const int64_t COIN_YEAR_REWARD = 5 * CENT; // 5% per year
+static const int64_t MAX_MONEY = 50000000000 * bean;
+static const int64_t bean_YEAR_REWARD = 5 * CENT; // 5% per year
 
 inline bool MoneyRange(int64_t nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
@@ -57,8 +57,7 @@ static const uint256 hashGenesisBlockTestNet("0x000009d2f828234d65299216e258242a
 inline int64_t PastDrift(int64_t nTime)   { return nTime - 10 * 60; } // up to 10 minutes from the past
 inline int64_t FutureDrift(int64_t nTime) { return nTime + 10 * 60; } // up to 10 minutes from the future
 
-extern libzerocoin::Params* ZCParams;
-extern CScript COINBASE_FLAGS;
+extern CScript beanBASE_FLAGS;
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex*> mapBlockIndex;
 extern std::set<std::pair<COutPoint, unsigned int> > setStakeSeen;
@@ -67,7 +66,7 @@ extern unsigned int nTargetSpacing;
 extern unsigned int nStakeMinAge;
 extern unsigned int nStakeMaxAge;
 extern unsigned int nNodeLifespan;
-extern int nCoinbaseMaturity;
+extern int nBeanbaseMaturity;
 extern int nBestHeight;
 extern uint256 nBestChainTrust;
 extern uint256 nBestInvalidTrust;
@@ -76,7 +75,7 @@ extern CBlockIndex* pindexBest;
 extern unsigned int nTransactionsUpdated;
 extern uint64_t nLastBlockTx;
 extern uint64_t nLastBlockSize;
-extern int64_t nLastCoinStakeSearchInterval;
+extern int64_t nLastBeanStakeSearchInterval;
 extern const std::string strMessageMagic;
 extern int64_t nTimeBestReceived;
 extern CCriticalSection cs_setpwalletRegistered;
@@ -117,7 +116,7 @@ bool LoadExternalBlockFile(FILE* fileIn);
 bool CheckProofOfWork(uint256 hash, unsigned int nBits);
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake);
 int64_t GetProofOfWorkReward(int64_t nFees);
-int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nFees);
+int64_t GetProofOfStakeReward(int64_t nBeanAge, int64_t nFees);
 unsigned int ComputeMinWork(unsigned int nBase, int64_t nTime);
 unsigned int ComputeMinStake(unsigned int nBase, int64_t nTime, unsigned int nBlockTime);
 int GetNumBlocksOfPeers();
@@ -315,7 +314,7 @@ public:
         str += "CTxIn(";
         str += prevout.ToString();
         if (prevout.IsNull())
-            str += strprintf(", coinbase %s", HexStr(scriptSig).c_str());
+            str += strprintf(", beanbase %s", HexStr(scriptSig).c_str());
         else
             str += strprintf(", scriptSig=%s", scriptSig.ToString().substr(0,24).c_str());
         if (nSequence != std::numeric_limits<unsigned int>::max())
@@ -524,15 +523,15 @@ public:
         return fNewer;
     }
 
-    bool IsCoinBase() const
+    bool IsBeanBase() const
     {
         return (vin.size() == 1 && vin[0].prevout.IsNull() && vout.size() >= 1);
 
     }
 
-    bool IsCoinStake() const
+    bool IsBeanStake() const
     {
-        // ppcoin: the coin stake transaction is marked with the first output empty
+        // ppbean: the bean stake transaction is marked with the first output empty
         return (vin.size() > 0 && (!vin[0].prevout.IsNull()) && vout.size() >= 2 && vout[0].IsEmpty());
     }
 
@@ -562,7 +561,7 @@ public:
      */
     unsigned int GetP2SHSigOpCount(const MapPrevTx& mapInputs) const;
 
-    /** Amount of bitcoins spent by this transaction.
+    /** Amount of bitbeans spent by this transaction.
         @return sum of all outputs (note: does not include fees)
      */
     int64_t GetValueOut() const
@@ -577,7 +576,7 @@ public:
         return nValueOut;
     }
 
-    /** Amount of bitcoins coming in to this transaction
+    /** Amount of bitbeans coming in to this transaction
         Note that lightweight clients may not know anything besides the hash of previous transactions,
         so may not be able to calculate this.
 
@@ -633,14 +632,14 @@ public:
     std::string ToStringShort() const
     {
         std::string str;
-        str += strprintf("%s %s", GetHash().ToString().c_str(), IsCoinBase()? "base" : (IsCoinStake()? "stake" : "user"));
+        str += strprintf("%s %s", GetHash().ToString().c_str(), IsBeanBase()? "base" : (IsBeanStake()? "stake" : "user"));
         return str;
     }
 
     std::string ToString() const
     {
         std::string str;
-        str += IsCoinBase()? "Coinbase" : (IsCoinStake()? "Coinstake" : "CTransaction");
+        str += IsBeanBase()? "Beanbase" : (IsBeanStake()? "Beanstake" : "CTransaction");
         str += strprintf("(hash=%s, nTime=%d, ver=%d, vin.size=%"PRIszu", vout.size=%"PRIszu", nLockTime=%d)\n",
             GetHash().ToString().substr(0,10).c_str(),
             nTime,
@@ -696,7 +695,7 @@ public:
     bool ClientConnectInputs();
     bool CheckTransaction() const;
     bool AcceptToMemoryPool(CTxDB& txdb, bool fCheckInputs=true, bool* pfMissingInputs=NULL);
-    bool GetCoinAge(CTxDB& txdb, uint64_t& nCoinAge) const;  // ppcoin: get transaction coin age
+    bool GetBeanAge(CTxDB& txdb, uint64_t& nBeanAge) const;  // ppbean: get transaction bean age
 
 protected:
     const CTxOut& GetOutputFor(const CTxIn& input, const MapPrevTx& inputs) const;
@@ -825,7 +824,7 @@ public:
  * and scan through nonce values to make the block's hash satisfy proof-of-work
  * requirements.  When they solve the proof-of-work, they broadcast the block
  * to everyone and the block is added to the block chain.  The first transaction
- * in the block is a special one that creates a new coin owned by the creator
+ * in the block is a special one that creates a new bean owned by the creator
  * of the block.
  *
  * Blocks are appended to blk0001.dat files on disk.  Their location on disk
@@ -848,7 +847,7 @@ public:
     // network and disk
     std::vector<CTransaction> vtx;
 
-    // ppcoin: block signature - signed by one of the coin base txout[N]'s owner
+    // ppbean: block signature - signed by one of the bean base txout[N]'s owner
     std::vector<unsigned char> vchBlockSig;
 
     // memory only
@@ -937,10 +936,10 @@ public:
         return nEntropyBit;
     }
 
-    // ppcoin: two types of block: proof-of-work or proof-of-stake
+    // ppbean: two types of block: proof-of-work or proof-of-stake
     bool IsProofOfStake() const
     {
-        return (vtx.size() > 1 && vtx[1].IsCoinStake());
+        return (vtx.size() > 1 && vtx[1].IsBeanStake());
     }
 
     bool IsProofOfWork() const
@@ -953,7 +952,7 @@ public:
         return IsProofOfStake()? std::make_pair(vtx[1].vin[0].prevout, vtx[1].nTime) : std::make_pair(COutPoint(), (unsigned int)0);
     }
 
-    // ppcoin: get max transaction timestamp
+    // ppbean: get max transaction timestamp
     int64_t GetMaxTransactionTime() const
     {
         int64_t maxTransactionTime = 0;
@@ -1096,7 +1095,7 @@ public:
     bool AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos, const uint256& hashProof);
     bool CheckBlock(bool fCheckPOW=true, bool fCheckMerkleRoot=true, bool fCheckSig=true) const;
     bool AcceptBlock();
-    bool GetCoinAge(uint64_t& nCoinAge) const; // ppcoin: calculate total coin age spent in block
+    bool GetBeanAge(uint64_t& nBeanAge) const; // ppbean: calculate total bean age spent in block
     bool SignBlock(CWallet& keystore, int64_t nFees);
     bool CheckBlockSignature() const;
 
@@ -1124,13 +1123,13 @@ public:
     CBlockIndex* pnext;
     unsigned int nFile;
     unsigned int nBlockPos;
-    uint256 nChainTrust; // ppcoin: trust score of block chain
+    uint256 nChainTrust; // ppbean: trust score of block chain
     int nHeight;
 
     int64_t nMint;
     int64_t nMoneySupply;
 
-    unsigned int nFlags;  // ppcoin: block index flags
+    unsigned int nFlags;  // ppbean: block index flags
     enum
     {
         BLOCK_PROOF_OF_STAKE = (1 << 0), // is proof-of-stake block

@@ -1,16 +1,16 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include "txdb.h"
 #include "walletdb.h"
-#include "bitcoinrpc.h"
+#include "bitbeanrpc.h"
 #include "net.h"
 #include "init.h"
 #include "util.h"
 #include "ui_interface.h"
 #include "checkpoints.h"
-#include "zerocoin/ZeroTest.h"
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/filesystem/convenience.hpp>
@@ -52,7 +52,7 @@ void ExitTimeout(void* parg)
 void StartShutdown()
 {
 #ifdef QT_GUI
-    // ensure we leave the Qt main loop for a clean GUI exit (Shutdown() is called in bitcoin.cpp afterwards)
+    // ensure we leave the Qt main loop for a clean GUI exit (Shutdown() is called in bitbean.cpp afterwards)
     uiInterface.QueueShutdown();
 #else
     // Without UI, Shutdown() can simply be started in a new thread
@@ -94,7 +94,7 @@ void Shutdown(void* parg)
         printf("BitBean exited\n\n");
         fExit = true;
 #ifndef QT_GUI
-        // ensure non-UI client gets exited here, but let Bitcoin-Qt reach 'return 0;' in bitcoin.cpp
+        // ensure non-UI client gets exited here, but let Bitbean-Qt reach 'return 0;' in bitbean.cpp
         exit(0);
 #endif
     }
@@ -134,7 +134,7 @@ bool AppInit(int argc, char* argv[])
         //
         // Parameters
         //
-        // If Qt is used, parameters/bitcoin.conf are parsed in qt/bitcoin.cpp's main()
+        // If Qt is used, parameters/bitbean.conf are parsed in qt/bitbean.cpp's main()
         ParseParameters(argc, argv);
         if (!boost::filesystem::is_directory(GetDataDir(false)))
         {
@@ -145,7 +145,7 @@ bool AppInit(int argc, char* argv[])
 
         if (mapArgs.count("-?") || mapArgs.count("--help"))
         {
-            // First part of help message is specific to bitcoind / RPC client
+            // First part of help message is specific to bitbeand / RPC client
             std::string strUsage = _("BitBean version") + " " + FormatFullVersion() + "\n\n" +
                 _("Usage:") + "\n" +
                   "  BitBeand [options]                     " + "\n" +
@@ -187,7 +187,7 @@ int main(int argc, char* argv[])
 {
     bool fRet = false;
 
-    // Connect bitcoind signal handlers
+    // Connect bitbeand signal handlers
     noui_connect();
 
     fRet = AppInit(argc, argv);
@@ -248,11 +248,10 @@ std::string HelpMessage()
         "  -externalip=<ip>       " + _("Specify your own public address") + "\n" +
         "  -onlynet=<net>         " + _("Only connect to nodes in network <net> (IPv4, IPv6 or Tor)") + "\n" +
         "  -discover              " + _("Discover own IP address (default: 1 when listening and no -externalip)") + "\n" +
-        "  -irc                   " + _("Find peers using internet relay chat (default: 0)") + "\n" +
         "  -listen                " + _("Accept connections from outside (default: 1 if no -proxy or -connect)") + "\n" +
         "  -bind=<addr>           " + _("Bind to given address. Use [host]:port notation for IPv6") + "\n" +
         "  -dnsseed               " + _("Find peers using DNS lookup (default: 1)") + "\n" +
-        "  -staking               " + _("Stake your coins to support network and gain reward (default: 1)") + "\n" +
+        "  -sprout                " + _("Sprout your beans to support the network and grow new beans! (default: 1)") + "\n" +
         "  -synctime              " + _("Sync time with other nodes. Disable if time on your system is precise e.g. syncing with NTP (default: 1)") + "\n" +
         "  -cppolicy              " + _("Sync checkpoints policy (default: strict)") + "\n" +
         "  -banscore=<n>          " + _("Threshold for disconnecting misbehaving peers (default: 100)") + "\n" +
@@ -307,7 +306,7 @@ std::string HelpMessage()
         "  -blockmaxsize=<n>      "   + _("Set maximum block size in bytes (default: 250000)") + "\n" +
         "  -blockprioritysize=<n> "   + _("Set maximum size of high-priority/low-fee transactions in bytes (default: 27000)") + "\n" +
 
-        "\n" + _("SSL options: (see the Bitcoin Wiki for SSL setup instructions)") + "\n" +
+        "\n" + _("SSL options: (see the Bitbean Wiki for SSL setup instructions)") + "\n" +
         "  -rpcssl                                  " + _("Use OpenSSL (https) for JSON-RPC connections") + "\n" +
         "  -rpcsslcertificatechainfile=<file.cert>  " + _("Server certificate file (default: server.cert)") + "\n" +
         "  -rpcsslprivatekeyfile=<file.pem>         " + _("Server private key (default: server.pem)") + "\n" +
@@ -316,7 +315,7 @@ std::string HelpMessage()
     return strUsage;
 }
 
-/** Initialize bitcoin.
+/** Initialize bitbean.
  *  @pre Parameters should be parsed and config file should be read.
  */
 bool AppInit2()
@@ -384,9 +383,6 @@ bool AppInit2()
     nDerivationMethodIndex = 0;
 
     fTestNet = GetBoolArg("-testnet");
-    if (fTestNet) {
-        SoftSetBoolArg("-irc", true);
-    }
 
     if (mapArgs.count("-bind")) {
         // when specifying an explicit binding address, you want to listen on it
@@ -463,7 +459,7 @@ bool AppInit2()
     {
         if (!ParseMoney(mapArgs["-paytxfee"], nTransactionFee))
             return InitError(strprintf(_("Invalid amount for -paytxfee=<amount>: '%s'"), mapArgs["-paytxfee"].c_str()));
-        if (nTransactionFee > 0.25 * COIN)
+        if (nTransactionFee > 0.25 * bean)
             InitWarning(_("Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction."));
     }
 
@@ -485,7 +481,7 @@ bool AppInit2()
     if (strWalletFileName != boost::filesystem::basename(strWalletFileName) + boost::filesystem::extension(strWalletFileName))
         return InitError(strprintf(_("Wallet %s resides outside data directory %s."), strWalletFileName.c_str(), strDataDir.c_str()));
 
-    // Make sure only a single Bitcoin process is using the data directory.
+    // Make sure only a single Bitbean process is using the data directory.
     boost::filesystem::path pathLockFile = GetDataDir() / ".lock";
     FILE* file = fopen(pathLockFile.string().c_str(), "a"); // empty lock file; created if it doesn't exist.
     if (file) fclose(file);
@@ -658,7 +654,7 @@ bool AppInit2()
         }
     }
 
-    if (mapArgs.count("-reservebalance")) // ppcoin: reserve balance amount
+    if (mapArgs.count("-reservebalance")) // ppbean: reserve balance amount
     {
         if (!ParseMoney(mapArgs["-reservebalance"], nReserveBalance))
         {
@@ -667,7 +663,7 @@ bool AppInit2()
         }
     }
 
-    if (mapArgs.count("-checkpointkey")) // ppcoin: checkpoint master priv key
+    if (mapArgs.count("-checkpointkey")) // ppbean: checkpoint master priv key
     {
         if (!Checkpoints::SetCheckpointPrivKey(GetArg("-checkpointkey", "")))
             InitError(_("Unable to sign checkpoint, wrong checkpointkey?\n"));
@@ -702,7 +698,7 @@ bool AppInit2()
 
 
     // as LoadBlockIndex can take several minutes, it's possible the user
-    // requested to kill bitcoin-qt during the last operation. If so, exit.
+    // requested to kill bitbean-qt during the last operation. If so, exit.
     // As the program has not fully started yet, Shutdown() is possibly overkill.
     if (fRequestShutdown)
     {
@@ -738,16 +734,6 @@ bool AppInit2()
         if (nFound == 0)
             printf("No blocks matching %s were found\n", strMatch.c_str());
         return false;
-    }
-
-    // ********************************************************* Testing Zerocoin
-
-
-    if (GetBoolArg("-zerotest", false))
-    {
-        printf("\n=== ZeroCoin tests start ===\n");
-        Test_RunAllTests();
-        printf("=== ZeroCoin tests end ===\n\n");
     }
 
     // ********************************************************* Step 8: load wallet
