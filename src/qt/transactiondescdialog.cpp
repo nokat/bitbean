@@ -18,3 +18,8 @@ TransactionDescDialog::~TransactionDescDialog()
 {
     delete ui;
 }
+
+void TransactionDescDialog::on_closeButton_clicked()
+{
+    close();
+}

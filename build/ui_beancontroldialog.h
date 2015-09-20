@@ -69,6 +69,29 @@ public:
         if (BeanControlDialog->objectName().isEmpty())
             BeanControlDialog->setObjectName(QString::fromUtf8("BeanControlDialog"));
         BeanControlDialog->resize(1000, 500);
+        QPalette palette;
+        QBrush brush(QColor(159, 213, 85, 255));
+        brush.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Button, brush);
+        QBrush brush1(QColor(255, 255, 255, 255));
+        brush1.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Base, brush1);
+        QBrush brush2(QColor(211, 238, 175, 255));
+        brush2.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Window, brush2);
+        palette.setBrush(QPalette::Active, QPalette::AlternateBase, brush2);
+        palette.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        palette.setBrush(QPalette::Inactive, QPalette::Button, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Base, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Window, brush2);
+        palette.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush2);
+        palette.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette.setBrush(QPalette::Disabled, QPalette::Button, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Base, brush2);
+        palette.setBrush(QPalette::Disabled, QPalette::Window, brush2);
+        palette.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush2);
+        palette.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        BeanControlDialog->setPalette(palette);
         verticalLayout = new QVBoxLayout(BeanControlDialog);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayoutTop = new QHBoxLayout();
@@ -81,16 +104,22 @@ public:
         formLayoutBeanControl1->setContentsMargins(6, -1, 6, -1);
         labelBeanControlQuantityText = new QLabel(BeanControlDialog);
         labelBeanControlQuantityText->setObjectName(QString::fromUtf8("labelBeanControlQuantityText"));
+        QFont font;
+        font.setFamily(QString::fromUtf8("Liberation Sans"));
+        font.setPointSize(12);
+        font.setBold(true);
+        font.setWeight(75);
+        labelBeanControlQuantityText->setFont(font);
         labelBeanControlQuantityText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         formLayoutBeanControl1->setWidget(0, QFormLayout::LabelRole, labelBeanControlQuantityText);
 
         labelBeanControlQuantity = new QLabel(BeanControlDialog);
         labelBeanControlQuantity->setObjectName(QString::fromUtf8("labelBeanControlQuantity"));
-        QFont font;
-        font.setFamily(QString::fromUtf8("Monospace"));
-        font.setPointSize(10);
-        labelBeanControlQuantity->setFont(font);
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Monospace"));
+        font1.setPointSize(12);
+        labelBeanControlQuantity->setFont(font1);
         labelBeanControlQuantity->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlQuantity->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlQuantity->setText(QString::fromUtf8("0"));
@@ -100,13 +129,14 @@ public:
 
         labelBeanControlBytesText = new QLabel(BeanControlDialog);
         labelBeanControlBytesText->setObjectName(QString::fromUtf8("labelBeanControlBytesText"));
+        labelBeanControlBytesText->setFont(font);
         labelBeanControlBytesText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         formLayoutBeanControl1->setWidget(1, QFormLayout::LabelRole, labelBeanControlBytesText);
 
         labelBeanControlBytes = new QLabel(BeanControlDialog);
         labelBeanControlBytes->setObjectName(QString::fromUtf8("labelBeanControlBytes"));
-        labelBeanControlBytes->setFont(font);
+        labelBeanControlBytes->setFont(font1);
         labelBeanControlBytes->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlBytes->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlBytes->setText(QString::fromUtf8("0"));
@@ -124,13 +154,14 @@ public:
         formLayoutBeanControl2->setContentsMargins(6, -1, 6, -1);
         labelBeanControlAmountText = new QLabel(BeanControlDialog);
         labelBeanControlAmountText->setObjectName(QString::fromUtf8("labelBeanControlAmountText"));
+        labelBeanControlAmountText->setFont(font);
         labelBeanControlAmountText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         formLayoutBeanControl2->setWidget(0, QFormLayout::LabelRole, labelBeanControlAmountText);
 
         labelBeanControlAmount = new QLabel(BeanControlDialog);
         labelBeanControlAmount->setObjectName(QString::fromUtf8("labelBeanControlAmount"));
-        labelBeanControlAmount->setFont(font);
+        labelBeanControlAmount->setFont(font1);
         labelBeanControlAmount->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlAmount->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlAmount->setText(QString::fromUtf8("0.00 BC"));
@@ -140,13 +171,14 @@ public:
 
         labelBeanControlPriorityText = new QLabel(BeanControlDialog);
         labelBeanControlPriorityText->setObjectName(QString::fromUtf8("labelBeanControlPriorityText"));
+        labelBeanControlPriorityText->setFont(font);
         labelBeanControlPriorityText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         formLayoutBeanControl2->setWidget(1, QFormLayout::LabelRole, labelBeanControlPriorityText);
 
         labelBeanControlPriority = new QLabel(BeanControlDialog);
         labelBeanControlPriority->setObjectName(QString::fromUtf8("labelBeanControlPriority"));
-        labelBeanControlPriority->setFont(font);
+        labelBeanControlPriority->setFont(font1);
         labelBeanControlPriority->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlPriority->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlPriority->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
@@ -163,13 +195,14 @@ public:
         formLayoutBeanControl3->setContentsMargins(6, -1, 6, -1);
         labelBeanControlFeeText = new QLabel(BeanControlDialog);
         labelBeanControlFeeText->setObjectName(QString::fromUtf8("labelBeanControlFeeText"));
+        labelBeanControlFeeText->setFont(font);
         labelBeanControlFeeText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         formLayoutBeanControl3->setWidget(0, QFormLayout::LabelRole, labelBeanControlFeeText);
 
         labelBeanControlFee = new QLabel(BeanControlDialog);
         labelBeanControlFee->setObjectName(QString::fromUtf8("labelBeanControlFee"));
-        labelBeanControlFee->setFont(font);
+        labelBeanControlFee->setFont(font1);
         labelBeanControlFee->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlFee->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlFee->setText(QString::fromUtf8("0.00 BC"));
@@ -180,6 +213,10 @@ public:
         labelBeanControlLowOutputText = new QLabel(BeanControlDialog);
         labelBeanControlLowOutputText->setObjectName(QString::fromUtf8("labelBeanControlLowOutputText"));
         labelBeanControlLowOutputText->setEnabled(false);
+        QFont font2;
+        font2.setBold(true);
+        font2.setWeight(75);
+        labelBeanControlLowOutputText->setFont(font2);
         labelBeanControlLowOutputText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         formLayoutBeanControl3->setWidget(1, QFormLayout::LabelRole, labelBeanControlLowOutputText);
@@ -187,7 +224,7 @@ public:
         labelBeanControlLowOutput = new QLabel(BeanControlDialog);
         labelBeanControlLowOutput->setObjectName(QString::fromUtf8("labelBeanControlLowOutput"));
         labelBeanControlLowOutput->setEnabled(false);
-        labelBeanControlLowOutput->setFont(font);
+        labelBeanControlLowOutput->setFont(font1);
         labelBeanControlLowOutput->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlLowOutput->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlLowOutput->setText(QString::fromUtf8("no"));
@@ -205,13 +242,14 @@ public:
         formLayoutBeanControl4->setContentsMargins(6, -1, 6, -1);
         labelBeanControlAfterFeeText = new QLabel(BeanControlDialog);
         labelBeanControlAfterFeeText->setObjectName(QString::fromUtf8("labelBeanControlAfterFeeText"));
+        labelBeanControlAfterFeeText->setFont(font);
         labelBeanControlAfterFeeText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         formLayoutBeanControl4->setWidget(0, QFormLayout::LabelRole, labelBeanControlAfterFeeText);
 
         labelBeanControlAfterFee = new QLabel(BeanControlDialog);
         labelBeanControlAfterFee->setObjectName(QString::fromUtf8("labelBeanControlAfterFee"));
-        labelBeanControlAfterFee->setFont(font);
+        labelBeanControlAfterFee->setFont(font1);
         labelBeanControlAfterFee->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlAfterFee->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlAfterFee->setText(QString::fromUtf8("0.00 BC"));
@@ -222,6 +260,7 @@ public:
         labelBeanControlChangeText = new QLabel(BeanControlDialog);
         labelBeanControlChangeText->setObjectName(QString::fromUtf8("labelBeanControlChangeText"));
         labelBeanControlChangeText->setEnabled(false);
+        labelBeanControlChangeText->setFont(font2);
         labelBeanControlChangeText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         formLayoutBeanControl4->setWidget(1, QFormLayout::LabelRole, labelBeanControlChangeText);
@@ -229,7 +268,7 @@ public:
         labelBeanControlChange = new QLabel(BeanControlDialog);
         labelBeanControlChange->setObjectName(QString::fromUtf8("labelBeanControlChange"));
         labelBeanControlChange->setEnabled(false);
-        labelBeanControlChange->setFont(font);
+        labelBeanControlChange->setFont(font1);
         labelBeanControlChange->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlChange->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlChange->setText(QString::fromUtf8("0.00 BC"));
@@ -269,6 +308,10 @@ public:
         radioTreeMode->setObjectName(QString::fromUtf8("radioTreeMode"));
         sizePolicy.setHeightForWidth(radioTreeMode->sizePolicy().hasHeightForWidth());
         radioTreeMode->setSizePolicy(sizePolicy);
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("Liberation Sans"));
+        font3.setPointSize(12);
+        radioTreeMode->setFont(font3);
         radioTreeMode->setChecked(true);
 
         horizontalLayoutPanel->addWidget(radioTreeMode);
@@ -277,6 +320,7 @@ public:
         radioListMode->setObjectName(QString::fromUtf8("radioListMode"));
         sizePolicy.setHeightForWidth(radioListMode->sizePolicy().hasHeightForWidth());
         radioListMode->setSizePolicy(sizePolicy);
+        radioListMode->setFont(font3);
 
         horizontalLayoutPanel->addWidget(radioListMode);
 
@@ -289,6 +333,10 @@ public:
 
         treeWidget = new BeanControlTreeWidget(BeanControlDialog);
         treeWidget->setObjectName(QString::fromUtf8("treeWidget"));
+        QFont font4;
+        font4.setFamily(QString::fromUtf8("Liberation Sans"));
+        font4.setPointSize(11);
+        treeWidget->setFont(font4);
         treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         treeWidget->setSortingEnabled(false);
         treeWidget->setColumnCount(11);
@@ -301,8 +349,27 @@ public:
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
         sizePolicy.setHeightForWidth(buttonBox->sizePolicy().hasHeightForWidth());
         buttonBox->setSizePolicy(sizePolicy);
+        QPalette palette1;
+        palette1.setBrush(QPalette::Active, QPalette::Button, brush);
+        palette1.setBrush(QPalette::Active, QPalette::Base, brush1);
+        palette1.setBrush(QPalette::Active, QPalette::Window, brush);
+        palette1.setBrush(QPalette::Active, QPalette::AlternateBase, brush);
+        palette1.setBrush(QPalette::Active, QPalette::ToolTipBase, brush);
+        palette1.setBrush(QPalette::Inactive, QPalette::Button, brush);
+        palette1.setBrush(QPalette::Inactive, QPalette::Base, brush1);
+        palette1.setBrush(QPalette::Inactive, QPalette::Window, brush);
+        palette1.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush);
+        palette1.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush);
+        palette1.setBrush(QPalette::Disabled, QPalette::Button, brush);
+        palette1.setBrush(QPalette::Disabled, QPalette::Base, brush);
+        palette1.setBrush(QPalette::Disabled, QPalette::Window, brush);
+        palette1.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush);
+        palette1.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush);
+        buttonBox->setPalette(palette1);
+        buttonBox->setLayoutDirection(Qt::LeftToRight);
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Ok);
+        buttonBox->setCenterButtons(true);
 
         verticalLayout->addWidget(buttonBox);
 

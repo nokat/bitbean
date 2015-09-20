@@ -35,8 +35,11 @@ private slots:
     void on_tabWidget_currentChanged(int index);
     /** open the debug.log from the current datadir */
     void on_openDebugLogfileButton_clicked();
+    //** open bitbean.conf from current datadir */
+    void on_openConfigfileButton_clicked();
     /** display messagebox with program parameters (same as bitbean-qt --help) */
     void on_showCLOptionsButton_clicked();
+    void on_closeButton_clicked();
 
 public slots:
     void clear();

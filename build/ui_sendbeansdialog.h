@@ -144,6 +144,8 @@ public:
         sizePolicy1.setHeightForWidth(labelBeanControlFeatures->sizePolicy().hasHeightForWidth());
         labelBeanControlFeatures->setSizePolicy(sizePolicy1);
         QFont font1;
+        font1.setFamily(QString::fromUtf8("Liberation Sans"));
+        font1.setPointSize(10);
         font1.setBold(true);
         font1.setWeight(75);
         labelBeanControlFeatures->setFont(font1);
@@ -160,19 +162,37 @@ public:
         horizontalLayoutBeanControl2->setContentsMargins(-1, -1, -1, 10);
         pushButtonBeanControl = new QPushButton(frameBeanControl);
         pushButtonBeanControl->setObjectName(QString::fromUtf8("pushButtonBeanControl"));
+        QPalette palette1;
+        palette1.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette1.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette1.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        pushButtonBeanControl->setPalette(palette1);
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Sans Serif"));
+        font2.setPointSize(9);
+        pushButtonBeanControl->setFont(font2);
         pushButtonBeanControl->setStyleSheet(QString::fromUtf8(""));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icons/receiving_addresses"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButtonBeanControl->setIcon(icon);
 
         horizontalLayoutBeanControl2->addWidget(pushButtonBeanControl);
 
         labelBeanControlAutomaticallySelected = new QLabel(frameBeanControl);
         labelBeanControlAutomaticallySelected->setObjectName(QString::fromUtf8("labelBeanControlAutomaticallySelected"));
+        QFont font3;
+        font3.setPointSize(12);
+        labelBeanControlAutomaticallySelected->setFont(font3);
         labelBeanControlAutomaticallySelected->setMargin(5);
 
         horizontalLayoutBeanControl2->addWidget(labelBeanControlAutomaticallySelected);
 
         labelBeanControlInsuffFunds = new QLabel(frameBeanControl);
         labelBeanControlInsuffFunds->setObjectName(QString::fromUtf8("labelBeanControlInsuffFunds"));
-        labelBeanControlInsuffFunds->setFont(font1);
+        QFont font4;
+        font4.setBold(true);
+        font4.setWeight(75);
+        labelBeanControlInsuffFunds->setFont(font4);
         labelBeanControlInsuffFunds->setStyleSheet(QString::fromUtf8("color:red;font-weight:bold;"));
         labelBeanControlInsuffFunds->setMargin(5);
 
@@ -208,6 +228,7 @@ public:
         formLayoutBeanControl1->setContentsMargins(10, 4, 6, -1);
         labelBeanControlQuantityText = new QLabel(widgetBeanControl);
         labelBeanControlQuantityText->setObjectName(QString::fromUtf8("labelBeanControlQuantityText"));
+        labelBeanControlQuantityText->setFont(font1);
         labelBeanControlQuantityText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
         labelBeanControlQuantityText->setMargin(0);
 
@@ -215,10 +236,10 @@ public:
 
         labelBeanControlQuantity = new QLabel(widgetBeanControl);
         labelBeanControlQuantity->setObjectName(QString::fromUtf8("labelBeanControlQuantity"));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("Monospace"));
-        font2.setPointSize(10);
-        labelBeanControlQuantity->setFont(font2);
+        QFont font5;
+        font5.setFamily(QString::fromUtf8("Monospace"));
+        font5.setPointSize(10);
+        labelBeanControlQuantity->setFont(font5);
         labelBeanControlQuantity->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlQuantity->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlQuantity->setMargin(0);
@@ -228,13 +249,14 @@ public:
 
         labelBeanControlBytesText = new QLabel(widgetBeanControl);
         labelBeanControlBytesText->setObjectName(QString::fromUtf8("labelBeanControlBytesText"));
+        labelBeanControlBytesText->setFont(font1);
         labelBeanControlBytesText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         formLayoutBeanControl1->setWidget(1, QFormLayout::LabelRole, labelBeanControlBytesText);
 
         labelBeanControlBytes = new QLabel(widgetBeanControl);
         labelBeanControlBytes->setObjectName(QString::fromUtf8("labelBeanControlBytes"));
-        labelBeanControlBytes->setFont(font2);
+        labelBeanControlBytes->setFont(font5);
         labelBeanControlBytes->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlBytes->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlBytes->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
@@ -251,6 +273,7 @@ public:
         formLayoutBeanControl2->setContentsMargins(6, 4, 6, -1);
         labelBeanControlAmountText = new QLabel(widgetBeanControl);
         labelBeanControlAmountText->setObjectName(QString::fromUtf8("labelBeanControlAmountText"));
+        labelBeanControlAmountText->setFont(font1);
         labelBeanControlAmountText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
         labelBeanControlAmountText->setMargin(0);
 
@@ -258,7 +281,7 @@ public:
 
         labelBeanControlAmount = new QLabel(widgetBeanControl);
         labelBeanControlAmount->setObjectName(QString::fromUtf8("labelBeanControlAmount"));
-        labelBeanControlAmount->setFont(font2);
+        labelBeanControlAmount->setFont(font5);
         labelBeanControlAmount->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlAmount->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlAmount->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
@@ -267,13 +290,14 @@ public:
 
         labelBeanControlPriorityText = new QLabel(widgetBeanControl);
         labelBeanControlPriorityText->setObjectName(QString::fromUtf8("labelBeanControlPriorityText"));
+        labelBeanControlPriorityText->setFont(font1);
         labelBeanControlPriorityText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         formLayoutBeanControl2->setWidget(1, QFormLayout::LabelRole, labelBeanControlPriorityText);
 
         labelBeanControlPriority = new QLabel(widgetBeanControl);
         labelBeanControlPriority->setObjectName(QString::fromUtf8("labelBeanControlPriority"));
-        labelBeanControlPriority->setFont(font2);
+        labelBeanControlPriority->setFont(font5);
         labelBeanControlPriority->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlPriority->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlPriority->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
@@ -290,6 +314,7 @@ public:
         formLayoutBeanControl3->setContentsMargins(6, 4, 6, -1);
         labelBeanControlFeeText = new QLabel(widgetBeanControl);
         labelBeanControlFeeText->setObjectName(QString::fromUtf8("labelBeanControlFeeText"));
+        labelBeanControlFeeText->setFont(font1);
         labelBeanControlFeeText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
         labelBeanControlFeeText->setMargin(0);
 
@@ -297,7 +322,7 @@ public:
 
         labelBeanControlFee = new QLabel(widgetBeanControl);
         labelBeanControlFee->setObjectName(QString::fromUtf8("labelBeanControlFee"));
-        labelBeanControlFee->setFont(font2);
+        labelBeanControlFee->setFont(font5);
         labelBeanControlFee->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlFee->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlFee->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
@@ -306,13 +331,14 @@ public:
 
         labelBeanControlLowOutputText = new QLabel(widgetBeanControl);
         labelBeanControlLowOutputText->setObjectName(QString::fromUtf8("labelBeanControlLowOutputText"));
+        labelBeanControlLowOutputText->setFont(font1);
         labelBeanControlLowOutputText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         formLayoutBeanControl3->setWidget(1, QFormLayout::LabelRole, labelBeanControlLowOutputText);
 
         labelBeanControlLowOutput = new QLabel(widgetBeanControl);
         labelBeanControlLowOutput->setObjectName(QString::fromUtf8("labelBeanControlLowOutput"));
-        labelBeanControlLowOutput->setFont(font2);
+        labelBeanControlLowOutput->setFont(font5);
         labelBeanControlLowOutput->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlLowOutput->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlLowOutput->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
@@ -329,6 +355,7 @@ public:
         formLayoutBeanControl4->setContentsMargins(6, 4, 6, -1);
         labelBeanControlAfterFeeText = new QLabel(widgetBeanControl);
         labelBeanControlAfterFeeText->setObjectName(QString::fromUtf8("labelBeanControlAfterFeeText"));
+        labelBeanControlAfterFeeText->setFont(font1);
         labelBeanControlAfterFeeText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
         labelBeanControlAfterFeeText->setMargin(0);
 
@@ -336,7 +363,7 @@ public:
 
         labelBeanControlAfterFee = new QLabel(widgetBeanControl);
         labelBeanControlAfterFee->setObjectName(QString::fromUtf8("labelBeanControlAfterFee"));
-        labelBeanControlAfterFee->setFont(font2);
+        labelBeanControlAfterFee->setFont(font5);
         labelBeanControlAfterFee->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlAfterFee->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlAfterFee->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
@@ -345,13 +372,14 @@ public:
 
         labelBeanControlChangeText = new QLabel(widgetBeanControl);
         labelBeanControlChangeText->setObjectName(QString::fromUtf8("labelBeanControlChangeText"));
+        labelBeanControlChangeText->setFont(font1);
         labelBeanControlChangeText->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         formLayoutBeanControl4->setWidget(1, QFormLayout::LabelRole, labelBeanControlChangeText);
 
         labelBeanControlChange = new QLabel(widgetBeanControl);
         labelBeanControlChange->setObjectName(QString::fromUtf8("labelBeanControlChange"));
-        labelBeanControlChange->setFont(font2);
+        labelBeanControlChange->setFont(font5);
         labelBeanControlChange->setCursor(QCursor(Qt::IBeamCursor));
         labelBeanControlChange->setContextMenuPolicy(Qt::ActionsContextMenu);
         labelBeanControlChange->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
@@ -375,6 +403,7 @@ public:
         horizontalLayoutBeanControl4->setContentsMargins(-1, 5, 5, -1);
         checkBoxBeanControlChange = new QCheckBox(frameBeanControl);
         checkBoxBeanControlChange->setObjectName(QString::fromUtf8("checkBoxBeanControlChange"));
+        checkBoxBeanControlChange->setFont(font3);
 
         horizontalLayoutBeanControl4->addWidget(checkBoxBeanControlChange);
 
@@ -420,7 +449,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 828, 152));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 828, 144));
         verticalLayout_2 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
@@ -442,9 +471,15 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         addButton = new QPushButton(SendBeansDialog);
         addButton->setObjectName(QString::fromUtf8("addButton"));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/icons/add"), QSize(), QIcon::Normal, QIcon::Off);
-        addButton->setIcon(icon);
+        QPalette palette2;
+        palette2.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette2.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette2.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        addButton->setPalette(palette2);
+        addButton->setFont(font2);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/icons/add"), QSize(), QIcon::Normal, QIcon::Off);
+        addButton->setIcon(icon1);
         addButton->setAutoDefault(false);
 
         horizontalLayout->addWidget(addButton);
@@ -456,9 +491,15 @@ public:
         sizePolicy5.setVerticalStretch(0);
         sizePolicy5.setHeightForWidth(clearButton->sizePolicy().hasHeightForWidth());
         clearButton->setSizePolicy(sizePolicy5);
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/icons/remove"), QSize(), QIcon::Normal, QIcon::Off);
-        clearButton->setIcon(icon1);
+        QPalette palette3;
+        palette3.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette3.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        clearButton->setPalette(palette3);
+        clearButton->setFont(font2);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/icons/remove"), QSize(), QIcon::Normal, QIcon::Off);
+        clearButton->setIcon(icon2);
         clearButton->setAutoRepeatDelay(300);
         clearButton->setAutoDefault(false);
 
@@ -474,6 +515,11 @@ public:
         sizePolicy6.setVerticalStretch(0);
         sizePolicy6.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
         label->setSizePolicy(sizePolicy6);
+        QFont font6;
+        font6.setPointSize(12);
+        font6.setBold(true);
+        font6.setWeight(75);
+        label->setFont(font6);
 
         horizontalLayout_2->addWidget(label);
 
@@ -481,6 +527,10 @@ public:
         labelBalance->setObjectName(QString::fromUtf8("labelBalance"));
         sizePolicy6.setHeightForWidth(labelBalance->sizePolicy().hasHeightForWidth());
         labelBalance->setSizePolicy(sizePolicy6);
+        QFont font7;
+        font7.setFamily(QString::fromUtf8("Monospace"));
+        font7.setPointSize(12);
+        labelBalance->setFont(font7);
         labelBalance->setCursor(QCursor(Qt::IBeamCursor));
         labelBalance->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -496,9 +546,15 @@ public:
         sendButton = new QPushButton(SendBeansDialog);
         sendButton->setObjectName(QString::fromUtf8("sendButton"));
         sendButton->setMinimumSize(QSize(150, 0));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/icons/send"), QSize(), QIcon::Normal, QIcon::Off);
-        sendButton->setIcon(icon2);
+        QPalette palette4;
+        palette4.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette4.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette4.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        sendButton->setPalette(palette4);
+        sendButton->setFont(font2);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/icons/send"), QSize(), QIcon::Normal, QIcon::Off);
+        sendButton->setIcon(icon3);
         sendButton->setDefault(true);
 
         horizontalLayout->addWidget(sendButton);

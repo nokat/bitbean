@@ -14,19 +14,22 @@
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QDialog>
-#include <QtGui/QDialogButtonBox>
+#include <QtGui/QGridLayout>
 #include <QtGui/QHeaderView>
+#include <QtGui/QPushButton>
+#include <QtGui/QSpacerItem>
 #include <QtGui/QTextEdit>
-#include <QtGui/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_TransactionDescDialog
 {
 public:
-    QVBoxLayout *verticalLayout;
+    QGridLayout *gridLayout;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *closeButton;
+    QSpacerItem *horizontalSpacer;
     QTextEdit *detailText;
-    QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *TransactionDescDialog)
     {
@@ -65,25 +68,38 @@ public:
         font.setFamily(QString::fromUtf8("Liberation Sans"));
         font.setPointSize(12);
         TransactionDescDialog->setFont(font);
-        verticalLayout = new QVBoxLayout(TransactionDescDialog);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        gridLayout = new QGridLayout(TransactionDescDialog);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        horizontalSpacer_2 = new QSpacerItem(252, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_2, 1, 0, 1, 1);
+
+        closeButton = new QPushButton(TransactionDescDialog);
+        closeButton->setObjectName(QString::fromUtf8("closeButton"));
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(closeButton->sizePolicy().hasHeightForWidth());
+        closeButton->setSizePolicy(sizePolicy);
+        closeButton->setFocusPolicy(Qt::TabFocus);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icons/quit"), QSize(), QIcon::Normal, QIcon::Off);
+        closeButton->setIcon(icon);
+
+        gridLayout->addWidget(closeButton, 1, 1, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(252, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 1, 2, 1, 1);
+
         detailText = new QTextEdit(TransactionDescDialog);
         detailText->setObjectName(QString::fromUtf8("detailText"));
         detailText->setReadOnly(true);
 
-        verticalLayout->addWidget(detailText);
-
-        buttonBox = new QDialogButtonBox(TransactionDescDialog);
-        buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Close);
-
-        verticalLayout->addWidget(buttonBox, 0, Qt::AlignHCenter);
+        gridLayout->addWidget(detailText, 0, 0, 1, 3);
 
 
         retranslateUi(TransactionDescDialog);
-        QObject::connect(buttonBox, SIGNAL(accepted()), TransactionDescDialog, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), TransactionDescDialog, SLOT(reject()));
 
         QMetaObject::connectSlotsByName(TransactionDescDialog);
     } // setupUi
@@ -91,6 +107,7 @@ public:
     void retranslateUi(QDialog *TransactionDescDialog)
     {
         TransactionDescDialog->setWindowTitle(QApplication::translate("TransactionDescDialog", "Transaction details", 0, QApplication::UnicodeUTF8));
+        closeButton->setText(QApplication::translate("TransactionDescDialog", "&Close", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
         detailText->setToolTip(QApplication::translate("TransactionDescDialog", "This pane shows a detailed description of the transaction", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP

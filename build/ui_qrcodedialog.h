@@ -53,7 +53,7 @@ public:
     {
         if (QRCodeDialog->objectName().isEmpty())
             QRCodeDialog->setObjectName(QString::fromUtf8("QRCodeDialog"));
-        QRCodeDialog->resize(340, 543);
+        QRCodeDialog->resize(340, 563);
         QPalette palette;
         QBrush brush(QColor(211, 238, 175, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -110,6 +110,9 @@ public:
         sizePolicy1.setHeightForWidth(outUri->sizePolicy().hasHeightForWidth());
         outUri->setSizePolicy(sizePolicy1);
         outUri->setMinimumSize(QSize(0, 50));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Monospace"));
+        outUri->setFont(font1);
         outUri->setTabChangesFocus(true);
         outUri->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -122,6 +125,9 @@ public:
         chkReqPayment = new QCheckBox(widget);
         chkReqPayment->setObjectName(QString::fromUtf8("chkReqPayment"));
         chkReqPayment->setEnabled(true);
+        QFont font2;
+        font2.setItalic(false);
+        chkReqPayment->setFont(font2);
 
         verticalLayout_2->addWidget(chkReqPayment);
 
@@ -168,6 +174,7 @@ public:
         lnReqAmount->setObjectName(QString::fromUtf8("lnReqAmount"));
         lnReqAmount->setEnabled(false);
         lnReqAmount->setMinimumSize(QSize(80, 0));
+        lnReqAmount->setFont(font1);
 
         formLayout->setWidget(0, QFormLayout::FieldRole, lnReqAmount);
 
@@ -182,6 +189,13 @@ public:
 
         btnSaveAs = new QPushButton(widget);
         btnSaveAs->setObjectName(QString::fromUtf8("btnSaveAs"));
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("Sans Serif"));
+        font3.setPointSize(9);
+        btnSaveAs->setFont(font3);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icons/filesave"), QSize(), QIcon::Normal, QIcon::Off);
+        btnSaveAs->setIcon(icon);
 
         horizontalLayout->addWidget(btnSaveAs);
 

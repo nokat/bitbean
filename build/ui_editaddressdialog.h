@@ -69,7 +69,7 @@ public:
         EditAddressDialog->setPalette(palette);
         QFont font;
         font.setFamily(QString::fromUtf8("Liberation Sans"));
-        font.setPointSize(10);
+        font.setPointSize(12);
         EditAddressDialog->setFont(font);
         verticalLayout = new QVBoxLayout(EditAddressDialog);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
@@ -101,6 +101,10 @@ public:
 
         buttonBox = new QDialogButtonBox(EditAddressDialog);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Sans Serif"));
+        font1.setPointSize(9);
+        buttonBox->setFont(font1);
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
 

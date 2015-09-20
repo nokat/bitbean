@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>340</width>
-    <height>543</height>
+    <height>563</height>
    </rect>
   </property>
   <property name="palette">
@@ -231,6 +231,11 @@
        <height>50</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <family>Monospace</family>
+      </font>
+     </property>
      <property name="tabChangesFocus">
       <bool>true</bool>
      </property>
@@ -246,6 +251,11 @@
        <widget class="QCheckBox" name="chkReqPayment">
         <property name="enabled">
          <bool>true</bool>
+        </property>
+        <property name="font">
+         <font>
+          <italic>false</italic>
+         </font>
         </property>
         <property name="text">
          <string>Request Payment</string>
@@ -328,6 +338,11 @@
             <height>0</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Monospace</family>
+           </font>
+          </property>
          </widget>
         </item>
        </layout>
@@ -349,8 +364,18 @@
         </item>
         <item>
          <widget class="QPushButton" name="btnSaveAs">
+          <property name="font">
+           <font>
+            <family>Sans Serif</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>&amp;Save As...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../bitbean.qrc">
+            <normaloff>:/icons/filesave</normaloff>:/icons/filesave</iconset>
           </property>
          </widget>
         </item>
@@ -366,9 +391,12 @@
    <class>BitbeanAmountField</class>
    <extends>QSpinBox</extends>
    <header>bitbeanamountfield.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../bitbean.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>chkReqPayment</sender>

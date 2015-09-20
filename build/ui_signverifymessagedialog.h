@@ -47,6 +47,7 @@ public:
     QHBoxLayout *horizontalLayout_3_SM;
     QPushButton *signMessageButton_SM;
     QPushButton *clearButton_SM;
+    QPushButton *closeButton_SM;
     QSpacerItem *horizontalSpacer_1_SM;
     QLabel *statusLabel_SM;
     QSpacerItem *horizontalSpacer_2_SM;
@@ -61,6 +62,7 @@ public:
     QHBoxLayout *horizontalLayout_2_VM;
     QPushButton *verifyMessageButton_VM;
     QPushButton *clearButton_VM;
+    QPushButton *closeButton_VM;
     QSpacerItem *horizontalSpacer_1_VM;
     QLabel *statusLabel_VM;
     QSpacerItem *horizontalSpacer_2_VM;
@@ -113,6 +115,9 @@ public:
         verticalLayout_SM->setObjectName(QString::fromUtf8("verticalLayout_SM"));
         infoLabel_SM = new QLabel(tabSignMessage);
         infoLabel_SM->setObjectName(QString::fromUtf8("infoLabel_SM"));
+        QFont font1;
+        font1.setPointSize(10);
+        infoLabel_SM->setFont(font1);
         infoLabel_SM->setTextFormat(Qt::PlainText);
         infoLabel_SM->setWordWrap(true);
 
@@ -158,9 +163,9 @@ public:
         horizontalLayout_2_SM->setObjectName(QString::fromUtf8("horizontalLayout_2_SM"));
         signatureOut_SM = new QLineEdit(tabSignMessage);
         signatureOut_SM->setObjectName(QString::fromUtf8("signatureOut_SM"));
-        QFont font1;
-        font1.setItalic(true);
-        signatureOut_SM->setFont(font1);
+        QFont font2;
+        font2.setItalic(true);
+        signatureOut_SM->setFont(font2);
         signatureOut_SM->setReadOnly(true);
 
         horizontalLayout_2_SM->addWidget(signatureOut_SM);
@@ -181,8 +186,12 @@ public:
         horizontalLayout_3_SM->setObjectName(QString::fromUtf8("horizontalLayout_3_SM"));
         signMessageButton_SM = new QPushButton(tabSignMessage);
         signMessageButton_SM->setObjectName(QString::fromUtf8("signMessageButton_SM"));
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("Sans Serif"));
+        font3.setPointSize(9);
+        signMessageButton_SM->setFont(font3);
         QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/icons/edit"), QSize(), QIcon::Normal, QIcon::Off);
+        icon3.addFile(QString::fromUtf8(":/icons/signmessage"), QSize(), QIcon::Normal, QIcon::Off);
         signMessageButton_SM->setIcon(icon3);
         signMessageButton_SM->setAutoDefault(false);
 
@@ -190,6 +199,7 @@ public:
 
         clearButton_SM = new QPushButton(tabSignMessage);
         clearButton_SM->setObjectName(QString::fromUtf8("clearButton_SM"));
+        clearButton_SM->setFont(font3);
         QIcon icon4;
         icon4.addFile(QString::fromUtf8(":/icons/remove"), QSize(), QIcon::Normal, QIcon::Off);
         clearButton_SM->setIcon(icon4);
@@ -197,16 +207,25 @@ public:
 
         horizontalLayout_3_SM->addWidget(clearButton_SM);
 
+        closeButton_SM = new QPushButton(tabSignMessage);
+        closeButton_SM->setObjectName(QString::fromUtf8("closeButton_SM"));
+        closeButton_SM->setFont(font3);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/icons/quit"), QSize(), QIcon::Normal, QIcon::Off);
+        closeButton_SM->setIcon(icon5);
+
+        horizontalLayout_3_SM->addWidget(closeButton_SM);
+
         horizontalSpacer_1_SM = new QSpacerItem(40, 48, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_3_SM->addItem(horizontalSpacer_1_SM);
 
         statusLabel_SM = new QLabel(tabSignMessage);
         statusLabel_SM->setObjectName(QString::fromUtf8("statusLabel_SM"));
-        QFont font2;
-        font2.setBold(true);
-        font2.setWeight(75);
-        statusLabel_SM->setFont(font2);
+        QFont font4;
+        font4.setBold(true);
+        font4.setWeight(75);
+        statusLabel_SM->setFont(font4);
         statusLabel_SM->setWordWrap(true);
 
         horizontalLayout_3_SM->addWidget(statusLabel_SM);
@@ -225,6 +244,12 @@ public:
         verticalLayout_VM->setObjectName(QString::fromUtf8("verticalLayout_VM"));
         infoLabel_VM = new QLabel(tabVerifyMessage);
         infoLabel_VM->setObjectName(QString::fromUtf8("infoLabel_VM"));
+        QFont font5;
+        font5.setPointSize(10);
+        font5.setBold(false);
+        font5.setItalic(false);
+        font5.setWeight(50);
+        infoLabel_VM->setFont(font5);
         infoLabel_VM->setTextFormat(Qt::PlainText);
         infoLabel_VM->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         infoLabel_VM->setWordWrap(true);
@@ -264,19 +289,28 @@ public:
         horizontalLayout_2_VM->setObjectName(QString::fromUtf8("horizontalLayout_2_VM"));
         verifyMessageButton_VM = new QPushButton(tabVerifyMessage);
         verifyMessageButton_VM->setObjectName(QString::fromUtf8("verifyMessageButton_VM"));
-        QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/icons/transaction_0"), QSize(), QIcon::Normal, QIcon::Off);
-        verifyMessageButton_VM->setIcon(icon5);
+        verifyMessageButton_VM->setFont(font3);
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/icons/verifymessage"), QSize(), QIcon::Normal, QIcon::Off);
+        verifyMessageButton_VM->setIcon(icon6);
         verifyMessageButton_VM->setAutoDefault(false);
 
         horizontalLayout_2_VM->addWidget(verifyMessageButton_VM);
 
         clearButton_VM = new QPushButton(tabVerifyMessage);
         clearButton_VM->setObjectName(QString::fromUtf8("clearButton_VM"));
+        clearButton_VM->setFont(font3);
         clearButton_VM->setIcon(icon4);
         clearButton_VM->setAutoDefault(false);
 
         horizontalLayout_2_VM->addWidget(clearButton_VM);
+
+        closeButton_VM = new QPushButton(tabVerifyMessage);
+        closeButton_VM->setObjectName(QString::fromUtf8("closeButton_VM"));
+        closeButton_VM->setFont(font3);
+        closeButton_VM->setIcon(icon5);
+
+        horizontalLayout_2_VM->addWidget(closeButton_VM);
 
         horizontalSpacer_1_VM = new QSpacerItem(40, 48, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -284,7 +318,7 @@ public:
 
         statusLabel_VM = new QLabel(tabVerifyMessage);
         statusLabel_VM->setObjectName(QString::fromUtf8("statusLabel_VM"));
-        statusLabel_VM->setFont(font2);
+        statusLabel_VM->setFont(font4);
         statusLabel_VM->setWordWrap(true);
 
         horizontalLayout_2_VM->addWidget(statusLabel_VM);
@@ -303,7 +337,7 @@ public:
 
         retranslateUi(SignVerifyMessageDialog);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(SignVerifyMessageDialog);
@@ -341,6 +375,10 @@ public:
         clearButton_SM->setToolTip(QApplication::translate("SignVerifyMessageDialog", "Reset all sign message fields", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP
         clearButton_SM->setText(QApplication::translate("SignVerifyMessageDialog", "Clear &All", 0, QApplication::UnicodeUTF8));
+#ifndef QT_NO_TOOLTIP
+        closeButton_SM->setToolTip(QApplication::translate("SignVerifyMessageDialog", "Close Window", 0, QApplication::UnicodeUTF8));
+#endif // QT_NO_TOOLTIP
+        closeButton_SM->setText(QApplication::translate("SignVerifyMessageDialog", "&Cancel", 0, QApplication::UnicodeUTF8));
         statusLabel_SM->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tabSignMessage), QApplication::translate("SignVerifyMessageDialog", "&Sign Message", 0, QApplication::UnicodeUTF8));
         infoLabel_VM->setText(QApplication::translate("SignVerifyMessageDialog", "Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.", 0, QApplication::UnicodeUTF8));
@@ -360,6 +398,10 @@ public:
         clearButton_VM->setToolTip(QApplication::translate("SignVerifyMessageDialog", "Reset all verify message fields", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP
         clearButton_VM->setText(QApplication::translate("SignVerifyMessageDialog", "Clear &All", 0, QApplication::UnicodeUTF8));
+#ifndef QT_NO_TOOLTIP
+        closeButton_VM->setToolTip(QApplication::translate("SignVerifyMessageDialog", "Close window", 0, QApplication::UnicodeUTF8));
+#endif // QT_NO_TOOLTIP
+        closeButton_VM->setText(QApplication::translate("SignVerifyMessageDialog", "&Cancel", 0, QApplication::UnicodeUTF8));
         statusLabel_VM->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tabVerifyMessage), QApplication::translate("SignVerifyMessageDialog", "&Verify Message", 0, QApplication::UnicodeUTF8));
     } // retranslateUi

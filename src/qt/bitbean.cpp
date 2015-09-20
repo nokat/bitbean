@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
     // Application identification (must be set before OptionsModel is initialized,
     // as it is used to locate QSettings)
     app.setOrganizationName("BitBean");
-    //XXX app.setOrganizationDomain("");
+    //XXX app.setOrganizationDomain("bitbean.org");
     if(GetBoolArg("-testnet")) // Separate UI settings for testnet
         app.setApplicationName("BitBean-Qt-testnet");
     else

@@ -535,7 +535,7 @@
        <property name="title">
         <string>BitBean Network</string>
        </property>
-       <layout class="QFormLayout" name="formLayout">
+       <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="0">
          <widget class="QLabel" name="labelStalkheightText">
           <property name="font">
@@ -547,62 +547,6 @@
           </property>
           <property name="text">
            <string>Bean Stalk Height:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="labelSproutDiffText">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Sprouting Difficulty:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="labelBeanWeightText">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Bean Weight:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="labelConnectionsText">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Connections:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="labelTotalBeansText">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Total Beans:</string>
           </property>
          </widget>
         </item>
@@ -621,7 +565,21 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelSproutDiffText">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Sprouting Difficulty:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
          <widget class="QLabel" name="sproutBox">
           <property name="font">
            <font>
@@ -636,7 +594,21 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
+        <item row="2" column="0">
+         <widget class="QLabel" name="labelBeanWeightText">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Bean Weight:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
          <widget class="QLabel" name="weightBox">
           <property name="font">
            <font>
@@ -651,7 +623,21 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
+        <item row="3" column="0">
+         <widget class="QLabel" name="labelConnectionsText">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Connections:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
          <widget class="QLabel" name="connectionBox">
           <property name="font">
            <font>
@@ -666,7 +652,21 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
+        <item row="4" column="0">
+         <widget class="QLabel" name="labelTotalBeansText">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Total Beans:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
          <widget class="QLabel" name="beanBox">
           <property name="font">
            <font>

@@ -100,6 +100,16 @@ void SignVerifyMessageDialog::on_pasteButton_SM_clicked()
     setAddress_SM(QApplication::clipboard()->text());
 }
 
+void SignVerifyMessageDialog::on_closeButton_SM_clicked()
+{
+    close();
+}
+
+void SignVerifyMessageDialog::on_closeButton_VM_clicked()
+{
+    close();
+}
+
 void SignVerifyMessageDialog::on_signMessageButton_SM_clicked()
 {
     /* Clear old signature to ensure users don't get confused on error with an old signature displayed */

@@ -46,30 +46,47 @@ public:
             SendBeansEntry->setObjectName(QString::fromUtf8("SendBeansEntry"));
         SendBeansEntry->resize(729, 136);
         QPalette palette;
-        QBrush brush(QColor(255, 255, 255, 255));
+        QBrush brush(QColor(0, 0, 0, 255));
         brush.setStyle(Qt::SolidPattern);
-        palette.setBrush(QPalette::Active, QPalette::Base, brush);
+        palette.setBrush(QPalette::Active, QPalette::WindowText, brush);
         QBrush brush1(QColor(211, 238, 175, 255));
         brush1.setStyle(Qt::SolidPattern);
-        palette.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette.setBrush(QPalette::Active, QPalette::Button, brush1);
         QBrush brush2(QColor(159, 213, 85, 255));
         brush2.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Dark, brush2);
+        palette.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        QBrush brush3(QColor(255, 255, 255, 255));
+        brush3.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Base, brush3);
+        palette.setBrush(QPalette::Active, QPalette::Window, brush1);
         palette.setBrush(QPalette::Active, QPalette::Shadow, brush2);
         palette.setBrush(QPalette::Active, QPalette::Highlight, brush2);
         palette.setBrush(QPalette::Active, QPalette::AlternateBase, brush1);
         palette.setBrush(QPalette::Active, QPalette::ToolTipBase, brush1);
-        palette.setBrush(QPalette::Inactive, QPalette::Base, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Dark, brush2);
+        palette.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Base, brush3);
         palette.setBrush(QPalette::Inactive, QPalette::Window, brush1);
         palette.setBrush(QPalette::Inactive, QPalette::Shadow, brush2);
         palette.setBrush(QPalette::Inactive, QPalette::Highlight, brush2);
         palette.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush1);
         palette.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush2);
+        palette.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::Dark, brush2);
+        palette.setBrush(QPalette::Disabled, QPalette::Text, brush2);
+        palette.setBrush(QPalette::Disabled, QPalette::ButtonText, brush2);
         palette.setBrush(QPalette::Disabled, QPalette::Base, brush1);
         palette.setBrush(QPalette::Disabled, QPalette::Window, brush1);
         palette.setBrush(QPalette::Disabled, QPalette::Shadow, brush2);
-        QBrush brush3(QColor(0, 0, 128, 255));
-        brush3.setStyle(Qt::SolidPattern);
-        palette.setBrush(QPalette::Disabled, QPalette::Highlight, brush3);
+        QBrush brush4(QColor(0, 0, 128, 255));
+        brush4.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Disabled, QPalette::Highlight, brush4);
         palette.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
         palette.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush1);
         SendBeansEntry->setPalette(palette);
@@ -87,18 +104,26 @@ public:
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         label = new QLabel(SendBeansEntry);
         label->setObjectName(QString::fromUtf8("label"));
+        QFont font1;
+        font1.setPointSize(12);
+        label->setFont(font1);
         label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout->addWidget(label, 5, 0, 1, 1);
 
         label_2 = new QLabel(SendBeansEntry);
         label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setFont(font1);
         label_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout->addWidget(label_2, 3, 0, 1, 1);
 
         payAmount = new BitbeanAmountField(SendBeansEntry);
         payAmount->setObjectName(QString::fromUtf8("payAmount"));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Monospace"));
+        font2.setPointSize(12);
+        payAmount->setFont(font2);
 
         gridLayout->addWidget(payAmount, 5, 1, 1, 1);
 
@@ -108,6 +133,7 @@ public:
         addAsLabel = new QValidatedLineEdit(SendBeansEntry);
         addAsLabel->setObjectName(QString::fromUtf8("addAsLabel"));
         addAsLabel->setEnabled(true);
+        addAsLabel->setFont(font2);
 
         horizontalLayout_2->addWidget(addAsLabel);
 
@@ -116,6 +142,7 @@ public:
 
         label_4 = new QLabel(SendBeansEntry);
         label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setFont(font1);
         label_4->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout->addWidget(label_4, 4, 0, 1, 1);
@@ -125,6 +152,7 @@ public:
         payToLayout->setObjectName(QString::fromUtf8("payToLayout"));
         payTo = new QValidatedLineEdit(SendBeansEntry);
         payTo->setObjectName(QString::fromUtf8("payTo"));
+        payTo->setFont(font2);
         payTo->setMaxLength(34);
 
         payToLayout->addWidget(payTo);

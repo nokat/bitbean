@@ -203,6 +203,8 @@
             </property>
             <property name="font">
              <font>
+              <family>Liberation Sans</family>
+              <pointsize>10</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -227,16 +229,68 @@
           </property>
           <item>
            <widget class="QPushButton" name="pushButtonBeanControl">
+            <property name="palette">
+             <palette>
+              <active>
+               <colorrole role="Button">
+                <brush brushstyle="SolidPattern">
+                 <color alpha="255">
+                  <red>211</red>
+                  <green>238</green>
+                  <blue>175</blue>
+                 </color>
+                </brush>
+               </colorrole>
+              </active>
+              <inactive>
+               <colorrole role="Button">
+                <brush brushstyle="SolidPattern">
+                 <color alpha="255">
+                  <red>211</red>
+                  <green>238</green>
+                  <blue>175</blue>
+                 </color>
+                </brush>
+               </colorrole>
+              </inactive>
+              <disabled>
+               <colorrole role="Button">
+                <brush brushstyle="SolidPattern">
+                 <color alpha="255">
+                  <red>211</red>
+                  <green>238</green>
+                  <blue>175</blue>
+                 </color>
+                </brush>
+               </colorrole>
+              </disabled>
+             </palette>
+            </property>
+            <property name="font">
+             <font>
+              <family>Sans Serif</family>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true"/>
             </property>
             <property name="text">
              <string>Inputs...</string>
             </property>
+            <property name="icon">
+             <iconset resource="../bitbean.qrc">
+              <normaloff>:/icons/receiving_addresses</normaloff>:/icons/receiving_addresses</iconset>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QLabel" name="labelBeanControlAutomaticallySelected">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>automatically selected</string>
             </property>
@@ -330,6 +384,14 @@
                </property>
                <item row="0" column="0">
                 <widget class="QLabel" name="labelBeanControlQuantityText">
+                 <property name="font">
+                  <font>
+                   <family>Liberation Sans</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">font-weight:bold;</string>
                  </property>
@@ -368,6 +430,14 @@
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="labelBeanControlBytesText">
+                 <property name="font">
+                  <font>
+                   <family>Liberation Sans</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">font-weight:bold;</string>
                  </property>
@@ -419,6 +489,14 @@
                </property>
                <item row="0" column="0">
                 <widget class="QLabel" name="labelBeanControlAmountText">
+                 <property name="font">
+                  <font>
+                   <family>Liberation Sans</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">font-weight:bold;</string>
                  </property>
@@ -454,6 +532,14 @@
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="labelBeanControlPriorityText">
+                 <property name="font">
+                  <font>
+                   <family>Liberation Sans</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">font-weight:bold;</string>
                  </property>
@@ -505,6 +591,14 @@
                </property>
                <item row="0" column="0">
                 <widget class="QLabel" name="labelBeanControlFeeText">
+                 <property name="font">
+                  <font>
+                   <family>Liberation Sans</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">font-weight:bold;</string>
                  </property>
@@ -540,6 +634,14 @@
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="labelBeanControlLowOutputText">
+                 <property name="font">
+                  <font>
+                   <family>Liberation Sans</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">font-weight:bold;</string>
                  </property>
@@ -591,6 +693,14 @@
                </property>
                <item row="0" column="0">
                 <widget class="QLabel" name="labelBeanControlAfterFeeText">
+                 <property name="font">
+                  <font>
+                   <family>Liberation Sans</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">font-weight:bold;</string>
                  </property>
@@ -626,6 +736,14 @@
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="labelBeanControlChangeText">
+                 <property name="font">
+                  <font>
+                   <family>Liberation Sans</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">font-weight:bold;</string>
                  </property>
@@ -679,6 +797,11 @@
           </property>
           <item>
            <widget class="QCheckBox" name="checkBoxBeanControlChange">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>custom change address</string>
             </property>
@@ -750,7 +873,7 @@
         <x>0</x>
         <y>0</y>
         <width>828</width>
-        <height>152</height>
+        <height>144</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -785,6 +908,49 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="addButton">
+       <property name="palette">
+        <palette>
+         <active>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>211</red>
+             <green>238</green>
+             <blue>175</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </active>
+         <inactive>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>211</red>
+             <green>238</green>
+             <blue>175</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </inactive>
+         <disabled>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>211</red>
+             <green>238</green>
+             <blue>175</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </disabled>
+        </palette>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="toolTip">
         <string>Send to multiple recipients at once</string>
        </property>
@@ -807,6 +973,49 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="palette">
+        <palette>
+         <active>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>211</red>
+             <green>238</green>
+             <blue>175</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </active>
+         <inactive>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>211</red>
+             <green>238</green>
+             <blue>175</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </inactive>
+         <disabled>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>211</red>
+             <green>238</green>
+             <blue>175</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </disabled>
+        </palette>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif</family>
+         <pointsize>9</pointsize>
+        </font>
        </property>
        <property name="toolTip">
         <string>Remove all transaction fields</string>
@@ -839,6 +1048,13 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
           <string>Balance:</string>
          </property>
@@ -851,6 +1067,12 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <family>Monospace</family>
+           <pointsize>12</pointsize>
+          </font>
          </property>
          <property name="cursor">
           <cursorShape>IBeamCursor</cursorShape>
@@ -885,6 +1107,49 @@
          <width>150</width>
          <height>0</height>
         </size>
+       </property>
+       <property name="palette">
+        <palette>
+         <active>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>211</red>
+             <green>238</green>
+             <blue>175</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </active>
+         <inactive>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>211</red>
+             <green>238</green>
+             <blue>175</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </inactive>
+         <disabled>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>211</red>
+             <green>238</green>
+             <blue>175</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </disabled>
+        </palette>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif</family>
+         <pointsize>9</pointsize>
+        </font>
        </property>
        <property name="toolTip">
         <string>Confirm the send action</string>

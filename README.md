@@ -2,11 +2,11 @@
 BitBean
 "BitBean, Leading the Way for Mass Adoption of Crypto-curriencies!"
 http://www.bitbean.org
-============================
+==================================================================================
 
 
 What Is BitBean?
-----------------------------
+----------------------------------------------------------------------------------
 
 Bitbeans (Ticker: BITB) is a new crypto currency designed for scale-ability,
 speed and lightening fast transactions! It features an innovative Proof of Stake
@@ -14,11 +14,13 @@ algorithm that more closely resembles traditional Proof of Work crypto currencie
 BitBean is the first crypto to impliment 20MB blocks, based off Gavin Andersen's
 proposals to fix Bitcoin's scale-ability limitations.
 BitBean is designed from the ground-up to be transaction-centric and superior form
-of currency for on-line and brick-and-mortar businesses.
+of currency for on-line and brick-and-mortar businesses. Inovative new implimentations
+are planned for BitBean that will set it appart from the rest of the crypto curriencies
+and lead in the mass adoption of crypto curriencies in the market place.
 
 
 Why BitBean?
-----------------------------
+----------------------------------------------------------------------------------
 
 It is the goal of the BitBean developers (Bean Core) for everyone involved in the
 Cryptocurrency revolution to have access to the exciting developments that have
@@ -32,10 +34,10 @@ propriatary hardware as required to mine Bitcoin. The energy used mining Scrypt
 beans for years to prolong the days of GPU mining was a truly enormous waste of
 resources on a global scale. Why hold back progress? BitBean encourages it,
 allowing everyone with even a small investment in BitBean to participate in the
-network's success!
+network and currencies success!
 
 BitBean Specifications
-----------------------------
+----------------------------------------------------------------------------------
 
 **Bean Generation**: Pure Proof of Stake with Proof of Work period upon release
 
@@ -59,7 +61,7 @@ BitBean Specifications
 
 
 BitBean Monetary Units
-----------------------------
+----------------------------------------------------------------------------------
 
 Sprout = 1,000 BitBeans
 BitB = 1 BitBean
@@ -68,7 +70,9 @@ uBitB = .000001 BitBean
 nokat = .00000001 BitBean
 
 Support
-----------------------------
+----------------------------------------------------------------------------------
+www.bitbean.org
+Twitter:  @BitBeanCoin
 admin@bitbean.org
 #bitbean on the Freenode IRC Network
 #teambean on the Freenode IRC Network

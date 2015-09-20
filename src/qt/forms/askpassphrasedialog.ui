@@ -321,8 +321,8 @@
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="font">
       <font>
-       <family>Liberation Sans</family>
-       <pointsize>10</pointsize>
+       <family>Sans Serif</family>
+       <pointsize>9</pointsize>
       </font>
      </property>
      <property name="orientation">

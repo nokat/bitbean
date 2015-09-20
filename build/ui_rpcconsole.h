@@ -15,7 +15,7 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QCheckBox>
 #include <QtGui/QDialog>
-#include <QtGui/QGridLayout>
+#include <QtGui/QFormLayout>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
@@ -32,10 +32,9 @@ QT_BEGIN_NAMESPACE
 class Ui_RPCConsole
 {
 public:
-    QVBoxLayout *verticalLayout_2;
     QTabWidget *tabWidget;
     QWidget *tab_info;
-    QGridLayout *gridLayout;
+    QFormLayout *formLayout;
     QLabel *label_9;
     QLabel *label_5;
     QLabel *clientName;
@@ -62,6 +61,7 @@ public:
     QSpacerItem *verticalSpacer_2;
     QLabel *labelDebugLogfile;
     QPushButton *openDebugLogfileButton;
+    QPushButton *openConfigfileButton;
     QLabel *labelCLOptions;
     QPushButton *showCLOptionsButton;
     QSpacerItem *verticalSpacer;
@@ -72,12 +72,18 @@ public:
     QLabel *label;
     QLineEdit *lineEdit;
     QPushButton *clearButton;
+    QPushButton *closeButton;
 
     void setupUi(QDialog *RPCConsole)
     {
         if (RPCConsole->objectName().isEmpty())
             RPCConsole->setObjectName(QString::fromUtf8("RPCConsole"));
-        RPCConsole->resize(740, 450);
+        RPCConsole->resize(745, 614);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(RPCConsole->sizePolicy().hasHeightForWidth());
+        RPCConsole->setSizePolicy(sizePolicy);
         QPalette palette;
         QBrush brush(QColor(211, 238, 175, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -110,15 +116,16 @@ public:
         font.setFamily(QString::fromUtf8("Liberation Sans"));
         font.setPointSize(12);
         RPCConsole->setFont(font);
-        verticalLayout_2 = new QVBoxLayout(RPCConsole);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         tabWidget = new QTabWidget(RPCConsole);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tabWidget->setEnabled(true);
+        tabWidget->setGeometry(QRect(9, 9, 731, 545));
+        tabWidget->setContextMenuPolicy(Qt::DefaultContextMenu);
         tab_info = new QWidget();
         tab_info->setObjectName(QString::fromUtf8("tab_info"));
-        gridLayout = new QGridLayout(tab_info);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        gridLayout->setHorizontalSpacing(12);
+        formLayout = new QFormLayout(tab_info);
+        formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        formLayout->setHorizontalSpacing(12);
         label_9 = new QLabel(tab_info);
         label_9->setObjectName(QString::fromUtf8("label_9"));
         QFont font1;
@@ -126,12 +133,14 @@ public:
         font1.setWeight(75);
         label_9->setFont(font1);
 
-        gridLayout->addWidget(label_9, 0, 0, 1, 1);
+        formLayout->setWidget(0, QFormLayout::LabelRole, label_9);
 
         label_5 = new QLabel(tab_info);
         label_5->setObjectName(QString::fromUtf8("label_5"));
+        sizePolicy.setHeightForWidth(label_5->sizePolicy().hasHeightForWidth());
+        label_5->setSizePolicy(sizePolicy);
 
-        gridLayout->addWidget(label_5, 1, 0, 1, 1);
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_5);
 
         clientName = new QLabel(tab_info);
         clientName->setObjectName(QString::fromUtf8("clientName"));
@@ -139,12 +148,12 @@ public:
         clientName->setTextFormat(Qt::PlainText);
         clientName->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout->addWidget(clientName, 1, 1, 1, 1);
+        formLayout->setWidget(1, QFormLayout::FieldRole, clientName);
 
         label_6 = new QLabel(tab_info);
         label_6->setObjectName(QString::fromUtf8("label_6"));
 
-        gridLayout->addWidget(label_6, 2, 0, 1, 1);
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_6);
 
         clientVersion = new QLabel(tab_info);
         clientVersion->setObjectName(QString::fromUtf8("clientVersion"));
@@ -152,13 +161,13 @@ public:
         clientVersion->setTextFormat(Qt::PlainText);
         clientVersion->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout->addWidget(clientVersion, 2, 1, 1, 1);
+        formLayout->setWidget(2, QFormLayout::FieldRole, clientVersion);
 
         label_14 = new QLabel(tab_info);
         label_14->setObjectName(QString::fromUtf8("label_14"));
         label_14->setIndent(10);
 
-        gridLayout->addWidget(label_14, 3, 0, 1, 1);
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_14);
 
         openSSLVersion = new QLabel(tab_info);
         openSSLVersion->setObjectName(QString::fromUtf8("openSSLVersion"));
@@ -166,12 +175,12 @@ public:
         openSSLVersion->setTextFormat(Qt::PlainText);
         openSSLVersion->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout->addWidget(openSSLVersion, 3, 1, 1, 1);
+        formLayout->setWidget(3, QFormLayout::FieldRole, openSSLVersion);
 
         label_12 = new QLabel(tab_info);
         label_12->setObjectName(QString::fromUtf8("label_12"));
 
-        gridLayout->addWidget(label_12, 4, 0, 1, 1);
+        formLayout->setWidget(4, QFormLayout::LabelRole, label_12);
 
         buildDate = new QLabel(tab_info);
         buildDate->setObjectName(QString::fromUtf8("buildDate"));
@@ -179,12 +188,12 @@ public:
         buildDate->setTextFormat(Qt::PlainText);
         buildDate->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout->addWidget(buildDate, 4, 1, 1, 1);
+        formLayout->setWidget(4, QFormLayout::FieldRole, buildDate);
 
         label_13 = new QLabel(tab_info);
         label_13->setObjectName(QString::fromUtf8("label_13"));
 
-        gridLayout->addWidget(label_13, 5, 0, 1, 1);
+        formLayout->setWidget(5, QFormLayout::LabelRole, label_13);
 
         startupTime = new QLabel(tab_info);
         startupTime->setObjectName(QString::fromUtf8("startupTime"));
@@ -192,18 +201,18 @@ public:
         startupTime->setTextFormat(Qt::PlainText);
         startupTime->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout->addWidget(startupTime, 5, 1, 1, 1);
+        formLayout->setWidget(5, QFormLayout::FieldRole, startupTime);
 
         label_11 = new QLabel(tab_info);
         label_11->setObjectName(QString::fromUtf8("label_11"));
         label_11->setFont(font1);
 
-        gridLayout->addWidget(label_11, 6, 0, 1, 1);
+        formLayout->setWidget(6, QFormLayout::LabelRole, label_11);
 
         label_7 = new QLabel(tab_info);
         label_7->setObjectName(QString::fromUtf8("label_7"));
 
-        gridLayout->addWidget(label_7, 7, 0, 1, 1);
+        formLayout->setWidget(7, QFormLayout::LabelRole, label_7);
 
         numberOfConnections = new QLabel(tab_info);
         numberOfConnections->setObjectName(QString::fromUtf8("numberOfConnections"));
@@ -211,29 +220,29 @@ public:
         numberOfConnections->setTextFormat(Qt::PlainText);
         numberOfConnections->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout->addWidget(numberOfConnections, 7, 1, 1, 1);
+        formLayout->setWidget(7, QFormLayout::FieldRole, numberOfConnections);
 
         label_8 = new QLabel(tab_info);
         label_8->setObjectName(QString::fromUtf8("label_8"));
 
-        gridLayout->addWidget(label_8, 8, 0, 1, 1);
+        formLayout->setWidget(8, QFormLayout::LabelRole, label_8);
 
         isTestNet = new QCheckBox(tab_info);
         isTestNet->setObjectName(QString::fromUtf8("isTestNet"));
         isTestNet->setEnabled(false);
 
-        gridLayout->addWidget(isTestNet, 8, 1, 1, 1);
+        formLayout->setWidget(8, QFormLayout::FieldRole, isTestNet);
 
         label_10 = new QLabel(tab_info);
         label_10->setObjectName(QString::fromUtf8("label_10"));
         label_10->setFont(font1);
 
-        gridLayout->addWidget(label_10, 9, 0, 1, 1);
+        formLayout->setWidget(9, QFormLayout::LabelRole, label_10);
 
         label_3 = new QLabel(tab_info);
         label_3->setObjectName(QString::fromUtf8("label_3"));
 
-        gridLayout->addWidget(label_3, 10, 0, 1, 1);
+        formLayout->setWidget(10, QFormLayout::LabelRole, label_3);
 
         numberOfBlocks = new QLabel(tab_info);
         numberOfBlocks->setObjectName(QString::fromUtf8("numberOfBlocks"));
@@ -241,12 +250,12 @@ public:
         numberOfBlocks->setTextFormat(Qt::PlainText);
         numberOfBlocks->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout->addWidget(numberOfBlocks, 10, 1, 1, 1);
+        formLayout->setWidget(10, QFormLayout::FieldRole, numberOfBlocks);
 
         label_4 = new QLabel(tab_info);
         label_4->setObjectName(QString::fromUtf8("label_4"));
 
-        gridLayout->addWidget(label_4, 11, 0, 1, 1);
+        formLayout->setWidget(11, QFormLayout::LabelRole, label_4);
 
         totalBlocks = new QLabel(tab_info);
         totalBlocks->setObjectName(QString::fromUtf8("totalBlocks"));
@@ -254,12 +263,12 @@ public:
         totalBlocks->setTextFormat(Qt::PlainText);
         totalBlocks->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout->addWidget(totalBlocks, 11, 1, 1, 1);
+        formLayout->setWidget(11, QFormLayout::FieldRole, totalBlocks);
 
         label_2 = new QLabel(tab_info);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        gridLayout->addWidget(label_2, 12, 0, 1, 1);
+        formLayout->setWidget(12, QFormLayout::LabelRole, label_2);
 
         lastBlockTime = new QLabel(tab_info);
         lastBlockTime->setObjectName(QString::fromUtf8("lastBlockTime"));
@@ -267,41 +276,70 @@ public:
         lastBlockTime->setTextFormat(Qt::PlainText);
         lastBlockTime->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout->addWidget(lastBlockTime, 12, 1, 1, 1);
+        formLayout->setWidget(12, QFormLayout::FieldRole, lastBlockTime);
 
         verticalSpacer_2 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addItem(verticalSpacer_2, 13, 0, 1, 1);
+        formLayout->setItem(13, QFormLayout::LabelRole, verticalSpacer_2);
 
         labelDebugLogfile = new QLabel(tab_info);
         labelDebugLogfile->setObjectName(QString::fromUtf8("labelDebugLogfile"));
         labelDebugLogfile->setFont(font1);
 
-        gridLayout->addWidget(labelDebugLogfile, 14, 0, 1, 1);
+        formLayout->setWidget(14, QFormLayout::LabelRole, labelDebugLogfile);
 
         openDebugLogfileButton = new QPushButton(tab_info);
         openDebugLogfileButton->setObjectName(QString::fromUtf8("openDebugLogfileButton"));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(openDebugLogfileButton->sizePolicy().hasHeightForWidth());
+        openDebugLogfileButton->setSizePolicy(sizePolicy1);
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Sans Serif"));
+        font2.setPointSize(9);
+        openDebugLogfileButton->setFont(font2);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icons/overview"), QSize(), QIcon::Normal, QIcon::Off);
+        openDebugLogfileButton->setIcon(icon);
         openDebugLogfileButton->setAutoDefault(false);
 
-        gridLayout->addWidget(openDebugLogfileButton, 15, 0, 1, 1);
+        formLayout->setWidget(15, QFormLayout::LabelRole, openDebugLogfileButton);
+
+        openConfigfileButton = new QPushButton(tab_info);
+        openConfigfileButton->setObjectName(QString::fromUtf8("openConfigfileButton"));
+        sizePolicy1.setHeightForWidth(openConfigfileButton->sizePolicy().hasHeightForWidth());
+        openConfigfileButton->setSizePolicy(sizePolicy1);
+        openConfigfileButton->setFont(font2);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/icons/signmessage"), QSize(), QIcon::Normal, QIcon::Off);
+        openConfigfileButton->setIcon(icon1);
+        openConfigfileButton->setAutoDefault(false);
+
+        formLayout->setWidget(15, QFormLayout::FieldRole, openConfigfileButton);
 
         labelCLOptions = new QLabel(tab_info);
         labelCLOptions->setObjectName(QString::fromUtf8("labelCLOptions"));
         labelCLOptions->setFont(font1);
 
-        gridLayout->addWidget(labelCLOptions, 16, 0, 1, 1);
+        formLayout->setWidget(16, QFormLayout::LabelRole, labelCLOptions);
 
         showCLOptionsButton = new QPushButton(tab_info);
         showCLOptionsButton->setObjectName(QString::fromUtf8("showCLOptionsButton"));
+        sizePolicy1.setHeightForWidth(showCLOptionsButton->sizePolicy().hasHeightForWidth());
+        showCLOptionsButton->setSizePolicy(sizePolicy1);
+        showCLOptionsButton->setFont(font2);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/icons/debugwindow"), QSize(), QIcon::Normal, QIcon::Off);
+        showCLOptionsButton->setIcon(icon2);
         showCLOptionsButton->setAutoDefault(false);
 
-        gridLayout->addWidget(showCLOptionsButton, 17, 0, 1, 1);
+        formLayout->setWidget(17, QFormLayout::LabelRole, showCLOptionsButton);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addItem(verticalSpacer, 18, 0, 1, 1);
+        formLayout->setItem(18, QFormLayout::LabelRole, verticalSpacer);
 
-        gridLayout->setColumnStretch(1, 1);
         tabWidget->addTab(tab_info, QString());
         tab_console = new QWidget();
         tab_console->setObjectName(QString::fromUtf8("tab_console"));
@@ -334,9 +372,9 @@ public:
         clearButton = new QPushButton(tab_console);
         clearButton->setObjectName(QString::fromUtf8("clearButton"));
         clearButton->setMaximumSize(QSize(24, 24));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/icons/remove"), QSize(), QIcon::Normal, QIcon::Off);
-        clearButton->setIcon(icon);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/icons/remove"), QSize(), QIcon::Normal, QIcon::Off);
+        clearButton->setIcon(icon3);
         clearButton->setShortcut(QString::fromUtf8("Ctrl+L"));
         clearButton->setAutoDefault(false);
 
@@ -346,13 +384,24 @@ public:
         verticalLayout_3->addLayout(horizontalLayout);
 
         tabWidget->addTab(tab_console, QString());
-
-        verticalLayout_2->addWidget(tabWidget);
-
+        closeButton = new QPushButton(RPCConsole);
+        closeButton->setObjectName(QString::fromUtf8("closeButton"));
+        closeButton->setEnabled(true);
+        closeButton->setGeometry(QRect(330, 570, 80, 33));
+        sizePolicy1.setHeightForWidth(closeButton->sizePolicy().hasHeightForWidth());
+        closeButton->setSizePolicy(sizePolicy1);
+        closeButton->setFont(font2);
+        closeButton->setFocusPolicy(Qt::TabFocus);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/icons/quit"), QSize(), QIcon::Normal, QIcon::Off);
+        closeButton->setIcon(icon4);
+        closeButton->setAutoDefault(false);
+        closeButton->raise();
+        tabWidget->raise();
 
         retranslateUi(RPCConsole);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(RPCConsole);
@@ -389,6 +438,10 @@ public:
         openDebugLogfileButton->setToolTip(QApplication::translate("RPCConsole", "Open the BitBean debug log file from the current data directory. This can take a few seconds for large log files.", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP
         openDebugLogfileButton->setText(QApplication::translate("RPCConsole", "&Open", 0, QApplication::UnicodeUTF8));
+#ifndef QT_NO_TOOLTIP
+        openConfigfileButton->setToolTip(QApplication::translate("RPCConsole", "Open BitBean Configuration file from the current data directory", 0, QApplication::UnicodeUTF8));
+#endif // QT_NO_TOOLTIP
+        openConfigfileButton->setText(QApplication::translate("RPCConsole", "&Edit Config File", 0, QApplication::UnicodeUTF8));
         labelCLOptions->setText(QApplication::translate("RPCConsole", "Command-line options", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
         showCLOptionsButton->setToolTip(QApplication::translate("RPCConsole", "Show the BitBean-Qt help message to get a list with possible BitBean command-line options.", 0, QApplication::UnicodeUTF8));
@@ -400,6 +453,10 @@ public:
 #endif // QT_NO_TOOLTIP
         clearButton->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_console), QApplication::translate("RPCConsole", "&Console", 0, QApplication::UnicodeUTF8));
+#ifndef QT_NO_TOOLTIP
+        closeButton->setToolTip(QApplication::translate("RPCConsole", "Close window", 0, QApplication::UnicodeUTF8));
+#endif // QT_NO_TOOLTIP
+        closeButton->setText(QApplication::translate("RPCConsole", "&Close", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

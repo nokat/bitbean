@@ -156,7 +156,10 @@ public:
 
         buttonBox = new QDialogButtonBox(AskPassphraseDialog);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
-        buttonBox->setFont(font);
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Sans Serif"));
+        font2.setPointSize(9);
+        buttonBox->setFont(font2);
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
 

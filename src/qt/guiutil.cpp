@@ -250,6 +250,15 @@ void openDebugLogfile()
         QDesktopServices::openUrl(QUrl::fromLocalFile(QString::fromStdString(pathDebug.string())));
 }
 
+void openConfigfile()
+{
+    boost::filesystem::path pathConf = GetDataDir() / "bitbean.conf";
+
+    /* Open bitbean.conf with the associated application */
+    if (boost::filesystem::exists(pathConf))
+        QDesktopServices::openUrl(QUrl::fromLocalFile(QString::fromStdString(pathConf.string())));
+}
+
 ToolTipToRichTextFilter::ToolTipToRichTextFilter(int size_threshold, QObject *parent) :
     QObject(parent), size_threshold(size_threshold)
 {

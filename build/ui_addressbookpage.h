@@ -104,8 +104,8 @@ public:
         newAddressButton = new QPushButton(AddressBookPage);
         newAddressButton->setObjectName(QString::fromUtf8("newAddressButton"));
         QFont font1;
-        font1.setFamily(QString::fromUtf8("Liberation Sans"));
-        font1.setPointSize(10);
+        font1.setFamily(QString::fromUtf8("Sans Serif"));
+        font1.setPointSize(9);
         newAddressButton->setFont(font1);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/icons/add"), QSize(), QIcon::Normal, QIcon::Off);
@@ -143,8 +143,8 @@ public:
         verifyMessage = new QPushButton(AddressBookPage);
         verifyMessage->setObjectName(QString::fromUtf8("verifyMessage"));
         QFont font2;
-        font2.setFamily(QString::fromUtf8("Liberation Sans"));
-        font2.setPointSize(10);
+        font2.setFamily(QString::fromUtf8("Sans Serif"));
+        font2.setPointSize(9);
         font2.setBold(false);
         font2.setWeight(50);
         verifyMessage->setFont(font2);

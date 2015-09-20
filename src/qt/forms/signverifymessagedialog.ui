@@ -207,6 +207,11 @@
       <layout class="QVBoxLayout" name="verticalLayout_SM">
        <item>
         <widget class="QLabel" name="infoLabel_SM">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</string>
          </property>
@@ -322,6 +327,12 @@
         <layout class="QHBoxLayout" name="horizontalLayout_3_SM">
          <item>
           <widget class="QPushButton" name="signMessageButton_SM">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="toolTip">
             <string>Sign the message to prove you own this BitBean address</string>
            </property>
@@ -339,6 +350,12 @@
          </item>
          <item>
           <widget class="QPushButton" name="clearButton_SM">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="toolTip">
             <string>Reset all sign message fields</string>
            </property>
@@ -351,6 +368,26 @@
            </property>
            <property name="autoDefault">
             <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="closeButton_SM">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>Close Window</string>
+           </property>
+           <property name="text">
+            <string>&amp;Cancel</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../bitbean.qrc">
+             <normaloff>:/icons/quit</normaloff>:/icons/quit</iconset>
            </property>
           </widget>
          </item>
@@ -407,6 +444,14 @@
       <layout class="QVBoxLayout" name="verticalLayout_VM">
        <item>
         <widget class="QLabel" name="infoLabel_VM">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
          <property name="text">
           <string>Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.</string>
          </property>
@@ -468,6 +513,12 @@
         <layout class="QHBoxLayout" name="horizontalLayout_2_VM">
          <item>
           <widget class="QPushButton" name="verifyMessageButton_VM">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="toolTip">
             <string>Verify the message to ensure it was signed with the specified BitBean address</string>
            </property>
@@ -485,6 +536,12 @@
          </item>
          <item>
           <widget class="QPushButton" name="clearButton_VM">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="toolTip">
             <string>Reset all verify message fields</string>
            </property>
@@ -497,6 +554,26 @@
            </property>
            <property name="autoDefault">
             <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="closeButton_VM">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>Close window</string>
+           </property>
+           <property name="text">
+            <string>&amp;Cancel</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../bitbean.qrc">
+             <normaloff>:/icons/quit</normaloff>:/icons/quit</iconset>
            </property>
           </widget>
          </item>

@@ -380,17 +380,33 @@ public:
         palette1.setBrush(QPalette::Inactive, QPalette::ButtonText, brush1);
         palette1.setBrush(QPalette::Disabled, QPalette::ButtonText, brush4);
         okButton->setPalette(palette1);
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("Sans Serif"));
+        font3.setPointSize(9);
+        font3.setItalic(false);
+        okButton->setFont(font3);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icons/receiving_addresses"), QSize(), QIcon::Normal, QIcon::Off);
+        okButton->setIcon(icon);
 
         horizontalLayout_Buttons->addWidget(okButton);
 
         cancelButton = new QPushButton(OptionsDialog);
         cancelButton->setObjectName(QString::fromUtf8("cancelButton"));
+        cancelButton->setFont(font3);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/icons/quit"), QSize(), QIcon::Normal, QIcon::Off);
+        cancelButton->setIcon(icon1);
         cancelButton->setAutoDefault(false);
 
         horizontalLayout_Buttons->addWidget(cancelButton);
 
         applyButton = new QPushButton(OptionsDialog);
         applyButton->setObjectName(QString::fromUtf8("applyButton"));
+        applyButton->setFont(font3);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/icons/synced"), QSize(), QIcon::Normal, QIcon::Off);
+        applyButton->setIcon(icon2);
         applyButton->setAutoDefault(false);
 
         horizontalLayout_Buttons->addWidget(applyButton);
@@ -419,7 +435,7 @@ public:
     void retranslateUi(QDialog *OptionsDialog)
     {
         OptionsDialog->setWindowTitle(QApplication::translate("OptionsDialog", "Options", 0, QApplication::UnicodeUTF8));
-        transactionFeeInfoLabel->setText(QApplication::translate("OptionsDialog", "Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 5 recommended. Fees help support the BitBean network.", 0, QApplication::UnicodeUTF8));
+        transactionFeeInfoLabel->setText(QApplication::translate("OptionsDialog", "Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee of 5 BITB recommended. Fees help support the BitBean network.", 0, QApplication::UnicodeUTF8));
         transactionFeeLabel->setText(QApplication::translate("OptionsDialog", "Pay transaction &fee", 0, QApplication::UnicodeUTF8));
         reserveBalanceInfoLabel->setText(QApplication::translate("OptionsDialog", "Reserved amount does not participate in sprouting and is therefore spendable at any time.", 0, QApplication::UnicodeUTF8));
         reserveBalanceLabel->setText(QApplication::translate("OptionsDialog", "Reserve", 0, QApplication::UnicodeUTF8));

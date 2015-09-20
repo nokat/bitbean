@@ -1293,16 +1293,6 @@ void ThreadDNSAddressSeed2(void* parg)
 }
 
 
-
-
-
-
-
-
-
-
-
-
 unsigned int pnSeed[] =
 {
     0x72894883, 0x25ce1c2e, 0x7d2c66c7, 0x47b48368, 0xbb0d286c,
@@ -1965,8 +1955,8 @@ void StartNode(void* parg)
         printf("Error; NewThread(ThreadDumpAddress) failed\n");
 
     // Mine proof-of-stake blocks in the background
-    if (!GetBoolArg("-staking", true))
-        printf("Staking disabled\n");
+    if (!GetBoolArg("-sprout", true))
+        printf("Sprouting disabled\n");
     else
         if (!NewThread(ThreadStakeMiner, pwalletMain))
             printf("Error: NewThread(ThreadStakeMiner) failed\n");

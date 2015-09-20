@@ -15,6 +15,7 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QFormLayout>
 #include <QtGui/QFrame>
+#include <QtGui/QGridLayout>
 #include <QtGui/QGroupBox>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
@@ -50,16 +51,16 @@ public:
     QLabel *labelTotalText;
     QLabel *labelTotal;
     QGroupBox *groupBoxBitBNetwork;
-    QFormLayout *formLayout;
+    QGridLayout *gridLayout;
     QLabel *labelStalkheightText;
-    QLabel *labelSproutDiffText;
-    QLabel *labelBeanWeightText;
-    QLabel *labelConnectionsText;
-    QLabel *labelTotalBeansText;
     QLabel *stalkBox;
+    QLabel *labelSproutDiffText;
     QLabel *sproutBox;
+    QLabel *labelBeanWeightText;
     QLabel *weightBox;
+    QLabel *labelConnectionsText;
     QLabel *connectionBox;
+    QLabel *labelTotalBeansText;
     QLabel *beanBox;
     QVBoxLayout *verticalLayout_3;
     QFrame *frame_2;
@@ -272,8 +273,8 @@ public:
         font6.setBold(true);
         font6.setWeight(75);
         groupBoxBitBNetwork->setFont(font6);
-        formLayout = new QFormLayout(groupBoxBitBNetwork);
-        formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        gridLayout = new QGridLayout(groupBoxBitBNetwork);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         labelStalkheightText = new QLabel(groupBoxBitBNetwork);
         labelStalkheightText->setObjectName(QString::fromUtf8("labelStalkheightText"));
         QFont font7;
@@ -282,31 +283,7 @@ public:
         font7.setWeight(50);
         labelStalkheightText->setFont(font7);
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, labelStalkheightText);
-
-        labelSproutDiffText = new QLabel(groupBoxBitBNetwork);
-        labelSproutDiffText->setObjectName(QString::fromUtf8("labelSproutDiffText"));
-        labelSproutDiffText->setFont(font7);
-
-        formLayout->setWidget(2, QFormLayout::LabelRole, labelSproutDiffText);
-
-        labelBeanWeightText = new QLabel(groupBoxBitBNetwork);
-        labelBeanWeightText->setObjectName(QString::fromUtf8("labelBeanWeightText"));
-        labelBeanWeightText->setFont(font7);
-
-        formLayout->setWidget(3, QFormLayout::LabelRole, labelBeanWeightText);
-
-        labelConnectionsText = new QLabel(groupBoxBitBNetwork);
-        labelConnectionsText->setObjectName(QString::fromUtf8("labelConnectionsText"));
-        labelConnectionsText->setFont(font7);
-
-        formLayout->setWidget(4, QFormLayout::LabelRole, labelConnectionsText);
-
-        labelTotalBeansText = new QLabel(groupBoxBitBNetwork);
-        labelTotalBeansText->setObjectName(QString::fromUtf8("labelTotalBeansText"));
-        labelTotalBeansText->setFont(font7);
-
-        formLayout->setWidget(5, QFormLayout::LabelRole, labelTotalBeansText);
+        gridLayout->addWidget(labelStalkheightText, 0, 0, 1, 1);
 
         stalkBox = new QLabel(groupBoxBitBNetwork);
         stalkBox->setObjectName(QString::fromUtf8("stalkBox"));
@@ -314,31 +291,55 @@ public:
         font8.setPointSize(12);
         stalkBox->setFont(font8);
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, stalkBox);
+        gridLayout->addWidget(stalkBox, 0, 1, 1, 1);
+
+        labelSproutDiffText = new QLabel(groupBoxBitBNetwork);
+        labelSproutDiffText->setObjectName(QString::fromUtf8("labelSproutDiffText"));
+        labelSproutDiffText->setFont(font7);
+
+        gridLayout->addWidget(labelSproutDiffText, 1, 0, 1, 1);
 
         sproutBox = new QLabel(groupBoxBitBNetwork);
         sproutBox->setObjectName(QString::fromUtf8("sproutBox"));
         sproutBox->setFont(font8);
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, sproutBox);
+        gridLayout->addWidget(sproutBox, 1, 1, 1, 1);
+
+        labelBeanWeightText = new QLabel(groupBoxBitBNetwork);
+        labelBeanWeightText->setObjectName(QString::fromUtf8("labelBeanWeightText"));
+        labelBeanWeightText->setFont(font7);
+
+        gridLayout->addWidget(labelBeanWeightText, 2, 0, 1, 1);
 
         weightBox = new QLabel(groupBoxBitBNetwork);
         weightBox->setObjectName(QString::fromUtf8("weightBox"));
         weightBox->setFont(font8);
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, weightBox);
+        gridLayout->addWidget(weightBox, 2, 1, 1, 1);
+
+        labelConnectionsText = new QLabel(groupBoxBitBNetwork);
+        labelConnectionsText->setObjectName(QString::fromUtf8("labelConnectionsText"));
+        labelConnectionsText->setFont(font7);
+
+        gridLayout->addWidget(labelConnectionsText, 3, 0, 1, 1);
 
         connectionBox = new QLabel(groupBoxBitBNetwork);
         connectionBox->setObjectName(QString::fromUtf8("connectionBox"));
         connectionBox->setFont(font8);
 
-        formLayout->setWidget(4, QFormLayout::FieldRole, connectionBox);
+        gridLayout->addWidget(connectionBox, 3, 1, 1, 1);
+
+        labelTotalBeansText = new QLabel(groupBoxBitBNetwork);
+        labelTotalBeansText->setObjectName(QString::fromUtf8("labelTotalBeansText"));
+        labelTotalBeansText->setFont(font7);
+
+        gridLayout->addWidget(labelTotalBeansText, 4, 0, 1, 1);
 
         beanBox = new QLabel(groupBoxBitBNetwork);
         beanBox->setObjectName(QString::fromUtf8("beanBox"));
         beanBox->setFont(font8);
 
-        formLayout->setWidget(5, QFormLayout::FieldRole, beanBox);
+        gridLayout->addWidget(beanBox, 4, 1, 1, 1);
 
 
         verticalLayout_2->addWidget(groupBoxBitBNetwork);
@@ -439,26 +440,26 @@ public:
 #endif // QT_NO_TOOLTIP
         groupBoxBitBNetwork->setTitle(QApplication::translate("OverviewPage", "BitBean Network", 0, QApplication::UnicodeUTF8));
         labelStalkheightText->setText(QApplication::translate("OverviewPage", "Bean Stalk Height:", 0, QApplication::UnicodeUTF8));
-        labelSproutDiffText->setText(QApplication::translate("OverviewPage", "Sprouting Difficulty:", 0, QApplication::UnicodeUTF8));
-        labelBeanWeightText->setText(QApplication::translate("OverviewPage", "Bean Weight:", 0, QApplication::UnicodeUTF8));
-        labelConnectionsText->setText(QApplication::translate("OverviewPage", "Connections:", 0, QApplication::UnicodeUTF8));
-        labelTotalBeansText->setText(QApplication::translate("OverviewPage", "Total Beans:", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
         stalkBox->setToolTip(QApplication::translate("OverviewPage", "<html><head/><body><p>Block height of BitBean Network.</p></body></html>", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP
         stalkBox->setText(QApplication::translate("OverviewPage", "0", 0, QApplication::UnicodeUTF8));
+        labelSproutDiffText->setText(QApplication::translate("OverviewPage", "Sprouting Difficulty:", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
         sproutBox->setToolTip(QApplication::translate("OverviewPage", "<html><head/><body><p>Difficulty of sprouting new beans.</p></body></html>", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP
         sproutBox->setText(QApplication::translate("OverviewPage", "0", 0, QApplication::UnicodeUTF8));
+        labelBeanWeightText->setText(QApplication::translate("OverviewPage", "Bean Weight:", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
         weightBox->setToolTip(QApplication::translate("OverviewPage", "<html><head/><body><p>Cummaltive weight of BitBeans that are competing to sprout on the Network.</p></body></html>", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP
         weightBox->setText(QApplication::translate("OverviewPage", "0", 0, QApplication::UnicodeUTF8));
+        labelConnectionsText->setText(QApplication::translate("OverviewPage", "Connections:", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
         connectionBox->setToolTip(QApplication::translate("OverviewPage", "<html><head/><body><p>Total direct connections with other stalks on the network.</p></body></html>", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP
         connectionBox->setText(QApplication::translate("OverviewPage", "0", 0, QApplication::UnicodeUTF8));
+        labelTotalBeansText->setText(QApplication::translate("OverviewPage", "Total Beans:", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
         beanBox->setToolTip(QApplication::translate("OverviewPage", "<html><head/><body><p>Total Bean Monetary supply.</p></body></html>", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP
