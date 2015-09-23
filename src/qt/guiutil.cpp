@@ -302,7 +302,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 
     if (fAutoStart)
     {
-        beanitialize(NULL);
+        CoInitialize(NULL);
 
         // Get a pointer to the IShellLink interface.
         IShellLink* psl = NULL;
