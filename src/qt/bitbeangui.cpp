@@ -32,9 +32,7 @@
 #endif
 
 #include <QApplication>
-#if QT_VERSION < 0x050000
 #include <QMainWindow>
-#endif
 #include <QMenuBar>
 #include <QMenu>
 #include <QIcon>
@@ -53,16 +51,10 @@
 #include <QDateTime>
 #include <QMovie>
 #include <QFileDialog>
-#if QT_VERSION < 0x050000
 #include <QDesktopServices>
-#else
-#include <QStandardPaths>
-#endif
 #include <QTimer>
 #include <QDragEnterEvent>
-#if QT_VERSION < 0x050000
 #include <QUrl>
-#endif
 #include <QStyle>
 
 #include <iostream>
@@ -316,7 +308,11 @@ void BitbeanGUI::createMenuBar()
     appMenuBar = new QMenuBar();
 #else
     // Get the main window's menu bar on other platforms
+    // Unity Global Menu Support
+    if (qgetenv("QT_QPA_PlatformTHEME") == "appmenu-qt5")
     appMenuBar = menuBar();
+    else
+        appMenuBar = new QMenuBar();
 #endif
 
     // Configure the menus
