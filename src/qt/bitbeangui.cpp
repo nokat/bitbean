@@ -79,8 +79,7 @@ BitbeanGUI::BitbeanGUI(QWidget *parent):
 {
     resize(850, 550);
     setWindowTitle(tr("BitBean") + " - " + tr("Vault"));
-   // qApp->setStyleSheet("QMainWindow { background-image:url(:images/bkg);border:none; } #frame { } QToolBar QLabel:item { padding-top: 0px;padding-bottom: 0px;spacing: 10px;} #spacer { background: transparent;border:none; } #toolbar2 { border:none;width:0px;hight:0px;padding-top:40px;padding-bottom:0px; background-color: transparent; } QMenu { background-color: #d3eeaf; color: black; } QMenu::item { color: black; background: transparent; } QMenu::item:selected { background-color: #9fd555; } QMenuBar { background-color: #d3eeaf; color: black; } QMenuBar::item { font-size:12px;padding-bottom:3px;padding-top:3px;padding-left:15px;padding-right:15px;color: black; background-color: white; } QMenuBar::item:selected { background-color:qlineargradient(x1: 0, y1: 0, x2: 0.5, y2: 0.5,stop: 0 rgba(211,238,175,45), stop: 1 rgba(159,213,85,45)); }");
-   qApp->setStyleSheet("QMainWindow { background-image:url(:images/bkg);border:none; } QProgressBar { background: transparent; border: 1px solid grey; border-radius: 7px; padding: 1px; text-align: center; } QProgressBar::chunk { background: QLinearGradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #d3eeaf, stop: 1 #9fd555); border-radius: 7px; margin: 0px; } QMenu { background-color: #d3eeaf; color: black; } QMenu::item { color: black; background: transparent; } QMenu::item:selected { background-color: #9fd555; } QMenuBar { background-color: #d3eeaf; color: black; } QPushButton {background-color: #d3eeaf; } QLineEdit { background-color: white; } ");
+    qApp->setStyleSheet("QMainWindow { border-image: url(:images/bkg);border:none; } QProgressBar { background: transparent; border: 1px solid grey; border-radius: 7px; padding: 1px; text-align: center; } QProgressBar::chunk { background: QLinearGradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #d3eeaf, stop: 1 #9fd555); border-radius: 7px; margin: 0px; } QMenu { background-color: #d3eeaf; color: black; } QMenu::item { color: black; background: transparent; } QMenu::item:selected { background-color: #9fd555; } QMenuBar { background-color: #d3eeaf; color: black; } QPushButton {background-color: #d3eeaf; } QLineEdit { background-color: white; } ");
 #ifndef Q_OS_MAC
     qApp->setWindowIcon(QIcon(":icons/bitbean"));
     setWindowIcon(QIcon(":icons/bitbean"));
@@ -268,16 +267,16 @@ void BitbeanGUI::createActions()
     optionsAction->setToolTip(tr("Modify configuration options for BitBean"));
     optionsAction->setMenuRole(QAction::PreferencesRole);
     toggleHideAction = new QAction(QIcon(":/icons/bitbean"), tr("&Show / Hide"), this);
-    encryptWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Encrypt Wallet..."), this);
-    encryptWalletAction->setToolTip(tr("Encrypt or decrypt wallet"));
+    encryptWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Encrypt Vault..."), this);
+    encryptWalletAction->setToolTip(tr("Encrypt or decrypt vault"));
     encryptWalletAction->setCheckable(true);
-    backupWalletAction = new QAction(QIcon(":/icons/filesave"), tr("&Backup Wallet..."), this);
+    backupWalletAction = new QAction(QIcon(":/icons/filesave"), tr("&Backup Vault..."), this);
     backupWalletAction->setToolTip(tr("Backup wallet to another location"));
     changePassphraseAction = new QAction(QIcon(":/icons/key"), tr("&Change Passphrase..."), this);
-    changePassphraseAction->setToolTip(tr("Change the passphrase used for wallet encryption"));
-    unlockWalletAction = new QAction(QIcon(":/icons/lock_open"), tr("&Unlock Wallet..."), this);
+    changePassphraseAction->setToolTip(tr("Change the passphrase used for vault encryption"));
+    unlockWalletAction = new QAction(QIcon(":/icons/lock_open"), tr("&Unlock Vault..."), this);
     unlockWalletAction->setToolTip(tr("Unlock wallet"));
-    lockWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Lock Wallet"), this);
+    lockWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Lock Vault"), this);
     lockWalletAction->setToolTip(tr("Lock wallet"));
     signMessageAction = new QAction(QIcon(":/icons/signmessage"), tr("Sign &message..."), this);
     verifyMessageAction = new QAction(QIcon(":/icons/verifymessage"), tr("&Verify message..."), this);
@@ -342,6 +341,7 @@ void BitbeanGUI::createMenuBar()
 void BitbeanGUI::createToolBars()
 {
     QToolBar *toolbar = addToolBar(tr("Tabs toolbar"));
+    toolbar->setMovable(false);
     toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     toolbar->addAction(overviewAction);
     toolbar->addAction(sendBeansAction);
@@ -452,8 +452,14 @@ void BitbeanGUI::createTrayIcon()
     trayIconMenu->addAction(signMessageAction);
     trayIconMenu->addAction(verifyMessageAction);
     trayIconMenu->addSeparator();
+    trayIconMenu->addAction(encryptWalletAction);
+    trayIconMenu->addAction(changePassphraseAction);
+    trayIconMenu->addAction(lockWalletAction);
+    trayIconMenu->addAction(unlockWalletAction);
+    trayIconMenu->addSeparator();
     trayIconMenu->addAction(optionsAction);
     trayIconMenu->addAction(openRPCConsoleAction);
+    trayIconMenu->addAction(aboutAction);
 #ifndef Q_OS_MAC // This is built-in on Mac
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(quitAction);
@@ -766,6 +772,22 @@ void BitbeanGUI::gotoVerifyMessageTab(QString addr)
 
     if(!addr.isEmpty())
         signVerifyMessageDialog->setAddress_VM(addr);
+}
+
+void BitbeanGUI::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu menu(this);
+    menu.addAction(signMessageAction);
+    menu.addAction(verifyMessageAction);
+    menu.addAction(encryptWalletAction);
+    menu.addAction(changePassphraseAction);
+    menu.addAction(lockWalletAction);
+    menu.addAction(unlockWalletAction);
+    menu.addAction(optionsAction);
+    menu.addAction(openRPCConsoleAction);
+    menu.addAction(aboutAction);
+    menu.addAction(quitAction);
+    menu.exec(event->globalPos());
 }
 
 void BitbeanGUI::dragEnterEvent(QDragEnterEvent *event)

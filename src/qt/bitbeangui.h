@@ -54,6 +54,7 @@ protected:
     void closeEvent(QCloseEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
+    void contextMenuEvent(QContextMenuEvent *event);
 
 private:
     ClientModel *clientModel;

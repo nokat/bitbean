@@ -1,16 +1,17 @@
 #!/bin/bash
 # Copyright (c) 2013 The Bitcoin Core developers
+# Copyright (c) 2015 Bean Core www.bitbean.org
 # Distributed under the MIT/X11 software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #
-DATADIR="@abs_top_builddir@/.bitcoin"
+DATADIR="/c/deps/bitbean-master/.bitbean"
 rm -rf "$DATADIR"
 mkdir -p "$DATADIR"/regtest
 touch "$DATADIR/regtest/debug.log"
 tail -q -n 1 -F "$DATADIR/regtest/debug.log" | grep -m 1 -q "Done loading" &
 WAITER=$!
 PORT=`expr $BASHPID + 10000`
-"@abs_top_builddir@/src/bitcoind@EXEEXT@" -connect=0.0.0.0 -datadir="$DATADIR" -rpcuser=user -rpcpassword=pass -listen -keypool=3 -debug -debug=net -logtimestamps -port=$PORT -regtest -rpcport=`expr $PORT + 1` &
+"/c/deps/bitbean-master/src/bitbeand.exe" -connect=0.0.0.0 -datadir="$DATADIR" -rpcuser=user -rpcpassword=pass -listen -keypool=3 -debug -debug=net -logtimestamps -port=$PORT -regtest -rpcport=`expr $PORT + 1` &
 BITCOIND=$!
 
 #Install a watchdog.
