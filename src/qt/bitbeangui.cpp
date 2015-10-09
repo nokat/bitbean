@@ -79,7 +79,7 @@ BitbeanGUI::BitbeanGUI(QWidget *parent):
 {
     resize(850, 550);
     setWindowTitle(tr("BitBean") + " - " + tr("Vault"));
-    qApp->setStyleSheet("QMainWindow { border-image: url(:images/bkg);border:none; } QProgressBar { background: transparent; border: 1px solid grey; border-radius: 7px; padding: 1px; text-align: center; } QProgressBar::chunk { background: QLinearGradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #d3eeaf, stop: 1 #9fd555); border-radius: 7px; margin: 0px; } QMenu { background-color: #d3eeaf; color: black; } QMenu::item { color: black; background: transparent; } QMenu::item:selected { background-color: #9fd555; } QMenuBar { background-color: #d3eeaf; color: black; } QPushButton {background-color: #d3eeaf; } QLineEdit { background-color: white; } ");
+    qApp->setStyleSheet("QMainWindow { border-image: url(:images/bkg);border:none; } QProgressBar { background: transparent; border: 1px solid gray; border-radius: 7px; padding: 1px; text-align: center; } QProgressBar::chunk { background: QLinearGradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #d3eeaf, stop: 1 #9fd555); border-radius: 7px; margin: 0px; } QMenu { background-color: #d3eeaf; color: black; } QMenu::item { color: black; background: transparent; } QMenu::item:selected { background-color: #9fd555; } QMenuBar { background-color: #d3eeaf; color: black; } QPushButton {background-color: #d3eeaf; } QLineEdit { background-color: white; } QToolTip { color: #000000; background-color: #d3eeaf; border-radius: 7px; border: 1px solid black; } QTabWidget::pane {background-color: white; color: black } QTabWidget::tab-bar {left: 5px;} QTabBar::tab {background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #d3eeaf, stop: 1 #9fd555); border: 2px solid #C4C4C3; border-bottom-color: #C2C7CB; border-top-left-radius: 7px; border-top-right-radius: 7px; min-width: 8ex; padding: 2px; color: black; } QTabBar::tab:selected {border-color: #9fd555; border-bottom-color: #d3eeaf; background-color: white; color: black; } QTabBar:tab:!selected {margin-top: 3px; } ");
 #ifndef Q_OS_MAC
     qApp->setWindowIcon(QIcon(":icons/bitbean"));
     setWindowIcon(QIcon(":icons/bitbean"));
@@ -303,15 +303,14 @@ void BitbeanGUI::createActions()
 void BitbeanGUI::createMenuBar()
 {
 #ifdef Q_OS_MAC
-    // Create a decoupled menu bar on Mac which stays even if the window is closed
+    // Create a decoupled menu bar on Mac which stays if the window is closed
     appMenuBar = new QMenuBar();
 #else
-    // Get the main window's menu bar on other platforms
-    // Unity Global Menu Support
-    if (qgetenv("QT_QPA_PlatformTHEME") == "appmenu-qt5")
-    appMenuBar = menuBar();
-    else
+    // Handle Unity's global menu
+    if (qgetenv("QT_QPA_PLATFORMTHEME") == "appmenu-qt5")
         appMenuBar = new QMenuBar();
+    else
+        appMenuBar = menuBar();
 #endif
 
     // Configure the menus
@@ -445,6 +444,8 @@ void BitbeanGUI::createTrayIcon()
 
     // Configuration of the tray icon (or dock icon) icon menu
     trayIconMenu->addAction(toggleHideAction);
+    trayIconMenu->addSeparator();
+    trayIconMenu->addAction(backupWalletAction);
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(sendBeansAction);
     trayIconMenu->addAction(receiveBeansAction);
@@ -777,15 +778,20 @@ void BitbeanGUI::gotoVerifyMessageTab(QString addr)
 void BitbeanGUI::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu menu(this);
+    menu.addAction(backupWalletAction);
+    menu.addSeparator();
     menu.addAction(signMessageAction);
     menu.addAction(verifyMessageAction);
+    menu.addSeparator();
     menu.addAction(encryptWalletAction);
     menu.addAction(changePassphraseAction);
     menu.addAction(lockWalletAction);
     menu.addAction(unlockWalletAction);
+    menu.addSeparator();
     menu.addAction(optionsAction);
     menu.addAction(openRPCConsoleAction);
     menu.addAction(aboutAction);
+    menu.addSeparator();
     menu.addAction(quitAction);
     menu.exec(event->globalPos());
 }

@@ -7,7 +7,7 @@
 # Mac OS X makefile for BitBean
 # Originally by Laszlo Hanyecz (solar@heliacal.net)
 
-CXX=llvm-g++
+CXX=clang++
 DEPSDIR=/opt/local
 
 INCLUDEPATHS= \
@@ -23,6 +23,7 @@ LIBPATHS= \
 USE_UPNP:=1
 
 LIBS= -dead_strip
+LIBS += -framework IOKit
 
 ifdef STATIC
 # Build STATIC if you are redistributing the BitBeand binary

@@ -246,7 +246,7 @@
        <item>
         <widget class="QLabel" name="transactionFeeInfoLabel">
          <property name="text">
-          <string>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee of 5 BITB recommended. Fees help support the BitBean network.</string>
+          <string>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. A fee of 5 BITB is recommended. Fees help support the BitBean network.</string>
          </property>
          <property name="textFormat">
           <enum>Qt::PlainText</enum>
