@@ -74,7 +74,6 @@ Support
 www.bitbean.org
 Twitter:  @BitBeanCoin
 admin@bitbean.org
-#bitbean on the Freenode IRC Network
-#teambean on the Freenode IRC Network
+IRC: #bitbean (Freenode IRC Network)
 
 Developer support:  #beancore on the Freenode IRC Network
