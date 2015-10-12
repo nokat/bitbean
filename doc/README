@@ -13,8 +13,8 @@ cryptographic software written by Eric Young (eay@cryptsoft.com).
 Intro
 -----
 BitBean is a free open source project derived from Bitcoin, with
-the goal of providing a long-term energy-efficient scrypt-based crypto-currency.
-Built on the foundation of Bitcoin, PPBean and Novacoin, innovations such as
+the goal of providing a long-term energy-efficient crypto-currency.
+Built on the foundation of Bitcoin, PPBean, Novacoin,  and Blackcoin, innovations such as
 Proof-of-Sprout and Proof-of-Sprout Transactions (PoST), help further advance
 the field of crypto-currency.
 
