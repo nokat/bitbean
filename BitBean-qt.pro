@@ -6,7 +6,7 @@ DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
 CONFIG += thread
 
-win32 {
+win32:os2 {
     CONFIG += release
 } else {
     CONFIG += debug_and_release
@@ -23,18 +23,20 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 # use: qmake BOOST_LIB_SUFFIX=-mt
 # for boost thread win32 with _win32 sufix
 # use: BOOST_THREAD_LIB_SUFFIX=_win32-...
-# or when linking against a specific BerkelyDB version: BDB_LIB_SUFFIX=-4.8
+# or when linking against a specific BerkelyDB version:
+
+BDB_LIB_SUFFIX=-5.3
 
 # Dependency library locations can be customized with:
 #    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
 #    BDB_LIB_PATH, OPENSSL_INCLUDE_PATH and OPENSSL_LIB_PATH respectively
 
 win32 {
-    BOOST_LIB_SUFFIX=-mgw49-mt-s-1_55
-    BOOST_INCLUDE_PATH=C:/deps/boost_1_55_0
-    BOOST_LIB_PATH=C:/deps/boost_1_55_0/stage/lib
+    BOOST_LIB_SUFFIX=-mgw49-mt-s-1_59
+    BOOST_INCLUDE_PATH=C:/deps/boost_1_59_0
+    BOOST_LIB_PATH=C:/deps/boost_1_59_0/stage/lib
     BDB_INCLUDE_PATH=C:/deps/db-5.3.28.NC/build_unix
-    BDB_LIB_PATH=C:/deps/db-4.8.30.NC/build_unix
+    BDB_LIB_PATH=C:/deps/db-5.3.28.NC/build_unix
     OPENSSL_INCLUDE_PATH=C:/deps/openssl-1.0.1j/include
     OPENSSL_LIB_PATH=C:/deps/openssl-1.0.1j
     MINIUPNPC_INCLUDE_PATH=C:/deps/
@@ -104,12 +106,10 @@ contains(USE_DBUS, 1) {
     DEFINES += USE_DBUS
     QT += dbus
 }
-!win32 {
-    contains(BITBEAN_NEED_QT_PLUGINS, 1) {
-        DEFINES += BITBEAN_NEED_QT_PLUGINS
-        QTPLUGIN += qcncodecs qjpcodecs qtwcodecs qkrcodecs qtaccessiblewidgets
-        }
-}
+contains(BITBEAN_NEED_QT_PLUGINS, 1) {
+    DEFINES += BITBEAN_NEED_QT_PLUGINS
+    QTPLUGIN += qcncodecs qjpcodecs qtwcodecs qkrcodecs qtaccessiblewidgets
+    }
 
 INCLUDEPATH += src/leveldb/include src/leveldb/helpers
 LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
@@ -358,7 +358,7 @@ OTHER_FILES += \
 # platform specific defaults, if not overridden on command line
 isEmpty(BOOST_LIB_SUFFIX) {
     macx:BOOST_LIB_SUFFIX = -mt
-    windows:BOOST_LIB_SUFFIX = -mgw49-mt-s-1_55
+    windows:BOOST_LIB_SUFFIX = -mgw49-mt-s-1_59
 }
 
 isEmpty(BOOST_THREAD_LIB_SUFFIX) {
@@ -367,15 +367,15 @@ isEmpty(BOOST_THREAD_LIB_SUFFIX) {
 }
 
 isEmpty(BDB_LIB_PATH) {
-    macx:BDB_LIB_PATH = /opt/local/lib/db48
+    macx:BDB_LIB_PATH = /opt/local/lib/db53
 }
 
 isEmpty(BDB_LIB_SUFFIX) {
-    macx:BDB_LIB_SUFFIX = -4.8
+    macx:BDB_LIB_SUFFIX = -5.3
 }
 
 isEmpty(BDB_INCLUDE_PATH) {
-    macx:BDB_INCLUDE_PATH = /opt/local/include/db48
+    macx:BDB_INCLUDE_PATH = /opt/local/include/db53
 }
 
 isEmpty(BOOST_LIB_PATH) {
