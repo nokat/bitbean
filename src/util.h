@@ -45,6 +45,16 @@ static const int64_t CENT = 1000000;
 #define UEND(a)             ((unsigned char*)&((&(a))[1]))
 #define ARRAYLEN(array)     (sizeof(array)/sizeof((array)[0]))
 
+/* Silence compiler warnings on Windows related to MinGWs inttypes.h */
+#if defined(_MSC_VER) || defined(__MSVCRT__)
+#undef PRId64
+#define PRId64 "I64d"
+#undef PRIu64
+#define PRIu64 "I64u"
+#undef PRIx64
+#define PRIx64 "I64x"
+#endif
+
 #define UVOIDBEGIN(a)        ((void*)&(a))
 #define CVOIDBEGIN(a)        ((const void*)&(a))
 #define UINTBEGIN(a)        ((uint32_t*)&(a))
