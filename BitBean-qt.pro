@@ -69,7 +69,9 @@ QMAKE_LFLAGS *= -fstack-protector-all --param ssp-buffer-size=1
 }
 # for extra security on Windows: enable ASLR and DEP via GCC linker flags
 win32:QMAKE_LFLAGS *= -Wl,--dynamicbase -Wl,--nxcompat -static
-win32:QMAKE_LFLAGS += -static-libgcc -static-libstdc++
+contains(RELEASE, 1) {
+QMAKE_LFLAGS += -static-libgcc -static-libstdc++
+}
 win32:contains(QMAKE_HOST.arch, x86):{QMAKE_LFLAGS *= -Wl,--large-address-aware }
 
 # use: qmake "USE_QRCODE=1"

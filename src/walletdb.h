@@ -8,6 +8,7 @@
 
 #include "db.h"
 #include "base58.h"
+#include "keystore.h"
 
 class CKeyPool;
 class CAccount;

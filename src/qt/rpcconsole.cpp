@@ -1,5 +1,7 @@
 #include "rpcconsole.h"
 #include "ui_rpcconsole.h"
+#include "walletdb.h"
+#include "wallet.h"
 
 #include "clientmodel.h"
 #include "bitbeanrpc.h"
@@ -204,8 +206,9 @@ RPCConsole::RPCConsole(QWidget *parent) :
 
     connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
 
-    // set OpenSSL version label
+    // set library version labels
     ui->openSSLVersion->setText(SSLeay_version(SSLEAY_VERSION));
+    ui->berkeleyDBVersion->setText(DbEnv::version(0, 0, 0));
 
     startExecutor();
 
