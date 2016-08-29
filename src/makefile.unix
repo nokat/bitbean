@@ -4,7 +4,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 LINK:=$(CXX)
-ARCH:=$(system lscpu | head -n 1 | awk '{print $2}')
+ARCH:=$(shell uname -m)
 
 DEFS=-DBOOST_SPIRIT_THREADSAFE
 
