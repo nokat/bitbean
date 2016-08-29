@@ -1,0 +1,12 @@
+ 
+[Unit]
+Description=Bitbean daemon serivce
+After=network.target
+
+[Service]
+Type=simple
+User=bitbean
+ExecStart=/opt/bitbean/bitbeand
+
+[Install]
+WantedBy=multi-user.target
