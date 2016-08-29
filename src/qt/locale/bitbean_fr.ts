@@ -28,7 +28,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+26"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Chief Scientist &amp;amp; Lead Developer: &lt;/span&gt;Shawn Kent&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Designer: &lt;/span&gt;BrunoPro7&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;This is experimental software. Distributed under the MIT/X11 software license, see the accompanying file COPYING or &lt;/span&gt;&lt;a href=&quot;http://www.opensource.org/licenses/mit-license.php&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.opensource.org/licenses/mit-license.php&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;. This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (&lt;/span&gt;&lt;a href=&quot;https://www.openssl.org/&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.openssl.org/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;) and cryptographic software written by Eric Young (&lt;/span&gt;&lt;a href=&quot;mailto:eay@cryptsoft.com&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;eay@cryptsoft.com&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;) and UPnP software written by Thomas Bernard.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Chief Scientist &amp;amp; Lead Developer: &lt;/span&gt;Shawn Kent&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Designer: &lt;/span&gt;BrunoPro7&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;This is experimental software. Distributed under the MIT/X11 software license, see the accompanying file COPYING or &lt;/span&gt;&lt;a href=&quot;http://www.opensource.org/licenses/mit-license.php&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.opensource.org/licenses/mit-license.php&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;. This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (&lt;/span&gt;&lt;a href=&quot;https://www.openssl.org/&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.openssl.org/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;) and cryptographic software written by Eric Young (&lt;/span&gt;&lt;a href=&quot;mailto:eay@cryptsoft.com&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;eay@cryptsoft.com&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;) .&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -45,7 +45,7 @@ This is experimental software.
 
 Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.</source>
+This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com).</source>
         <translation type="obsolete">
  Ce logiciel est expérimental.
 
@@ -936,10 +936,10 @@ Amount: %2
 Type: %3
 Address: %4
 </source>
-        <translation type="unfinished">Date : %1
-Montant : %2
-Type : %3
-Adresse : %4
+        <translation type="unfinished">Date : %1
+Montant : %2
+Type : %3
+Adresse : %4
 </translation>
     </message>
     <message>
@@ -1333,10 +1333,10 @@ Amount: %2
 Type: %3
 Address: %4
 </source>
-        <translation type="obsolete">Date : %1
-Montant : %2
-Type : %3
-Adresse : %4
+        <translation type="obsolete">Date : %1
+Montant : %2
+Type : %3
+Adresse : %4
 </translation>
     </message>
     <message>
@@ -1432,7 +1432,7 @@ Adresse : %4
     </message>
     <message>
         <source>Amount:</source>
-        <translation type="obsolete">Montant :</translation>
+        <translation type="obsolete">Montant :</translation>
     </message>
     <message>
         <source>Priority:</source>
@@ -1685,7 +1685,7 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
     <message>
         <location line="+76"/>
         <source>The entered address &quot;%1&quot; is already in the address book.</source>
-        <translation>L’adresse fournie « %1 » est déjà présente dans le carnet d&apos;adresses.</translation>
+        <translation>L’adresse fournie « %1 » est déjà présente dans le carnet d&apos;adresses.</translation>
     </message>
     <message>
         <location line="-5"/>
@@ -1734,7 +1734,7 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
     <message>
         <location line="+1"/>
         <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
-        <translation>Définir la langue, par exemple « fr_FR » (par défaut: la langue du système)</translation>
+        <translation>Définir la langue, par exemple « fr_FR » (par défaut: la langue du système)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1813,16 +1813,6 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
         <translation>&amp;Réseau</translation>
     </message>
     <message>
-        <location line="+6"/>
-        <source>Automatically open the BitBean client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Ouvrir automatiquemwnr le port client de BitBean sur le routeur. Ceci ne fonctionne que dans le cas où le support UPnP sur votre routeur existe et est actif.</translation>
-    </message>
-    <message>
-        <location line="+3"/>
-        <source>Map port using &amp;UPnP</source>
-        <translation>Mapper le port avec l&apos;&amp;UPnP</translation>
-    </message>
-    <message>
         <location line="+7"/>
         <source>Connect to the BitBean network through a SOCKS proxy (e.g. when connecting through Tor).</source>
         <translation>Connexion au réseau BitBean à travers un proxy SOCKS (e.g. Connexion via le réseau Tor).</translation>
@@ -1835,7 +1825,7 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
     <message>
         <location line="+9"/>
         <source>Proxy &amp;IP:</source>
-        <translation>&amp;IP du serveur Proxy mandataire :</translation>
+        <translation>&amp;IP du serveur Proxy mandataire :</translation>
     </message>
     <message>
         <location line="+19"/>
@@ -1855,7 +1845,7 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
     <message>
         <location line="+7"/>
         <source>SOCKS &amp;Version:</source>
-        <translation>&amp;Version SOCKS :</translation>
+        <translation>&amp;Version SOCKS :</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1895,7 +1885,7 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
     <message>
         <location line="+8"/>
         <source>User Interface &amp;language:</source>
-        <translation>&amp;Langue de l&apos;interface utilisateur :</translation>
+        <translation>&amp;Langue de l&apos;interface utilisateur :</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -2644,7 +2634,7 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
     <message>
         <location line="+9"/>
         <source>&amp;Label:</source>
-        <translation type="unfinished">&amp;Étiquette :</translation>
+        <translation type="unfinished">&amp;Étiquette :</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -2901,7 +2891,7 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
     </message>
     <message>
         <source>&amp;Label:</source>
-        <translation type="obsolete">&amp;Étiquette :</translation>
+        <translation type="obsolete">&amp;Étiquette :</translation>
     </message>
     <message>
         <source>The address to send the payment to  (e.g. 2JhbfkAFvXqYkreSgJfrRLS9DepUcxbQci)</source>
@@ -3038,7 +3028,7 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
     <message>
         <location line="-2"/>
         <source>Click &quot;Sign Message&quot; to generate signature</source>
-        <translation>Cliquez sur « Signer le message » pour générer la signature</translation>
+        <translation>Cliquez sur « Signer le message » pour générer la signature</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -3681,7 +3671,7 @@ par exemple: alertnotify=echo %%s | mail -s &quot;Alerte BitBean&quot; admin@foo
         <source>You must set rpcpassword=&lt;password&gt; in the configuration file:
 %s
 If the file does not exist, create it with owner-readable-only file permissions.</source>
-        <translation type="unfinished">Vous devez ajouter la ligne rpcpassword=&lt;mot-de-passe&gt; au fichier de configuration :
+        <translation type="unfinished">Vous devez ajouter la ligne rpcpassword=&lt;mot-de-passe&gt; au fichier de configuration :
 %s
 Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule accordés au propriétaire.</translation>
     </message>
@@ -3748,12 +3738,12 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     <message>
         <location line="+1"/>
         <source>Set database cache size in megabytes (default: 25)</source>
-        <translation type="unfinished">Définir la taille du tampon de base de données en mégaoctets (par défaut : 25)</translation>
+        <translation type="unfinished">Définir la taille du tampon de base de données en mégaoctets (par défaut : 25)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Set database disk log size in megabytes (default: 100)</source>
-        <translation type="unfinished">Définir la taille du journal de base de données en mégaoctets (par défaut : 100)</translation>
+        <translation type="unfinished">Définir la taille du journal de base de données en mégaoctets (par défaut : 100)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3788,7 +3778,7 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     <message>
         <location line="+1"/>
         <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
-        <translation type="unfinished">Garder au plus &lt;n&gt; connexions avec les pairs (par défaut : 125)</translation>
+        <translation type="unfinished">Garder au plus &lt;n&gt; connexions avec les pairs (par défaut : 125)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3828,7 +3818,7 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     <message>
         <location line="+1"/>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation type="unfinished">Accepter les connexions entrantes (par défaut : 1 si aucun -proxy ou -connect )</translation>
+        <translation type="unfinished">Accepter les connexions entrantes (par défaut : 1 si aucun -proxy ou -connect )</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3858,12 +3848,12 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     <message>
         <location line="+1"/>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
-        <translation type="unfinished">Seuil de déconnexion des pairs de mauvaise qualité (par défaut : 100)</translation>
+        <translation type="unfinished">Seuil de déconnexion des pairs de mauvaise qualité (par défaut : 100)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
-        <translation type="unfinished">Délai en secondes de refus de reconnexion aux pairs de mauvaise qualité (par défaut : 86400)</translation>
+        <translation type="unfinished">Délai en secondes de refus de reconnexion aux pairs de mauvaise qualité (par défaut : 86400)</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -3968,7 +3958,7 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     <message>
         <location line="+1"/>
         <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
-        <translation type="unfinished">Envoyer des commandes au nœud fonctionnant sur &lt;ip&gt; (par défaut : 127.0.0.1)</translation>
+        <translation type="unfinished">Envoyer des commandes au nœud fonctionnant sur &lt;ip&gt; (par défaut : 127.0.0.1)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4003,7 +3993,7 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     <message>
         <location line="+1"/>
         <source>Set key pool size to &lt;n&gt; (default: 100)</source>
-        <translation type="unfinished">Régler la taille de la réserve de clefs sur &lt;n&gt; (par défaut : 100)</translation>
+        <translation type="unfinished">Régler la taille de la réserve de clefs sur &lt;n&gt; (par défaut : 100)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4063,12 +4053,12 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     <message>
         <location line="+1"/>
         <source>Server certificate file (default: server.cert)</source>
-        <translation type="unfinished">Fichier de certificat serveur (par défaut : server.cert)</translation>
+        <translation type="unfinished">Fichier de certificat serveur (par défaut : server.cert)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Server private key (default: server.pem)</source>
-        <translation type="unfinished">Clef privée du serveur (par défaut : server.pem)</translation>
+        <translation type="unfinished">Clef privée du serveur (par défaut : server.pem)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4078,7 +4068,7 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     <message>
         <location line="+3"/>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</source>
-        <translation type="unfinished">Montant invalide pour -paytxfee=&lt;montant&gt; : « %s »</translation>
+        <translation type="unfinished">Montant invalide pour -paytxfee=&lt;montant&gt; : « %s »</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4123,17 +4113,17 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     <message>
         <location line="+1"/>
         <source>Unknown -socks proxy version requested: %i</source>
-        <translation type="unfinished">Version inconnue de serveur mandataire -socks demandée : %i</translation>
+        <translation type="unfinished">Version inconnue de serveur mandataire -socks demandée : %i</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
-        <translation type="unfinished">Réseau inconnu spécifié sur -onlynet : « %s »</translation>
+        <translation type="unfinished">Réseau inconnu spécifié sur -onlynet : « %s »</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Invalid -proxy address: &apos;%s&apos;</source>
-        <translation type="unfinished">Adresse -proxy invalide : « %s »</translation>
+        <translation type="unfinished">Adresse -proxy invalide : « %s »</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4143,7 +4133,7 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     <message>
         <location line="+1"/>
         <source>Cannot resolve -bind address: &apos;%s&apos;</source>
-        <translation type="unfinished">Impossible de résoudre l&apos;adresse -bind : « %s »</translation>
+        <translation type="unfinished">Impossible de résoudre l&apos;adresse -bind : « %s »</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4153,7 +4143,7 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     <message>
         <location line="+1"/>
         <source>Cannot resolve -externalip address: &apos;%s&apos;</source>
-        <translation type="unfinished">Impossible de résoudre l&apos;adresse -externalip : « %s »</translation>
+        <translation type="unfinished">Impossible de résoudre l&apos;adresse -externalip : « %s »</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4372,11 +4362,11 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     </message>
     <message>
         <source>Set database cache size in megabytes (default: 25)</source>
-        <translation type="obsolete">Définir la taille du tampon de base de données en mégaoctets (par défaut : 25)</translation>
+        <translation type="obsolete">Définir la taille du tampon de base de données en mégaoctets (par défaut : 25)</translation>
     </message>
     <message>
         <source>Set database disk log size in megabytes (default: 100)</source>
-        <translation type="obsolete">Définir la taille du journal de base de données en mégaoctets (par défaut : 100)</translation>
+        <translation type="obsolete">Définir la taille du journal de base de données en mégaoctets (par défaut : 100)</translation>
     </message>
     <message>
         <source>Listen for connections on &lt;port&gt; (default: 15714 or testnet: 25714)</source>
@@ -4384,7 +4374,7 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     </message>
     <message>
         <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
-        <translation type="obsolete">Garder au plus &lt;n&gt; connexions avec les pairs (par défaut : 125)</translation>
+        <translation type="obsolete">Garder au plus &lt;n&gt; connexions avec les pairs (par défaut : 125)</translation>
     </message>
     <message>
         <source>Connect to a node to retrieve peer addresses, and disconnect</source>
@@ -4404,11 +4394,11 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
-        <translation type="obsolete">Seuil de déconnexion des pairs de mauvaise qualité (par défaut : 100)</translation>
+        <translation type="obsolete">Seuil de déconnexion des pairs de mauvaise qualité (par défaut : 100)</translation>
     </message>
     <message>
         <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
-        <translation type="obsolete">Délai en secondes de refus de reconnexion aux pairs de mauvaise qualité (par défaut : 86400)</translation>
+        <translation type="obsolete">Délai en secondes de refus de reconnexion aux pairs de mauvaise qualité (par défaut : 86400)</translation>
     </message>
     <message>
         <source>An error occurred while setting up the RPC port %u for listening on IPv4: %s</source>
@@ -4460,7 +4450,7 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     </message>
     <message>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation type="obsolete">Accepter les connexions entrantes (par défaut : 1 si aucun -proxy ou -connect )</translation>
+        <translation type="obsolete">Accepter les connexions entrantes (par défaut : 1 si aucun -proxy ou -connect )</translation>
     </message>
     <message>
         <source>An error occurred while setting up the RPC port %u for listening on IPv6, falling back to IPv4: %s</source>
@@ -4588,15 +4578,7 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
         <translation type="obsolete">Impossible de &quot;signer&quot; le checkpoint, mauvaise clef de checkpoint?
 </translation>
     </message>
-    <message>
-        <source>Use UPnP to map the listening port (default: 0)</source>
-        <translation type="obsolete">Utiliser l&apos;UPnP pour rediriger le port d&apos;écoute (par défaut: 0)</translation>
-    </message>
-    <message>
-        <source>Use UPnP to map the listening port (default: 1 when listening)</source>
-        <translation type="obsolete">Utiliser l&apos;UPnP pour rediriger le port d&apos;écoute (par défaut: 1 lors de l&apos;écoute)</translation>
-    </message>
-    <message>
+   <message>
         <source>Use proxy to reach tor hidden services (default: same as -proxy)</source>
         <translation type="obsolete">Utiliser un proxy pour atteindre les services cachés (par défaut: équivalent à -proxy)</translation>
     </message>
@@ -4670,7 +4652,7 @@ par exemple: alertnotify=echo %%s | mail -s &quot;Alerte BitBean&quot; admin@foo
     </message>
     <message>
         <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
-        <translation type="obsolete">Envoyer des commandes au nœud fonctionnant sur &lt;ip&gt; (par défaut : 127.0.0.1)</translation>
+        <translation type="obsolete">Envoyer des commandes au nœud fonctionnant sur &lt;ip&gt; (par défaut : 127.0.0.1)</translation>
     </message>
     <message>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
@@ -4698,7 +4680,7 @@ par exemple: alertnotify=echo %%s | mail -s &quot;Alerte BitBean&quot; admin@foo
     </message>
     <message>
         <source>Set key pool size to &lt;n&gt; (default: 100)</source>
-        <translation type="obsolete">Régler la taille de la réserve de clefs sur &lt;n&gt; (par défaut : 100)</translation>
+        <translation type="obsolete">Régler la taille de la réserve de clefs sur &lt;n&gt; (par défaut : 100)</translation>
     </message>
     <message>
         <source>Rescan the block chain for missing wallet transactions</source>
@@ -4722,11 +4704,11 @@ par exemple: alertnotify=echo %%s | mail -s &quot;Alerte BitBean&quot; admin@foo
     </message>
     <message>
         <source>Server certificate file (default: server.cert)</source>
-        <translation type="obsolete">Fichier de certificat serveur (par défaut : server.cert)</translation>
+        <translation type="obsolete">Fichier de certificat serveur (par défaut : server.cert)</translation>
     </message>
     <message>
         <source>Server private key (default: server.pem)</source>
-        <translation type="obsolete">Clef privée du serveur (par défaut : server.pem)</translation>
+        <translation type="obsolete">Clef privée du serveur (par défaut : server.pem)</translation>
     </message>
     <message>
         <source>Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</source>
@@ -4794,27 +4776,27 @@ par exemple: alertnotify=echo %%s | mail -s &quot;Alerte BitBean&quot; admin@foo
     </message>
     <message>
         <source>Invalid -proxy address: &apos;%s&apos;</source>
-        <translation type="obsolete">Adresse -proxy invalide : « %s »</translation>
+        <translation type="obsolete">Adresse -proxy invalide : « %s »</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
-        <translation type="obsolete">Réseau inconnu spécifié sur -onlynet : « %s »</translation>
+        <translation type="obsolete">Réseau inconnu spécifié sur -onlynet : « %s »</translation>
     </message>
     <message>
         <source>Unknown -socks proxy version requested: %i</source>
-        <translation type="obsolete">Version inconnue de serveur mandataire -socks demandée : %i</translation>
+        <translation type="obsolete">Version inconnue de serveur mandataire -socks demandée : %i</translation>
     </message>
     <message>
         <source>Cannot resolve -bind address: &apos;%s&apos;</source>
-        <translation type="obsolete">Impossible de résoudre l&apos;adresse -bind : « %s »</translation>
+        <translation type="obsolete">Impossible de résoudre l&apos;adresse -bind : « %s »</translation>
     </message>
     <message>
         <source>Cannot resolve -externalip address: &apos;%s&apos;</source>
-        <translation type="obsolete">Impossible de résoudre l&apos;adresse -externalip : « %s »</translation>
+        <translation type="obsolete">Impossible de résoudre l&apos;adresse -externalip : « %s »</translation>
     </message>
     <message>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</source>
-        <translation type="obsolete">Montant invalide pour -paytxfee=&lt;montant&gt; : « %s »</translation>
+        <translation type="obsolete">Montant invalide pour -paytxfee=&lt;montant&gt; : « %s »</translation>
     </message>
     <message>
         <source>Error: could not start node</source>
@@ -4888,7 +4870,7 @@ par exemple: alertnotify=echo %%s | mail -s &quot;Alerte BitBean&quot; admin@foo
         <source>You must set rpcpassword=&lt;password&gt; in the configuration file:
 %s
 If the file does not exist, create it with owner-readable-only file permissions.</source>
-        <translation type="obsolete">Vous devez ajouter la ligne rpcpassword=&lt;mot-de-passe&gt; au fichier de configuration :
+        <translation type="obsolete">Vous devez ajouter la ligne rpcpassword=&lt;mot-de-passe&gt; au fichier de configuration :
 %s
 Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule accordés au propriétaire.</translation>
     </message>

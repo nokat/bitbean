@@ -3,8 +3,6 @@
 # Distributed under the MIT/X11 software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-USE_UPNP:=0
-
 LINK:=$(CXX)
 ARCH:=$(system lscpu | head -n 1 | awk '{print $2}')
 
@@ -32,14 +30,6 @@ LIBS += \
    -l db_cxx$(BDB_LIB_SUFFIX) \
    -l ssl \
    -l crypto
-
-ifndef USE_UPNP
-	override USE_UPNP = -
-endif
-ifneq (${USE_UPNP}, -)
-	LIBS += -l miniupnpc
-	DEFS += -DUSE_UPNP=$(USE_UPNP)
-endif
 
 LIBS+= \
  -Wl,-B$(LMODE2) \
