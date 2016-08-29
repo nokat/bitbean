@@ -2374,15 +2374,13 @@ bool CBlock::SignBlock(CWallet& wallet, int64_t nFees)
 
 bool CBlock::CheckBlockSignature() const
 {
-    if (IsProofOfWork())
-        return vchBlockSig.empty();
+    if (vchBlockSig.empty())
+        return false;
 
-    vector<valtype> vSolutions;
     txnouttype whichType;
+    vector<valtype> vSolutions;
 
-    const CTxOut& txout = vtx[1].vout[1];
-
-    if (!Solver(txout.scriptPubKey, whichType, vSolutions))
+    if (!Solver(vtx[1].vout[1].scriptPubKey, whichType, vSolutions))
         return false;
 
     if (whichType == TX_PUBKEY)
@@ -2391,8 +2389,7 @@ bool CBlock::CheckBlockSignature() const
         CKey key;
         if (!key.SetPubKey(vchPubKey))
             return false;
-        if (vchBlockSig.empty())
-            return false;
+
         return key.Verify(GetHash(), vchBlockSig);
     }
 
