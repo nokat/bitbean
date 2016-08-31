@@ -35,6 +35,7 @@ unsigned int nDerivationMethodIndex;
 unsigned int nMinerSleep;
 bool fUseFastIndex;
 enum Checkpoints::CPMode CheckpointsMode;
+static const char* DEFAULT_WALLET_FILENAME="wallet.dat";
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -289,7 +290,7 @@ std::string HelpMessage()
         "  -upgradewallet         " + _("Upgrade wallet to latest format") + "\n" +
         "  -keypool=<n>           " + _("Set key pool size to <n> (default: 100)") + "\n" +
         "  -rescan                " + _("Rescan the block chain for missing wallet transactions") + "\n" +
-        "  -salvagewallet         " + _("Attempt to recover private keys from a corrupt wallet.dat") + "\n" +
+        "  -salvagewallet         " + _("Attempt to recover private keys from a corrupt wallet file") + "\n" +
         "  -checkblocks=<n>       " + _("How many blocks to check at startup (default: 2500, 0 = all)") + "\n" +
         "  -checklevel=<n>        " + _("How thorough the block verification is (0-6, default: 1)") + "\n" +
         "  -loadblock=<file>      " + _("Imports blocks from external blk000?.dat file") + "\n" +
@@ -467,7 +468,7 @@ bool AppInit2()
     // ********************************************************* Step 4: application initialization: dir lock, daemonize, pidfile, debug log
 
     std::string strDataDir = GetDataDir().string();
-    std::string strWalletFileName = GetArg("-wallet", "wallet.dat");
+    std::string strWalletFileName = GetArg("-wallet", DEFAULT_WALLET_FILENAME);
 
     // strWalletFileName must be a plain filename without a directory
     if (strWalletFileName != boost::filesystem::basename(strWalletFileName) + boost::filesystem::extension(strWalletFileName))
@@ -527,7 +528,7 @@ bool AppInit2()
     {
         string msg = strprintf(_("Error initializing database environment %s!"
                                  " To recover, BACKUP THAT DIRECTORY, then remove"
-                                 " everything from it except for wallet.dat."), strDataDir.c_str());
+                                 " everything from it except for wallet file."), strDataDir.c_str());
         return InitError(msg);
     }
 
@@ -543,14 +544,14 @@ bool AppInit2()
         CDBEnv::VerifyResult r = bitdb.Verify(strWalletFileName, CWalletDB::Recover);
         if (r == CDBEnv::RECOVER_OK)
         {
-            string msg = strprintf(_("Warning: wallet.dat corrupt, data salvaged!"
-                                     " Original wallet.dat saved as wallet.{timestamp}.bak in %s; if"
+            string msg = strprintf(_("Warning: wallet file corrupt, data salvaged!"
+                                     " Original wallet file saved as wallet.{timestamp}.bak in %s; if"
                                      " your balance or transactions are incorrect you should"
                                      " restore from a backup."), strDataDir.c_str());
             uiInterface.ThreadSafeMessageBox(msg, _("BitBean"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
         }
         if (r == CDBEnv::RECOVER_FAIL)
-            return InitError(_("wallet.dat corrupt, salvage failed"));
+            return InitError(_("wallet file corrupt, salvage failed"));
     }
 
     // ********************************************************* Step 6: network initialization
@@ -667,7 +668,7 @@ bool AppInit2()
     {
         string msg = strprintf(_("Error initializing database environment %s!"
                                  " To recover, BACKUP THAT DIRECTORY, then remove"
-                                 " everything from it except for wallet.dat."), strDataDir.c_str());
+                                 " everything from it except for ", strWalletFileName"), strDataDir.c_str());
         return InitError(msg);
     }
 
@@ -736,23 +737,23 @@ bool AppInit2()
     if (nLoadWalletRet != DB_LOAD_OK)
     {
         if (nLoadWalletRet == DB_CORRUPT)
-            strErrors << _("Error loading wallet.dat: Wallet corrupted") << "\n";
+            strErrors << _("Error loading wallet file (%s): Wallet corrupted"), strWalletFileName << "\n";
         else if (nLoadWalletRet == DB_NONCRITICAL_ERROR)
         {
-            string msg(_("Warning: error reading wallet.dat! All keys read correctly, but transaction data"
-                         " or address book entries might be missing or incorrect."));
+            string msg(strprintf(_("Warning: error reading wallet file: (%s)! All keys read correctly, but transaction data"
+                         " or address book entries might be missing or incorrect."), strWalletFileName));
             uiInterface.ThreadSafeMessageBox(msg, _("BitBean"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
         }
         else if (nLoadWalletRet == DB_TOO_NEW)
-            strErrors << _("Error loading wallet.dat: Wallet requires newer version of BitBean") << "\n";
+            strErrors << strprintf(_("Error loading wallet file (%s): Wallet requires newer version of BitBean Core"), strWalletFileName << "\n";
         else if (nLoadWalletRet == DB_NEED_REWRITE)
         {
-            strErrors << _("Wallet needed to be rewritten: restart BitBean to complete") << "\n";
+            strErrors << _("Wallet needed to be rewritten: restart BitBean Core to complete") << "\n";
             printf("%s", strErrors.str().c_str());
             return InitError(strErrors.str());
         }
         else
-            strErrors << _("Error loading wallet.dat") << "\n";
+            strErrors << _("Error loading wallet file (%s)"), strWalletFileName << "\n";
     }
 
     if (GetBoolArg("-upgradewallet", fFirstRun))

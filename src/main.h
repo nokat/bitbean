@@ -214,7 +214,7 @@ public:
     COutPoint() { SetNull(); }
     COutPoint(uint256 hashIn, unsigned int nIn) { hash = hashIn; n = nIn; }
     IMPLEMENT_SERIALIZE( READWRITE(FLATDATA(*this)); )
-    void SetNull() { hash = 0; n = std:numeric_limits<uint32_t>::max(); }
+    void SetNull() { hash = 0; n = std::numeric_limits<uint32_t>::max(); }
     bool IsNull() const { return (hash == 0 && n == std::numeric_limits<uint32_t>::max()); }
 
     friend bool operator<(const COutPoint& a, const COutPoint& b)
