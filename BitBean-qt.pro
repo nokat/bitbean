@@ -6,6 +6,7 @@ INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE __NO_SYSTEM_INCLUDES
 CONFIG += no_include_pwd
 CONFIG += thread
+CONFIG += static
 
 win32:os2 {
     CONFIG += release
@@ -13,7 +14,7 @@ win32:os2 {
     CONFIG += debug_and_release
 }
 
-CONFIG += static
+
 
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
@@ -24,6 +25,7 @@ freebsd-g++: QMAKE_TARGET.arch = $$QMAKE_HOST.arch
 linux-g++: QMAKE_TARGET.arch = $$QMAKE_HOST.arch
 linux-g++-32: QMAKE_TARGET.arch = i686
 linux-g++-64: QMAKE_TARGET.arch = x86_64
+win32-g++-cross: QMAKE_TARGET.arch = $$TARGET_PLATFORM
 
 # for boost 1.37, add -mt to the boost libraries
 # use: qmake BOOST_LIB_SUFFIX=-mt
@@ -142,15 +144,14 @@ contains(USE_O3, 1) {
     QMAKE_CFLAGS += -O3
 }
 
-*-g++-32 | contains(QMAKE_TARGET.arch, i386) | contains(QMAKE_TARGET.arch, i686) {
-    message("32 platform, adding -msse2 flag")
+*-g++-32 {
+    message("x86 platform, adding -msse2 flag")
 
     QMAKE_CXXFLAGS += -msse2
     QMAKE_CFLAGS += -msse2
 }
 
-contains(QMAKE_TARGET.arch, x86_64) |
-+    contains(QMAKE_TARGET.arch, amd64) {
+contains(QMAKE_TARGET.arch, x86_64) {
         message("x86_64 platform, setting -mssse3 flag")
 
           QMAKE_CXXFLAGS += -mssse3
@@ -488,6 +489,11 @@ contains(RELEASE, 1) {
 !windows:!macx {
     DEFINES += LINUX
     LIBS += -lrt -ldl
+}
+
+netbsd-*|freebsd-*|openbsd-* {
+    # libexecinfo is required for back trace
+    LIBS += -lexecinfo
 }
 
 system($$QMAKE_LRELEASE -silent $$_PRO_FILE_)
