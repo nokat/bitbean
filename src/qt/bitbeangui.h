@@ -185,6 +185,9 @@ private slots:
     /** simply calls showNormalIfMinimized(true) for use in SLOT() macro */
     void toggleHidden();
 
+    /** called by a timer to check if fRequestShutdown has been set **/
+    void detectShutdown();
+
     void updateWeight();
     void updateStakingIcon();
 };

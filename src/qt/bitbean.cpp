@@ -19,6 +19,7 @@
 #include <QTranslator>
 #include <QSplashScreen>
 #include <QLibraryInfo>
+#include <QTimer>
 
 #if defined(BITBEAN_NEED_QT_PLUGINS) && !defined(_BITBEAN_QT_PLUGINS_INCLUDED)
 #define _BITBEAN_QT_PLUGINS_INCLUDED
@@ -90,7 +91,7 @@ static void InitMessage(const std::string &message)
 
 static void QueueShutdown()
 {
-    QMetaObject::invokeMethod(QCoreApplication::instance(), "quit", Qt::QueuedConnection);
+    QMetaObject::invokeMethod(qApp, "quit", Qt::QueuedConnection);
 }
 
 /*
@@ -217,6 +218,11 @@ int main(int argc, char *argv[])
 
         BitbeanGUI window;
         guiref = &window;
+
+        QTimer* pollShutdownTimer = new QTimer(guiref);
+        QObject::connect(pollShutdownTimer, SIGNAL(timeout()), guiref, SLOT(detectShutdown()));
+        pollShutdownTimer->start(200);
+
         if(AppInit2())
         {
             {

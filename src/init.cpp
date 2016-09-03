@@ -35,25 +35,42 @@ unsigned int nDerivationMethodIndex;
 unsigned int nMinerSleep;
 bool fUseFastIndex;
 enum Checkpoints::CPMode CheckpointsMode;
-static const char* DEFAULT_WALLET_FILENAME="wallet.dat";
 
 //////////////////////////////////////////////////////////////////////////////
 //
 // Shutdown
 //
 
-void ExitTimeout(void* parg)
-{
-#ifdef WIN32
-    MilliSleep(5000);
-    ExitProcess(0);
-#endif
-}
+//
+// Thread management and startup/shutdown:
+//
+// The network-processing threads are all part of a thread group
+// created by AppInit() or the Qt main() function.
+//
+// A clean exit happens when StartShutdown() or the SIGTERM
+// signal handler sets fRequestShutdown, which triggers
+// the DetectShutdownThread(), which interrupts the main thread group.
+// DetectShutdownThread() then exits, which causes AppInit() to
+// continue (it .joins the shutdown thread).
+// Shutdown() is then
+// called to clean up database connections, and stop other
+// threads that should only be stopped after the main network-processing
+// threads have exited.
+//
+// Note that if running -daemon the parent process returns from AppInit2
+// before adding any threads to the threadGroup, so .join_all() returns
+// immediately and the parent exits from main().
+//
+// Shutdown for Qt is very similar, only it uses a QTimer to detect
+// fRequestShutdown getting set, and then does the normal Qt
+// shutdown thing.
+//
+
 
 void StartShutdown()
 {
 #ifdef QT_GUI
-    // ensure we leave the Qt main loop for a clean GUI exit (Shutdown() is called in bitbean.cpp afterwards)
+    // ensure we leave the Qt main loop for a clean GUI exit (Shutdown() is called in bitcoin.cpp afterwards)
     uiInterface.QueueShutdown();
 #else
     // Without UI, Shutdown() can simply be started in a new thread
@@ -61,50 +78,54 @@ void StartShutdown()
 #endif
 }
 
+bool ShutdownRequested()
+{
+    return fRequestShutdown;
+}
+
 void Shutdown(void* parg)
 {
+    printf("%s: In progress...\n", __func__);
     static CCriticalSection cs_Shutdown;
-    static bool fTaken;
+    TRY_LOCK(cs_Shutdown, lockShutdown);
+    if (!lockShutdown) return;
 
+    /// Note: Shutdown() must be able to handle cases in which AppInit2() failed part of the way,
+        /// for example if the data directory was found to be locked.
+        /// Be sure that anything that writes files or flushes caches only does this if the respective
+        /// module was initialized.
     // Make this thread recognisable as the shutdown thread
     RenameThread("BitBean-shutoff");
-
-    bool fFirstThread = false;
-    {
-        TRY_LOCK(cs_Shutdown, lockShutdown);
-        if (lockShutdown)
-        {
-            fFirstThread = !fTaken;
-            fTaken = true;
-        }
-    }
-    static bool fExit;
-    if (fFirstThread)
-    {
-        fShutdown = true;
-        nTransactionsUpdated++;
+    nTransactionsUpdated++;
 //        CTxDB().Close();
+    if (pwalletMain)
         bitdb.Flush(false);
-        StopNode();
-        bitdb.Flush(true);
-        boost::filesystem::remove(GetPidFile());
-        UnregisterWallet(pwalletMain);
-        delete pwalletMain;
-        NewThread(ExitTimeout, NULL);
-        MilliSleep(50);
-        printf("BitBean exited\n\n");
-        fExit = true;
-#ifndef QT_GUI
-        // ensure non-UI client gets exited here, but let Bitbean-Qt reach 'return 0;' in bitbean.cpp
-        exit(0);
-#endif
-    }
-    else
+    StopNode();
     {
-        while (!fExit)
-            MilliSleep(500);
-        MilliSleep(100);
-        ExitThread(0);
+        LOCK(cs_main);
+        if (pwalletMain)
+            pwalletMain->SetBestChain(CBlockLocator(pindexBest));
+    }
+
+    if (pwalletMain)
+        bitdb.Flush(true);
+    boost::filesystem::remove(GetPidFile());
+    UnregisterWallet(pwalletMain);
+    delete pwalletMain;
+    printf("BitBean exited\n\n");
+}
+
+//
+// Signal handlers are very limited in what they are allowed to do, so:
+//
+void DetectShutdownThread(boost::thread_group* threadGroup)
+{
+    // Tell the main threads to shutdown.
+    while (!fRequestShutdown)
+    {
+        MilliSleep(200);
+        if (fRequestShutdown)
+            threadGroup->interrupt_all();
     }
 }
 
@@ -290,7 +311,7 @@ std::string HelpMessage()
         "  -upgradewallet         " + _("Upgrade wallet to latest format") + "\n" +
         "  -keypool=<n>           " + _("Set key pool size to <n> (default: 100)") + "\n" +
         "  -rescan                " + _("Rescan the block chain for missing wallet transactions") + "\n" +
-        "  -salvagewallet         " + _("Attempt to recover private keys from a corrupt wallet file") + "\n" +
+        "  -salvagewallet         " + _("Attempt to recover private keys from a corrupt wallet.dat") + "\n" +
         "  -checkblocks=<n>       " + _("How many blocks to check at startup (default: 2500, 0 = all)") + "\n" +
         "  -checklevel=<n>        " + _("How thorough the block verification is (0-6, default: 1)") + "\n" +
         "  -loadblock=<file>      " + _("Imports blocks from external blk000?.dat file") + "\n" +
@@ -468,7 +489,7 @@ bool AppInit2()
     // ********************************************************* Step 4: application initialization: dir lock, daemonize, pidfile, debug log
 
     std::string strDataDir = GetDataDir().string();
-    std::string strWalletFileName = GetArg("-wallet", DEFAULT_WALLET_FILENAME);
+    std::string strWalletFileName = GetArg("-wallet", "wallet.dat");
 
     // strWalletFileName must be a plain filename without a directory
     if (strWalletFileName != boost::filesystem::basename(strWalletFileName) + boost::filesystem::extension(strWalletFileName))
@@ -528,7 +549,7 @@ bool AppInit2()
     {
         string msg = strprintf(_("Error initializing database environment %s!"
                                  " To recover, BACKUP THAT DIRECTORY, then remove"
-                                 " everything from it except for wallet file."), strDataDir.c_str());
+                                 " everything from it except for wallet.dat."), strDataDir.c_str());
         return InitError(msg);
     }
 
@@ -544,14 +565,14 @@ bool AppInit2()
         CDBEnv::VerifyResult r = bitdb.Verify(strWalletFileName, CWalletDB::Recover);
         if (r == CDBEnv::RECOVER_OK)
         {
-            string msg = strprintf(_("Warning: wallet file corrupt, data salvaged!"
-                                     " Original wallet file saved as wallet.{timestamp}.bak in %s; if"
+            string msg = strprintf(_("Warning: wallet.dat corrupt, data salvaged!"
+                                     " Original wallet.dat saved as wallet.{timestamp}.bak in %s; if"
                                      " your balance or transactions are incorrect you should"
                                      " restore from a backup."), strDataDir.c_str());
             uiInterface.ThreadSafeMessageBox(msg, _("BitBean"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
         }
         if (r == CDBEnv::RECOVER_FAIL)
-            return InitError(_("wallet file corrupt, salvage failed"));
+            return InitError(_("wallet.dat corrupt, salvage failed"));
     }
 
     // ********************************************************* Step 6: network initialization
@@ -668,7 +689,7 @@ bool AppInit2()
     {
         string msg = strprintf(_("Error initializing database environment %s!"
                                  " To recover, BACKUP THAT DIRECTORY, then remove"
-                                 " everything from it except for ", strWalletFileName"), strDataDir.c_str());
+                                 " everything from it except for wallet.dat."), strDataDir.c_str());
         return InitError(msg);
     }
 
@@ -737,23 +758,23 @@ bool AppInit2()
     if (nLoadWalletRet != DB_LOAD_OK)
     {
         if (nLoadWalletRet == DB_CORRUPT)
-            strErrors << _("Error loading wallet file (%s): Wallet corrupted"), strWalletFileName << "\n";
+            strErrors << _("Error loading wallet.dat: Wallet corrupted") << "\n";
         else if (nLoadWalletRet == DB_NONCRITICAL_ERROR)
         {
-            string msg(strprintf(_("Warning: error reading wallet file: (%s)! All keys read correctly, but transaction data"
-                         " or address book entries might be missing or incorrect."), strWalletFileName));
+            string msg(_("Warning: error reading wallet.dat! All keys read correctly, but transaction data"
+                         " or address book entries might be missing or incorrect."));
             uiInterface.ThreadSafeMessageBox(msg, _("BitBean"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
         }
         else if (nLoadWalletRet == DB_TOO_NEW)
-            strErrors << strprintf(_("Error loading wallet file (%s): Wallet requires newer version of BitBean Core"), strWalletFileName << "\n";
+            strErrors << _("Error loading wallet.dat: Wallet requires newer version of BitBean") << "\n";
         else if (nLoadWalletRet == DB_NEED_REWRITE)
         {
-            strErrors << _("Wallet needed to be rewritten: restart BitBean Core to complete") << "\n";
+            strErrors << _("Wallet needed to be rewritten: restart BitBean to complete") << "\n";
             printf("%s", strErrors.str().c_str());
             return InitError(strErrors.str());
         }
         else
-            strErrors << _("Error loading wallet file (%s)"), strWalletFileName << "\n";
+            strErrors << _("Error loading wallet.dat") << "\n";
     }
 
     if (GetBoolArg("-upgradewallet", fFirstRun))
