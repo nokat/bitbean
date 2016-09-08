@@ -1,8 +1,10 @@
 #include "rpcconsole.h"
 #include "ui_rpcconsole.h"
+#include "walletdb.h"
+#include "wallet.h"
 
 #include "clientmodel.h"
-#include "bitcoinrpc.h"
+#include "bitbeanrpc.h"
 #include "guiutil.h"
 
 #include <QTime>
@@ -194,6 +196,7 @@ RPCConsole::RPCConsole(QWidget *parent) :
 
 #ifndef Q_OS_MAC
     ui->openDebugLogfileButton->setIcon(QIcon(":/icons/export"));
+    ui->openConfigfileButton->setIcon(QIcon(":/icons/export"));
     ui->showCLOptionsButton->setIcon(QIcon(":/icons/options"));
 #endif
 
@@ -203,8 +206,9 @@ RPCConsole::RPCConsole(QWidget *parent) :
 
     connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
 
-    // set OpenSSL version label
+    // set library version labels
     ui->openSSLVersion->setText(SSLeay_version(SSLEAY_VERSION));
+    ui->berkeleyDBVersion->setText(DbEnv::version(0, 0, 0));
 
     startExecutor();
 
@@ -424,6 +428,11 @@ void RPCConsole::on_openDebugLogfileButton_clicked()
     GUIUtil::openDebugLogfile();
 }
 
+void RPCConsole::on_openConfigfileButton_clicked()
+{
+    GUIUtil::openConfigfile();
+}
+
 void RPCConsole::scrollToEnd()
 {
     QScrollBar *scrollbar = ui->messagesWidget->verticalScrollBar();
@@ -434,4 +443,9 @@ void RPCConsole::on_showCLOptionsButton_clicked()
 {
     GUIUtil::HelpMessageBox help;
     help.exec();
+}
+
+void RPCConsole::on_closeButton_clicked()
+{
+    close();
 }

@@ -3,7 +3,7 @@
 
 #include <QAbstractListModel>
 
-/** Interface from Qt to configuration data structure for Bitcoin client.
+/** Interface from Qt to configuration data structure for Bitbean client.
    To Qt, the options are presented as a list with the different options
    laid out vertically.
    This can be changed to a tree once the settings become sufficiently
@@ -19,7 +19,6 @@ public:
     enum OptionID {
         StartAtStartup,    // bool
         MinimizeToTray,    // bool
-        MapPortUPnP,       // bool
         MinimizeOnClose,   // bool
         ProxyUse,          // bool
         ProxyIP,           // QString
@@ -27,11 +26,11 @@ public:
         ProxySocksVersion, // int
         Fee,               // qint64
         ReserveBalance,    // qint64
-        DisplayUnit,       // BitcoinUnits::Unit
+        DisplayUnit,       // BitbeanUnits::Unit
         DisplayAddresses,  // bool
         DetachDatabases,   // bool
         Language,          // QString
-        CoinControlFeatures, // bool
+        BeanControlFeatures, // bool
         OptionIDRowCount,
     };
 
@@ -48,7 +47,7 @@ public:
     bool getMinimizeOnClose();
     int getDisplayUnit();
     bool getDisplayAddresses();
-    bool getCoinControlFeatures();
+    bool getBeanControlFeatures();
     QString getLanguage() { return language; }
 
 private:
@@ -56,14 +55,14 @@ private:
     bool bDisplayAddresses;
     bool fMinimizeToTray;
     bool fMinimizeOnClose;
-    bool fCoinControlFeatures;
+    bool fBeanControlFeatures;
     QString language;
 
 signals:
     void displayUnitChanged(int unit);
     void transactionFeeChanged(qint64);
     void reserveBalanceChanged(qint64);
-    void coinControlFeaturesChanged(bool);
+    void beanControlFeaturesChanged(bool);
 };
 
 #endif // OPTIONSMODEL_H

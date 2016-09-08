@@ -21,6 +21,9 @@ public:
 
 private:
     Ui::TransactionDescDialog *ui;
+
+private slots:
+    void on_closeButton_clicked();
 };
 
 #endif // TRANSACTIONDESCDIALOG_H

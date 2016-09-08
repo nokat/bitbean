@@ -1,10 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_UTIL_H
-#define BITCOIN_UTIL_H
+#ifndef BITBEAN_UTIL_H
+#define BITBEAN_UTIL_H
 
 #include "uint256.h"
 
@@ -35,7 +36,7 @@
 #include <stdint.h>
 #include <inttypes.h>
 
-static const int64_t COIN = 100000000;
+static const int64_t bean = 100000000;
 static const int64_t CENT = 1000000;
 
 #define BEGIN(a)            ((char*)&(a))
@@ -43,6 +44,16 @@ static const int64_t CENT = 1000000;
 #define UBEGIN(a)           ((unsigned char*)&(a))
 #define UEND(a)             ((unsigned char*)&((&(a))[1]))
 #define ARRAYLEN(array)     (sizeof(array)/sizeof((array)[0]))
+
+/* Silence compiler warnings on Windows related to MinGWs inttypes.h */
+#if defined(_MSC_VER) || defined(__MSVCRT__)
+#undef PRId64
+#define PRId64 "I64d"
+#undef PRIu64
+#define PRIu64 "I64u"
+#undef PRIx64
+#define PRIx64 "I64x"
+#endif
 
 #define UVOIDBEGIN(a)        ((void*)&(a))
 #define CVOIDBEGIN(a)        ((const void*)&(a))

@@ -4,6 +4,6 @@ See doc/readme-qt.rst for instructions on building BitBean QT,
 the intended-for-end-users, nice-graphical-interface, reference
 implementation of BitBean.
 
-See doc/build-*.txt for instructions on building Testcoind,
+See doc/build-*.txt for instructions on building bitbeand,
 the intended-for-services, no-graphical-interface, reference
 implementation of BitBean.

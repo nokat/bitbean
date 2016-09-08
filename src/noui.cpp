@@ -1,10 +1,11 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include "ui_interface.h"
 #include "init.h"
-#include "bitcoinrpc.h"
+#include "bitbeanrpc.h"
 
 #include <string>
 
@@ -22,7 +23,7 @@ static bool noui_ThreadSafeAskFee(int64_t nFeeRequired, const std::string& strCa
 
 void noui_connect()
 {
-    // Connect bitcoind signal handlers
+    // Connect bitbeand signal handlers
     uiInterface.ThreadSafeMessageBox.connect(noui_ThreadSafeMessageBox);
     uiInterface.ThreadSafeAskFee.connect(noui_ThreadSafeAskFee);
 }

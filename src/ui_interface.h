@@ -1,10 +1,11 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2012 The Bitcoin developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_UI_INTERFACE_H
-#define BITCOIN_UI_INTERFACE_H
+#ifndef BITBEAN_UI_INTERFACE_H
+#define BITBEAN_UI_INTERFACE_H
 
 #include <boost/signals2/last_value.hpp>
 #include <boost/signals2/signal.hpp>
@@ -75,7 +76,7 @@ public:
     boost::signals2::signal<void (const std::string &message)> InitMessage;
 
     /** Initiate client shutdown. */
-    boost::signals2::signal<void ()> QueueShutdown;
+        boost::signals2::signal<void ()> QueueShutdown;
 
     /** Translate a message to the native language of the user. */
     boost::signals2::signal<std::string (const char* psz)> Translate;
