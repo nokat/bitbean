@@ -107,6 +107,7 @@ contains(BITBEAN_NEED_QT_PLUGINS, 1) {
 INCLUDEPATH += src/leveldb/include src/leveldb/helpers
 LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
 SOURCES += src/txdb-leveldb.cpp \
+    src/qt/paymentserver.cpp
 
 !win32 {
     # we use QMAKE_CXXFLAGS_RELEASE even without RELEASE=1 because we use RELEASE to indicate linking preferences not -O preferences
@@ -232,13 +233,13 @@ HEADERS += src/qt/bitbeangui.h \
     src/qt/askpassphrasedialog.h \
     src/protocol.h \
     src/qt/notificator.h \
-    src/qt/qtipcserver.h \
     src/allocators.h \
     src/ui_interface.h \
     src/qt/rpcconsole.h \
     src/version.h \
     src/netbase.h \
     src/clientversion.h \
+    src/qt/paymentserver.h
 
 SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -298,7 +299,6 @@ SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/qt/askpassphrasedialog.cpp \
     src/protocol.cpp \
     src/qt/notificator.cpp \
-    src/qt/qtipcserver.cpp \
     src/qt/rpcconsole.cpp \
     src/noui.cpp \
     src/kernel.cpp \
@@ -453,6 +453,7 @@ macx: {
 
     QMAKE_CFLAGS_THREAD += -pthread
     QMAKE_CXXFLAGS_THREAD += -pthread
+    QMAKE_INFO_PLIST = share/qt/Info.plist
 }
 
 
@@ -497,3 +498,6 @@ netbsd-*|freebsd-*|openbsd-* {
 }
 
 system($$QMAKE_LRELEASE -silent $$_PRO_FILE_)
+
+DISTFILES += \
+    share/qt/info.plist
