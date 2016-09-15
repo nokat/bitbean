@@ -905,7 +905,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+59"/>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="unfinished">この処理は大きさの制限を超えている。%1料金を払ったばい、通信可能性です。料金は手続きをするノードへ支払って、ネットワークのサッポートになります。料金を払いますか。</translation>
     </message>
     <message>
@@ -1295,7 +1295,7 @@ Address: %4
         <translation type="obsolete">最新ブロックは%1に生成されました。</translation>
     </message>
     <message>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="obsolete">この処理は大きさの制限を超えている。%1料金を払ったばい、通信可能性です。料金は手続きをするノードへ支払って、ネットワークのサッポートになります。料金を払いますか。</translation>
     </message>
     <message>

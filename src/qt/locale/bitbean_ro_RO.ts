@@ -917,7 +917,7 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+59"/>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="unfinished">Această tranzactie este peste limita admisa. Puteți sa trimiteți pentru o taxa de 1%, care este pentru nodurile care proceseaza tranzactia si ajuta la sprijinirea retelei. Vrei să plătești taxa?</translation>
     </message>
     <message>
@@ -1328,7 +1328,7 @@ Adresa: %4
         <translation type="obsolete">Ultimul bloc primit a fost generat %1.</translation>
     </message>
     <message>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="obsolete">Această tranzactie este peste limita admisa. Puteți sa trimiteți pentru o taxa de 1%, care este pentru nodurile care proceseaza tranzactia si ajuta la sprijinirea retelei. Vrei să plătești taxa?</translation>
     </message>
     <message>

@@ -911,7 +911,7 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
     </message>
     <message>
         <location line="+59"/>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="unfinished">Cette transaction dépasse la limite autorisée. Vous pouvez tout de même effectuer cette opération, moyennant %1 de frais, qui seront envoyés aux noeuds qui valideront cette transaction, et dont l&apos;objectif vise à supporter le réseau. Souhaitez-vous payer ces frais ?</translation>
     </message>
     <message>
@@ -1312,7 +1312,7 @@ Adresse : %4
         <translation type="obsolete">Le dernier block reçu à été généré %1.</translation>
     </message>
     <message>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="obsolete">Cette transaction dépasse la limite autorisée. Vous pouvez tout de même effectuer cette opération, moyennant %1 de frais, qui seront envoyés aux noeuds qui valideront cette transaction, et dont l&apos;objectif vise à supporter le réseau. Souhaitez-vous payer ces frais ?</translation>
     </message>
     <message>

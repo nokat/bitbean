@@ -912,7 +912,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
     </message>
     <message>
         <location line="+59"/>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="unfinished">Denna transaktion är över gränsen. Du kan ändå skicka den med en %1 avgift, som går till noderna som processerar din transaktion och hjälper till med att upprätthålla nätverket. Vill du betala denna avgift?</translation>
     </message>
     <message>
@@ -1313,7 +1313,7 @@ Adress: %4
         <translation type="obsolete">Senaste mottagna block genererades %1.</translation>
     </message>
     <message>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="obsolete">Denna transaktion är över gränsen. Du kan ändå skicka den med en %1 avgift, som går till noderna som processerar din transaktion och hjälper till med att upprätthålla nätverket. Vill du betala denna avgift?</translation>
     </message>
     <message>

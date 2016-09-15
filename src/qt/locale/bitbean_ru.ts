@@ -903,7 +903,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+59"/>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="unfinished">Данная транзакция превышает предельно допустимый размер.  Но Вы можете всё равно совершить её, добавив комиссию в %1, которая отправится тем узлам, которые обработают Вашу транзакцию, и поможет поддержать сеть.  Вы хотите добавить комиссию?</translation>
     </message>
     <message>
@@ -1314,7 +1314,7 @@ Address: %4
         <translation type="obsolete">Последний полученный блок был сгенерирован %1.</translation>
     </message>
     <message>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="obsolete">Данная транзакция превышает предельно допустимый размер.  Но Вы можете всё равно совершить её, добавив комиссию в %1, которая отправится тем узлам, которые обработают Вашу транзакцию, и поможет поддержать сеть.  Вы хотите добавить комиссию?</translation>
     </message>
     <message>

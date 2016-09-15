@@ -911,7 +911,7 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+59"/>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="unfinished">Denne transaktion er over grænsen størrelse. Du kan stadig sende det for et gebyr på %1, der går til de noder, der behandler din transaktion og hjælper med at støtte netværket. Ønsker du at betale gebyret?</translation>
     </message>
     <message>
@@ -1312,7 +1312,7 @@ Adresse: %4
         <translation type="obsolete">Sidst modtagne blok blev genereret %1.</translation>
     </message>
     <message>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="obsolete">Denne transaktion er over grænsen størrelse. Du kan stadig sende det for et gebyr på %1, der går til de noder, der behandler din transaktion og hjælper med at støtte netværket. Ønsker du at betale gebyret?</translation>
     </message>
     <message>

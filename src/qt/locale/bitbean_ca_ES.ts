@@ -912,7 +912,7 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="+59"/>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="unfinished">Aquesta transacció es troba sobre el límit de mida. Encara pot enviar-la amb una comisió de 1%, aquesta va als nodes que processen la seva transacció i ajuda a mantenir la xarxa. Vol pagar la quota?</translation>
     </message>
     <message>
@@ -1319,7 +1319,7 @@ Address: %4
         <translation type="obsolete">El darrer bloc rebut s&apos;ha generat %1.</translation>
     </message>
     <message>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="obsolete">Aquesta transacció es troba sobre el límit de mida. Encara pot enviar-la amb una comisió de 1%, aquesta va als nodes que processen la seva transacció i ajuda a mantenir la xarxa. Vol pagar la quota?</translation>
     </message>
     <message>

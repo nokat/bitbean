@@ -717,9 +717,7 @@ void BitbeanGUI::closeEvent(QCloseEvent *event)
 void BitbeanGUI::askFee(qint64 nFeeRequired, bool *payFee)
 {
     QString strMessage =
-        tr("This transaction is over the size limit.  You can still send it for a fee of %1, "
-          "which goes to the nodes that process your transaction and helps to support the network.  "
-          "Do you want to pay the fee?").arg(
+        tr("In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.").arg(
                 BitbeanUnits::formatWithUnit(BitbeanUnits::BitB, nFeeRequired));
     QMessageBox::StandardButton retval = QMessageBox::question(
           this, tr("Confirm transaction fee"), strMessage,

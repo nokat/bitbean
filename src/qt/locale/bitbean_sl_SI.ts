@@ -915,7 +915,7 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
     </message>
     <message>
         <location line="+59"/>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="unfinished">Ta transakcija je prekoračila limit. Še vedno jo lahko pošljete za plačilo %1 transakcije, ki je plačano vsem delom omrežja kot deležnina in pomaga zagotavljati njegovo varnost. Ali želite plačati provizijo?</translation>
     </message>
     <message>
@@ -1336,7 +1336,7 @@ Naslov: %4
         <translation type="obsolete">Zadnji prejeti blok je bil ustvarjen %1.</translation>
     </message>
     <message>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="obsolete">Ta transakcija je prekoračila limit. Še vedno jo lahko pošljete za plačilo %1 transakcije, ki je plačano vsem delom omrežja kot deležnina in pomaga zagotavljati njegovo varnost. Ali želite plačati provizijo?</translation>
     </message>
     <message>
