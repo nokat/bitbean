@@ -203,7 +203,7 @@ WalletModel::SendBeansReturn WalletModel::sendBeans(const QList<SendBeansRecipie
             }
             return TransactionCreationFailed;
         }
-        if(!uiInterface.ThreadSafeAskFee(nFeeRequired, tr("Sending...").toStdString()))
+        if(!uiInterface.ThreadSafeAskFee(nFeeRequired))
         {
             return Aborted;
         }
