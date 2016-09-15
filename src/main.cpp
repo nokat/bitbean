@@ -2404,10 +2404,10 @@ bool CheckDiskSpace(uint64_t nAdditionalBytes)
     if (nFreeBytesAvailable < nMinDiskSpace + nAdditionalBytes)
     {
         fShutdown = true;
-        string strMessage = _("Warning: Disk space is low!");
+        string strMessage = _("Error: Disk space is low!");
         strMiscWarning = strMessage;
         printf("*** %s\n", strMessage.c_str());
-        uiInterface.ThreadSafeMessageBox(strMessage, "BitBean", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+        uiInterface.ThreadSafeMessageBox(strMessage, "", CClientUIInterface::MSG_ERROR);
         StartShutdown();
         return false;
     }

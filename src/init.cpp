@@ -4,6 +4,7 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 //
+
 #include "txdb.h"
 #include "walletdb.h"
 #include "bitbeanrpc.h"
@@ -12,6 +13,7 @@
 #include "util.h"
 #include "ui_interface.h"
 #include "checkpoints.h"
+
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/filesystem/convenience.hpp>
@@ -226,13 +228,13 @@ int main(int argc, char* argv[])
 
 bool static InitError(const std::string &str)
 {
-    uiInterface.ThreadSafeMessageBox(str, _("BitBean"), CClientUIInterface::OK | CClientUIInterface::MODAL);
+    uiInterface.ThreadSafeMessageBox(str, "", CClientUIInterface::MSG_ERROR);
     return false;
 }
 
 bool static InitWarning(const std::string &str)
 {
-    uiInterface.ThreadSafeMessageBox(str, _("BitBean"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+    uiInterface.ThreadSafeMessageBox(str, "", CClientUIInterface::MSG_WARNING);
     return true;
 }
 
@@ -572,7 +574,7 @@ bool AppInit2()
                                      " Original %s saved as wallet.{timestamp}.bak in %s; if"
                                      " your balance or transactions are incorrect you should"
                                      " restore from a backup."), strWalletFileName.c_str(), strWalletFileName.c_str(), strDataDir.c_str());
-            uiInterface.ThreadSafeMessageBox(msg, _("BitBean"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+            InitWarning(msg);
         }
         if (r == CDBEnv::RECOVER_FAIL)
             return InitError(strprintf(_("Wallet file (%s) corrupt, salvage failed\n"), strWalletFileName.c_str()));
@@ -763,33 +765,33 @@ bool AppInit2()
         if (nLoadWalletRet == DB_CORRUPT)
         {
             string msg = (_("Error loading wallet file (%s): Wallet corrupted\n"), strWalletFileName.c_str());
-            uiInterface.ThreadSafeMessageBox(msg, _("BitBean"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+            InitWarning(msg);
             fprintf(stderr, "%s", msg.c_str());
         }
         else if (nLoadWalletRet == DB_NONCRITICAL_ERROR)
         {
             string msg = (_("Warning: error reading wallet file! All keys read correctly, but transaction data"
                          " or address book entries might be missing or incorrect.\n"));
-            uiInterface.ThreadSafeMessageBox(msg, _("BitBean"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+            InitWarning(msg);
             fprintf(stderr, "%s", msg.c_str());
         }
         else if (nLoadWalletRet == DB_TOO_NEW)
         {
             string msg = (_("Error loading wallet file (%s): Wallet requires newer version of BitBean\n"), strWalletFileName.c_str());
-            uiInterface.ThreadSafeMessageBox(msg, _("BitBean"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+            InitWarning(msg);
             fprintf(stderr, "%s", msg.c_str());
         }
         else if (nLoadWalletRet == DB_NEED_REWRITE)
         {
             string msg = (_("Wallet (%s) needed to be rewritten: restart BitBean to complete\n"), strWalletFileName.c_str());
-            uiInterface.ThreadSafeMessageBox(msg, _("BitBean"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+            InitWarning(msg);
             fprintf(stderr, "%s", msg.c_str());
             return InitError(msg);
         }
         else
         {
             string msg = (_("Error loading wallet file (%s)\n"), strWalletFileName.c_str());
-            uiInterface.ThreadSafeMessageBox(msg, _("BitBean"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+            InitWarning(msg);
             fprintf(stderr, "%s", msg.c_str());
         }
     }
@@ -898,7 +900,7 @@ bool AppInit2()
 
     //// debug print
     printf("mapBlockIndex.size() = %"PRIszu"\n",   mapBlockIndex.size());
-    printf("nBestHeight = %d\n",            nBestHeight);
+    printf("nBestHeight = %d\n",                   nBestHeight);
     printf("setKeyPool.size() = %"PRIszu"\n",      pwalletMain->setKeyPool.size());
     printf("mapWallet.size() = %"PRIszu"\n",       pwalletMain->mapWallet.size());
     printf("mapAddressBook.size() = %"PRIszu"\n",  pwalletMain->mapAddressBook.size());
