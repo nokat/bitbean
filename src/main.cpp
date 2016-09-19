@@ -557,7 +557,7 @@ int64_t CTransaction::GetMinFee(unsigned int nBlockSize, enum GetMinFee_mode mod
 }
 
 
-bool CTxMemPool::accept(CTxDB& txdb, CTransaction &tx,
+bool CTxMemPool::accept(CTxDB& txdb, CTransaction &tx, bool fCheckInputs,
                         bool* pfMissingInputs)
 {
     if (pfMissingInputs)
@@ -589,6 +589,7 @@ bool CTxMemPool::accept(CTxDB& txdb, CTransaction &tx,
         if (mapTx.count(hash))
             return false;
     }
+        if (fCheckInputs)
         if (txdb.ContainsTx(hash))
             return false;
 
@@ -620,6 +621,7 @@ bool CTxMemPool::accept(CTxDB& txdb, CTransaction &tx,
         }
     }
 
+    if (fCheckInputs)
     {
         MapPrevTx mapInputs;
         map<uint256, CTxIndex> mapUnused;
@@ -706,9 +708,9 @@ bool CTxMemPool::accept(CTxDB& txdb, CTransaction &tx,
     return true;
 }
 
-bool CTransaction::AcceptToMemoryPool(CTxDB& txdb, bool* pfMissingInputs)
+bool CTransaction::AcceptToMemoryPool(CTxDB& txdb, bool fCheckInputs, bool* pfMissingInputs)
 {
-    return mempool.accept(txdb, *this, pfMissingInputs);
+    return mempool.accept(txdb, *this, fCheckInputs, pfMissingInputs);
 }
 
 bool CTxMemPool::addUnchecked(const uint256& hash, CTransaction &tx)
@@ -827,17 +829,17 @@ int CMerkleTx::GetBlocksToMaturity() const
 }
 
 
-bool CMerkleTx::AcceptToMemoryPool(CTxDB& txdb)
+bool CMerkleTx::AcceptToMemoryPool(CTxDB& txdb, bool fCheckInputs)
 {
     if (fClient)
     {
         if (!IsInMainChain() && !ClientConnectInputs())
             return false;
-        return CTransaction::AcceptToMemoryPool(txdb);
+        return CTransaction::AcceptToMemoryPool(txdb, fCheckInputs);
     }
     else
     {
-        return CTransaction::AcceptToMemoryPool(txdb);
+        return CTransaction::AcceptToMemoryPool(txdb, fCheckInputs);
     }
 }
 
@@ -849,7 +851,7 @@ bool CMerkleTx::AcceptToMemoryPool()
 
 
 
-bool CWalletTx::AcceptWalletTransaction(CTxDB& txdb)
+bool CWalletTx::AcceptWalletTransaction(CTxDB& txdb, bool fCheckInputs)
 {
 
     {
@@ -860,10 +862,10 @@ bool CWalletTx::AcceptWalletTransaction(CTxDB& txdb)
             {
                 uint256 hash = tx.GetHash();
                 if (!mempool.exists(hash) && !txdb.ContainsTx(hash))
-                    tx.AcceptToMemoryPool(txdb);
+                    tx.AcceptToMemoryPool(txdb, fCheckInputs);
             }
         }
-        return AcceptToMemoryPool(txdb);
+        return AcceptToMemoryPool(txdb, fCheckInputs);
     }
     return false;
 }
@@ -1700,7 +1702,7 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
 
     // Resurrect memory transactions that were in the disconnected branch
     BOOST_FOREACH(CTransaction& tx, vResurrect)
-        tx.AcceptToMemoryPool(txdb);
+        tx.AcceptToMemoryPool(txdb, false);
 
     // Delete redundant memory transactions that are in the connected branch
     BOOST_FOREACH(CTransaction& tx, vDelete) {
@@ -3243,7 +3245,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         }
 
         bool fMissingInputs = false;
-        if (tx.AcceptToMemoryPool(txdb, &fMissingInputs))
+        if (tx.AcceptToMemoryPool(txdb, true, &fMissingInputs))
         {
             SyncWithWallets(tx, NULL, true);
             RelayTransaction(tx, inv.hash);
@@ -3263,7 +3265,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
                     CTransaction& orphanTx = mapOrphanTransactions[orphanTxHash];
                     bool fMissingInputs2 = false;
 
-                    if (orphanTx.AcceptToMemoryPool(txdb, &fMissingInputs2))
+                    if (orphanTx.AcceptToMemoryPool(txdb, true, &fMissingInputs2))
                     {
                         printf("   accepted orphan tx %s\n", orphanTxHash.ToString().substr(0,10).c_str());
                         SyncWithWallets(tx, NULL, true);
