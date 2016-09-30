@@ -149,6 +149,11 @@ void BitbeanAmountField::unitChanged(int idx)
     amount->setDecimals(BitbeanUnits::decimals(currentUnit));
     amount->setMaximum(qPow(10, BitbeanUnits::amountDigits(currentUnit)) - qPow(10, -amount->decimals()));
 
+    if(currentUnit == BitbeanUnits::uBitB)
+        amount->setSingleStep(0.01);
+    else
+        amount->setSingleStep(0.001);
+
     if(valid)
     {
         // If value was valid, re-place it in the widget with the new unit
