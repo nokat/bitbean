@@ -613,11 +613,11 @@ void BitbeanGUI::setNumBlocks(int count, int nTotalBlocks)
                     timeBehindText = tr("%n week(s)","",secs/(7*24*60*60));
                 }
 
-                progressBarLabel->setText(tr(clientModel->isImporting() ? "Importing blocks..." : "Synchronizing with network..."));
+                progressBarLabel->setText("Importing blocks...Synchronizing with network...");
                 progressBarLabel->setVisible(true);
                 progressBar->setFormat(tr("%1 behind").arg(timeBehindText));
-                progressBar->setMaximum(totalSecs);
-                progressBar->setValue(totalSecs - secs);
+                progressBar->setMaximum(1000000000);
+                progressBar->setValue(clientModel->getVerificationProgress() * 1000000000.0 + 0.5);
                 progressBar->setVisible(true);
 
         tooltip = tr("Catching up...") + QString("<br>") + tooltip;

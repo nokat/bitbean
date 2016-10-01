@@ -1119,6 +1119,7 @@ public:
     CBlockIndex* pprev;
     CBlockIndex* pnext;
     unsigned int nFile;
+    unsigned int nChainTx;
     unsigned int nBlockPos;
     uint256 nChainTrust; // ppbean: trust score of block chain
     int nHeight;
