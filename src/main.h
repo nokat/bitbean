@@ -27,7 +27,6 @@ class COutPoint;
 
 class CAddress;
 class CInv;
-class CRequestTracker;
 class CNode;
 
 static const int LAST_POW_BLOCK = 10000;
