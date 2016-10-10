@@ -107,7 +107,7 @@ contains(BITBEAN_NEED_QT_PLUGINS, 1) {
 INCLUDEPATH += src/leveldb/include src/leveldb/helpers
 LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
 SOURCES += src/txdb-leveldb.cpp \
-    src/qt/paymentserver.cpp
+    src/qt/paymentserver.cpp \
 
 !win32 {
     # we use QMAKE_CXXFLAGS_RELEASE even without RELEASE=1 because we use RELEASE to indicate linking preferences not -O preferences
@@ -332,12 +332,44 @@ FORMS += src/qt/forms/qrcodedialog.ui
 
 contains(BITBEAN_QT_TEST, 1) {
 SOURCES += src/qt/test/test_main.cpp \
-    src/qt/test/uritests.cpp
+    src/qt/test/uritests.cpp \
 HEADERS += src/qt/test/uritests.h
 DEPENDPATH += src/qt/test
 QT += testlib
 TARGET = BitBean-qt_test
 DEFINES += BITBEAN_QT_TEST
+}
+
+contains(TEST, 1) {
+SOURCES += src/test/accounting_tests.cpp \
+    src/test/cannonical_tests.cpp \
+    src/test/allocator_tests.cpp \
+    src/test/base32_tests.cpp \
+    src/test/base58_tests.cpp \
+    src/test/base64_tests.cpp \
+    src/test/bignum_tests.cpp \
+    src/test/Checkpoints_tests.cpp \
+    src/test/DoS_tests.cpp \
+    src/test/getarg_tests.cpp \
+    src/test/key_tests.cpp \
+    src/test/miner_tests.cpp \
+    src/test/mruset_tests.cpp \
+    src/test/multisig_tests.cpp \
+    src/test/netbase_tests.cpp \
+    src/test/rpc_tests.cpp \
+    src/test/script_P2SH_tests.cpp \
+    src/test/script_tests.cpp \
+    src/test/sigopcount_tests.cpp \
+    src/test/test_bitbean.cpp \
+    src/test/transaction_tests.cpp \
+    src/test/uint160_tests.cpp \
+    src/test/uint256_tests.cpp \
+    src/test/util_tests.cpp \
+    src/test/wallet_tests.cpp \
+DEPENDPATH += src/test
+QT += testlib
+TARGET = BitBean_test
+DEFINES += BITBEAN_TEST
 }
 
 CODECFORTR = UTF-8
