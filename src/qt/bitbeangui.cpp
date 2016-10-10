@@ -551,7 +551,7 @@ void BitbeanGUI::setNumConnections(int count)
 void BitbeanGUI::setNumBlocks(int count, int nTotalBlocks)
 {
     // don't show / hide progress bar and its label if we have no connection to the network
-    if (!clientModel || clientModel->getNumConnections() == 0)
+    if (!clientModel || (clientModel->getNumConnections() == 0 && !clientModel->isImporting()))
     {
         progressBarLabel->setVisible(false);
         progressBar->setVisible(false);
@@ -613,7 +613,7 @@ void BitbeanGUI::setNumBlocks(int count, int nTotalBlocks)
                     timeBehindText = tr("%n week(s)","",secs/(7*24*60*60));
                 }
 
-                progressBarLabel->setText("Importing blocks...Synchronizing with network...");
+                progressBarLabel->setText(tr(clientModel->isImporting() ? "Importing blocks..." : "Synchronizing with network..."));
                 progressBarLabel->setVisible(true);
                 progressBar->setFormat(tr("%1 behind").arg(timeBehindText));
                 progressBar->setMaximum(1000000000);
