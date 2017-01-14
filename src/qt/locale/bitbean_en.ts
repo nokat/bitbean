@@ -3380,7 +3380,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
     <message>
         <location line="+1"/>
         <source>Specify configuration file (default: BitBean.conf)</source>
-        <translation">Specify configuration file (default: BitBean.conf)</translation>
+        <translation>Specify configuration file (default: BitBean.conf)</translation>
     </message>
     <message>
         <location line="+1"/>
