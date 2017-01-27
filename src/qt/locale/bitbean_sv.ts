@@ -10,26 +10,24 @@
         <translation>Vad du behöver veta om BTestcoin</translation>
     </message>
     <message>
-        <location line="+54"/>
+        <location line="+22"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;http://www.bitbean.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;BitBean, Fast..Simple..Secure..More Than Just a Digital Currency&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;http://www.bitbean.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.bitbean.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;This is experimental software. &lt;/p&gt;&lt;p&gt;Distributed under the &lt;a href=&quot;http://www.opensource.org/licenses/mit-license.php&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;MIT/X11 software license.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;This product includes software developed by the &lt;a href=&quot;https://www.openssl.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;OpenSSL Project&lt;/span&gt;&lt;/a&gt; for use in the OpenSSL Toolkit and cryptographic software written by &lt;a href=&quot;eay@cryptsoft.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Eric Young.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Support Available: &lt;a href=&quot;http://teamchat.bitbean.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Live Chat&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+66"/>
         <source>&lt;b&gt;BitBean&lt;/b&gt; version</source>
         <translation>&lt;b&gt;BitBean&lt;/b&gt; version</translation>
-    </message>
-    <message>
-        <location line="+53"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Liberation Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright © 2009-2014 The Bitcoin developers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright © 2012-2014 The Novacoin developers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright © 2014 The BitBean developers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright © 2015 Bean Core www.bitbean.org&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+26"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Chief Scientist &amp;amp; Lead Developer: &lt;/span&gt;Shawn Kent&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Designer: &lt;/span&gt;BrunoPro7&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;This is experimental software. Distributed under the MIT/X11 software license, see the accompanying file COPYING or &lt;/span&gt;&lt;a href=&quot;http://www.opensource.org/licenses/mit-license.php&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.opensource.org/licenses/mit-license.php&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;. This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (&lt;/span&gt;&lt;a href=&quot;https://www.openssl.org/&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.openssl.org/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;) and cryptographic software written by Eric Young (&lt;/span&gt;&lt;a href=&quot;mailto:eay@cryptsoft.com&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;eay@cryptsoft.com&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;) .&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Copyright © 2009-2014 The Bitcoin developers
@@ -53,6 +51,16 @@ Detta är experimentell mjukvara.
 Distribuerad under mjukvarulicensen MIT/X11, se den medföljande filen COPYING eller http://www.opensource.org/licenses/mit-license.php.
 
 Denna produkten innehåller mjukvara utvecklad av OpenSSL Project för användning i OpenSSL Toolkit (http://www.openssl.org/) och kryptografisk mjukvara utvecklad av Eric Young (eay@cryptsoft.com) samt UPnP-mjukvara skriven av Thomas Bernard.</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="+17"/>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>2015-%1 Bean Core</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -128,17 +136,17 @@ Denna produkten innehåller mjukvara utvecklad av OpenSSL Project för användni
         <translation>&amp;Radera</translation>
     </message>
     <message>
-        <location filename="../addressbookpage.cpp" line="+65"/>
+        <location filename="../addressbookpage.cpp" line="+67"/>
         <source>Copy &amp;Label</source>
         <translation>Kopiera &amp;etikett</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
         <source>&amp;Edit</source>
         <translation>&amp;Editera</translation>
     </message>
     <message>
-        <location line="+250"/>
+        <location line="+248"/>
         <source>Export Address Book Data</source>
         <translation>Exportera adressboken</translation>
     </message>
@@ -209,9 +217,13 @@ Denna produkten innehåller mjukvara utvecklad av OpenSSL Project för användni
         <translation>Endast för &quot;staking&quot;</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="+35"/>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Ange plånbokens nya lösenord. &lt;br/&gt; Använd ett lösenord på &lt;b&gt;10 eller fler slumpmässiga tecken,&lt;/b&gt; eller &lt;b&gt;åtta eller fler ord.&lt;/b&gt;</translation>
+        <translation type="obsolete">Ange plånbokens nya lösenord. &lt;br/&gt; Använd ett lösenord på &lt;b&gt;10 eller fler slumpmässiga tecken,&lt;/b&gt; eller &lt;b&gt;åtta eller fler ord.&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="+35"/>
+        <source>Enter the new passphrase for your wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
@@ -338,47 +350,47 @@ Denna produkten innehåller mjukvara utvecklad av OpenSSL Project för användni
 <context>
     <name>BeanControlDialog</name>
     <message>
-        <location filename="../forms/beancontroldialog.ui" line="+14"/>
+        <location filename="../forms/beancontroldialog.ui" line="+159"/>
         <source>Bean Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+39"/>
         <source>Quantity:</source>
         <translation type="unfinished">Antal:</translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+40"/>
         <source>Bytes:</source>
         <translation type="unfinished">Bytes:</translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+56"/>
         <source>Amount:</source>
         <translation type="unfinished">Belopp:</translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+40"/>
         <source>Priority:</source>
         <translation type="unfinished">Prioritet:</translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+56"/>
         <source>Fee:</source>
         <translation type="unfinished">Avgift:</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+41"/>
         <source>Low Output:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+51"/>
+        <location line="+59"/>
         <source>After Fee:</source>
         <translation type="unfinished">Efter avgift:</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+41"/>
         <source>Change:</source>
         <translation type="unfinished">Ändra:</translation>
     </message>
@@ -388,17 +400,17 @@ Denna produkten innehåller mjukvara utvecklad av OpenSSL Project för användni
         <translation type="unfinished">välj/avvälj alla</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+19"/>
         <source>Tree mode</source>
         <translation type="unfinished">Träd visning</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+22"/>
         <source>List mode</source>
         <translation type="unfinished">List visning</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+51"/>
         <source>Amount</source>
         <translation type="unfinished">Mängd</translation>
     </message>
@@ -606,12 +618,12 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
 <context>
     <name>BitbeanGUI</name>
     <message>
-        <location filename="../bitbean.cpp" line="+109"/>
+        <location filename="../bitbean.cpp" line="+103"/>
         <source>A fatal error occurred. BitBean can no longer continue safely and will quit.</source>
         <translation type="unfinished">Ett fatalt fel uppstod. BTestcoin kan inte fortsätta och stänger programmet.</translation>
     </message>
     <message>
-        <location filename="../bitbeangui.cpp" line="+89"/>
+        <location filename="../bitbeangui.cpp" line="+85"/>
         <source>BitBean</source>
         <translation type="unfinished">BitBean</translation>
     </message>
@@ -716,22 +728,19 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished">&amp;Visa / Göm</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>&amp;Encrypt Wallet...</source>
-        <translation type="unfinished">&amp;Kryptera plånbok...</translation>
+        <translation type="obsolete">&amp;Kryptera plånbok...</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Encrypt or decrypt wallet</source>
-        <translation type="unfinished">Kryptera eller avkryptera plånbok</translation>
+        <translation type="obsolete">Kryptera eller avkryptera plånbok</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Backup Wallet...</source>
-        <translation type="unfinished">&amp;Säkerhetskopiera plånbok...</translation>
+        <translation type="obsolete">&amp;Säkerhetskopiera plånbok...</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+5"/>
         <source>Backup wallet to another location</source>
         <translation type="unfinished">Säkerhetskopiera plånboken till en annan plats</translation>
     </message>
@@ -741,27 +750,24 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished">&amp;Byt Lösenord...</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation type="unfinished">Byt lösenord för kryptering av plånbok</translation>
+        <translation type="obsolete">Byt lösenord för kryptering av plånbok</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>&amp;Unlock Wallet...</source>
-        <translation type="unfinished">Lås &amp;Upp plånboken</translation>
+        <translation type="obsolete">Lås &amp;Upp plånboken</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+3"/>
         <source>Unlock wallet</source>
         <translation type="unfinished">Lås upp plånbok</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>&amp;Lock Wallet</source>
-        <translation type="unfinished">&amp;Lås plånbok</translation>
+        <translation type="obsolete">&amp;Lås plånbok</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>Lock wallet</source>
         <translation type="unfinished">Lås plånbok</translation>
     </message>
@@ -796,7 +802,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished">Öppna debug- och diagnostikkonsolen</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+30"/>
         <source>&amp;File</source>
         <translation type="unfinished">&amp;Arkiv</translation>
     </message>
@@ -816,7 +822,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished">Verktygsfält för Tabbar</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+9"/>
         <source>Actions toolbar</source>
         <translation type="unfinished">Verktygsfält för handlingar</translation>
     </message>
@@ -828,12 +834,12 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
     </message>
     <message>
         <location line="+0"/>
-        <location line="+60"/>
+        <location line="+62"/>
         <source>BitBean client</source>
         <translation type="unfinished">BitBean klient</translation>
     </message>
     <message numerus="yes">
-        <location line="+70"/>
+        <location line="+108"/>
         <source>%n active connection(s) to BitBean network</source>
         <translation type="unfinished">
             <numerusform>%n aktiv anslutning till BitBean nätverket</numerusform>
@@ -841,92 +847,83 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         </translation>
     </message>
     <message>
-        <location line="+24"/>
         <source>Synchronizing with network...</source>
-        <translation type="unfinished">Synkroniserar med nätverk...</translation>
+        <translation type="obsolete">Synkroniserar med nätverk...</translation>
     </message>
     <message numerus="yes">
-        <location line="+2"/>
         <source>~%n block(s) remaining</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>~%n block remaining</numerusform>
             <numerusform>~%n block kvar</numerusform>
         </translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>Downloaded %1 of %2 blocks of transaction history (%3% done).</source>
-        <translation type="unfinished">Laddat ner %1 av %2 block av transaktions-historiken (%3% klart)</translation>
+        <translation type="obsolete">Laddat ner %1 av %2 block av transaktions-historiken (%3% klart)</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Downloaded %1 blocks of transaction history.</source>
-        <translation type="unfinished">Laddade ner %1 block av transaktionshistoriken.</translation>
+        <translation type="obsolete">Laddade ner %1 block av transaktionshistoriken.</translation>
     </message>
     <message numerus="yes">
-        <location line="+22"/>
         <source>%n second(s) ago</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>%n sekund sen</numerusform>
             <numerusform>%n sekunder sen</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
         <source>%n minute(s) ago</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>%n minut sen</numerusform>
             <numerusform>%n minuter sen</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
         <source>%n hour(s) ago</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>%n timme sen</numerusform>
             <numerusform>%n timmar sen</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
         <source>%n day(s) ago</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>%n dag sen</numerusform>
             <numerusform>%n dagar sen</numerusform>
         </translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+42"/>
         <source>Up to date</source>
         <translation type="unfinished">Uppdaterad</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+33"/>
         <source>Catching up...</source>
         <translation type="unfinished">Hämtar senaste...</translation>
     </message>
     <message>
-        <location line="+10"/>
         <source>Last received block was generated %1.</source>
-        <translation type="unfinished">Senaste mottagna block genererades %1.</translation>
+        <translation type="obsolete">Senaste mottagna block genererades %1.</translation>
     </message>
     <message>
-        <location line="+59"/>
+        <location line="+105"/>
         <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="unfinished">Denna transaktion är över gränsen. Du kan ändå skicka den med en %1 avgift, som går till noderna som processerar din transaktion och hjälper till med att upprätthålla nätverket. Vill du betala denna avgift?</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+3"/>
         <source>Confirm transaction fee</source>
         <translation type="unfinished">Bekräfta transaktionsavgiften</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+23"/>
         <source>Sent transaction</source>
         <translation type="unfinished">Transaktion skickad</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+0"/>
         <source>Incoming transaction</source>
         <translation type="unfinished">Inkommande transaktion</translation>
     </message>
@@ -944,19 +941,19 @@ Adress: %4
 </translation>
     </message>
     <message>
-        <location line="+100"/>
-        <location line="+15"/>
+        <location line="+120"/>
+        <location line="+17"/>
         <source>URI handling</source>
         <translation type="unfinished">URI hantering</translation>
     </message>
     <message>
-        <location line="-15"/>
-        <location line="+15"/>
+        <location line="-17"/>
+        <location line="+17"/>
         <source>URI can not be parsed! This can be caused by an invalid BitBean address or malformed URI parameters.</source>
         <translation type="unfinished">URI:n kan inte tolkas! Detta kan bero på en ogiltig BitBean adress eller felaktiga URI parametrar.</translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+19"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation type="unfinished">Denna plånbok är &lt;b&gt;krypterad&lt;/b&gt; och för närvarande &lt;b&gt;olåst&lt;/b&gt;</translation>
     </message>
@@ -981,12 +978,11 @@ Adress: %4
         <translation type="unfinished">Säkerhetskopieringen misslyckades</translation>
     </message>
     <message>
-        <location line="+0"/>
         <source>There was an error trying to save the wallet data to the new location.</source>
-        <translation type="unfinished">Ett fel uppstod vid sparandet av plånboken till den nya platsen.</translation>
+        <translation type="obsolete">Ett fel uppstod vid sparandet av plånboken till den nya platsen.</translation>
     </message>
     <message numerus="yes">
-        <location line="+94"/>
+        <location line="+105"/>
         <source>%n second(s)</source>
         <translation type="unfinished">
             <numerusform>%n sekund</numerusform>
@@ -1002,23 +998,123 @@ Adress: %4
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
+        <location line="-453"/>
+        <location line="+457"/>
         <source>%n hour(s)</source>
         <translation type="unfinished">
             <numerusform>%n timme</numerusform>
             <numerusform>%n timmar</numerusform>
         </translation>
     </message>
-    <message numerus="yes">
+    <message>
+        <location line="-787"/>
+        <source>&amp;Encrypt Vault...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Encrypt or decrypt vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Backup Vault...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Change the passphrase used for vault encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Unlock Vault...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Lock Vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+296"/>
+        <source>Processed %1 of %2 (estimated) blocks of transaction history.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+4"/>
+        <source>Processed %1 blocks of transaction history.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location line="+25"/>
+        <location line="+457"/>
         <source>%n day(s)</source>
         <translation type="unfinished">
             <numerusform>%n dag</numerusform>
             <numerusform>%n dagar</numerusform>
         </translation>
     </message>
+    <message numerus="yes">
+        <location line="-453"/>
+        <source>%n week(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>%1 behind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Last received block was generated %1 ago.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Transactions after this will not yet be visible.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Bitbean</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Error</source>
+        <translation type="unfinished">Fel</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Warning</source>
+        <translation type="unfinished">Varning</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+288"/>
+        <source>There was an error trying to save the keypair data to the new location.</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location line="+4"/>
+        <source>Backup Successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Keypair data was successfully saved to the new location.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+117"/>
         <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
         <translation type="unfinished">Staking.&lt;br&gt;Din vikt är %1&lt;br&gt;Nätverkets vikt är %2&lt;br&gt;Uppskattad tid för att få belöning är %3</translation>
     </message>
@@ -1412,7 +1508,7 @@ Adress: %4
 <context>
     <name>ClientModel</name>
     <message>
-        <location filename="../clientmodel.cpp" line="+90"/>
+        <location filename="../clientmodel.cpp" line="+108"/>
         <source>Network Alert</source>
         <translation>Nätverkslarm</translation>
     </message>
@@ -1707,7 +1803,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
 <context>
     <name>GUIUtil::HelpMessageBox</name>
     <message>
-        <location filename="../guiutil.cpp" line="+424"/>
+        <location filename="../guiutil.cpp" line="+433"/>
         <location line="+12"/>
         <source>BitBean-Qt</source>
         <translation>BitBean-Qt</translation>
@@ -1775,7 +1871,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
     </message>
     <message>
         <location line="-15"/>
-        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 5 recommended. Fees help support the BitBean network.</source>
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. A fee of 5 BITB is recommended. Fees help support the BitBean network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1814,7 +1910,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation>&amp;Nätverk</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+6"/>
         <source>Connect to the BitBean network through a SOCKS proxy (e.g. when connecting through Tor).</source>
         <translation>Anslut till BitBean nätverket via en SOCKS proxy (t.ex. när du ansluter genom Tor).</translation>
     </message>
@@ -1904,13 +2000,28 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+19"/>
-        <source>Whether to show bean control features or not.</source>
+        <location line="+12"/>
+        <source>&amp;Display Addresses With Transactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Allow individual selection of bean inputs when sending.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Display bean &amp;control features (experts only!)</source>
+        <source>Enable Bean &amp;Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Whether to select bean outputs randomly or with minimal bean age.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Minimize Bean &amp;Weight Consumption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1918,14 +2029,13 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="obsolete">Välj en måttenhet att visa när du skickar mynt.</translation>
     </message>
     <message>
-        <location line="-13"/>
+        <location line="-23"/>
         <source>Whether to show BitBean addresses in the transaction list or not.</source>
         <translation>Om BitBean adresser skall visas i transaktionslistan eller inte.</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Display addresses in transaction list</source>
-        <translation>&amp;Visa adresser i transaktionslistan</translation>
+        <translation type="obsolete">&amp;Visa adresser i transaktionslistan</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1936,27 +2046,27 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="obsolete">Visa coin kontrollinställningar (endast avancerade användare!)</translation>
     </message>
     <message>
-        <location line="+118"/>
+        <location line="+125"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+18"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Avbryt</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+21"/>
         <source>&amp;Apply</source>
         <translation>&amp;Verkställ</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="+55"/>
+        <location filename="../optionsdialog.cpp" line="+52"/>
         <source>default</source>
         <translation>standard</translation>
     </message>
     <message>
-        <location line="+149"/>
+        <location line="+148"/>
         <location line="+9"/>
         <source>Warning</source>
         <translation>Varning</translation>
@@ -2010,38 +2120,42 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation>Spenderbart:</translation>
     </message>
     <message>
-        <location line="+18"/>
         <source>Your current spendable balance</source>
-        <translation>Ditt tillgängliga saldo</translation>
+        <translation type="obsolete">Ditt tillgängliga saldo</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+37"/>
         <source>Sprouting:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+18"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sprouting beans that do not yet count toward the current total balance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+37"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Beans that have yet to be confirmed, and not currently counted towards the total balance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+19"/>
+        <location line="+74"/>
         <source>Immature:</source>
         <translation>Omogen:</translation>
     </message>
     <message>
-        <location line="+15"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Newly sprouted beans that have not matured yet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <location line="-93"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Your current available balance of BitBeans that are spendable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sprouting BitBeans that do not yet count toward the current total balance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BitBeans that have yet to be confirmed, which are not currently counted towards the total balance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Newly sprouted BitBeans that have not matured yet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+44"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current total number of beans in your Bean Vault.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current, total number of BitBeans in your Bean Vault.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2055,61 +2169,61 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+12"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Block height of the BitBean Network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
         <source>Sprouting Difficulty:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+12"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Difficulty of sprouting new BitBeans.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
         <source>Bean Weight:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+12"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cummaltive weight of all BitBeans that are competing to sprout on the Network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
         <source>Connections:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+29"/>
         <source>Total Beans:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+12"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Block height of BitBean Network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Total BitBean monetary supply.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
-        <location line="+15"/>
-        <location line="+15"/>
-        <location line="+15"/>
-        <location line="+15"/>
+        <location line="-113"/>
+        <location line="+29"/>
+        <location line="+29"/>
+        <location line="+29"/>
+        <location line="+29"/>
         <source>0</source>
         <translation type="unfinished">0</translation>
     </message>
     <message>
-        <location line="-48"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Difficulty of sprouting new beans.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+15"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cummaltive weight of BitBeans that are competing to sprout on the Network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+15"/>
+        <location line="-32"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Total direct connections with other stalks on the network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+15"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Total Bean Monetary supply.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+51"/>
+        <location line="+80"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;New Transactions&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2146,6 +2260,14 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
     </message>
 </context>
 <context>
+    <name>PaymentServer</name>
+    <message>
+        <location filename="../paymentserver.cpp" line="+107"/>
+        <source>Cannot start bitbean: click-to-pay handler</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QRCodeDialog</name>
     <message>
         <location filename="../forms/qrcodedialog.ui" line="+192"/>
@@ -2153,7 +2275,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation>QR-Kod Dialog</translation>
     </message>
     <message>
-        <location line="+59"/>
+        <location line="+69"/>
         <source>Request Payment</source>
         <translation>Begär Betalning</translation>
     </message>
@@ -2173,7 +2295,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation>Meddelande:</translation>
     </message>
     <message>
-        <location line="+71"/>
+        <location line="+82"/>
         <source>&amp;Save As...</source>
         <translation>&amp;Spara Som...</translation>
     </message>
@@ -2206,7 +2328,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
 <context>
     <name>RPCConsole</name>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="+224"/>
+        <location filename="../forms/rpcconsole.ui" line="+248"/>
         <source>Client name</source>
         <translation>Klientnamn</translation>
     </message>
@@ -2220,27 +2342,27 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <location line="+53"/>
         <location line="+23"/>
         <location line="+23"/>
-        <location filename="../rpcconsole.cpp" line="+348"/>
+        <location line="+165"/>
+        <location filename="../rpcconsole.cpp" line="+359"/>
         <source>N/A</source>
         <translation>ej tillgänglig</translation>
     </message>
     <message>
-        <location line="-217"/>
+        <location line="-382"/>
         <source>Client version</source>
         <translation>Klient-version</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-51"/>
         <source>&amp;Information</source>
         <translation>&amp;Information</translation>
     </message>
     <message>
-        <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>Använder OpenSSL version</translation>
+        <translation type="obsolete">Använder OpenSSL version</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+123"/>
         <source>Startup time</source>
         <translation>Uppstartstid</translation>
     </message>
@@ -2280,17 +2402,27 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation>Sista blocktid</translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+64"/>
         <source>&amp;Open</source>
         <translation>&amp;Öppna</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+26"/>
+        <source>Open BitBean Configuration file from the current data directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Edit Config File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
         <source>Command-line options</source>
         <translation>Kommandoradsalternativ</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+19"/>
         <source>Show the BitBean-Qt help message to get a list with possible BitBean command-line options.</source>
         <translation>Visa BitBean-Qt hjälp meddelandet för att få en lista över möjliga BitBean kommandoradsalternativ.</translation>
     </message>
@@ -2300,37 +2432,82 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation>&amp;Visa</translation>
     </message>
     <message>
+        <location line="+27"/>
+        <source>Berkeley DB version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+24"/>
         <source>&amp;Console</source>
         <translation>&amp;Konsol</translation>
     </message>
     <message>
-        <location line="-260"/>
+        <location line="+73"/>
+        <source>&amp;Network Traffic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+52"/>
+        <source>&amp;Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Totals</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+64"/>
+        <source>In:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+80"/>
+        <source>Out:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+69"/>
+        <source>Close window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-698"/>
         <source>Build date</source>
         <translation>Kompileringsdatum</translation>
     </message>
     <message>
-        <location line="-104"/>
+        <location line="-122"/>
         <source>BitBean - Debug window</source>
         <translation>BitBean - Felsökningsfönster</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+37"/>
         <source>BitBean Core</source>
         <translation>BitBean Core</translation>
     </message>
     <message>
-        <location line="+279"/>
+        <location line="+59"/>
+        <source>Using OpenSSL version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+226"/>
         <source>Debug log file</source>
         <translation>Debugloggfil</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+19"/>
         <source>Open the BitBean debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation>Öppna BitBean felsöknings-loggfilen från nuvarande data mapp. Detta kan kan ta ett par minuter för stora log filer.</translation>
     </message>
     <message>
-        <location line="+102"/>
+        <location line="+174"/>
         <source>Clear console</source>
         <translation>Rensa konsollen</translation>
     </message>
@@ -2349,6 +2526,41 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
         <translation>Skriv &lt;b&gt;help&lt;/b&gt; för en översikt av alla kommandon.</translation>
     </message>
+    <message>
+        <location line="+142"/>
+        <source>%1 B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>%1 m</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>%1 h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 h %2 m</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SendBeansDialog</name>
@@ -2365,17 +2577,17 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+76"/>
+        <location line="+78"/>
         <source>Bean Control Features</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+63"/>
         <source>Inputs...</source>
         <translation type="unfinished">Ingångar...</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+16"/>
         <source>automatically selected</source>
         <translation type="unfinished">automatiskt vald</translation>
     </message>
@@ -2385,13 +2597,13 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished">Otillräckligt saldo!</translation>
     </message>
     <message>
-        <location line="+77"/>
+        <location line="+85"/>
         <source>Quantity:</source>
         <translation type="unfinished">Antal:</translation>
     </message>
     <message>
         <location line="+22"/>
-        <location line="+35"/>
+        <location line="+43"/>
         <source>0</source>
         <translation type="unfinished">0</translation>
     </message>
@@ -2401,20 +2613,20 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished">Bytes:</translation>
     </message>
     <message>
-        <location line="+51"/>
+        <location line="+59"/>
         <source>Amount:</source>
         <translation type="unfinished">Belopp:</translation>
     </message>
     <message>
         <location line="+22"/>
-        <location line="+86"/>
-        <location line="+86"/>
-        <location line="+32"/>
+        <location line="+102"/>
+        <location line="+102"/>
+        <location line="+40"/>
         <source>0.00 BC</source>
         <translation type="unfinished">123.456 BC {0.00 ?}</translation>
     </message>
     <message>
-        <location line="-191"/>
+        <location line="-223"/>
         <source>Priority:</source>
         <translation type="unfinished">Prioritet:</translation>
     </message>
@@ -2424,12 +2636,12 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+40"/>
         <source>Fee:</source>
         <translation type="unfinished">Avgift:</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+43"/>
         <source>Low Output:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2439,22 +2651,22 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished">nej</translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+40"/>
         <source>After Fee:</source>
         <translation type="unfinished">Efter avgift:</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+43"/>
         <source>Change</source>
         <translation type="unfinished">Ändra</translation>
     </message>
     <message>
-        <location line="+50"/>
+        <location line="+55"/>
         <source>custom change address</source>
         <translation type="unfinished">egen ändringsadress</translation>
     </message>
     <message>
-        <location line="+106"/>
+        <location line="+149"/>
         <source>Send to multiple recipients at once</source>
         <translation type="unfinished">Skicka till flera mottagare samtidigt</translation>
     </message>
@@ -2464,7 +2676,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished">Lägg till &amp;mottagare</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+63"/>
         <source>Remove all transaction fields</source>
         <translation type="unfinished">Ta bort alla transaktionsfält</translation>
     </message>
@@ -2474,17 +2686,17 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="unfinished">Rensa &amp;alla</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+35"/>
         <source>Balance:</source>
         <translation type="unfinished">Balans:</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+22"/>
         <source>123.456 BC</source>
         <translation type="unfinished">123.456 BC</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+74"/>
         <source>Confirm the send action</source>
         <translation type="unfinished">Bekräfta sändordern</translation>
     </message>
@@ -2612,33 +2824,33 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
 <context>
     <name>SendBeansEntry</name>
     <message>
-        <location filename="../forms/sendbeansentry.ui" line="+192"/>
+        <location filename="../forms/sendbeansentry.ui" line="+327"/>
         <source>Form</source>
         <translation type="unfinished">Formulär</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+24"/>
         <source>A&amp;mount:</source>
         <translation type="unfinished">&amp;Belopp:</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+18"/>
         <source>Pay &amp;To:</source>
         <translation type="unfinished">Betala &amp;Till:</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+37"/>
         <location filename="../sendbeansentry.cpp" line="+25"/>
         <source>Enter a label for this address to add it to your address book</source>
         <translation type="unfinished">Ange ett namn för den här adressen och lägg till den i din adressbok</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+14"/>
         <source>&amp;Label:</source>
         <translation type="unfinished">&amp;Etikett:</translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+24"/>
         <source>The address to send the payment to  (e.g. 2JhbfkAFvXqYkreSgJfrRLS9DepUcxbQci)</source>
         <translation type="unfinished">Adressen att skicka betalningen till  (t.ex. 2JhbfkAFvXqYkreSgJfrRLS9DepUcxbQci)</translation>
     </message>
@@ -2932,12 +3144,11 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+124"/>
         <source>&amp;Sign Message</source>
         <translation>&amp;Signera Meddelande</translation>
     </message>
     <message>
-        <location line="-118"/>
+        <location line="+11"/>
         <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>Du kan signera meddelanden med dina adresser för att bevisa att du äger dem. Var försiktig med vad du signerar eftersom phising-attacker kan försöka få dig att skriva över din identitet till någon annan. Signera bara väldetaljerade påståenden du kan gå i god för.</translation>
     </message>
@@ -2948,18 +3159,18 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
     </message>
     <message>
         <location line="+10"/>
-        <location line="+203"/>
+        <location line="+243"/>
         <source>Choose an address from the address book</source>
         <translation>Välj en adress från adressboken</translation>
     </message>
     <message>
-        <location line="-193"/>
-        <location line="+203"/>
+        <location line="-233"/>
+        <location line="+243"/>
         <source>Alt+A</source>
         <translation>Alt+A</translation>
     </message>
     <message>
-        <location line="-193"/>
+        <location line="-233"/>
         <source>Paste address from clipboard</source>
         <translation>Klistra in adress från Urklipp</translation>
     </message>
@@ -2979,29 +3190,44 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation>Kopiera signaturen till systemets Urklipp</translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+27"/>
         <source>Sign the message to prove you own this BitBean address</source>
         <translation>Signera meddelandet för att verifiera att du äger denna BitBean adressen</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+3"/>
+        <source>Sign &amp;Message</source>
+        <translation type="unfinished">Signera &amp;Meddelande</translation>
+    </message>
+    <message>
+        <location line="+20"/>
         <source>Reset all sign message fields</source>
         <translation>Rensa alla fält</translation>
     </message>
     <message>
         <location line="+3"/>
-        <location line="+146"/>
+        <location line="+186"/>
         <source>Clear &amp;All</source>
         <translation>Rensa &amp;alla</translation>
     </message>
     <message>
-        <location line="-87"/>
-        <location line="+70"/>
+        <location line="-166"/>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+186"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Avbryt</translation>
+    </message>
+    <message>
+        <location line="-130"/>
         <source>&amp;Verify Message</source>
         <translation>&amp;Verifiera Meddelande</translation>
     </message>
     <message>
-        <location line="-64"/>
+        <location line="+14"/>
         <source>Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.</source>
         <translation>Skriv in din adress, meddelande (se till att du kopierar radbrytningar, mellanslag, tabbar, osv. exakt) och signatur nedan för att verifiera meddelandet. Var noga med att inte läsa in mer i signaturen än vad som finns i det signerade meddelandet, för att undvika att luras av en man-in-the-middle attack.</translation>
     </message>
@@ -3011,14 +3237,24 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation>Adressen meddelandet var signerad med (t.ex. 2JhbfkAFvXqYkreSgJfrRLS9DepUcxbQci)</translation>
     </message>
     <message>
-        <location line="+40"/>
+        <location line="+46"/>
         <source>Verify the message to ensure it was signed with the specified BitBean address</source>
         <translation>Verifiera meddelandet för att vara säker på att det var signerat med den angivna BitBean adressen</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+3"/>
+        <source>Verify &amp;Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
         <source>Reset all verify message fields</source>
         <translation>Rensa alla fält</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Close window</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
@@ -3037,7 +3273,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation>Fyll i BitBean signatur</translation>
     </message>
     <message>
-        <location line="+82"/>
+        <location line="+92"/>
         <location line="+81"/>
         <source>The entered address is invalid.</source>
         <translation>Den angivna adressen är ogiltig.</translation>
@@ -3101,6 +3337,14 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <location line="+5"/>
         <source>Message verified.</source>
         <translation>Meddelandet är verifierad.</translation>
+    </message>
+</context>
+<context>
+    <name>TrafficGraphWidget</name>
+    <message>
+        <location filename="../trafficgraphwidget.cpp" line="+80"/>
+        <source>KB/s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3303,7 +3547,12 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation>Transaktionsdetaljer</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+28"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+24"/>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Den här panelen visar en detaljerad beskrivning av transaktionen</translation>
     </message>
@@ -3615,9 +3864,8 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
 <context>
     <name>WalletModel</name>
     <message>
-        <location filename="../walletmodel.cpp" line="+206"/>
         <source>Sending...</source>
-        <translation>Skickar...</translation>
+        <translation type="obsolete">Skickar...</translation>
     </message>
 </context>
 <context>
@@ -3867,14 +4115,12 @@ Om filen inte existerar, skapa den med filrättigheten endast läsbar för ägar
         <translation type="unfinished">Maximal buffert för sändning per anslutning, &lt;n&gt;*1000 byte (förvalt: 5000)</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Use UPnP to map the listening port (default: 1 when listening)</source>
-        <translation type="unfinished">Använd UPnP för att mappa den lyssnande porten (förvalt: 1 under lyssning)</translation>
+        <translation type="obsolete">Använd UPnP för att mappa den lyssnande porten (förvalt: 1 under lyssning)</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Use UPnP to map the listening port (default: 0)</source>
-        <translation type="unfinished">Använd UPnP för att mappa den lyssnande porten (förvalt: 0)</translation>
+        <translation type="obsolete">Använd UPnP för att mappa den lyssnande porten (förvalt: 0)</translation>
     </message>
     <message>
         <location line="+1"/>

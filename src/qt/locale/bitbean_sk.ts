@@ -10,26 +10,24 @@
         <translation>O BTestcoine</translation>
     </message>
     <message>
-        <location line="+54"/>
+        <location line="+22"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;http://www.bitbean.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;BitBean, Fast..Simple..Secure..More Than Just a Digital Currency&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;http://www.bitbean.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.bitbean.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;This is experimental software. &lt;/p&gt;&lt;p&gt;Distributed under the &lt;a href=&quot;http://www.opensource.org/licenses/mit-license.php&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;MIT/X11 software license.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;This product includes software developed by the &lt;a href=&quot;https://www.openssl.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;OpenSSL Project&lt;/span&gt;&lt;/a&gt; for use in the OpenSSL Toolkit and cryptographic software written by &lt;a href=&quot;eay@cryptsoft.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Eric Young.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Support Available: &lt;a href=&quot;http://teamchat.bitbean.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Live Chat&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+66"/>
         <source>&lt;b&gt;BitBean&lt;/b&gt; version</source>
         <translation>verzia &lt;b&gt;BitBeanu&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location line="+53"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Liberation Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright © 2009-2014 The Bitcoin developers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright © 2012-2014 The Novacoin developers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright © 2014 The BitBean developers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright © 2015 Bean Core www.bitbean.org&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+26"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Chief Scientist &amp;amp; Lead Developer: &lt;/span&gt;Shawn Kent&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Designer: &lt;/span&gt;BrunoPro7&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;This is experimental software. Distributed under the MIT/X11 software license, see the accompanying file COPYING or &lt;/span&gt;&lt;a href=&quot;http://www.opensource.org/licenses/mit-license.php&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.opensource.org/licenses/mit-license.php&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;. This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (&lt;/span&gt;&lt;a href=&quot;https://www.openssl.org/&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.openssl.org/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;) and cryptographic software written by Eric Young (&lt;/span&gt;&lt;a href=&quot;mailto:eay@cryptsoft.com&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;eay@cryptsoft.com&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;) .&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Copyright © 2009-2014 The Bitcoin developers
@@ -52,6 +50,16 @@ Toto je experimentálny softvér.
 Distribuovaný pod softvérovou licenciou MIT/X11, viď priložený súbor COPYING alebo http://www.opensource.org/licenses/mit-license.php. 
 
 Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použitie v sade OpenSSL Toolkit (http://www.openssl.org/) a šifrovací softvér, ktorý napísal Eric Young (eay@cryptsoft.com) a UPnP softvér ktorý napísaný Thomas Bernard.</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="+17"/>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>2015-%1 Bean Core</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -127,17 +135,17 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
         <translation>&amp;Zmazať</translation>
     </message>
     <message>
-        <location filename="../addressbookpage.cpp" line="+65"/>
+        <location filename="../addressbookpage.cpp" line="+67"/>
         <source>Copy &amp;Label</source>
         <translation>Kopírovať &amp;Popis</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
         <source>&amp;Edit</source>
         <translation>&amp;Upraviť</translation>
     </message>
     <message>
-        <location line="+250"/>
+        <location line="+248"/>
         <source>Export Address Book Data</source>
         <translation>Exportovať dáta z adresára</translation>
     </message>
@@ -208,9 +216,13 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
         <translation>Len pre stávkovanie</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="+35"/>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Zadajte nové heslo k peňaženke.&lt;br/&gt;Prosím použite heslo s dĺžkou aspon &lt;b&gt;10 a viac náhodných znakov&lt;/b&gt;, alebo &lt;b&gt;8 a viac slov&lt;/b&gt;.</translation>
+        <translation type="obsolete">Zadajte nové heslo k peňaženke.&lt;br/&gt;Prosím použite heslo s dĺžkou aspon &lt;b&gt;10 a viac náhodných znakov&lt;/b&gt;, alebo &lt;b&gt;8 a viac slov&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="+35"/>
+        <source>Enter the new passphrase for your wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
@@ -337,47 +349,47 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
 <context>
     <name>BeanControlDialog</name>
     <message>
-        <location filename="../forms/beancontroldialog.ui" line="+14"/>
+        <location filename="../forms/beancontroldialog.ui" line="+159"/>
         <source>Bean Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+39"/>
         <source>Quantity:</source>
         <translation type="unfinished">Množstvo:</translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+40"/>
         <source>Bytes:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+56"/>
         <source>Amount:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+40"/>
         <source>Priority:</source>
         <translation type="unfinished">Priorita:</translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+56"/>
         <source>Fee:</source>
         <translation type="unfinished">Poplatok:</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+41"/>
         <source>Low Output:</source>
         <translation type="unfinished">Nízky výstup:</translation>
     </message>
     <message>
-        <location line="+51"/>
+        <location line="+59"/>
         <source>After Fee:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+41"/>
         <source>Change:</source>
         <translation type="unfinished">Zmena:</translation>
     </message>
@@ -387,17 +399,17 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
         <translation type="unfinished">(ne)označiť všetko</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+19"/>
         <source>Tree mode</source>
         <translation type="unfinished">Stromový režim</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+22"/>
         <source>List mode</source>
         <translation type="unfinished">Zoznamový režim</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+51"/>
         <source>Amount</source>
         <translation type="unfinished"></translation>
     </message>
@@ -605,12 +617,12 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
 <context>
     <name>BitbeanGUI</name>
     <message>
-        <location filename="../bitbean.cpp" line="+109"/>
+        <location filename="../bitbean.cpp" line="+103"/>
         <source>A fatal error occurred. BitBean can no longer continue safely and will quit.</source>
         <translation type="unfinished">Došlo k závažnej chybe. BitBean už nemôže pokračovať bezpečne a bude ukončený.</translation>
     </message>
     <message>
-        <location filename="../bitbeangui.cpp" line="+89"/>
+        <location filename="../bitbeangui.cpp" line="+85"/>
         <source>BitBean</source>
         <translation type="unfinished">BitBean</translation>
     </message>
@@ -715,22 +727,19 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished">Zobraziť / skryť</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>&amp;Encrypt Wallet...</source>
-        <translation type="unfinished">&amp;Zašifrovať peňaženku...</translation>
+        <translation type="obsolete">&amp;Zašifrovať peňaženku...</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Encrypt or decrypt wallet</source>
-        <translation type="unfinished">Zašifrovať alebo dešifrovať peňaženku</translation>
+        <translation type="obsolete">Zašifrovať alebo dešifrovať peňaženku</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Backup Wallet...</source>
-        <translation type="unfinished">&amp;Zálohovať peňaženku...</translation>
+        <translation type="obsolete">&amp;Zálohovať peňaženku...</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+5"/>
         <source>Backup wallet to another location</source>
         <translation type="unfinished">Zálohovať peňaženku na iné miesto</translation>
     </message>
@@ -740,27 +749,24 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished">&amp;Zmena hesla...</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation type="unfinished">Zmeniť heslo použité na šifrovanie peňaženky</translation>
+        <translation type="obsolete">Zmeniť heslo použité na šifrovanie peňaženky</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>&amp;Unlock Wallet...</source>
-        <translation type="unfinished">&amp;Odomknúť peňaženku...</translation>
+        <translation type="obsolete">&amp;Odomknúť peňaženku...</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+3"/>
         <source>Unlock wallet</source>
         <translation type="unfinished">Odomknúť peňaženku</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>&amp;Lock Wallet</source>
-        <translation type="unfinished">&amp;Zamknúť peňaženku</translation>
+        <translation type="obsolete">&amp;Zamknúť peňaženku</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>Lock wallet</source>
         <translation type="unfinished">Zamknúť peňaženku</translation>
     </message>
@@ -795,7 +801,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished">Otvor konzolu pre ladenie a diagnostiku</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+30"/>
         <source>&amp;File</source>
         <translation type="unfinished">&amp;Súbor</translation>
     </message>
@@ -815,7 +821,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished">Lišta záložiek</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+9"/>
         <source>Actions toolbar</source>
         <translation type="unfinished">Lišta činností</translation>
     </message>
@@ -827,12 +833,12 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+0"/>
-        <location line="+60"/>
+        <location line="+62"/>
         <source>BitBean client</source>
         <translation type="unfinished">BitBean klient</translation>
     </message>
     <message numerus="yes">
-        <location line="+70"/>
+        <location line="+108"/>
         <source>%n active connection(s) to BitBean network</source>
         <translation type="unfinished">
             <numerusform>%n aktívne spojenie s BitBean sieťov</numerusform>
@@ -841,97 +847,88 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         </translation>
     </message>
     <message>
-        <location line="+24"/>
         <source>Synchronizing with network...</source>
-        <translation type="unfinished">Synchronizácia so sieťou...</translation>
+        <translation type="obsolete">Synchronizácia so sieťou...</translation>
     </message>
     <message numerus="yes">
-        <location line="+2"/>
         <source>~%n block(s) remaining</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>~%n blok zostáva</numerusform>
             <numerusform>~%n blokov zostáva</numerusform>
             <numerusform>Zostáva ~%n blokov</numerusform>
         </translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>Downloaded %1 of %2 blocks of transaction history (%3% done).</source>
-        <translation type="unfinished">Stiahnutých %1 z %2 blokov transakčnej histórie (%3% hotových).</translation>
+        <translation type="obsolete">Stiahnutých %1 z %2 blokov transakčnej histórie (%3% hotových).</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Downloaded %1 blocks of transaction history.</source>
-        <translation type="unfinished">Stiahnutých %1 blokov z transakčnej histórie.</translation>
+        <translation type="obsolete">Stiahnutých %1 blokov z transakčnej histórie.</translation>
     </message>
     <message numerus="yes">
-        <location line="+22"/>
         <source>%n second(s) ago</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>pred %n sekundou</numerusform>
             <numerusform>pred %n sekundami</numerusform>
             <numerusform>pred %n sekundami</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
         <source>%n minute(s) ago</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>pred %n minutou</numerusform>
             <numerusform>pred %n minutami</numerusform>
             <numerusform>pred %n minutami</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
         <source>%n hour(s) ago</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>pred %n hodinou</numerusform>
             <numerusform>pred %n hodinami</numerusform>
             <numerusform>pred %n hodinami</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
         <source>%n day(s) ago</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>pred %n dňom</numerusform>
             <numerusform>pred %n dňami</numerusform>
             <numerusform>pred %n dňami</numerusform>
         </translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+42"/>
         <source>Up to date</source>
         <translation type="unfinished">Aktualizovaný</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+33"/>
         <source>Catching up...</source>
         <translation type="unfinished">Sťahujem...</translation>
     </message>
     <message>
-        <location line="+10"/>
         <source>Last received block was generated %1.</source>
-        <translation type="unfinished">Posledný prijatý blok bol vytvorený %1.</translation>
+        <translation type="obsolete">Posledný prijatý blok bol vytvorený %1.</translation>
     </message>
     <message>
-        <location line="+59"/>
+        <location line="+105"/>
         <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="unfinished">Táto transakcia je nad veľkostný limit. Stále ju môžete poslať za poplatok %1, ktorý ide uzlom spracujúcim vaše transakcie, čím pomáhate podporovať sieť. Chcete zaplatiť poplatok?</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+3"/>
         <source>Confirm transaction fee</source>
         <translation type="unfinished">Potvrďte transakčný poplatok</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+23"/>
         <source>Sent transaction</source>
         <translation type="unfinished">Odoslané transakcie</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+0"/>
         <source>Incoming transaction</source>
         <translation type="unfinished">Prijaté transakcie</translation>
     </message>
@@ -948,19 +945,19 @@ Typ: %3
 Adresa: %4</translation>
     </message>
     <message>
-        <location line="+100"/>
-        <location line="+15"/>
+        <location line="+120"/>
+        <location line="+17"/>
         <source>URI handling</source>
         <translation type="unfinished">URI manipulácia</translation>
     </message>
     <message>
-        <location line="-15"/>
-        <location line="+15"/>
+        <location line="-17"/>
+        <location line="+17"/>
         <source>URI can not be parsed! This can be caused by an invalid BitBean address or malformed URI parameters.</source>
         <translation type="unfinished">URI nemožno analyzovať! Toto môže byť spôsobené neplatnou BitBean adresu alebo chybnými URI parametrami.</translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+19"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation type="unfinished">Peňaženka je &lt;b&gt;zašifrovaná&lt;/b&gt; a momentálne &lt;b&gt;odomknutá&lt;/b&gt;</translation>
     </message>
@@ -985,12 +982,11 @@ Adresa: %4</translation>
         <translation type="unfinished">Zálohovanie zlyhalo</translation>
     </message>
     <message>
-        <location line="+0"/>
         <source>There was an error trying to save the wallet data to the new location.</source>
-        <translation type="unfinished">Došlo k chybe pri pokuse o uloženie dát peňaženky do nového umiestnenia.</translation>
+        <translation type="obsolete">Došlo k chybe pri pokuse o uloženie dát peňaženky do nového umiestnenia.</translation>
     </message>
     <message numerus="yes">
-        <location line="+94"/>
+        <location line="+105"/>
         <source>%n second(s)</source>
         <translation type="unfinished">
             <numerusform>%n sekunda</numerusform>
@@ -1008,7 +1004,8 @@ Adresa: %4</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
+        <location line="-453"/>
+        <location line="+457"/>
         <source>%n hour(s)</source>
         <translation type="unfinished">
             <numerusform>%n hodina</numerusform>
@@ -1016,8 +1013,49 @@ Adresa: %4</translation>
             <numerusform>%n hodín</numerusform>
         </translation>
     </message>
-    <message numerus="yes">
+    <message>
+        <location line="-787"/>
+        <source>&amp;Encrypt Vault...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Encrypt or decrypt vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Backup Vault...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Change the passphrase used for vault encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Unlock Vault...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Lock Vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+296"/>
+        <source>Processed %1 of %2 (estimated) blocks of transaction history.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+4"/>
+        <source>Processed %1 blocks of transaction history.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location line="+25"/>
+        <location line="+457"/>
         <source>%n day(s)</source>
         <translation type="unfinished">
             <numerusform>%n deň</numerusform>
@@ -1025,8 +1063,67 @@ Adresa: %4</translation>
             <numerusform>%n dní</numerusform>
         </translation>
     </message>
+    <message numerus="yes">
+        <location line="-453"/>
+        <source>%n week(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>%1 behind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Last received block was generated %1 ago.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Transactions after this will not yet be visible.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Bitbean</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Error</source>
+        <translation type="unfinished">Chyba</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Warning</source>
+        <translation type="unfinished">Upozornenie</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+288"/>
+        <source>There was an error trying to save the keypair data to the new location.</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location line="+4"/>
+        <source>Backup Successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Keypair data was successfully saved to the new location.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+117"/>
         <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
         <translation type="unfinished">Stávkovanie.&lt;br&gt;Vaša váha je %1&lt;br&gt;Váha siete je %2&lt;br&gt;Odhadovaný čas pre získanie odmeny je %3</translation>
     </message>
@@ -1429,7 +1526,7 @@ Adresa: %4</translation>
 <context>
     <name>ClientModel</name>
     <message>
-        <location filename="../clientmodel.cpp" line="+90"/>
+        <location filename="../clientmodel.cpp" line="+108"/>
         <source>Network Alert</source>
         <translation>Výstraha siete</translation>
     </message>
@@ -1724,7 +1821,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
 <context>
     <name>GUIUtil::HelpMessageBox</name>
     <message>
-        <location filename="../guiutil.cpp" line="+424"/>
+        <location filename="../guiutil.cpp" line="+433"/>
         <location line="+12"/>
         <source>BitBean-Qt</source>
         <translation>BitBean-Qt</translation>
@@ -1792,7 +1889,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="-15"/>
-        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 5 recommended. Fees help support the BitBean network.</source>
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. A fee of 5 BITB is recommended. Fees help support the BitBean network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1831,7 +1928,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation>Sieť</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+6"/>
         <source>Connect to the BitBean network through a SOCKS proxy (e.g. when connecting through Tor).</source>
         <translation>Pripojenie k sieti BitBean cez SOCKS proxy server (napr. pri pripojení cez Tor).</translation>
     </message>
@@ -1921,13 +2018,28 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+19"/>
-        <source>Whether to show bean control features or not.</source>
+        <location line="+12"/>
+        <source>&amp;Display Addresses With Transactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Allow individual selection of bean inputs when sending.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Display bean &amp;control features (experts only!)</source>
+        <source>Enable Bean &amp;Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Whether to select bean outputs randomly or with minimal bean age.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Minimize Bean &amp;Weight Consumption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1935,14 +2047,13 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="obsolete">Vyberte si predvolené delenie jednotiek zobrazované v rozhraní a pri odosielaní mincí.</translation>
     </message>
     <message>
-        <location line="-13"/>
+        <location line="-23"/>
         <source>Whether to show BitBean addresses in the transaction list or not.</source>
         <translation>Či chcete zobraziť BitBean adresy v zozname transakcií alebo nie.</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Display addresses in transaction list</source>
-        <translation>&amp;Zobraziť adresy v zozname transakcií</translation>
+        <translation type="obsolete">&amp;Zobraziť adresy v zozname transakcií</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1953,27 +2064,27 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="obsolete">Zobraziť coin &amp;control features (len pre odborníkov!)</translation>
     </message>
     <message>
-        <location line="+118"/>
+        <location line="+125"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+18"/>
         <source>&amp;Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+21"/>
         <source>&amp;Apply</source>
         <translation>&amp;Použiť</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="+55"/>
+        <location filename="../optionsdialog.cpp" line="+52"/>
         <source>default</source>
         <translation>predvolené</translation>
     </message>
     <message>
-        <location line="+149"/>
+        <location line="+148"/>
         <location line="+9"/>
         <source>Warning</source>
         <translation>Upozornenie</translation>
@@ -2027,38 +2138,42 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation>Použiteľné:</translation>
     </message>
     <message>
-        <location line="+18"/>
         <source>Your current spendable balance</source>
-        <translation>Váš aktuálny použiteľný zostatok</translation>
+        <translation type="obsolete">Váš aktuálny použiteľný zostatok</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+37"/>
         <source>Sprouting:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+18"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sprouting beans that do not yet count toward the current total balance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+37"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Beans that have yet to be confirmed, and not currently counted towards the total balance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+19"/>
+        <location line="+74"/>
         <source>Immature:</source>
         <translation>Nezrelé:</translation>
     </message>
     <message>
-        <location line="+15"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Newly sprouted beans that have not matured yet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <location line="-93"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Your current available balance of BitBeans that are spendable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sprouting BitBeans that do not yet count toward the current total balance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BitBeans that have yet to be confirmed, which are not currently counted towards the total balance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Newly sprouted BitBeans that have not matured yet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+44"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current total number of beans in your Bean Vault.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current, total number of BitBeans in your Bean Vault.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2072,61 +2187,61 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+12"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Block height of the BitBean Network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
         <source>Sprouting Difficulty:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+12"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Difficulty of sprouting new BitBeans.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
         <source>Bean Weight:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+12"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cummaltive weight of all BitBeans that are competing to sprout on the Network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
         <source>Connections:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+29"/>
         <source>Total Beans:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+12"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Block height of BitBean Network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Total BitBean monetary supply.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
-        <location line="+15"/>
-        <location line="+15"/>
-        <location line="+15"/>
-        <location line="+15"/>
+        <location line="-113"/>
+        <location line="+29"/>
+        <location line="+29"/>
+        <location line="+29"/>
+        <location line="+29"/>
         <source>0</source>
         <translation type="unfinished">0</translation>
     </message>
     <message>
-        <location line="-48"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Difficulty of sprouting new beans.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+15"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cummaltive weight of BitBeans that are competing to sprout on the Network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+15"/>
+        <location line="-32"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Total direct connections with other stalks on the network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+15"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Total Bean Monetary supply.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+51"/>
+        <location line="+80"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;New Transactions&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2163,6 +2278,14 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
 </context>
 <context>
+    <name>PaymentServer</name>
+    <message>
+        <location filename="../paymentserver.cpp" line="+107"/>
+        <source>Cannot start bitbean: click-to-pay handler</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QRCodeDialog</name>
     <message>
         <location filename="../forms/qrcodedialog.ui" line="+192"/>
@@ -2170,7 +2293,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation>QR Code Dialóg</translation>
     </message>
     <message>
-        <location line="+59"/>
+        <location line="+69"/>
         <source>Request Payment</source>
         <translation>Vyžiadať Platbu</translation>
     </message>
@@ -2190,7 +2313,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation>Správa:</translation>
     </message>
     <message>
-        <location line="+71"/>
+        <location line="+82"/>
         <source>&amp;Save As...</source>
         <translation>&amp;Uložiť ako...</translation>
     </message>
@@ -2223,7 +2346,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
 <context>
     <name>RPCConsole</name>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="+224"/>
+        <location filename="../forms/rpcconsole.ui" line="+248"/>
         <source>Client name</source>
         <translation>Meno klienta</translation>
     </message>
@@ -2237,27 +2360,27 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <location line="+53"/>
         <location line="+23"/>
         <location line="+23"/>
-        <location filename="../rpcconsole.cpp" line="+348"/>
+        <location line="+165"/>
+        <location filename="../rpcconsole.cpp" line="+359"/>
         <source>N/A</source>
         <translation>nie je k dispozícii</translation>
     </message>
     <message>
-        <location line="-217"/>
+        <location line="-382"/>
         <source>Client version</source>
         <translation>Verzia klienta</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-51"/>
         <source>&amp;Information</source>
         <translation>&amp;Informácie</translation>
     </message>
     <message>
-        <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>Používa OpenSSL verziu</translation>
+        <translation type="obsolete">Používa OpenSSL verziu</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+123"/>
         <source>Startup time</source>
         <translation>Čas spustenia</translation>
     </message>
@@ -2297,17 +2420,27 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation>Čas posledného bloku</translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+64"/>
         <source>&amp;Open</source>
         <translation>&amp;Otvoriť</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+26"/>
+        <source>Open BitBean Configuration file from the current data directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Edit Config File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
         <source>Command-line options</source>
         <translation>Možnosti príkazového riadka</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+19"/>
         <source>Show the BitBean-Qt help message to get a list with possible BitBean command-line options.</source>
         <translation>Zobraziť BitBean-Qt nápovedu k získaniu zoznamu pre možnosti  príkazového riadku BitBean.</translation>
     </message>
@@ -2317,37 +2450,82 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation>&amp;Zobraziť</translation>
     </message>
     <message>
+        <location line="+27"/>
+        <source>Berkeley DB version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+24"/>
         <source>&amp;Console</source>
         <translation>&amp;Konzola</translation>
     </message>
     <message>
-        <location line="-260"/>
+        <location line="+73"/>
+        <source>&amp;Network Traffic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+52"/>
+        <source>&amp;Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Totals</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+64"/>
+        <source>In:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+80"/>
+        <source>Out:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+69"/>
+        <source>Close window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-698"/>
         <source>Build date</source>
         <translation>Dátum zostavenia</translation>
     </message>
     <message>
-        <location line="-104"/>
+        <location line="-122"/>
         <source>BitBean - Debug window</source>
         <translation>BitBean - Ladiace okno</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+37"/>
         <source>BitBean Core</source>
         <translation>Jadro BitBean</translation>
     </message>
     <message>
-        <location line="+279"/>
+        <location line="+59"/>
+        <source>Using OpenSSL version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+226"/>
         <source>Debug log file</source>
         <translation>Súbor denníka ladenia</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+19"/>
         <source>Open the BitBean debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation>Otvorte BTestcoin súbor denníku ladenia z aktuálneho adresára dát. To môže trvať niekoľko sekúnd pre veľké súbory denníka.</translation>
     </message>
     <message>
-        <location line="+102"/>
+        <location line="+174"/>
         <source>Clear console</source>
         <translation>Vymazať konzolu</translation>
     </message>
@@ -2366,6 +2544,41 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
         <translation>Zadajte &lt;b&gt;help&lt;/b&gt; pre prehľad dostupných príkazov.</translation>
     </message>
+    <message>
+        <location line="+142"/>
+        <source>%1 B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>%1 m</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>%1 h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 h %2 m</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SendBeansDialog</name>
@@ -2382,17 +2595,17 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+76"/>
+        <location line="+78"/>
         <source>Bean Control Features</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+63"/>
         <source>Inputs...</source>
         <translation type="unfinished">Vstupy...</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+16"/>
         <source>automatically selected</source>
         <translation type="unfinished">automaticky vybrané</translation>
     </message>
@@ -2402,13 +2615,13 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished">Nedostatok prostriedkov!</translation>
     </message>
     <message>
-        <location line="+77"/>
+        <location line="+85"/>
         <source>Quantity:</source>
         <translation type="unfinished">Množstvo:</translation>
     </message>
     <message>
         <location line="+22"/>
-        <location line="+35"/>
+        <location line="+43"/>
         <source>0</source>
         <translation type="unfinished">0</translation>
     </message>
@@ -2418,20 +2631,20 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+51"/>
+        <location line="+59"/>
         <source>Amount:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+22"/>
-        <location line="+86"/>
-        <location line="+86"/>
-        <location line="+32"/>
+        <location line="+102"/>
+        <location line="+102"/>
+        <location line="+40"/>
         <source>0.00 BC</source>
         <translation type="unfinished">123.456 BC {0.00 ?}</translation>
     </message>
     <message>
-        <location line="-191"/>
+        <location line="-223"/>
         <source>Priority:</source>
         <translation type="unfinished">Priorita:</translation>
     </message>
@@ -2441,12 +2654,12 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+40"/>
         <source>Fee:</source>
         <translation type="unfinished">Poplatok:</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+43"/>
         <source>Low Output:</source>
         <translation type="unfinished">Nízky výstup:</translation>
     </message>
@@ -2456,22 +2669,22 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished">nie</translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+40"/>
         <source>After Fee:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+43"/>
         <source>Change</source>
         <translation type="unfinished">Zmeniť</translation>
     </message>
     <message>
-        <location line="+50"/>
+        <location line="+55"/>
         <source>custom change address</source>
         <translation type="unfinished">vlastná zmena adresy</translation>
     </message>
     <message>
-        <location line="+106"/>
+        <location line="+149"/>
         <source>Send to multiple recipients at once</source>
         <translation type="unfinished">Poslať viacerým príjemcom naraz</translation>
     </message>
@@ -2481,7 +2694,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished">&amp;Pridať príjemcu</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+63"/>
         <source>Remove all transaction fields</source>
         <translation type="unfinished">Odstráňte všetky transakčné polia</translation>
     </message>
@@ -2491,17 +2704,17 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="unfinished">Zmazať &amp;všetko</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+35"/>
         <source>Balance:</source>
         <translation type="unfinished">Zostatok:</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+22"/>
         <source>123.456 BC</source>
         <translation type="unfinished">123.456 BC</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+74"/>
         <source>Confirm the send action</source>
         <translation type="unfinished">Potvrďte odoslanie</translation>
     </message>
@@ -2629,33 +2842,33 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
 <context>
     <name>SendBeansEntry</name>
     <message>
-        <location filename="../forms/sendbeansentry.ui" line="+192"/>
+        <location filename="../forms/sendbeansentry.ui" line="+327"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+24"/>
         <source>A&amp;mount:</source>
         <translation type="unfinished">Su&amp;ma:</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+18"/>
         <source>Pay &amp;To:</source>
         <translation type="unfinished">Zapla&amp;tiť:</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+37"/>
         <location filename="../sendbeansentry.cpp" line="+25"/>
         <source>Enter a label for this address to add it to your address book</source>
         <translation type="unfinished">Vložte popis pre túto adresu aby sa pridala do adresára</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+14"/>
         <source>&amp;Label:</source>
         <translation type="unfinished">&amp;Popis:</translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+24"/>
         <source>The address to send the payment to  (e.g. 2JhbfkAFvXqYkreSgJfrRLS9DepUcxbQci)</source>
         <translation type="unfinished">Adresa pre poslanie platby (napr. 2JhbfkAFvXqYkreSgJfrRLS9DepUcxbQci)</translation>
     </message>
@@ -2949,12 +3162,11 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+124"/>
         <source>&amp;Sign Message</source>
         <translation>&amp;Podpísať správu</translation>
     </message>
     <message>
-        <location line="-118"/>
+        <location line="+11"/>
         <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>Môžete podpísať správy svojimi adresami a dokázať tak, že ich vlastníte. Buďte opatrní a podpíšte len prehlásenia s ktorými plne súhlasíte, nakoľko útoky typu &quot;phishing&quot; Vás môžu lákať k ich podpísaniu. Podpisujete iba plne detailné vyhlásenia s ktorými súhlasíte.</translation>
     </message>
@@ -2965,18 +3177,18 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+10"/>
-        <location line="+203"/>
+        <location line="+243"/>
         <source>Choose an address from the address book</source>
         <translation>Vyberte adresu z adresára</translation>
     </message>
     <message>
-        <location line="-193"/>
-        <location line="+203"/>
+        <location line="-233"/>
+        <location line="+243"/>
         <source>Alt+A</source>
         <translation>Alt+A</translation>
     </message>
     <message>
-        <location line="-193"/>
+        <location line="-233"/>
         <source>Paste address from clipboard</source>
         <translation>Vložiť adresu zo schránky</translation>
     </message>
@@ -2996,29 +3208,44 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation>Skopírujte aktuálny podpis do schránky</translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+27"/>
         <source>Sign the message to prove you own this BitBean address</source>
         <translation>Podpísať správu ako dôkaz, že vlastníte túto BitBean adresu</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+3"/>
+        <source>Sign &amp;Message</source>
+        <translation type="unfinished">Podpísať &amp;správu</translation>
+    </message>
+    <message>
+        <location line="+20"/>
         <source>Reset all sign message fields</source>
         <translation>Obnoviť všetky polia podpísania správy</translation>
     </message>
     <message>
         <location line="+3"/>
-        <location line="+146"/>
+        <location line="+186"/>
         <source>Clear &amp;All</source>
         <translation>Zmazať &amp;všetko</translation>
     </message>
     <message>
-        <location line="-87"/>
-        <location line="+70"/>
+        <location line="-166"/>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+186"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">Zrušiť</translation>
+    </message>
+    <message>
+        <location line="-130"/>
         <source>&amp;Verify Message</source>
         <translation>Overiť správu...</translation>
     </message>
     <message>
-        <location line="-64"/>
+        <location line="+14"/>
         <source>Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.</source>
         <translation>Zadajte podpisovú adresu správy (uistite sa že presne kopírujete konce riadkov, medzier, tabulátorov, atď.) a podpis nižšie pre overenie správy. Dávajte pozor, aby ste nedali viac do podpisu, než to, čo je v podpísanej správe samotnej, aby ste sa vyhli oklamaniu útokom typu man-in-the-middle.</translation>
     </message>
@@ -3028,14 +3255,24 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation>Adresa správy bola podpísaná (napr. 2JhbfkAFvXqYkreSgJfrRLS9DepUcxbQci)</translation>
     </message>
     <message>
-        <location line="+40"/>
+        <location line="+46"/>
         <source>Verify the message to ensure it was signed with the specified BitBean address</source>
         <translation>Overte správu, aby ste sa ubezpečili, že bola podpísaná s danou BitBean adresou</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+3"/>
+        <source>Verify &amp;Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
         <source>Reset all verify message fields</source>
         <translation>Obnoviť všetky polia pre overenie správy</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Close window</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
@@ -3054,7 +3291,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation>Zadajte BitBean podpis</translation>
     </message>
     <message>
-        <location line="+82"/>
+        <location line="+92"/>
         <location line="+81"/>
         <source>The entered address is invalid.</source>
         <translation>Zadaná adresa je neplatná.</translation>
@@ -3118,6 +3355,14 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <location line="+5"/>
         <source>Message verified.</source>
         <translation>Správa overená.</translation>
+    </message>
+</context>
+<context>
+    <name>TrafficGraphWidget</name>
+    <message>
+        <location filename="../trafficgraphwidget.cpp" line="+80"/>
+        <source>KB/s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3323,7 +3568,12 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation>Detaily transakcie</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+28"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+24"/>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Táto časť obrazovky zobrazuje detailný popis transakcie</translation>
     </message>
@@ -3636,9 +3886,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
 <context>
     <name>WalletModel</name>
     <message>
-        <location filename="../walletmodel.cpp" line="+206"/>
         <source>Sending...</source>
-        <translation>Posielam...</translation>
+        <translation type="obsolete">Posielam...</translation>
     </message>
 </context>
 <context>
@@ -3887,14 +4136,12 @@ Ak súbor neexistuje, vytvorte ho s oprávnením pre čítanie len vlastníkom (
         <translation type="unfinished">Maximum pre-pripojenie posielacej vyrovnávacej pamäti, &lt;n&gt;*1000 bajtov (predvolené: 1000)</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Use UPnP to map the listening port (default: 1 when listening)</source>
-        <translation type="unfinished">Skúsiť použiť UPnP pre mapovanie počúvajúceho portu (default: 1 when listening)</translation>
+        <translation type="obsolete">Skúsiť použiť UPnP pre mapovanie počúvajúceho portu (default: 1 when listening)</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Use UPnP to map the listening port (default: 0)</source>
-        <translation type="unfinished">Skúsiť použiť UPnP pre mapovanie počúvajúceho portu (default: 0)</translation>
+        <translation type="obsolete">Skúsiť použiť UPnP pre mapovanie počúvajúceho portu (default: 0)</translation>
     </message>
     <message>
         <location line="+1"/>

@@ -10,26 +10,24 @@
         <translation>Over BitBean</translation>
     </message>
     <message>
-        <location line="+54"/>
+        <location line="+22"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;http://www.bitbean.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;BitBean, Fast..Simple..Secure..More Than Just a Digital Currency&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;http://www.bitbean.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.bitbean.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;This is experimental software. &lt;/p&gt;&lt;p&gt;Distributed under the &lt;a href=&quot;http://www.opensource.org/licenses/mit-license.php&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;MIT/X11 software license.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;This product includes software developed by the &lt;a href=&quot;https://www.openssl.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;OpenSSL Project&lt;/span&gt;&lt;/a&gt; for use in the OpenSSL Toolkit and cryptographic software written by &lt;a href=&quot;eay@cryptsoft.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Eric Young.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Support Available: &lt;a href=&quot;http://teamchat.bitbean.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Live Chat&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+66"/>
         <source>&lt;b&gt;BitBean&lt;/b&gt; version</source>
         <translation>&lt;b&gt;BitBean&lt;/b&gt; versie</translation>
-    </message>
-    <message>
-        <location line="+53"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Liberation Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright © 2009-2014 The Bitcoin developers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright © 2012-2014 The Novacoin developers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright © 2014 The BitBean developers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright © 2015 Bean Core www.bitbean.org&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+26"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Chief Scientist &amp;amp; Lead Developer: &lt;/span&gt;Shawn Kent&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Designer: &lt;/span&gt;BrunoPro7&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;This is experimental software. Distributed under the MIT/X11 software license, see the accompanying file COPYING or &lt;/span&gt;&lt;a href=&quot;http://www.opensource.org/licenses/mit-license.php&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.opensource.org/licenses/mit-license.php&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;. This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (&lt;/span&gt;&lt;a href=&quot;https://www.openssl.org/&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.openssl.org/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;) and cryptographic software written by Eric Young (&lt;/span&gt;&lt;a href=&quot;mailto:eay@cryptsoft.com&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;eay@cryptsoft.com&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;) .&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Copyright © 2009-2014 The Bitcoin developers
@@ -52,6 +50,16 @@ Dit is experimentele software.
 Gedistribueerd onder de MIT/X11 software licentie, zie het bijgevoegde bestand COPYING of http://www.opensource.org/licenses/mit-license.php.
 
 Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in de OpenSSL Toolkit (http://www.openssl.org/) en cryptografische software gemaakt door Eric Young (eay@cryptsoft.com) en UPnP software geschreven door Thomas Bernard.</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="+17"/>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>2015-%1 Bean Core</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -127,17 +135,17 @@ Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in d
         <translation>&amp;Verwijder</translation>
     </message>
     <message>
-        <location filename="../addressbookpage.cpp" line="+65"/>
+        <location filename="../addressbookpage.cpp" line="+67"/>
         <source>Copy &amp;Label</source>
         <translation>Kopiëer &amp;Label</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
         <source>&amp;Edit</source>
         <translation>&amp;Bewerk</translation>
     </message>
     <message>
-        <location line="+250"/>
+        <location line="+248"/>
         <source>Export Address Book Data</source>
         <translation>Exporteer Adresboek Data</translation>
     </message>
@@ -208,9 +216,13 @@ Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in d
         <translation>Alleen voor staking</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="+35"/>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Vul een nieuw wachtwoord in voor uw portemonnee. &lt;br/&gt; Gebruik een wachtwoord van &lt;b&gt;10 of meer verschillende karakters&lt;/b&gt;, of &lt;b&gt; acht of meer woorden&lt;/b&gt; . </translation>
+        <translation type="obsolete">Vul een nieuw wachtwoord in voor uw portemonnee. &lt;br/&gt; Gebruik een wachtwoord van &lt;b&gt;10 of meer verschillende karakters&lt;/b&gt;, of &lt;b&gt; acht of meer woorden&lt;/b&gt; . </translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="+35"/>
+        <source>Enter the new passphrase for your wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
@@ -337,47 +349,47 @@ Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in d
 <context>
     <name>BeanControlDialog</name>
     <message>
-        <location filename="../forms/beancontroldialog.ui" line="+14"/>
+        <location filename="../forms/beancontroldialog.ui" line="+159"/>
         <source>Bean Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+39"/>
         <source>Quantity:</source>
         <translation type="unfinished">Kwantiteit</translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+40"/>
         <source>Bytes:</source>
         <translation type="unfinished">Bytes:</translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+56"/>
         <source>Amount:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+40"/>
         <source>Priority:</source>
         <translation type="unfinished">Prioriteit:</translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+56"/>
         <source>Fee:</source>
         <translation type="unfinished">Vergoeding:</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+41"/>
         <source>Low Output:</source>
         <translation type="unfinished">Lage uitvoer:</translation>
     </message>
     <message>
-        <location line="+51"/>
+        <location line="+59"/>
         <source>After Fee:</source>
         <translation type="unfinished">Na vergoeding:</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+41"/>
         <source>Change:</source>
         <translation type="unfinished">Wijzigen:</translation>
     </message>
@@ -387,17 +399,17 @@ Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in d
         <translation type="unfinished">(de)selecteer alles</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+19"/>
         <source>Tree mode</source>
         <translation type="unfinished">Boom modus</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+22"/>
         <source>List mode</source>
         <translation type="unfinished">Lijst modus</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+51"/>
         <source>Amount</source>
         <translation type="unfinished">Bedrag</translation>
     </message>
@@ -605,12 +617,12 @@ Dit betekend dat een fee van %2 is vereist.</translation>
 <context>
     <name>BitbeanGUI</name>
     <message>
-        <location filename="../bitbean.cpp" line="+109"/>
+        <location filename="../bitbean.cpp" line="+103"/>
         <source>A fatal error occurred. BitBean can no longer continue safely and will quit.</source>
         <translation type="unfinished">Een fatale fout . BTestcoin kan niet langer veilig doorgaan en sluit af.</translation>
     </message>
     <message>
-        <location filename="../bitbeangui.cpp" line="+89"/>
+        <location filename="../bitbeangui.cpp" line="+85"/>
         <source>BitBean</source>
         <translation type="unfinished">BitBean</translation>
     </message>
@@ -715,22 +727,19 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished">&amp;Toon / Verberg</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>&amp;Encrypt Wallet...</source>
-        <translation type="unfinished">&amp;Versleutel Portemonnee...</translation>
+        <translation type="obsolete">&amp;Versleutel Portemonnee...</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Encrypt or decrypt wallet</source>
-        <translation type="unfinished">Versleutel of ontsleutel de portemonnee</translation>
+        <translation type="obsolete">Versleutel of ontsleutel de portemonnee</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Backup Wallet...</source>
-        <translation type="unfinished">&amp;Backup Portemonnee...</translation>
+        <translation type="obsolete">&amp;Backup Portemonnee...</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+5"/>
         <source>Backup wallet to another location</source>
         <translation type="unfinished">Backup portemonnee naar een andere locatie</translation>
     </message>
@@ -740,27 +749,24 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished">&amp;Wijzig Wachtwoord</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation type="unfinished">Wijzig het wachtwoord voor uw portemonneversleuteling</translation>
+        <translation type="obsolete">Wijzig het wachtwoord voor uw portemonneversleuteling</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>&amp;Unlock Wallet...</source>
-        <translation type="unfinished">Ontgrendel portemonnee...</translation>
+        <translation type="obsolete">Ontgrendel portemonnee...</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+3"/>
         <source>Unlock wallet</source>
         <translation type="unfinished">Open portemonnee</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>&amp;Lock Wallet</source>
-        <translation type="unfinished">&amp;Sluit portemonnee</translation>
+        <translation type="obsolete">&amp;Sluit portemonnee</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>Lock wallet</source>
         <translation type="unfinished">Sluit portemonnee</translation>
     </message>
@@ -795,7 +801,7 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished">Open debugging en diagnostische console</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+30"/>
         <source>&amp;File</source>
         <translation type="unfinished">&amp;Bestand</translation>
     </message>
@@ -815,7 +821,7 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished">Tab-werkbalk</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+9"/>
         <source>Actions toolbar</source>
         <translation type="unfinished">Acties werkbalk</translation>
     </message>
@@ -827,12 +833,12 @@ Dit betekend dat een fee van %2 is vereist.</translation>
     </message>
     <message>
         <location line="+0"/>
-        <location line="+60"/>
+        <location line="+62"/>
         <source>BitBean client</source>
         <translation type="unfinished">BitBean client</translation>
     </message>
     <message numerus="yes">
-        <location line="+70"/>
+        <location line="+108"/>
         <source>%n active connection(s) to BitBean network</source>
         <translation type="unfinished">
             <numerusform>%n actieve verbinding naar BitBean netwerk</numerusform>
@@ -840,92 +846,83 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         </translation>
     </message>
     <message>
-        <location line="+24"/>
         <source>Synchronizing with network...</source>
-        <translation type="unfinished">Synchroniseren met netwerk...</translation>
+        <translation type="obsolete">Synchroniseren met netwerk...</translation>
     </message>
     <message numerus="yes">
-        <location line="+2"/>
         <source>~%n block(s) remaining</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>~%n blok nodig</numerusform>
             <numerusform>~%n blokken nodig</numerusform>
         </translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>Downloaded %1 of %2 blocks of transaction history (%3% done).</source>
-        <translation type="unfinished">%1 van %2 aan transactie historie blokken gedownload (%3% klaar).</translation>
+        <translation type="obsolete">%1 van %2 aan transactie historie blokken gedownload (%3% klaar).</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Downloaded %1 blocks of transaction history.</source>
-        <translation type="unfinished">%1 blokken van transactie geschiedenis gedownload.</translation>
+        <translation type="obsolete">%1 blokken van transactie geschiedenis gedownload.</translation>
     </message>
     <message numerus="yes">
-        <location line="+22"/>
         <source>%n second(s) ago</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>%n seconden geleden</numerusform>
             <numerusform>%n seconden geleden</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
         <source>%n minute(s) ago</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>%n minuut geleden</numerusform>
             <numerusform>%n minuten geleden</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
         <source>%n hour(s) ago</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>%n uur geleden</numerusform>
             <numerusform>%n uren geleden</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
         <source>%n day(s) ago</source>
-        <translation type="unfinished">
+        <translation type="obsolete">
             <numerusform>%n dag geleden</numerusform>
             <numerusform>%n dagen geleden</numerusform>
         </translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+42"/>
         <source>Up to date</source>
         <translation type="unfinished">Bijgewerkt</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+33"/>
         <source>Catching up...</source>
         <translation type="unfinished">Aan het bijwerken...</translation>
     </message>
     <message>
-        <location line="+10"/>
         <source>Last received block was generated %1.</source>
-        <translation type="unfinished">Laatst ontvangen blok is gegenereerd op %1.</translation>
+        <translation type="obsolete">Laatst ontvangen blok is gegenereerd op %1.</translation>
     </message>
     <message>
-        <location line="+59"/>
+        <location line="+105"/>
         <source>In order to process your transaction on the BitBean Network, a fee of %1 is required. This fee is paid to the nodes that process your transaction and helps to support the network. Please confirm this transaction.</source>
         <translation type="unfinished">De grootte van deze transactie overschrijdt de limiet. U kan deze transactie laten uitvoeren voor een meerkost van %1, dewelke doorgestuurd wordt naar de nodes die uw transactie verwerken, alsook ter ondersteuning van het netwerk. Wil u deze meerkost betalen?</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+3"/>
         <source>Confirm transaction fee</source>
         <translation type="unfinished">Bevestig transactie kosten</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+23"/>
         <source>Sent transaction</source>
         <translation type="unfinished">Verzonden transactie</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+0"/>
         <source>Incoming transaction</source>
         <translation type="unfinished">Binnenkomende transactie</translation>
     </message>
@@ -943,19 +940,19 @@ Adres: %4
 </translation>
     </message>
     <message>
-        <location line="+100"/>
-        <location line="+15"/>
+        <location line="+120"/>
+        <location line="+17"/>
         <source>URI handling</source>
         <translation type="unfinished">URI-behandeling</translation>
     </message>
     <message>
-        <location line="-15"/>
-        <location line="+15"/>
+        <location line="-17"/>
+        <location line="+17"/>
         <source>URI can not be parsed! This can be caused by an invalid BitBean address or malformed URI parameters.</source>
         <translation type="unfinished">URI kan niet ontleedt worden! Mogelijke oorzaken zijn een ongeldig BitBean adres of incorrecte URI parameters.</translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+19"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation type="unfinished">Portemonnee is &lt;b&gt;versleuteld&lt;/b&gt; en momenteel &lt;b&gt;geopend&lt;/b&gt;</translation>
     </message>
@@ -980,12 +977,11 @@ Adres: %4
         <translation type="unfinished">Backup mislukt</translation>
     </message>
     <message>
-        <location line="+0"/>
         <source>There was an error trying to save the wallet data to the new location.</source>
-        <translation type="unfinished">Er was een fout opgetreden bij het opslaan van de wallet data naar de nieuwe locatie.</translation>
+        <translation type="obsolete">Er was een fout opgetreden bij het opslaan van de wallet data naar de nieuwe locatie.</translation>
     </message>
     <message numerus="yes">
-        <location line="+94"/>
+        <location line="+105"/>
         <source>%n second(s)</source>
         <translation type="unfinished">
             <numerusform>%n seconden</numerusform>
@@ -1001,23 +997,123 @@ Adres: %4
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
+        <location line="-453"/>
+        <location line="+457"/>
         <source>%n hour(s)</source>
         <translation type="unfinished">
             <numerusform>%n uur</numerusform>
             <numerusform>%n uur</numerusform>
         </translation>
     </message>
-    <message numerus="yes">
+    <message>
+        <location line="-787"/>
+        <source>&amp;Encrypt Vault...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Encrypt or decrypt vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Backup Vault...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Change the passphrase used for vault encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Unlock Vault...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Lock Vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+296"/>
+        <source>Processed %1 of %2 (estimated) blocks of transaction history.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+4"/>
+        <source>Processed %1 blocks of transaction history.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location line="+25"/>
+        <location line="+457"/>
         <source>%n day(s)</source>
         <translation type="unfinished">
             <numerusform>%n dag</numerusform>
             <numerusform>%n dagen</numerusform>
         </translation>
     </message>
+    <message numerus="yes">
+        <location line="-453"/>
+        <source>%n week(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>%1 behind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Last received block was generated %1 ago.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Transactions after this will not yet be visible.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Bitbean</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Error</source>
+        <translation type="unfinished">Fout</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Warning</source>
+        <translation type="unfinished">Waarschuwing</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+288"/>
+        <source>There was an error trying to save the keypair data to the new location.</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location line="+4"/>
+        <source>Backup Successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Keypair data was successfully saved to the new location.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+117"/>
         <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
         <translation type="unfinished">Staking. &lt;br&gt; Uw gewicht wordt  %1 &lt;br&gt; Network gewicht is %2 &lt;br&gt; Verwachte tijd om beloning te verdienen is %3</translation>
     </message>
@@ -1411,7 +1507,7 @@ Adres: %4
 <context>
     <name>ClientModel</name>
     <message>
-        <location filename="../clientmodel.cpp" line="+90"/>
+        <location filename="../clientmodel.cpp" line="+108"/>
         <source>Network Alert</source>
         <translation>Netwerkwaarschuwing</translation>
     </message>
@@ -1706,7 +1802,7 @@ Dit betekend dat een fee van %2 is vereist.</translation>
 <context>
     <name>GUIUtil::HelpMessageBox</name>
     <message>
-        <location filename="../guiutil.cpp" line="+424"/>
+        <location filename="../guiutil.cpp" line="+433"/>
         <location line="+12"/>
         <source>BitBean-Qt</source>
         <translation>BitBean-Qt</translation>
@@ -1774,7 +1870,7 @@ Dit betekend dat een fee van %2 is vereist.</translation>
     </message>
     <message>
         <location line="-15"/>
-        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 5 recommended. Fees help support the BitBean network.</source>
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. A fee of 5 BITB is recommended. Fees help support the BitBean network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1813,7 +1909,7 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>&amp;Netwerk</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+6"/>
         <source>Connect to the BitBean network through a SOCKS proxy (e.g. when connecting through Tor).</source>
         <translation>Verbinding maken met het BitBean netwerk via een SOCKS proxy (bijvoorbeeld als U gebruik maakt van Tor)</translation>
     </message>
@@ -1903,13 +1999,28 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+19"/>
-        <source>Whether to show bean control features or not.</source>
+        <location line="+12"/>
+        <source>&amp;Display Addresses With Transactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Allow individual selection of bean inputs when sending.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Display bean &amp;control features (experts only!)</source>
+        <source>Enable Bean &amp;Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Whether to select bean outputs randomly or with minimal bean age.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Minimize Bean &amp;Weight Consumption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1917,14 +2028,13 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="obsolete">Kies de standaard onderverdelingseenheid om weer te geven in uw programma, en voor het versturen van munten</translation>
     </message>
     <message>
-        <location line="-13"/>
+        <location line="-23"/>
         <source>Whether to show BitBean addresses in the transaction list or not.</source>
         <translation>BitBean adressen in de transactielijst weergeven of niet</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Display addresses in transaction list</source>
-        <translation>Toon a&amp;dressen in de transactielijst</translation>
+        <translation type="obsolete">Toon a&amp;dressen in de transactielijst</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1935,27 +2045,27 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="obsolete">Laat coin &amp; control functies zien (enkel voor gevorderden!)</translation>
     </message>
     <message>
-        <location line="+118"/>
+        <location line="+125"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+18"/>
         <source>&amp;Cancel</source>
         <translation>Ann&amp;uleren</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+21"/>
         <source>&amp;Apply</source>
         <translation>&amp;Toepassen</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="+55"/>
+        <location filename="../optionsdialog.cpp" line="+52"/>
         <source>default</source>
         <translation>standaard</translation>
     </message>
     <message>
-        <location line="+149"/>
+        <location line="+148"/>
         <location line="+9"/>
         <source>Warning</source>
         <translation>Waarschuwing</translation>
@@ -2009,38 +2119,42 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>Uitgeefbaar:</translation>
     </message>
     <message>
-        <location line="+18"/>
         <source>Your current spendable balance</source>
-        <translation>Uw beschikbare saldo</translation>
+        <translation type="obsolete">Uw beschikbare saldo</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+37"/>
         <source>Sprouting:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+18"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sprouting beans that do not yet count toward the current total balance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+37"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Beans that have yet to be confirmed, and not currently counted towards the total balance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+19"/>
+        <location line="+74"/>
         <source>Immature:</source>
         <translation>Immatuur:</translation>
     </message>
     <message>
-        <location line="+15"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Newly sprouted beans that have not matured yet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <location line="-93"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Your current available balance of BitBeans that are spendable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sprouting BitBeans that do not yet count toward the current total balance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BitBeans that have yet to be confirmed, which are not currently counted towards the total balance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Newly sprouted BitBeans that have not matured yet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+44"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current total number of beans in your Bean Vault.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current, total number of BitBeans in your Bean Vault.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2054,61 +2168,61 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+12"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Block height of the BitBean Network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
         <source>Sprouting Difficulty:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+12"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Difficulty of sprouting new BitBeans.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
         <source>Bean Weight:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+12"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cummaltive weight of all BitBeans that are competing to sprout on the Network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
         <source>Connections:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+29"/>
         <source>Total Beans:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+12"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Block height of BitBean Network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Total BitBean monetary supply.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
-        <location line="+15"/>
-        <location line="+15"/>
-        <location line="+15"/>
-        <location line="+15"/>
+        <location line="-113"/>
+        <location line="+29"/>
+        <location line="+29"/>
+        <location line="+29"/>
+        <location line="+29"/>
         <source>0</source>
         <translation type="unfinished">0</translation>
     </message>
     <message>
-        <location line="-48"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Difficulty of sprouting new beans.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+15"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cummaltive weight of BitBeans that are competing to sprout on the Network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+15"/>
+        <location line="-32"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Total direct connections with other stalks on the network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+15"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Total Bean Monetary supply.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+51"/>
+        <location line="+80"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;New Transactions&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2145,6 +2259,14 @@ Dit betekend dat een fee van %2 is vereist.</translation>
     </message>
 </context>
 <context>
+    <name>PaymentServer</name>
+    <message>
+        <location filename="../paymentserver.cpp" line="+107"/>
+        <source>Cannot start bitbean: click-to-pay handler</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QRCodeDialog</name>
     <message>
         <location filename="../forms/qrcodedialog.ui" line="+192"/>
@@ -2152,7 +2274,7 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>QR Code Scherm</translation>
     </message>
     <message>
-        <location line="+59"/>
+        <location line="+69"/>
         <source>Request Payment</source>
         <translation>Vraag betaling</translation>
     </message>
@@ -2172,7 +2294,7 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>Bericht:</translation>
     </message>
     <message>
-        <location line="+71"/>
+        <location line="+82"/>
         <source>&amp;Save As...</source>
         <translation>&amp;Opslaan als...</translation>
     </message>
@@ -2205,7 +2327,7 @@ Dit betekend dat een fee van %2 is vereist.</translation>
 <context>
     <name>RPCConsole</name>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="+224"/>
+        <location filename="../forms/rpcconsole.ui" line="+248"/>
         <source>Client name</source>
         <translation>Clientnaam</translation>
     </message>
@@ -2219,27 +2341,27 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <location line="+53"/>
         <location line="+23"/>
         <location line="+23"/>
-        <location filename="../rpcconsole.cpp" line="+348"/>
+        <location line="+165"/>
+        <location filename="../rpcconsole.cpp" line="+359"/>
         <source>N/A</source>
         <translation>N.v.t.</translation>
     </message>
     <message>
-        <location line="-217"/>
+        <location line="-382"/>
         <source>Client version</source>
         <translation>Clientversie</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-51"/>
         <source>&amp;Information</source>
         <translation>&amp;Informatie</translation>
     </message>
     <message>
-        <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>Gebruikt OpenSSL versie</translation>
+        <translation type="obsolete">Gebruikt OpenSSL versie</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+123"/>
         <source>Startup time</source>
         <translation>Opstarttijd</translation>
     </message>
@@ -2279,17 +2401,27 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>Tijd laatste blok</translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+64"/>
         <source>&amp;Open</source>
         <translation>&amp;Open</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+26"/>
+        <source>Open BitBean Configuration file from the current data directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Edit Config File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
         <source>Command-line options</source>
         <translation>Commandoregel-opties</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+19"/>
         <source>Show the BitBean-Qt help message to get a list with possible BitBean command-line options.</source>
         <translation>Laat het BTestcoin-QT help bericht zien om een lijst te krijgen met mogelijke BTestcoin command-regel opties.</translation>
     </message>
@@ -2299,37 +2431,82 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>&amp;Show</translation>
     </message>
     <message>
+        <location line="+27"/>
+        <source>Berkeley DB version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+24"/>
         <source>&amp;Console</source>
         <translation>&amp;Console</translation>
     </message>
     <message>
-        <location line="-260"/>
+        <location line="+73"/>
+        <source>&amp;Network Traffic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+52"/>
+        <source>&amp;Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Totals</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+64"/>
+        <source>In:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+80"/>
+        <source>Out:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+69"/>
+        <source>Close window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-698"/>
         <source>Build date</source>
         <translation>Bouwdatum</translation>
     </message>
     <message>
-        <location line="-104"/>
+        <location line="-122"/>
         <source>BitBean - Debug window</source>
         <translation>BTestcoin - Debugscherm</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+37"/>
         <source>BitBean Core</source>
         <translation>BitBean Kern</translation>
     </message>
     <message>
-        <location line="+279"/>
+        <location line="+59"/>
+        <source>Using OpenSSL version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+226"/>
         <source>Debug log file</source>
         <translation>Debug-logbestand</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+19"/>
         <source>Open the BitBean debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation>Open het BitBean debug log bestand van de huidige data map. Dit kan een paar seconden duren voor grote log bestanden.</translation>
     </message>
     <message>
-        <location line="+102"/>
+        <location line="+174"/>
         <source>Clear console</source>
         <translation>Maak console leeg</translation>
     </message>
@@ -2348,6 +2525,41 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
         <translation>Typ &lt;b&gt;help&lt;/b&gt; voor een overzicht van de beschikbare commando&apos;s.</translation>
     </message>
+    <message>
+        <location line="+142"/>
+        <source>%1 B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>%1 m</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>%1 h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 h %2 m</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SendBeansDialog</name>
@@ -2364,17 +2576,17 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+76"/>
+        <location line="+78"/>
         <source>Bean Control Features</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+63"/>
         <source>Inputs...</source>
         <translation type="unfinished">Invoer...</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+16"/>
         <source>automatically selected</source>
         <translation type="unfinished">automatisch geselecteerd</translation>
     </message>
@@ -2384,13 +2596,13 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished">Onvoldoende fonds!</translation>
     </message>
     <message>
-        <location line="+77"/>
+        <location line="+85"/>
         <source>Quantity:</source>
         <translation type="unfinished">Kwantiteit</translation>
     </message>
     <message>
         <location line="+22"/>
-        <location line="+35"/>
+        <location line="+43"/>
         <source>0</source>
         <translation type="unfinished">0</translation>
     </message>
@@ -2400,20 +2612,20 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished">Bytes:</translation>
     </message>
     <message>
-        <location line="+51"/>
+        <location line="+59"/>
         <source>Amount:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+22"/>
-        <location line="+86"/>
-        <location line="+86"/>
-        <location line="+32"/>
+        <location line="+102"/>
+        <location line="+102"/>
+        <location line="+40"/>
         <source>0.00 BC</source>
         <translation type="unfinished">123.456 BC</translation>
     </message>
     <message>
-        <location line="-191"/>
+        <location line="-223"/>
         <source>Priority:</source>
         <translation type="unfinished">Prioriteit:</translation>
     </message>
@@ -2423,12 +2635,12 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished">gemiddeld</translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+40"/>
         <source>Fee:</source>
         <translation type="unfinished">Vergoeding:</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+43"/>
         <source>Low Output:</source>
         <translation type="unfinished">Lage uitvoer:</translation>
     </message>
@@ -2438,22 +2650,22 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished">nee</translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+40"/>
         <source>After Fee:</source>
         <translation type="unfinished">Na vergoeding:</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+43"/>
         <source>Change</source>
         <translation type="unfinished">Wijzigen</translation>
     </message>
     <message>
-        <location line="+50"/>
+        <location line="+55"/>
         <source>custom change address</source>
         <translation type="unfinished">handmatig veranderen adres</translation>
     </message>
     <message>
-        <location line="+106"/>
+        <location line="+149"/>
         <source>Send to multiple recipients at once</source>
         <translation type="unfinished">Verstuur aan verschillende ontvangers ineens</translation>
     </message>
@@ -2463,7 +2675,7 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished">Voeg &amp;Ontvanger Toe</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+63"/>
         <source>Remove all transaction fields</source>
         <translation type="unfinished">Verwijder alles in de invulvelden</translation>
     </message>
@@ -2473,17 +2685,17 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished">Verwijder &amp;Alles</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+35"/>
         <source>Balance:</source>
         <translation type="unfinished">Saldo:</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+22"/>
         <source>123.456 BC</source>
         <translation type="unfinished">123.456 BC</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+74"/>
         <source>Confirm the send action</source>
         <translation type="unfinished">Bevestig de verstuuractie</translation>
     </message>
@@ -2611,33 +2823,33 @@ Dit betekend dat een fee van %2 is vereist.</translation>
 <context>
     <name>SendBeansEntry</name>
     <message>
-        <location filename="../forms/sendbeansentry.ui" line="+192"/>
+        <location filename="../forms/sendbeansentry.ui" line="+327"/>
         <source>Form</source>
         <translation type="unfinished">Vorm</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+24"/>
         <source>A&amp;mount:</source>
         <translation type="unfinished">Bedra&amp;g:</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+18"/>
         <source>Pay &amp;To:</source>
         <translation type="unfinished">Betaal &amp;Aan:</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+37"/>
         <location filename="../sendbeansentry.cpp" line="+25"/>
         <source>Enter a label for this address to add it to your address book</source>
         <translation type="unfinished">Vul een label in voor dit adres om het toe te voegen aan uw adresboek</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+14"/>
         <source>&amp;Label:</source>
         <translation type="unfinished">&amp;Label:</translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+24"/>
         <source>The address to send the payment to  (e.g. 2JhbfkAFvXqYkreSgJfrRLS9DepUcxbQci)</source>
         <translation type="unfinished">Het adres om naar te betalen (bijv. 2JhbfkAFvXqYkreSgJfrRLS9DepUcxbQci)</translation>
     </message>
@@ -2931,12 +3143,11 @@ Dit betekend dat een fee van %2 is vereist.</translation>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+124"/>
         <source>&amp;Sign Message</source>
         <translation>O&amp;nderteken Bericht</translation>
     </message>
     <message>
-        <location line="-118"/>
+        <location line="+11"/>
         <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>U kunt berichten ondertekenen met een van uw adressen om te bewijzen dat u dit adres bezit. Pas op dat u geen onduidelijke dingen ondertekent, want phishingaanvallen zouden u kunnen misleiden om zo uw identiteit te stelen. Onderteken alleen berichten waarmee u het volledig eens bent.</translation>
     </message>
@@ -2947,18 +3158,18 @@ Dit betekend dat een fee van %2 is vereist.</translation>
     </message>
     <message>
         <location line="+10"/>
-        <location line="+203"/>
+        <location line="+243"/>
         <source>Choose an address from the address book</source>
         <translation>Kies een adres uit het adresboek</translation>
     </message>
     <message>
-        <location line="-193"/>
-        <location line="+203"/>
+        <location line="-233"/>
+        <location line="+243"/>
         <source>Alt+A</source>
         <translation>Alt+A</translation>
     </message>
     <message>
-        <location line="-193"/>
+        <location line="-233"/>
         <source>Paste address from clipboard</source>
         <translation>Plak adres vanuit klembord</translation>
     </message>
@@ -2978,29 +3189,44 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>Kopieer de huidige handtekening naar het systeemklembord</translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+27"/>
         <source>Sign the message to prove you own this BitBean address</source>
         <translation>Teken een bericht om te bewijzen dat je een BitBean adres bezit.</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+3"/>
+        <source>Sign &amp;Message</source>
+        <translation type="unfinished">Teken &amp;Bericht</translation>
+    </message>
+    <message>
+        <location line="+20"/>
         <source>Reset all sign message fields</source>
         <translation>Verwijder alles in de invulvelden</translation>
     </message>
     <message>
         <location line="+3"/>
-        <location line="+146"/>
+        <location line="+186"/>
         <source>Clear &amp;All</source>
         <translation>Verwijder &amp;Alles</translation>
     </message>
     <message>
-        <location line="-87"/>
-        <location line="+70"/>
+        <location line="-166"/>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+186"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">Ann&amp;uleren</translation>
+    </message>
+    <message>
+        <location line="-130"/>
         <source>&amp;Verify Message</source>
         <translation>&amp;Verifiëer Bericht</translation>
     </message>
     <message>
-        <location line="-64"/>
+        <location line="+14"/>
         <source>Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.</source>
         <translation>Voer het ondertekenende adres, bericht en handtekening hieronder in (let erop dat u nieuwe regels, spaties en tabs juist overneemt) om de handtekening te verifiëren. Let erop dat u niet meer uit het bericht interpreteert dan er daadwerkelijk staat,  om te voorkomen dat u wordt misleid in een man-in-the-middle-aanval.</translation>
     </message>
@@ -3010,14 +3236,24 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>Het adres van het bericht is ondertekend met (bijv. 2JhbfkAFvXqYkreSgJfrRLS9DepUcxbQci)</translation>
     </message>
     <message>
-        <location line="+40"/>
+        <location line="+46"/>
         <source>Verify the message to ensure it was signed with the specified BitBean address</source>
         <translation>Verifieer een bericht om zeker te zijn dat deze is ondertekend met een specifiek BitBean adres</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+3"/>
+        <source>Verify &amp;Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
         <source>Reset all verify message fields</source>
         <translation>Verwijder alles in de invulvelden</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Close window</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
@@ -3036,7 +3272,7 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>Voer BitBean handtekening in</translation>
     </message>
     <message>
-        <location line="+82"/>
+        <location line="+92"/>
         <location line="+81"/>
         <source>The entered address is invalid.</source>
         <translation>Het opgegeven adres is ongeldig.</translation>
@@ -3100,6 +3336,14 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <location line="+5"/>
         <source>Message verified.</source>
         <translation>Bericht correct geverifiëerd.</translation>
+    </message>
+</context>
+<context>
+    <name>TrafficGraphWidget</name>
+    <message>
+        <location filename="../trafficgraphwidget.cpp" line="+80"/>
+        <source>KB/s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3302,7 +3546,12 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>Transactiedetails</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+28"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+24"/>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Dit venster laat een uitgebreide beschrijving van de transactie zien</translation>
     </message>
@@ -3614,9 +3863,8 @@ Dit betekend dat een fee van %2 is vereist.</translation>
 <context>
     <name>WalletModel</name>
     <message>
-        <location filename="../walletmodel.cpp" line="+206"/>
         <source>Sending...</source>
-        <translation>Versturen...</translation>
+        <translation type="obsolete">Versturen...</translation>
     </message>
 </context>
 <context>
@@ -3865,14 +4113,12 @@ Als het bestand niet bestaat, maak het dan aan, met een alleen-lezen permissie.<
         <translation type="unfinished">Maximum per-connectie zendbuffer, &lt;n&gt;*1000 bytes (standaard: 1000)</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Use UPnP to map the listening port (default: 1 when listening)</source>
-        <translation type="unfinished">Gebruik UPnP om de luisterende poort te mappen (standaard: 1 als er wordt geluisterd)</translation>
+        <translation type="obsolete">Gebruik UPnP om de luisterende poort te mappen (standaard: 1 als er wordt geluisterd)</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Use UPnP to map the listening port (default: 0)</source>
-        <translation type="unfinished">Gebruik UPnP om de luisterende poort te mappen (standaard: 0)</translation>
+        <translation type="obsolete">Gebruik UPnP om de luisterende poort te mappen (standaard: 0)</translation>
     </message>
     <message>
         <location line="+1"/>
