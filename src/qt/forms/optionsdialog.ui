@@ -236,7 +236,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tabMain">
       <attribute name="title">
@@ -588,17 +588,27 @@
           <string>Whether to show BitBean addresses in the transaction list or not.</string>
          </property>
          <property name="text">
-          <string>&amp;Display addresses in transaction list</string>
+          <string>&amp;Display Addresses With Transactions</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QCheckBox" name="beanControlFeatures">
          <property name="toolTip">
-          <string>Whether to show bean control features or not.</string>
+          <string>Allow individual selection of bean inputs when sending.</string>
          </property>
          <property name="text">
-          <string>Display bean &amp;control features (experts only!)</string>
+          <string>Enable Bean &amp;Control</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="minimizeCoinAge">
+         <property name="toolTip">
+          <string>Whether to select bean outputs randomly or with minimal bean age.</string>
+         </property>
+         <property name="text">
+          <string>Minimize Bean &amp;Weight Consumption</string>
          </property>
         </widget>
        </item>
@@ -652,19 +662,6 @@
         <bool>true</bool>
        </property>
       </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>48</height>
-        </size>
-       </property>
-      </spacer>
      </item>
      <item>
       <widget class="QPushButton" name="okButton">
@@ -762,6 +759,19 @@
         <bool>false</bool>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>48</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>
