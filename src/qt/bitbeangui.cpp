@@ -223,17 +223,17 @@ void BitbeanGUI::createActions()
     overviewAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_1));
     tabGroup->addAction(overviewAction);
 
-    sendBeansAction = new QAction(QIcon(":/icons/send"), tr("&Send Beans"), this);
-    sendBeansAction->setToolTip(tr("Send Beans to a BitBean address"));
-    sendBeansAction->setCheckable(true);
-    sendBeansAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
-    tabGroup->addAction(sendBeansAction);
-
     receiveBeansAction = new QAction(QIcon(":/icons/receiving_addresses"), tr("&Receive Beans"), this);
     receiveBeansAction->setToolTip(tr("Show the list of addresses for receiving payments"));
     receiveBeansAction->setCheckable(true);
-    receiveBeansAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_3));
+    receiveBeansAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
     tabGroup->addAction(receiveBeansAction);
+
+    sendBeansAction = new QAction(QIcon(":/icons/send"), tr("&Send Beans"), this);
+    sendBeansAction->setToolTip(tr("Send Beans to a BitBean address"));
+    sendBeansAction->setCheckable(true);
+    sendBeansAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_3));
+    tabGroup->addAction(sendBeansAction);
 
     historyAction = new QAction(QIcon(":/icons/history"), tr("&Transactions"), this);
     historyAction->setToolTip(tr("Browse transaction history"));
