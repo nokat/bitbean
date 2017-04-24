@@ -198,8 +198,8 @@ Copyright © 2014 para pengembang BitBean</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>For staking only</source>
-        <translation>Hanya untuk staking</translation>
+        <source>For sprouting only</source>
+        <translation>Hanya untuk sprouting</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -1053,33 +1053,33 @@ Alamat: %4
     </message>
     <message>
         <location line="+117"/>
-        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Not staking because wallet is locked</source>
+        <source>Not sprouting because wallet is locked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because wallet is offline</source>
+        <source>Not sprouting because wallet is offline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because wallet is syncing</source>
+        <source>Not sprouting because wallet is syncing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because you don&apos;t have mature beans</source>
+        <source>Not sprouting because you don&apos;t have mature beans</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking</source>
-        <translation type="unfinished">Lagi tidak staking</translation>
+        <source>Not sprouting</source>
+        <translation type="unfinished">Lagi tidak sprouting</translation>
     </message>
 </context>
 <context>
@@ -1357,8 +1357,8 @@ Alamat: %4
         </translation>
     </message>
     <message>
-        <source>Not staking</source>
-        <translation type="obsolete">Lagi tidak staking</translation>
+        <source>Not sprouting</source>
+        <translation type="obsolete">Lagi tidak sprouting</translation>
     </message>
 </context>
 <context>
@@ -4115,8 +4115,8 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
     </message>
     <message>
         <location line="+1"/>
-        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
-        <translation type="unfinished">Eror: Dompet hanya di-buka hanya untuk staking, transaksi gagal dilaksanakan</translation>
+        <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
+        <translation type="unfinished">Eror: Dompet hanya di-buka hanya untuk sprouting, transaksi gagal dilaksanakan</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4281,8 +4281,8 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
         <translation type="obsolete">Kunci pribadi server (standar: server.pem)</translation>
     </message>
     <message>
-        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
-        <translation type="obsolete">Eror: Dompet hanya di-buka hanya untuk staking, transaksi gagal dilaksanakan</translation>
+        <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
+        <translation type="obsolete">Eror: Dompet hanya di-buka hanya untuk sprouting, transaksi gagal dilaksanakan</translation>
     </message>
     <message>
         <source>This help message</source>

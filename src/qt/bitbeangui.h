@@ -70,7 +70,7 @@ private:
     SignVerifyMessageDialog *signVerifyMessageDialog;
 
     QLabel *labelEncryptionIcon;
-    QLabel *labelStakingIcon;
+    QLabel *labelSproutingIcon;
     QLabel *labelConnectionsIcon;
     QLabel *labelBlocksIcon;
     QLabel *progressBarLabel;
@@ -205,7 +205,7 @@ private slots:
     void detectShutdown();
 
     void updateWeight();
-    void updateStakingIcon();
+    void updateSproutingIcon();
 };
 
 #endif

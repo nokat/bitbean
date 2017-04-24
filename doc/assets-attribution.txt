@@ -38,8 +38,8 @@ Icons:
     src/qt/res/icons/send.png
     src/qt/res/icons/signmessage.png
     src/qt/res/icons/sprout.png
-    src/qt/res/icons/staking_off.png
-    src/qt/res/icons/staking_on.png
+    src/qt/res/icons/sprouting_off.png
+    src/qt/res/icons/sprouting_on.png
     src/qt/res/icons/transaction_conflicted.png
     src/qt/res/icons/tx_inout.png
     src/qt/res/icons/tx_input.png

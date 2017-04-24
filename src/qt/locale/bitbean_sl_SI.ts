@@ -204,8 +204,8 @@ Ta proizvod vključuje softver razvit s strani projekta OpenSSL za uporabo v Ope
     </message>
     <message>
         <location line="+3"/>
-        <source>For staking only</source>
-        <translation>Samo za staking.</translation>
+        <source>For sprouting only</source>
+        <translation>Samo za sprouting.</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -1128,32 +1128,32 @@ Naslov: %4
     </message>
     <message>
         <location line="+117"/>
-        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="unfinished">Deležeje [Staking].&lt;br&gt;Teža vašega deleženja je %1&lt;br&gt;Teža celotne mreže deleženja je %2&lt;br&gt;Pričakovan čas do prejema nagrade %3</translation>
+        <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation type="unfinished">Deležeje [Sprouting].&lt;br&gt;Teža vašega deleženja je %1&lt;br&gt;Teža celotne mreže deleženja je %2&lt;br&gt;Pričakovan čas do prejema nagrade %3</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Not staking because wallet is locked</source>
+        <source>Not sprouting because wallet is locked</source>
         <translation type="unfinished">Ne deležite ker je denarnica zakljenjena</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because wallet is offline</source>
+        <source>Not sprouting because wallet is offline</source>
         <translation type="unfinished">Ne deležite ker denarnica ni povezana</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because wallet is syncing</source>
+        <source>Not sprouting because wallet is syncing</source>
         <translation type="unfinished">Ne deležite ker se denarnica sinhronizira z omrežjem</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because you don&apos;t have mature beans</source>
+        <source>Not sprouting because you don&apos;t have mature beans</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking</source>
+        <source>Not sprouting</source>
         <translation type="unfinished">Ne deležite</translation>
     </message>
 </context>
@@ -1362,23 +1362,23 @@ Naslov: %4
         <translation type="obsolete">Prenešenih %1 blokov transakcijske zgodovine.</translation>
     </message>
     <message>
-        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="obsolete">Deležeje [Staking].&lt;br&gt;Teža vašega deleženja je %1&lt;br&gt;Teža celotne mreže deleženja je %2&lt;br&gt;Pričakovan čas do prejema nagrade %3</translation>
+        <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation type="obsolete">Deležeje [Sprouting].&lt;br&gt;Teža vašega deleženja je %1&lt;br&gt;Teža celotne mreže deleženja je %2&lt;br&gt;Pričakovan čas do prejema nagrade %3</translation>
     </message>
     <message>
-        <source>Not staking because wallet is locked</source>
+        <source>Not sprouting because wallet is locked</source>
         <translation type="obsolete">Ne deležite ker je denarnica zakljenjena</translation>
     </message>
     <message>
-        <source>Not staking because wallet is offline</source>
+        <source>Not sprouting because wallet is offline</source>
         <translation type="obsolete">Ne deležite ker denarnica ni povezana</translation>
     </message>
     <message>
-        <source>Not staking because wallet is syncing</source>
+        <source>Not sprouting because wallet is syncing</source>
         <translation type="obsolete">Ne deležite ker se denarnica sinhronizira z omrežjem</translation>
     </message>
     <message>
-        <source>Not staking because you don&apos;t have mature coins</source>
+        <source>Not sprouting because you don&apos;t have mature coins</source>
         <translation type="obsolete">Ne deležite ker nimate zrelih kovancev. </translation>
     </message>
     <message numerus="yes">
@@ -1530,7 +1530,7 @@ Naslov: %4
         </translation>
     </message>
     <message>
-        <source>Not staking</source>
+        <source>Not sprouting</source>
         <translation type="obsolete">Ne deležite</translation>
     </message>
     <message>
@@ -1899,7 +1899,7 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
         <translation>Nakazilo plačila &amp; provizija</translation>
     </message>
     <message>
-        <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
+        <source>Reserved amount does not participate in sprouting and is therefore spendable at any time.</source>
         <translation type="obsolete">Rezervirana količina ne deleži in je tako na voljo za potrošnjo.</translation>
     </message>
     <message>
@@ -4547,7 +4547,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+1"/>
-        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
+        <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

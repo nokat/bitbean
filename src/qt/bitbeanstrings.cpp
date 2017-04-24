@@ -175,7 +175,7 @@ QT_TRANSLATE_NOOP("bitbean-core", ""
 "Unable to bind to %s on this computer. BitBean is probably already running."),
 QT_TRANSLATE_NOOP("bitbean-core", "Unable to bind to %s on this computer (bind returned error %d, %s)"),
 QT_TRANSLATE_NOOP("bitbean-core", "Error: Wallet locked, unable to create transaction  "),
-QT_TRANSLATE_NOOP("bitbean-core", "Error: Wallet unlocked for staking only, unable to create transaction."),
+QT_TRANSLATE_NOOP("bitbean-core", "Error: Wallet unlocked for sprouting only, unable to create transaction."),
 QT_TRANSLATE_NOOP("bitbean-core", ""
 "Error: This transaction requires a transaction fee of at least %s because of "
 "its amount, complexity, or use of recently received funds  "),

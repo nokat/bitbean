@@ -212,8 +212,8 @@ Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in d
     </message>
     <message>
         <location line="+3"/>
-        <source>For staking only</source>
-        <translation>Alleen voor staking</translation>
+        <source>For sprouting only</source>
+        <translation>Alleen voor sprouting</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -1114,32 +1114,32 @@ Adres: %4
     </message>
     <message>
         <location line="+117"/>
-        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="unfinished">Staking. &lt;br&gt; Uw gewicht wordt  %1 &lt;br&gt; Network gewicht is %2 &lt;br&gt; Verwachte tijd om beloning te verdienen is %3</translation>
+        <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation type="unfinished">Sprouting. &lt;br&gt; Uw gewicht wordt  %1 &lt;br&gt; Network gewicht is %2 &lt;br&gt; Verwachte tijd om beloning te verdienen is %3</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Not staking because wallet is locked</source>
-        <translation type="unfinished">Niet staking omdat portemonnee aan het beveiligd is</translation>
+        <source>Not sprouting because wallet is locked</source>
+        <translation type="unfinished">Niet sprouting omdat portemonnee aan het beveiligd is</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because wallet is offline</source>
-        <translation type="unfinished">Niet staking omdat portemonnee aan het offline is</translation>
+        <source>Not sprouting because wallet is offline</source>
+        <translation type="unfinished">Niet sprouting omdat portemonnee aan het offline is</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because wallet is syncing</source>
-        <translation type="unfinished">Niet staking omdat portemonnee aan het synchroniseren is.</translation>
+        <source>Not sprouting because wallet is syncing</source>
+        <translation type="unfinished">Niet sprouting omdat portemonnee aan het synchroniseren is.</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because you don&apos;t have mature beans</source>
+        <source>Not sprouting because you don&apos;t have mature beans</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking</source>
+        <source>Not sprouting</source>
         <translation type="unfinished">Niet aan het staken.</translation>
     </message>
 </context>
@@ -1344,24 +1344,24 @@ Adres: %4
         <translation type="obsolete">%1 blokken van transactie geschiedenis gedownload.</translation>
     </message>
     <message>
-        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="obsolete">Staking. &lt;br&gt; Uw gewicht wordt  %1 &lt;br&gt; Network gewicht is %2 &lt;br&gt; Verwachte tijd om beloning te verdienen is %3</translation>
+        <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation type="obsolete">Sprouting. &lt;br&gt; Uw gewicht wordt  %1 &lt;br&gt; Network gewicht is %2 &lt;br&gt; Verwachte tijd om beloning te verdienen is %3</translation>
     </message>
     <message>
-        <source>Not staking because wallet is locked</source>
-        <translation type="obsolete">Niet staking omdat portemonnee aan het beveiligd is</translation>
+        <source>Not sprouting because wallet is locked</source>
+        <translation type="obsolete">Niet sprouting omdat portemonnee aan het beveiligd is</translation>
     </message>
     <message>
-        <source>Not staking because wallet is offline</source>
-        <translation type="obsolete">Niet staking omdat portemonnee aan het offline is</translation>
+        <source>Not sprouting because wallet is offline</source>
+        <translation type="obsolete">Niet sprouting omdat portemonnee aan het offline is</translation>
     </message>
     <message>
-        <source>Not staking because wallet is syncing</source>
-        <translation type="obsolete">Niet staking omdat portemonnee aan het synchroniseren is.</translation>
+        <source>Not sprouting because wallet is syncing</source>
+        <translation type="obsolete">Niet sprouting omdat portemonnee aan het synchroniseren is.</translation>
     </message>
     <message>
-        <source>Not staking because you don&apos;t have mature coins</source>
-        <translation type="obsolete">Niet staking omdat je geen mature munten hebt</translation>
+        <source>Not sprouting because you don&apos;t have mature coins</source>
+        <translation type="obsolete">Niet sprouting omdat je geen mature munten hebt</translation>
     </message>
     <message numerus="yes">
         <source>%n second(s) ago</source>
@@ -1496,7 +1496,7 @@ Adres: %4
         </translation>
     </message>
     <message>
-        <source>Not staking</source>
+        <source>Not sprouting</source>
         <translation type="obsolete">Niet aan het staken.</translation>
     </message>
     <message>
@@ -1865,8 +1865,8 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>Betaal &amp;transactiekosten</translation>
     </message>
     <message>
-        <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
-        <translation type="obsolete">Gereserveerde hoeveelheid doet niet mee in staking en is daarom altijd uitgeefbaar.</translation>
+        <source>Reserved amount does not participate in sprouting and is therefore spendable at any time.</source>
+        <translation type="obsolete">Gereserveerde hoeveelheid doet niet mee in sprouting en is daarom altijd uitgeefbaar.</translation>
     </message>
     <message>
         <location line="-15"/>
@@ -4504,8 +4504,8 @@ Als het bestand niet bestaat, maak het dan aan, met een alleen-lezen permissie.<
     </message>
     <message>
         <location line="+1"/>
-        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
-        <translation type="unfinished">Fout: Portemonnee ontgrendeld voor alleen staking, niet in staat om de transactie te maken.</translation>
+        <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
+        <translation type="unfinished">Fout: Portemonnee ontgrendeld voor alleen sprouting, niet in staat om de transactie te maken.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4959,8 +4959,8 @@ bijvoorbeeld: alertnotify = echo %%s | mail -s &quot;BitBean Alert&quot; admin@f
         <translation type="obsolete">Aanvaardbare cijfers (standaard: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
     </message>
     <message>
-        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
-        <translation type="obsolete">Fout: Portemonnee ontgrendeld voor alleen staking, niet in staat om de transactie te maken.</translation>
+        <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
+        <translation type="obsolete">Fout: Portemonnee ontgrendeld voor alleen sprouting, niet in staat om de transactie te maken.</translation>
     </message>
     <message>
         <source>WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers.</source>

@@ -142,25 +142,25 @@ BitbeanGUI::BitbeanGUI(QWidget *parent):
     frameBlocksLayout->setContentsMargins(3,0,3,0);
     frameBlocksLayout->setSpacing(3);
     labelEncryptionIcon = new QLabel();
-    labelStakingIcon = new QLabel();
+    labelSproutingIcon = new QLabel();
     labelConnectionsIcon = new QLabel();
     labelBlocksIcon = new QLabel();
     frameBlocksLayout->addStretch();
     frameBlocksLayout->addWidget(labelEncryptionIcon);
     frameBlocksLayout->addStretch();
-    frameBlocksLayout->addWidget(labelStakingIcon);
+    frameBlocksLayout->addWidget(labelSproutingIcon);
     frameBlocksLayout->addStretch();
     frameBlocksLayout->addWidget(labelConnectionsIcon);
     frameBlocksLayout->addStretch();
     frameBlocksLayout->addWidget(labelBlocksIcon);
     frameBlocksLayout->addStretch();
 
-    if (GetBoolArg("-staking", true))
+    if (GetBoolArg("-sprouting", true))
     {
-        QTimer *timerStakingIcon = new QTimer(labelStakingIcon);
-        connect(timerStakingIcon, SIGNAL(timeout()), this, SLOT(updateStakingIcon()));
-        timerStakingIcon->start(30 * 1000);
-        updateStakingIcon();
+        QTimer *timerSproutingIcon = new QTimer(labelSproutingIcon);
+        connect(timerSproutingIcon, SIGNAL(timeout()), this, SLOT(updateSproutingIcon()));
+        timerSproutingIcon->start(30 * 1000);
+        updateSproutingIcon();
     }
 
     // Progress bar and label for blocks download
@@ -970,7 +970,7 @@ void BitbeanGUI::unlockWallet()
     if(walletModel->getEncryptionStatus() == WalletModel::Locked)
     {
         AskPassphraseDialog::Mode mode = sender() == unlockWalletAction ?
-              AskPassphraseDialog::UnlockStaking : AskPassphraseDialog::Unlock;
+              AskPassphraseDialog::UnlockSprouting : AskPassphraseDialog::Unlock;
         AskPassphraseDialog dlg(mode, this);
         dlg.setModel(walletModel);
         dlg.exec();
@@ -1036,7 +1036,7 @@ void BitbeanGUI::updateWeight()
     pwalletMain->GetStakeWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
 }
 
-void BitbeanGUI::updateStakingIcon()
+void BitbeanGUI::updateSproutingIcon()
 {
     // Mitigate freezing of inital block downloads, as updateWeight requires mutex lock
     if (nLastBeanStakeSearchInterval && pwalletMain && !IsInitialBlockDownload())
@@ -1067,22 +1067,22 @@ void BitbeanGUI::updateStakingIcon()
                 text = tr("%n day(s)", "", nEstimateTime/(60*60*24));
             }
 
-            labelStakingIcon->setPixmap(QIcon(":/icons/staking_on").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-            labelStakingIcon->setToolTip(tr("Bean Sprout Info:<br>Your weight is %1<br>Network weight is %2<br>Expected time to earn reward is %3").arg(nWeight).arg(nNetworkWeight).arg(text));
+            labelSproutingIcon->setPixmap(QIcon(":/icons/sprouting_on").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
+            labelSproutingIcon->setToolTip(tr("Bean Sprout Info:<br>Your weight is %1<br>Network weight is %2<br>Expected time to earn reward is %3").arg(nWeight).arg(nNetworkWeight).arg(text));
         }
         else
         {
-            labelStakingIcon->setPixmap(QIcon(":/icons/staking_off").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
+            labelSproutingIcon->setPixmap(QIcon(":/icons/sprouting_off").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
             if (pwalletMain && pwalletMain->IsLocked())
-                labelStakingIcon->setToolTip(tr("Not staking because wallet is locked"));
+                labelSproutingIcon->setToolTip(tr("Not sprouting because wallet is locked"));
             else if (vNodes.empty())
-                labelStakingIcon->setToolTip(tr("Not staking because wallet is offline"));
+                labelSproutingIcon->setToolTip(tr("Not sprouting because wallet is offline"));
             else if (IsInitialBlockDownload())
-                labelStakingIcon->setToolTip(tr("Not staking because wallet is syncing"));
+                labelSproutingIcon->setToolTip(tr("Not sprouting because wallet is syncing"));
             else if (!nWeight)
-                labelStakingIcon->setToolTip(tr("Not staking because you don't have mature beans"));
+                labelSproutingIcon->setToolTip(tr("Not sprouting because you don't have mature beans"));
             else
-                labelStakingIcon->setToolTip(tr("Not staking"));
+                labelSproutingIcon->setToolTip(tr("Not sprouting"));
         }
     }
 }

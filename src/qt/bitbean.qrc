@@ -33,8 +33,8 @@
         <file alias="filesave">res/icons/filesave.png</file>
         <file alias="qrcode">res/icons/qrcode.png</file>
         <file alias="debugwindow">res/icons/debugwindow.png</file>
-        <file alias="staking_off">res/icons/staking_off.png</file>
-        <file alias="staking_on">res/icons/staking_on.png</file>
+        <file alias="sprouting_off">res/icons/sprouting_off.png</file>
+        <file alias="sprouting_on">res/icons/sprouting_on.png</file>
         <file alias="bitbean">res/icons/bitbean-80.png</file>
         <file alias="toolbar">res/icons/bitbean-16.png</file>
         <file alias="transaction_confirmed">res/icons/beans-confirmed.png</file>

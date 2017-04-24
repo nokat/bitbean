@@ -19,7 +19,7 @@
 #include "util.h"
 #include "walletdb.h"
 
-extern bool fWalletUnlockStakingOnly;
+extern bool fWalletUnlockSproutingOnly;
 extern bool fConfChange;
 class CAccountingEntry;
 class CWalletTx;

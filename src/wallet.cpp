@@ -120,10 +120,10 @@ bool CWallet::AddCScript(const CScript& redeemScript)
     return CWalletDB(strWalletFile).WriteCScript(Hash160(redeemScript), redeemScript);
 }
 
-// optional setting to unlock wallet for staking only
+// optional setting to unlock wallet for sprouting only
 // serves to disable the trivial sendmoney when OS account compromised
 // provides no real security
-bool fWalletUnlockStakingOnly = false;
+bool fWalletUnlockSproutingOnly = false;
 
 bool CWallet::Unlock(const SecureString& strWalletPassphrase)
 {
@@ -2066,9 +2066,9 @@ string CWallet::SendMoney(CScript scriptPubKey, int64_t nValue, CWalletTx& wtxNe
         printf("SendMoney() : %s", strError.c_str());
         return strError;
     }
-    if (fWalletUnlockStakingOnly)
+    if (fWalletUnlockSproutingOnly)
     {
-        string strError = _("Error: Wallet unlocked for staking only, unable to create transaction.");
+        string strError = _("Error: Wallet unlocked for sprouting only, unable to create transaction.");
         printf("SendMoney() : %s", strError.c_str());
         return strError;
     }

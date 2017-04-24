@@ -215,8 +215,8 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="+3"/>
-        <source>For staking only</source>
-        <translation>Para &quot;Staking&quot; solamente</translation>
+        <source>For sprouting only</source>
+        <translation>Para &quot;Sprouting&quot; solamente</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -1117,33 +1117,33 @@ Dirección: %4
     </message>
     <message>
         <location line="+117"/>
-        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="unfinished">Staking.&lt;br&gt;Su contribución es %1&lt;br&gt;Contribución de la red es %2&lt;br&gt;Tiempo esperado para ganar la recompensa es %3</translation>
+        <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation type="unfinished">Sprouting.&lt;br&gt;Su contribución es %1&lt;br&gt;Contribución de la red es %2&lt;br&gt;Tiempo esperado para ganar la recompensa es %3</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Not staking because wallet is locked</source>
-        <translation type="unfinished">No esta &quot;Staking&quot; porque monedera está bloqueada</translation>
+        <source>Not sprouting because wallet is locked</source>
+        <translation type="unfinished">No esta &quot;Sprouting&quot; porque monedera está bloqueada</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because wallet is offline</source>
-        <translation type="unfinished">No esta &quot;Staking&quot; porque monedera está desconectada</translation>
+        <source>Not sprouting because wallet is offline</source>
+        <translation type="unfinished">No esta &quot;Sprouting&quot; porque monedera está desconectada</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because wallet is syncing</source>
-        <translation type="unfinished">No esta &quot;Staking&quot; porque monedera está sincronizando</translation>
+        <source>Not sprouting because wallet is syncing</source>
+        <translation type="unfinished">No esta &quot;Sprouting&quot; porque monedera está sincronizando</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because you don&apos;t have mature beans</source>
+        <source>Not sprouting because you don&apos;t have mature beans</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking</source>
-        <translation type="unfinished">No estás &quot;Staking&quot;</translation>
+        <source>Not sprouting</source>
+        <translation type="unfinished">No estás &quot;Sprouting&quot;</translation>
     </message>
 </context>
 <context>
@@ -1347,24 +1347,24 @@ Dirección: %4
         <translation type="obsolete">Descargado %1 bloques de historial de transacciones.</translation>
     </message>
     <message>
-        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="obsolete">Staking.&lt;br&gt;Su contribución es %1&lt;br&gt;Contribución de la red es %2&lt;br&gt;Tiempo esperado para ganar la recompensa es %3</translation>
+        <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation type="obsolete">Sprouting.&lt;br&gt;Su contribución es %1&lt;br&gt;Contribución de la red es %2&lt;br&gt;Tiempo esperado para ganar la recompensa es %3</translation>
     </message>
     <message>
-        <source>Not staking because wallet is locked</source>
-        <translation type="obsolete">No esta &quot;Staking&quot; porque monedera está bloqueada</translation>
+        <source>Not sprouting because wallet is locked</source>
+        <translation type="obsolete">No esta &quot;Sprouting&quot; porque monedera está bloqueada</translation>
     </message>
     <message>
-        <source>Not staking because wallet is offline</source>
-        <translation type="obsolete">No esta &quot;Staking&quot; porque monedera está desconectada</translation>
+        <source>Not sprouting because wallet is offline</source>
+        <translation type="obsolete">No esta &quot;Sprouting&quot; porque monedera está desconectada</translation>
     </message>
     <message>
-        <source>Not staking because wallet is syncing</source>
-        <translation type="obsolete">No esta &quot;Staking&quot; porque monedera está sincronizando</translation>
+        <source>Not sprouting because wallet is syncing</source>
+        <translation type="obsolete">No esta &quot;Sprouting&quot; porque monedera está sincronizando</translation>
     </message>
     <message>
-        <source>Not staking because you don&apos;t have mature coins</source>
-        <translation type="obsolete">No esta &quot;Staking&quot; ya que no tiene monedas maduras</translation>
+        <source>Not sprouting because you don&apos;t have mature coins</source>
+        <translation type="obsolete">No esta &quot;Sprouting&quot; ya que no tiene monedas maduras</translation>
     </message>
     <message numerus="yes">
         <source>%n second(s) ago</source>
@@ -1499,8 +1499,8 @@ Dirección: %4
         </translation>
     </message>
     <message>
-        <source>Not staking</source>
-        <translation type="obsolete">No estás &quot;Staking&quot;</translation>
+        <source>Not sprouting</source>
+        <translation type="obsolete">No estás &quot;Sprouting&quot;</translation>
     </message>
     <message>
         <source>A fatal error occurred. BitBean can no longer continue safely and will quit.</source>
@@ -1868,8 +1868,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <translation>Comisión de &amp;transacciones</translation>
     </message>
     <message>
-        <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
-        <translation type="obsolete">Cantidad reservada no participa en el &quot;Staking&quot; y por lo tanto se puede gastar en cualquier momento.</translation>
+        <source>Reserved amount does not participate in sprouting and is therefore spendable at any time.</source>
+        <translation type="obsolete">Cantidad reservada no participa en el &quot;Sprouting&quot; y por lo tanto se puede gastar en cualquier momento.</translation>
     </message>
     <message>
         <location line="-15"/>
@@ -4522,7 +4522,7 @@ Si el archivo no existe, créelo con permiso de lectura solamente del propietari
     </message>
     <message>
         <location line="+1"/>
-        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
+        <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
         <translation type="unfinished">Error: Monedero desbloqueado sólo para hacer &quot;stake&quot;, no es posible crear una transacción.</translation>
     </message>
     <message>
@@ -4991,7 +4991,7 @@ por ejemplo: alertnotify=echo %%s | mail -s &quot;BitBean Alert&quot; admin@foo.
         <translation type="obsolete">Cifras aceptables: (por defecto: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
     </message>
     <message>
-        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
+        <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
         <translation type="obsolete">Error: Monedero desbloqueado sólo para hacer &quot;stake&quot;, no es posible crear una transacción.</translation>
     </message>
     <message>

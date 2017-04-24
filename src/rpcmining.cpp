@@ -60,24 +60,24 @@ Value getmininginfo(const Array& params, bool fHelp)
     return obj;
 }
 
-Value getstakinginfo(const Array& params, bool fHelp)
+Value getsproutinginfo(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
         throw runtime_error(
-            "getstakinginfo\n"
-            "Returns an object containing staking-related information.");
+            "getsproutinginfo\n"
+            "Returns an object containing sprouting-related information.");
 
     uint64_t nMinWeight = 0, nMaxWeight = 0, nWeight = 0;
     pwalletMain->GetStakeWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
 
     uint64_t nNetworkWeight = GetPoSKernelPS();
-    bool staking = nLastBeanStakeSearchInterval && nWeight;
-    int nExpectedTime = staking ? (nTargetSpacing * nNetworkWeight / nWeight) : -1;
+    bool sprouting = nLastBeanStakeSearchInterval && nWeight;
+    int nExpectedTime = sprouting ? (nTargetSpacing * nNetworkWeight / nWeight) : -1;
 
     Object obj;
 
-    obj.push_back(Pair("Enabled", GetBoolArg("-staking", true)));
-    obj.push_back(Pair("Staking", staking));
+    obj.push_back(Pair("Enabled", GetBoolArg("-sprouting", true)));
+    obj.push_back(Pair("Sprouting", sprouting));
     obj.push_back(Pair("Errors", GetWarnings("statusbar")));
 
     obj.push_back(Pair("Current Block Size", (uint64_t)nLastBlockSize));

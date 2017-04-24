@@ -212,8 +212,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+3"/>
-        <source>For staking only</source>
-        <translation>Pour &quot;staking&quot; seulement</translation>
+        <source>For sprouting only</source>
+        <translation>Pour &quot;sprouting&quot; seulement</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -1114,33 +1114,33 @@ Adresse : %4
     </message>
     <message>
         <location line="+117"/>
-        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="unfinished">Staking.&lt;br&gt;Votre poids est de  %1&lt;br&gt;Le poids du réseau est de %2&lt;br&gt;Temps estimé avant récompense %3</translation>
+        <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation type="unfinished">Sprouting.&lt;br&gt;Votre poids est de  %1&lt;br&gt;Le poids du réseau est de %2&lt;br&gt;Temps estimé avant récompense %3</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Not staking because wallet is locked</source>
-        <translation type="unfinished">Pas de staking car votre portefeuille est verouillé</translation>
+        <source>Not sprouting because wallet is locked</source>
+        <translation type="unfinished">Pas de sprouting car votre portefeuille est verouillé</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because wallet is offline</source>
-        <translation type="unfinished"> Pas de staking car votre portefeuille est hors ligne</translation>
+        <source>Not sprouting because wallet is offline</source>
+        <translation type="unfinished"> Pas de sprouting car votre portefeuille est hors ligne</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because wallet is syncing</source>
-        <translation type="unfinished">Pas de staking car votre portefeuille est en cours de synchronisation</translation>
+        <source>Not sprouting because wallet is syncing</source>
+        <translation type="unfinished">Pas de sprouting car votre portefeuille est en cours de synchronisation</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because you don&apos;t have mature beans</source>
+        <source>Not sprouting because you don&apos;t have mature beans</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking</source>
-        <translation type="unfinished">Pas de staking</translation>
+        <source>Not sprouting</source>
+        <translation type="unfinished">Pas de sprouting</translation>
     </message>
 </context>
 <context>
@@ -1344,24 +1344,24 @@ Adresse : %4
         <translation type="obsolete">Téléchargement de blocs de l&apos;historique de transactions : 1% blocks</translation>
     </message>
     <message>
-        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="obsolete">Staking.&lt;br&gt;Votre poids est de  %1&lt;br&gt;Le poids du réseau est de %2&lt;br&gt;Temps estimé avant récompense %3</translation>
+        <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation type="obsolete">Sprouting.&lt;br&gt;Votre poids est de  %1&lt;br&gt;Le poids du réseau est de %2&lt;br&gt;Temps estimé avant récompense %3</translation>
     </message>
     <message>
-        <source>Not staking because wallet is locked</source>
-        <translation type="obsolete">Pas de staking car votre portefeuille est verouillé</translation>
+        <source>Not sprouting because wallet is locked</source>
+        <translation type="obsolete">Pas de sprouting car votre portefeuille est verouillé</translation>
     </message>
     <message>
-        <source>Not staking because wallet is offline</source>
-        <translation type="obsolete"> Pas de staking car votre portefeuille est hors ligne</translation>
+        <source>Not sprouting because wallet is offline</source>
+        <translation type="obsolete"> Pas de sprouting car votre portefeuille est hors ligne</translation>
     </message>
     <message>
-        <source>Not staking because wallet is syncing</source>
-        <translation type="obsolete">Pas de staking car votre portefeuille est en cours de synchronisation</translation>
+        <source>Not sprouting because wallet is syncing</source>
+        <translation type="obsolete">Pas de sprouting car votre portefeuille est en cours de synchronisation</translation>
     </message>
     <message>
-        <source>Not staking because you don&apos;t have mature coins</source>
-        <translation type="obsolete">Pas de staking car vos monnaies ne sont pas encore matures</translation>
+        <source>Not sprouting because you don&apos;t have mature coins</source>
+        <translation type="obsolete">Pas de sprouting car vos monnaies ne sont pas encore matures</translation>
     </message>
     <message numerus="yes">
         <source>%n second(s) ago</source>
@@ -1496,8 +1496,8 @@ Adresse : %4
         </translation>
     </message>
     <message>
-        <source>Not staking</source>
-        <translation type="obsolete">Pas de staking</translation>
+        <source>Not sprouting</source>
+        <translation type="obsolete">Pas de sprouting</translation>
     </message>
     <message>
         <source>A fatal error occurred. BitBean can no longer continue safely and will quit.</source>
@@ -1865,8 +1865,8 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
         <translation>Payer des &amp;frais de transaction</translation>
     </message>
     <message>
-        <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
-        <translation type="obsolete">Montants réservés ne participant pas au &quot;staking&quot; pouvant être utilisés pour dépensés à tout moment.</translation>
+        <source>Reserved amount does not participate in sprouting and is therefore spendable at any time.</source>
+        <translation type="obsolete">Montants réservés ne participant pas au &quot;sprouting&quot; pouvant être utilisés pour dépensés à tout moment.</translation>
     </message>
     <message>
         <location line="-15"/>
@@ -2249,7 +2249,7 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
     </message>
     <message>
         <source>Total of coins that was staked, and do not yet count toward the current balance</source>
-        <translation type="obsolete">Montant total des transactions en &quot;staking&quot; et ne figurant pas encore dans le solde actuel</translation>
+        <translation type="obsolete">Montant total des transactions en &quot;sprouting&quot; et ne figurant pas encore dans le solde actuel</translation>
     </message>
     <message>
         <location filename="../overviewpage.cpp" line="+130"/>
@@ -4505,8 +4505,8 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     </message>
     <message>
         <location line="+1"/>
-        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
-        <translation type="unfinished">Erreur: Portefeuille déverrouillé uniquement pour &quot;staking&quot; , impossible d&apos;effectuer cette transaction</translation>
+        <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
+        <translation type="unfinished">Erreur: Portefeuille déverrouillé uniquement pour &quot;sprouting&quot; , impossible d&apos;effectuer cette transaction</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4636,7 +4636,7 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule acco
     </message>
     <message>
         <source>Stake your coins to support network and gain reward (default: 1)</source>
-        <translation type="obsolete">Placer vos monnaies en staking, afin de soutenir le réseau et obtenir des intérêts (par défault: 1)</translation>
+        <translation type="obsolete">Placer vos monnaies en sprouting, afin de soutenir le réseau et obtenir des intérêts (par défault: 1)</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
@@ -4961,8 +4961,8 @@ par exemple: alertnotify=echo %%s | mail -s &quot;Alerte BitBean&quot; admin@foo
         <translation type="obsolete">Algorithmes de  chiffrements acceptés (par défaut: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
     </message>
     <message>
-        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
-        <translation type="obsolete">Erreur: Portefeuille déverrouillé uniquement pour &quot;staking&quot; , impossible d&apos;effectuer cette transaction</translation>
+        <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
+        <translation type="obsolete">Erreur: Portefeuille déverrouillé uniquement pour &quot;sprouting&quot; , impossible d&apos;effectuer cette transaction</translation>
     </message>
     <message>
         <source>WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers.</source>

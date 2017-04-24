@@ -213,8 +213,8 @@ Denna produkten innehåller mjukvara utvecklad av OpenSSL Project för användni
     </message>
     <message>
         <location line="+3"/>
-        <source>For staking only</source>
-        <translation>Endast för &quot;staking&quot;</translation>
+        <source>For sprouting only</source>
+        <translation>Endast för &quot;sprouting&quot;</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -1115,33 +1115,33 @@ Adress: %4
     </message>
     <message>
         <location line="+117"/>
-        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="unfinished">Staking.&lt;br&gt;Din vikt är %1&lt;br&gt;Nätverkets vikt är %2&lt;br&gt;Uppskattad tid för att få belöning är %3</translation>
+        <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation type="unfinished">Sprouting.&lt;br&gt;Din vikt är %1&lt;br&gt;Nätverkets vikt är %2&lt;br&gt;Uppskattad tid för att få belöning är %3</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Not staking because wallet is locked</source>
-        <translation type="unfinished">Ingen staking för att plånboken är låst</translation>
+        <source>Not sprouting because wallet is locked</source>
+        <translation type="unfinished">Ingen sprouting för att plånboken är låst</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because wallet is offline</source>
-        <translation type="unfinished">Ingen staking för att plånboken är offline</translation>
+        <source>Not sprouting because wallet is offline</source>
+        <translation type="unfinished">Ingen sprouting för att plånboken är offline</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because wallet is syncing</source>
-        <translation type="unfinished">Ingen staking för att plånboken synkroniseras</translation>
+        <source>Not sprouting because wallet is syncing</source>
+        <translation type="unfinished">Ingen sprouting för att plånboken synkroniseras</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking because you don&apos;t have mature beans</source>
+        <source>Not sprouting because you don&apos;t have mature beans</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Not staking</source>
-        <translation type="unfinished">Ingen staking</translation>
+        <source>Not sprouting</source>
+        <translation type="unfinished">Ingen sprouting</translation>
     </message>
 </context>
 <context>
@@ -1345,24 +1345,24 @@ Adress: %4
         <translation type="obsolete">Laddade ner %1 block av transaktionshistoriken.</translation>
     </message>
     <message>
-        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="obsolete">Staking.&lt;br&gt;Din vikt är %1&lt;br&gt;Nätverkets vikt är %2&lt;br&gt;Uppskattad tid för att få belöning är %3</translation>
+        <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation type="obsolete">Sprouting.&lt;br&gt;Din vikt är %1&lt;br&gt;Nätverkets vikt är %2&lt;br&gt;Uppskattad tid för att få belöning är %3</translation>
     </message>
     <message>
-        <source>Not staking because wallet is locked</source>
-        <translation type="obsolete">Ingen staking för att plånboken är låst</translation>
+        <source>Not sprouting because wallet is locked</source>
+        <translation type="obsolete">Ingen sprouting för att plånboken är låst</translation>
     </message>
     <message>
-        <source>Not staking because wallet is offline</source>
-        <translation type="obsolete">Ingen staking för att plånboken är offline</translation>
+        <source>Not sprouting because wallet is offline</source>
+        <translation type="obsolete">Ingen sprouting för att plånboken är offline</translation>
     </message>
     <message>
-        <source>Not staking because wallet is syncing</source>
-        <translation type="obsolete">Ingen staking för att plånboken synkroniseras</translation>
+        <source>Not sprouting because wallet is syncing</source>
+        <translation type="obsolete">Ingen sprouting för att plånboken synkroniseras</translation>
     </message>
     <message>
-        <source>Not staking because you don&apos;t have mature coins</source>
-        <translation type="obsolete">Ingen staking för att dina coins är ännu inte föråldrade</translation>
+        <source>Not sprouting because you don&apos;t have mature coins</source>
+        <translation type="obsolete">Ingen sprouting för att dina coins är ännu inte föråldrade</translation>
     </message>
     <message numerus="yes">
         <source>%n second(s) ago</source>
@@ -1497,8 +1497,8 @@ Adress: %4
         </translation>
     </message>
     <message>
-        <source>Not staking</source>
-        <translation type="obsolete">Ingen staking</translation>
+        <source>Not sprouting</source>
+        <translation type="obsolete">Ingen sprouting</translation>
     </message>
     <message>
         <source>A fatal error occurred. BitBean can no longer continue safely and will quit.</source>
@@ -1866,7 +1866,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation>Betala överförings&amp;avgift</translation>
     </message>
     <message>
-        <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
+        <source>Reserved amount does not participate in sprouting and is therefore spendable at any time.</source>
         <translation type="obsolete">Reserverad mängd deltar inte i stake-processen och kan därför spenderas när som helst.</translation>
     </message>
     <message>
@@ -4506,7 +4506,7 @@ Om filen inte existerar, skapa den med filrättigheten endast läsbar för ägar
     </message>
     <message>
         <location line="+1"/>
-        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
+        <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
         <translation type="unfinished">Fel: Plånboken öppnad endast för stake-process, kan inte skapa transaktion.</translation>
     </message>
     <message>
@@ -4962,7 +4962,7 @@ till exempel: alertnotify=echo %%s | mail -s &quot;BitBean Varning&quot; admin@f
         <translation type="obsolete">Godtagbara chiffer (standard: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
     </message>
     <message>
-        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
+        <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
         <translation type="obsolete">Fel: Plånboken öppnad endast för stake-process, kan inte skapa transaktion.</translation>
     </message>
     <message>
