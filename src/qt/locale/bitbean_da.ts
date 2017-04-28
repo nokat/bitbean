@@ -2101,7 +2101,7 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
         <translation>De viste oplysninger kan være forældet. Din tegnebog synkroniserer automatisk med BitBean netværket efter en forbindelse er etableret, men denne proces er ikke afsluttet endnu.</translation>
     </message>
     <message>
-        <source>Stake:</source>
+        <source>Sprout:</source>
         <translation type="obsolete">Rente:</translation>
     </message>
     <message>
@@ -2248,7 +2248,7 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
         <translation type="obsolete">Summen af ​​transaktioner, der endnu mangler at blive bekræftet, og ikke tæller mod den nuværende balance</translation>
     </message>
     <message>
-        <source>Total of coins that was staked, and do not yet count toward the current balance</source>
+        <source>Total of coins that was sproutd, and do not yet count toward the current balance</source>
         <translation type="obsolete">I alt mønter, der bliver berentet, og endnu ikke tæller mod den nuværende balance</translation>
     </message>
     <message>
@@ -4080,7 +4080,7 @@ Hvis filen ikke eksisterer, opret den og giv ingen andre end ejeren læserettigh
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4635,7 +4635,7 @@ Hvis filen ikke eksisterer, opret den og giv ingen andre end ejeren læserettigh
         <translation type="obsolete">Binder til en given adresse. Brug [host]: port notation for IPv6</translation>
     </message>
     <message>
-        <source>Stake your coins to support network and gain reward (default: 1)</source>
+        <source>Sprout your coins to support network and gain reward (default: 1)</source>
         <translation type="obsolete">Opbevar dine mønter for at støtte netværket og få belønning (default: 1)</translation>
     </message>
     <message>

@@ -35,10 +35,10 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-set<pair<COutPoint, unsigned int> > setStakeSeen;
+set<pair<COutPoint, unsigned int> > setSproutSeen;
 
 CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // Starting Difficulty: results with 0,000244140625 proof-of-work difficulty
-CBigNum bnProofOfStakeLimit(~uint256(0) >> 20);
+CBigNum bnProofOfSproutLimit(~uint256(0) >> 20);
 CBigNum bnProofOfWorkLimitTestNet(~uint256(0) >> 16);
 
 static const int64_t nTargetTimespan = 60 * 60;  // BitBean - every 1 hour
@@ -47,8 +47,8 @@ static const int64_t nInterval = nTargetTimespan / nTargetSpacing;
 
 static const int64_t nDiffChangeTarget = 1;
 
-unsigned int nStakeMinAge = 6 * 60 * 60; // BitBean - 6 hours
-unsigned int nStakeMaxAge = 6 * 60 * 60; // BitBean - 6 hours
+unsigned int nSproutMinAge = 6 * 60 * 60; // BitBean - 6 hours
+unsigned int nSproutMaxAge = 6 * 60 * 60; // BitBean - 6 hours
 unsigned int nModifierInterval = 10 * 60; // BitBean - time to elapse before new modifier is computed
 
 int nBeanbaseMaturity = 100;
@@ -67,7 +67,7 @@ CMedianFilter<int> cPeerBlockCounts(5, 0); // Amount of blocks that other nodes 
 
 map<uint256, CBlock*> mapOrphanBlocks;
 multimap<uint256, CBlock*> mapOrphanBlocksByPrev;
-set<pair<COutPoint, unsigned int> > setStakeSeenOrphan;
+set<pair<COutPoint, unsigned int> > setSproutSeenOrphan;
 
 map<uint256, CTransaction> mapOrphanTransactions;
 map<uint256, set<uint256> > mapOrphanTransactionsByPrev;
@@ -139,7 +139,7 @@ void SyncWithWallets(const CTransaction& tx, const CBlock* pblock, bool fUpdate,
     if (!fConnect)
     {
         // ppbean: wallets need to refund inputs when disconnecting beansprout
-        if (tx.IsBeanStake())
+        if (tx.IsBeanSprout())
         {
             BOOST_FOREACH(CWallet* pwallet, setpwalletRegistered)
                 if (pwallet->IsFromMe(tx))
@@ -500,7 +500,7 @@ bool CTransaction::CheckTransaction() const
     for (unsigned int i = 0; i < vout.size(); i++)
     {
         const CTxOut& txout = vout[i];
-        if (txout.IsEmpty() && !IsBeanBase() && !IsBeanStake())
+        if (txout.IsEmpty() && !IsBeanBase() && !IsBeanSprout())
             return DoS(100, error("CTransaction::CheckTransaction() : txout empty for user transaction"));
         if (txout.nValue < 0)
             return DoS(100, error("CTransaction::CheckTransaction() : txout.nValue negative"));
@@ -579,7 +579,7 @@ bool CTxMemPool::accept(CTxDB& txdb, CTransaction &tx, bool fCheckInputs,
         return tx.DoS(100, error("CTxMemPool::accept() : beanbase as individual tx"));
 
     // ppbean: beansprout is also only valid in a block, not as a loose transaction
-    if (tx.IsBeanStake())
+    if (tx.IsBeanSprout())
         return tx.DoS(100, error("CTxMemPool::accept() : beansprout as individual tx"));
 
     // To help v0.1.5 clients who would see it as a negative number
@@ -831,7 +831,7 @@ int CMerkleTx::GetDepthInMainChain(CBlockIndex* &pindexRet) const
 
 int CMerkleTx::GetBlocksToMaturity() const
 {
-    if (!(IsBeanBase() || IsBeanStake()))
+    if (!(IsBeanBase() || IsBeanSprout()))
         return 0;
     return max(0, (nBeanbaseMaturity+10) - GetDepthInMainChain());
 }
@@ -866,7 +866,7 @@ bool CWalletTx::AcceptWalletTransaction(CTxDB& txdb, bool fCheckInputs)
         // Add previous supporting transactions first
         BOOST_FOREACH(CMerkleTx& tx, vtxPrev)
         {
-            if (!(tx.IsBeanBase() || tx.IsBeanStake()))
+            if (!(tx.IsBeanBase() || tx.IsBeanSprout()))
             {
                 uint256 hash = tx.GetHash();
                 if (!mempool.exists(hash) && !txdb.ContainsTx(hash))
@@ -920,7 +920,7 @@ bool GetTransaction(const uint256 &hash, CTransaction &tx, uint256 &hashBlock)
                 hashBlock = block.GetHash();
             return true;
         }
-// look for transaction in disconnected blocks to find orphaned CoinBase and CoinStake transactions
+// look for transaction in disconnected blocks to find orphaned CoinBase and CoinSprout transactions
         BOOST_FOREACH(PAIRTYPE(const uint256, CBlockIndex*)& item, mapBlockIndex)
         {
              CBlockIndex* pindex = item.second;
@@ -1014,14 +1014,14 @@ int64_t GetProofOfWorkReward(int64_t nFees)
     return nSubsidy + nFees;
 }
 
-// miner's bean stake reward based on bean age spent (bean-days)
-int64_t GetProofOfStakeReward(int64_t nBeanAge, int64_t nFees)
+// miner's bean sprout reward based on bean age spent (bean-days)
+int64_t GetProofOfSproutReward(int64_t nBeanAge, int64_t nFees)
 {
    // int64_t nSubsidy = nBeanAge * bean_YEAR_REWARD * 33 / (365 * 33 + 8);
     int64_t nSubsidy = 1000 * bean;
 
     if (fDebug && GetBoolArg("-printcreation"))
-        printf("GetProofOfStakeReward(): create=%s nBeanAge=%"PRId64"\n", FormatMoney(nSubsidy).c_str(), nBeanAge);
+        printf("GetProofOfSproutReward(): create=%s nBeanAge=%"PRId64"\n", FormatMoney(nSubsidy).c_str(), nBeanAge);
 
     return nSubsidy + nFees;
 }
@@ -1047,19 +1047,19 @@ unsigned int ComputeMaxBits(CBigNum bnTargetLimit, unsigned int nBase, int64_t n
     return bnResult.GetCompact();
 }
 //
-// minimum amount of stake that could possibly be required nTime after
-// minimum proof-of-stake required was nBase
+// minimum amount of sprout that could possibly be required nTime after
+// minimum proof-of-sprout required was nBase
 //
-unsigned int ComputeMinStake(unsigned int nBase, int64_t nTime, unsigned int nBlockTime)
+unsigned int ComputeMinSprout(unsigned int nBase, int64_t nTime, unsigned int nBlockTime)
 {
-    return ComputeMaxBits(bnProofOfStakeLimit, nBase, nTime);
+    return ComputeMaxBits(bnProofOfSproutLimit, nBase, nTime);
 }
 
 
 // ppbean: find last block index up to pindex
-const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfStake)
+const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfSprout)
 {
-    while (pindex && pindex->pprev && (pindex->IsProofOfStake() != fProofOfStake))
+    while (pindex && pindex->pprev && (pindex->IsProofOfSprout() != fProofOfSprout))
         pindex = pindex->pprev;
     return pindex;
 }
@@ -1074,18 +1074,18 @@ unsigned int ComputeMinWork(unsigned int nBase, int64_t nTime)
 {
     return ComputeMaxBits(bnProofOfWorkLimit, nBase, nTime);
 }
-unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake)
+unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfSprout)
 {
 
-	CBigNum bnTargetLimit = fProofOfStake ? bnProofOfStakeLimit : bnProofOfWorkLimit;
+	CBigNum bnTargetLimit = fProofOfSprout ? bnProofOfSproutLimit : bnProofOfWorkLimit;
 
     if (pindexLast == NULL)
         return bnTargetLimit.GetCompact(); // genesis block
 
-    const CBlockIndex* pindexPrev = GetLastBlockIndex(pindexLast, fProofOfStake);
+    const CBlockIndex* pindexPrev = GetLastBlockIndex(pindexLast, fProofOfSprout);
     if (pindexPrev->pprev == NULL)
         return bnTargetLimit.GetCompact(); // first block
-    const CBlockIndex* pindexPrevPrev = GetLastBlockIndex(pindexPrev->pprev, fProofOfStake);
+    const CBlockIndex* pindexPrevPrev = GetLastBlockIndex(pindexPrev->pprev, fProofOfSprout);
     if (pindexPrevPrev->pprev == NULL)
         return bnTargetLimit.GetCompact(); // second block
 
@@ -1355,7 +1355,7 @@ bool CTransaction::ConnectInputs(CTxDB& txdb, MapPrevTx inputs, map<uint256, CTx
                 return DoS(100, error("ConnectInputs() : %s prevout.n out of range %d %"PRIszu" %"PRIszu" prev tx %s\n%s", GetHash().ToString().substr(0,10).c_str(), prevout.n, txPrev.vout.size(), txindex.vSpent.size(), prevout.hash.ToString().substr(0,10).c_str(), txPrev.ToString().c_str()));
 
             // If prev is beanbase or beansprout, check that it's matured
-            if (txPrev.IsBeanBase() || txPrev.IsBeanStake())
+            if (txPrev.IsBeanBase() || txPrev.IsBeanSprout())
                 for (const CBlockIndex* pindex = pindexBlock; pindex && pindexBlock->nHeight - pindex->nHeight < nBeanbaseMaturity; pindex = pindex->pprev)
                     if (pindex->nBlockPos == txindex.pos.nBlockPos && pindex->nFile == txindex.pos.nFile)
                         return error("ConnectInputs() : tried to spend %s at depth %d", txPrev.IsBeanBase() ? "beanbase" : "beansprout", pindexBlock->nHeight - pindex->nHeight);
@@ -1408,7 +1408,7 @@ bool CTransaction::ConnectInputs(CTxDB& txdb, MapPrevTx inputs, map<uint256, CTx
             }
         }
 
-        if (!IsBeanStake())
+        if (!IsBeanSprout())
         {
             if (nValueIn < GetValueOut())
                 return DoS(100, error("ConnectInputs() : %s value in < value out", GetHash().ToString().substr(0,10).c_str()));
@@ -1523,7 +1523,7 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
     int64_t nFees = 0;
     int64_t nValueIn = 0;
     int64_t nValueOut = 0;
-    int64_t nStakeReward = 0;
+    int64_t nSproutReward = 0;
     unsigned int nSigOps = 0;
     BOOST_FOREACH(CTransaction& tx, vtx)
     {
@@ -1576,10 +1576,10 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
             int64_t nTxValueOut = tx.GetValueOut();
             nValueIn += nTxValueIn;
             nValueOut += nTxValueOut;
-            if (!tx.IsBeanStake())
+            if (!tx.IsBeanSprout())
                 nFees += nTxValueIn - nTxValueOut;
-            if (tx.IsBeanStake())
-                nStakeReward = nTxValueOut - nTxValueIn;
+            if (tx.IsBeanSprout())
+                nSproutReward = nTxValueOut - nTxValueIn;
 
             if (!tx.ConnectInputs(txdb, mapInputs, mapQueuedChanges, posThisTx, pindex, true, false))
                 return false;
@@ -1597,17 +1597,17 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
                    vtx[0].GetValueOut(),
                    nReward));
     }
-    if (IsProofOfStake())
+    if (IsProofOfSprout())
     {
-        // ppbean: bean stake tx earns reward instead of paying fee
+        // ppbean: bean sprout tx earns reward instead of paying fee
         uint64_t nBeanAge;
         if (!vtx[1].GetBeanAge(txdb, nBeanAge))
             return error("ConnectBlock() : %s unable to get bean age for beansprout", vtx[1].GetHash().ToString().substr(0,10).c_str());
 
-        int64_t nCalculatedStakeReward = GetProofOfStakeReward(nBeanAge, nFees);
+        int64_t nCalculatedSproutReward = GetProofOfSproutReward(nBeanAge, nFees);
 
-        if (nStakeReward > nCalculatedStakeReward)
-            return DoS(100, error("ConnectBlock() : beansprout pays too much(actual=%"PRId64" vs calculated=%"PRId64")", nStakeReward, nCalculatedStakeReward));
+        if (nSproutReward > nCalculatedSproutReward)
+            return DoS(100, error("ConnectBlock() : beansprout pays too much(actual=%"PRId64" vs calculated=%"PRId64")", nSproutReward, nCalculatedSproutReward));
     }
 
     // ppbean: track money supply and mint amount info
@@ -1687,7 +1687,7 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
 
         // Queue memory transactions to resurrect
         BOOST_FOREACH(const CTransaction& tx, block.vtx)
-            if (!(tx.IsBeanBase() || tx.IsBeanStake()))
+            if (!(tx.IsBeanBase() || tx.IsBeanSprout()))
                 vResurrect.push_back(tx);
     }
 
@@ -1915,7 +1915,7 @@ bool CTransaction::GetBeanAge(CTxDB& txdb, uint64_t& nBeanAge) const
         CBlock block;
         if (!block.ReadFromDisk(txindex.pos.nFile, txindex.pos.nBlockPos, false))
             return false; // unable to read block of previous transaction
-        if (block.GetBlockTime() + nStakeMinAge > nTime)
+        if (block.GetBlockTime() + nSproutMinAge > nTime)
             continue; // only count beans meeting min age requirement
 
         int64_t nValueIn = txPrev.vout[txin.prevout.n].nValue;
@@ -1976,27 +1976,27 @@ bool CBlock::AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos, const u
     // ppbean: compute chain trust score
     pindexNew->nChainTrust = (pindexNew->pprev ? pindexNew->pprev->nChainTrust : 0) + pindexNew->GetBlockTrust();
 
-    // ppbean: compute stake entropy bit for stake modifier
-    if (!pindexNew->SetStakeEntropyBit(GetStakeEntropyBit()))
-        return error("AddToBlockIndex() : SetStakeEntropyBit() failed");
+    // ppbean: compute sprout entropy bit for sprout modifier
+    if (!pindexNew->SetSproutEntropyBit(GetSproutEntropyBit()))
+        return error("AddToBlockIndex() : SetSproutEntropyBit() failed");
 
     // Record proof hash value
     pindexNew->hashProof = hashProof;
 
-    // ppbean: compute stake modifier
-    uint64_t nStakeModifier = 0;
-    bool fGeneratedStakeModifier = false;
-    if (!ComputeNextStakeModifier(pindexNew->pprev, nStakeModifier, fGeneratedStakeModifier))
-        return error("AddToBlockIndex() : ComputeNextStakeModifier() failed");
-    pindexNew->SetStakeModifier(nStakeModifier, fGeneratedStakeModifier);
-    pindexNew->nStakeModifierChecksum = GetStakeModifierChecksum(pindexNew);
-    //if (!CheckStakeModifierCheckpoints(pindexNew->nHeight, pindexNew->nStakeModifierChecksum))
-        //return error("AddToBlockIndex() : Rejected by stake modifier checkpoint height=%d, modifier=0x%016"PRIx64, pindexNew->nHeight, nStakeModifier);
+    // ppbean: compute sprout modifier
+    uint64_t nSproutModifier = 0;
+    bool fGeneratedSproutModifier = false;
+    if (!ComputeNextSproutModifier(pindexNew->pprev, nSproutModifier, fGeneratedSproutModifier))
+        return error("AddToBlockIndex() : ComputeNextSproutModifier() failed");
+    pindexNew->SetSproutModifier(nSproutModifier, fGeneratedSproutModifier);
+    pindexNew->nSproutModifierChecksum = GetSproutModifierChecksum(pindexNew);
+    //if (!CheckSproutModifierCheckpoints(pindexNew->nHeight, pindexNew->nSproutModifierChecksum))
+        //return error("AddToBlockIndex() : Rejected by sprout modifier checkpoint height=%d, modifier=0x%016"PRIx64, pindexNew->nHeight, nSproutModifier);
 
     // Add to mapBlockIndex
     map<uint256, CBlockIndex*>::iterator mi = mapBlockIndex.insert(make_pair(hash, pindexNew)).first;
-    if (pindexNew->IsProofOfStake())
-        setStakeSeen.insert(make_pair(pindexNew->prevoutStake, pindexNew->nStakeTime));
+    if (pindexNew->IsProofOfSprout())
+        setSproutSeen.insert(make_pair(pindexNew->prevoutSprout, pindexNew->nSproutTime));
     pindexNew->phashBlock = &((*mi).first);
 
     // Write to disk block index
@@ -2055,26 +2055,26 @@ bool CBlock::CheckBlock(bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig) c
     if (GetBlockTime() > FutureDrift((int64_t)vtx[0].nTime))
         return DoS(50, error("CheckBlock() : beanbase timestamp is too early"));
 
-    if (IsProofOfStake())
+    if (IsProofOfSprout())
     {
-        // Beanbase output should be empty if proof-of-stake block
+        // Beanbase output should be empty if proof-of-sprout block
         if (vtx[0].vout.size() != 1 || !vtx[0].vout[0].IsEmpty())
-            return DoS(100, error("CheckBlock() : beanbase output not empty for proof-of-stake block"));
+            return DoS(100, error("CheckBlock() : beanbase output not empty for proof-of-sprout block"));
 
         // Second transaction must be beansprout, the rest must not be
-        if (vtx.empty() || !vtx[1].IsBeanStake())
+        if (vtx.empty() || !vtx[1].IsBeanSprout())
             return DoS(100, error("CheckBlock() : second tx is not beansprout"));
         for (unsigned int i = 2; i < vtx.size(); i++)
-            if (vtx[i].IsBeanStake())
+            if (vtx[i].IsBeanSprout())
                 return DoS(100, error("CheckBlock() : more than one beansprout"));
 
         // Check beansprout timestamp
-        if (!CheckBeanStakeTimestamp(GetBlockTime(), (int64_t)vtx[1].nTime))
+        if (!CheckBeanSproutTimestamp(GetBlockTime(), (int64_t)vtx[1].nTime))
             return DoS(50, error("CheckBlock() : beansprout timestamp violation nTimeBlock=%"PRId64" nTimeTx=%u", GetBlockTime(), vtx[1].nTime));
 
-        // Bitbean: check proof-of-stake block signature
+        // Bitbean: check proof-of-sprout block signature
         if (fCheckSig && !CheckBlockSignature())
-            return DoS(100, error("CheckBlock() : bad proof-of-stake block signature"));
+            return DoS(100, error("CheckBlock() : bad proof-of-sprout block signature"));
     }
 
     // Check transactions
@@ -2134,9 +2134,9 @@ bool CBlock::AcceptBlock()
     if (IsProofOfWork() && nHeight > LAST_POW_BLOCK)
         return DoS(100, error("AcceptBlock() : reject proof-of-work at height %d", nHeight));
 
-    // Check proof-of-work or proof-of-stake
-    if (nBits != GetNextTargetRequired(pindexPrev, IsProofOfStake()))
-        return DoS(100, error("AcceptBlock() : incorrect %s", IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
+    // Check proof-of-work or proof-of-sprout
+    if (nBits != GetNextTargetRequired(pindexPrev, IsProofOfSprout()))
+        return DoS(100, error("AcceptBlock() : incorrect %s", IsProofOfWork() ? "proof-of-work" : "proof-of-sprout"));
 
     // Check timestamp against prev
     if (GetBlockTime() <= pindexPrev->GetPastTimeLimit() || FutureDrift(GetBlockTime()) < pindexPrev->GetBlockTime())
@@ -2153,12 +2153,12 @@ bool CBlock::AcceptBlock()
 
     uint256 hashProof;
     // Verify hash target and signature of beansprout tx
-    if (IsProofOfStake())
+    if (IsProofOfSprout())
     {
-        uint256 targetProofOfStake;
-        if (!CheckProofOfStake(vtx[1], nBits, hashProof, targetProofOfStake))
+        uint256 targetProofOfSprout;
+        if (!CheckProofOfSprout(vtx[1], nBits, hashProof, targetProofOfSprout))
         {
-            printf("WARNING: AcceptBlock(): check proof-of-stake failed for block %s\n", hash.ToString().c_str());
+            printf("WARNING: AcceptBlock(): check proof-of-sprout failed for block %s\n", hash.ToString().c_str());
             return false; // do not error here as we expect this during initial block download
         }
     }
@@ -2241,11 +2241,11 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock)
     if (mapOrphanBlocks.count(hash))
         return error("ProcessBlock() : already have block (orphan) %s", hash.ToString().substr(0,20).c_str());
 
-    // ppbean: check proof-of-stake
-    // Limited duplicity on stake: prevents block flood attack
-    // Duplicate stake allowed only when there is orphan child block
-    if (pblock->IsProofOfStake() && setStakeSeen.count(pblock->GetProofOfStake()) && !mapOrphanBlocksByPrev.count(hash) && !Checkpoints::WantedByPendingSyncCheckpoint(hash))
-        return error("ProcessBlock() : duplicate proof-of-stake (%s, %d) for block %s", pblock->GetProofOfStake().first.ToString().c_str(), pblock->GetProofOfStake().second, hash.ToString().c_str());
+    // ppbean: check proof-of-sprout
+    // Limited duplicity on sprout: prevents block flood attack
+    // Duplicate sprout allowed only when there is orphan child block
+    if (pblock->IsProofOfSprout() && setSproutSeen.count(pblock->GetProofOfSprout()) && !mapOrphanBlocksByPrev.count(hash) && !Checkpoints::WantedByPendingSyncCheckpoint(hash))
+        return error("ProcessBlock() : duplicate proof-of-sprout (%s, %d) for block %s", pblock->GetProofOfSprout().first.ToString().c_str(), pblock->GetProofOfSprout().second, hash.ToString().c_str());
 
     // Preliminary checks
     if (!pblock->CheckBlock())
@@ -2260,8 +2260,8 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock)
         bnNewBlock.SetCompact(pblock->nBits);
         CBigNum bnRequired;
 
-        if (pblock->IsProofOfStake())
-            bnRequired.SetCompact(ComputeMinStake(GetLastBlockIndex(pcheckpoint, true)->nBits, deltaTime, pblock->nTime));
+        if (pblock->IsProofOfSprout())
+            bnRequired.SetCompact(ComputeMinSprout(GetLastBlockIndex(pcheckpoint, true)->nBits, deltaTime, pblock->nTime));
         else
             bnRequired.SetCompact(ComputeMinWork(GetLastBlockIndex(pcheckpoint, false)->nBits, deltaTime));
 
@@ -2269,7 +2269,7 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock)
         {
             if (pfrom)
                 pfrom->Misbehaving(100);
-            return error("ProcessBlock() : block with too little %s", pblock->IsProofOfStake()? "proof-of-stake" : "proof-of-work");
+            return error("ProcessBlock() : block with too little %s", pblock->IsProofOfSprout()? "proof-of-sprout" : "proof-of-work");
         }
     }
 
@@ -2282,15 +2282,15 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock)
     {
         printf("ProcessBlock: ORPHAN BLOCK, prev=%s\n", pblock->hashPrevBlock.ToString().substr(0,20).c_str());
 
-        // ppcoin: check proof-of-stake
-        if (pblock->IsProofOfStake())
+        // ppcoin: check proof-of-sprout
+        if (pblock->IsProofOfSprout())
         {
-            // Limited duplicity on stake: prevents block flood attack
-            // Duplicate stake allowed only when there is orphan child block
-            if (setStakeSeenOrphan.count(pblock->GetProofOfStake()) && !mapOrphanBlocksByPrev.count(hash) && !Checkpoints::WantedByPendingSyncCheckpoint(hash))
-                return error("ProcessBlock() : duplicate proof-of-stake (%s, %d) for orphan block %s", pblock->GetProofOfStake().first.ToString().c_str(), pblock->GetProofOfStake().second, hash.ToString().c_str());
+            // Limited duplicity on sprout: prevents block flood attack
+            // Duplicate sprout allowed only when there is orphan child block
+            if (setSproutSeenOrphan.count(pblock->GetProofOfSprout()) && !mapOrphanBlocksByPrev.count(hash) && !Checkpoints::WantedByPendingSyncCheckpoint(hash))
+                return error("ProcessBlock() : duplicate proof-of-sprout (%s, %d) for orphan block %s", pblock->GetProofOfSprout().first.ToString().c_str(), pblock->GetProofOfSprout().second, hash.ToString().c_str());
             else
-                setStakeSeenOrphan.insert(pblock->GetProofOfStake());
+                setSproutSeenOrphan.insert(pblock->GetProofOfSprout());
         }
         CBlock* pblock2 = new CBlock(*pblock);
         mapOrphanBlocks.insert(make_pair(hash, pblock2));
@@ -2301,7 +2301,7 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock)
         {
             pfrom->PushGetBlocks(pindexBest, GetOrphanRoot(pblock2));
             // ppbean: getblocks may not obtain the ancestor block rejected
-            // earlier by duplicate-stake check so we ask for it again directly
+            // earlier by duplicate-sprout check so we ask for it again directly
             if (!IsInitialBlockDownload())
                 pfrom->AskFor(CInv(MSG_BLOCK, WantedByOrphan(pblock2)));
         }
@@ -2326,7 +2326,7 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock)
             if (pblockOrphan->AcceptBlock())
                 vWorkQueue.push_back(pblockOrphan->GetHash());
             mapOrphanBlocks.erase(pblockOrphan->GetHash());
-            setStakeSeenOrphan.erase(pblockOrphan->GetProofOfStake());
+            setSproutSeenOrphan.erase(pblockOrphan->GetProofOfSprout());
             delete pblockOrphan;
         }
         mapOrphanBlocksByPrev.erase(hashPrev);
@@ -2341,34 +2341,34 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock)
     return true;
 }
 
-// Bitbean: attempt to generate suitable proof-of-stake
+// Bitbean: attempt to generate suitable proof-of-sprout
 bool CBlock::SignBlock(CWallet& wallet, int64_t nFees)
 {
     // if we are trying to sign
-    //    something except proof-of-stake block template
+    //    something except proof-of-sprout block template
     if (!vtx[0].vout[0].IsEmpty())
         return false;
 
     // if we are trying to sign
-    //    a complete proof-of-stake block
-    if (IsProofOfStake())
+    //    a complete proof-of-sprout block
+    if (IsProofOfSprout())
         return true;
 
-    static int64_t nLastBeanStakeSearchTime = GetAdjustedTime(); // startup timestamp
+    static int64_t nLastBeanSproutSearchTime = GetAdjustedTime(); // startup timestamp
 
     CKey key;
-    CTransaction txBeanStake;
-    int64_t nSearchTime = txBeanStake.nTime; // search to current time
+    CTransaction txBeanSprout;
+    int64_t nSearchTime = txBeanSprout.nTime; // search to current time
 
-    if (nSearchTime > nLastBeanStakeSearchTime)
+    if (nSearchTime > nLastBeanSproutSearchTime)
     {
-        if (wallet.CreateBeanStake(wallet, nBits, nSearchTime-nLastBeanStakeSearchTime, nFees, txBeanStake, key))
+        if (wallet.CreateBeanSprout(wallet, nBits, nSearchTime-nLastBeanSproutSearchTime, nFees, txBeanSprout, key))
         {
-            if (txBeanStake.nTime >= max(pindexBest->GetPastTimeLimit()+1, PastDrift(pindexBest->GetBlockTime())))
+            if (txBeanSprout.nTime >= max(pindexBest->GetPastTimeLimit()+1, PastDrift(pindexBest->GetBlockTime())))
             {
                 // make sure beansprout would meet timestamp protocol
                 //    as it would be the same as the block timestamp
-                vtx[0].nTime = nTime = txBeanStake.nTime;
+                vtx[0].nTime = nTime = txBeanSprout.nTime;
                 nTime = max(pindexBest->GetPastTimeLimit()+1, GetMaxTransactionTime());
                 nTime = max(GetBlockTime(), PastDrift(pindexBest->GetBlockTime()));
 
@@ -2377,15 +2377,15 @@ bool CBlock::SignBlock(CWallet& wallet, int64_t nFees)
                 for (vector<CTransaction>::iterator it = vtx.begin(); it != vtx.end();)
                     if (it->nTime > nTime) { it = vtx.erase(it); } else { ++it; }
 
-                vtx.insert(vtx.begin() + 1, txBeanStake);
+                vtx.insert(vtx.begin() + 1, txBeanSprout);
                 hashMerkleRoot = BuildMerkleTree();
 
                 // append a signature to our block
                 return key.Sign(GetHash(), vchBlockSig);
             }
         }
-        nLastBeanStakeSearchInterval = nSearchTime - nLastBeanStakeSearchTime;
-        nLastBeanStakeSearchTime = nSearchTime;
+        nLastBeanSproutSearchInterval = nSearchTime - nLastBeanSproutSearchTime;
+        nLastBeanSproutSearchTime = nSearchTime;
     }
 
     return false;
@@ -2493,7 +2493,7 @@ bool LoadBlockIndex(bool fAllowNew)
 
         bnTrustedModulus.SetHex("f0d14cf72623dacfe738d0892b599be0f31052239cddd95a3f25101c801dc990453b38c9434efe3f372db39a32c2bb44cbaea72d62c8931fa785b0ec44531308df3e46069be5573e49bb29f4d479bfc3d162f57a5965db03810be7636da265bfced9c01a6b0296c77910ebdc8016f70174f0f18a57b3b971ac43a934c6aedbc5c866764a3622b5b7e3f9832b8b3f133c849dbcc0396588abcd1e41048555746e4823fb8aba5b3d23692c6857fccce733d6bb6ec1d5ea0afafecea14a0f6f798b6b27f77dc989c557795cc39a0940ef6bb29a7fc84135193a55bcfc2f01dd73efad1b69f45a55198bd0e6bef4d338e452f6a420f1ae2b1167b923f76633ab6e55");
         bnProofOfWorkLimit = bnProofOfWorkLimitTestNet; // 16 bits PoW target limit for testnet
-        nStakeMinAge = 1 * 60 * 60; // test net min age is 1 hour
+        nSproutMinAge = 1 * 60 * 60; // test net min age is 1 hour
         nBeanbaseMaturity = 10; // test maturity is 10 blocks
     }
     else
@@ -3189,8 +3189,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
                     if (inv.hash == pfrom->hashContinue)
                     {
                         // ppbean: send latest proof-of-work block to allow the
-                        // download node to accept as orphan (proof-of-stake
-                        // block might be rejected by stake connection check)
+                        // download node to accept as orphan (proof-of-sprout
+                        // block might be rejected by sprout connection check)
                         vector<CInv> vInv;
                         vInv.push_back(CInv(MSG_BLOCK, GetLastBlockIndex(pindexBest, false)->GetBlockHash()));
                         pfrom->PushMessage("inv", vInv);
@@ -3247,8 +3247,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             {
                 printf("  getblocks stopping at %d %s\n", pindex->nHeight, pindex->GetBlockHash().ToString().substr(0,20).c_str());
                 // ppbean: tell downloading node about the latest block if it's
-                // without risk being rejected due to stake connection check
-                if (hashStop != hashBestChain && pindex->GetBlockTime() + nStakeMinAge > pindexBest->GetBlockTime())
+                // without risk being rejected due to sprout connection check
+                if (hashStop != hashBestChain && pindex->GetBlockTime() + nSproutMinAge > pindexBest->GetBlockTime())
                     pfrom->PushInventory(CInv(MSG_BLOCK, hashBestChain));
                 break;
             }

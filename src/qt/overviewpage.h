@@ -53,7 +53,7 @@ public:
 
 
 public slots:
-    void setBalance(qint64 balance, qint64 stake, qint64 unconfirmedBalance, qint64 immatureBalance);
+    void setBalance(qint64 balance, qint64 sprout, qint64 unconfirmedBalance, qint64 immatureBalance);
     void setNetworkinfo(ClientModel *modelNetworkinfo);
     void updateNetworkinfo();
     void updatePrevious(int, int, double, int, double);
@@ -66,7 +66,7 @@ private:
     WalletModel *model;
     ClientModel *modelNetworkinfo;
     qint64 currentBalance;
-    qint64 currentStake;
+    qint64 currentSprout;
     qint64 currentUnconfirmedBalance;
     qint64 currentImmatureBalance;
 

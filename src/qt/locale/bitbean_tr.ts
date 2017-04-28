@@ -2072,7 +2072,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <translation>Görüntülenen bilginin tarihi geçmiş olabilir. Cüzdanınız, bağlantı kurulduktan sonra otomatik olarak BitBean ağı ile senkronize olur ancak bu süreç, henüz tamamlanmamıştır.</translation>
     </message>
     <message>
-        <source>Stake:</source>
+        <source>Sprout:</source>
         <translation type="obsolete">Pay:</translation>
     </message>
     <message>
@@ -2219,7 +2219,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <translation type="obsolete">Henüz onaylanmamış ve mevcut bakiyede yer almayan işlemler toplamı</translation>
     </message>
     <message>
-        <source>Total of coins that was staked, and do not yet count toward the current balance</source>
+        <source>Total of coins that was sproutd, and do not yet count toward the current balance</source>
         <translation type="obsolete">Pay alınmış ve mevcut bakiyede yer almayan coin toplamı</translation>
     </message>
     <message>
@@ -4047,7 +4047,7 @@ Dosya mevcut değilse, sadece sahibi için okumayla sınırlı izin ile oluştur
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4594,7 +4594,7 @@ Dosya mevcut değilse, sadece sahibi için okumayla sınırlı izin ile oluştur
         <translation type="obsolete">Belirtilen adrese bağlı. IPv6 için [host]:port notasyonunu kullan</translation>
     </message>
     <message>
-        <source>Stake your coins to support network and gain reward (default: 1)</source>
+        <source>Sprout your coins to support network and gain reward (default: 1)</source>
         <translation type="obsolete">Ağı desteklemek için coinlerinizden pay alın ve ödül kazanın (varsayılan: 1)</translation>
     </message>
     <message>

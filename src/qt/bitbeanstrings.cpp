@@ -61,7 +61,7 @@ QT_TRANSLATE_NOOP("bitbean-core", "Find peers using internet relay chat (default
 QT_TRANSLATE_NOOP("bitbean-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),
 QT_TRANSLATE_NOOP("bitbean-core", "Bind to given address. Use [host]:port notation for IPv6"),
 QT_TRANSLATE_NOOP("bitbean-core", "Find peers using DNS lookup (default: 1)"),
-QT_TRANSLATE_NOOP("bitbean-core", "Stake your beans to support network and gain reward (default: 1)"),
+QT_TRANSLATE_NOOP("bitbean-core", "Sprout your beans to support network and gain reward (default: 1)"),
 QT_TRANSLATE_NOOP("bitbean-core", ""
 "Sync time with other nodes. Disable if time on your system is precise e.g. "
 "syncing with NTP (default: 1)"),

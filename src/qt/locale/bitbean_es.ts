@@ -2104,8 +2104,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <translation>La información mostrada puede estar fuera de fecha. Su monedera se sincroniza automáticamente con la red BitBean después de que se establece una conexión, pero este proceso no se ha completado todavía.</translation>
     </message>
     <message>
-        <source>Stake:</source>
-        <translation type="obsolete">Stake:</translation>
+        <source>Sprout:</source>
+        <translation type="obsolete">Sprout:</translation>
     </message>
     <message>
         <location line="-331"/>
@@ -2251,8 +2251,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <translation type="obsolete">Total de transacciones que aún no se han confirmado, y aún no cuentan para el balance actual</translation>
     </message>
     <message>
-        <source>Total of coins that was staked, and do not yet count toward the current balance</source>
-        <translation type="obsolete">Total de las monedas que fueron &quot;Staked&quot;, y aún no cuentan para el balance actual</translation>
+        <source>Total of coins that was sproutd, and do not yet count toward the current balance</source>
+        <translation type="obsolete">Total de las monedas que fueron &quot;Sproutd&quot;, y aún no cuentan para el balance actual</translation>
     </message>
     <message>
         <location filename="../overviewpage.cpp" line="+130"/>
@@ -4087,7 +4087,7 @@ Si el archivo no existe, créelo con permiso de lectura solamente del propietari
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4523,7 +4523,7 @@ Si el archivo no existe, créelo con permiso de lectura solamente del propietari
     <message>
         <location line="+1"/>
         <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
-        <translation type="unfinished">Error: Monedero desbloqueado sólo para hacer &quot;stake&quot;, no es posible crear una transacción.</translation>
+        <translation type="unfinished">Error: Monedero desbloqueado sólo para hacer &quot;sprout&quot;, no es posible crear una transacción.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4655,8 +4655,8 @@ Si el archivo no existe, créelo con permiso de lectura solamente del propietari
         <translation type="obsolete">Enlazar a la dirección dada. Utilice la notación [host]:puerto para IPv6</translation>
     </message>
     <message>
-        <source>Stake your coins to support network and gain reward (default: 1)</source>
-        <translation type="obsolete">Pon tus monedas en participación &quot;Stake&quot; para dar soporte a la red y ganar alguna recompensa (por defecto: 1)</translation>
+        <source>Sprout your coins to support network and gain reward (default: 1)</source>
+        <translation type="obsolete">Pon tus monedas en participación &quot;Sprout&quot; para dar soporte a la red y ganar alguna recompensa (por defecto: 1)</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
@@ -4992,7 +4992,7 @@ por ejemplo: alertnotify=echo %%s | mail -s &quot;BitBean Alert&quot; admin@foo.
     </message>
     <message>
         <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
-        <translation type="obsolete">Error: Monedero desbloqueado sólo para hacer &quot;stake&quot;, no es posible crear una transacción.</translation>
+        <translation type="obsolete">Error: Monedero desbloqueado sólo para hacer &quot;sprout&quot;, no es posible crear una transacción.</translation>
     </message>
     <message>
         <source>WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers.</source>

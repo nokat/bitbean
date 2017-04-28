@@ -32,7 +32,7 @@ Value getmininginfo(const Array& params, bool fHelp)
             "Returns an object containing mining-related information.");
 
     uint64_t nMinWeight = 0, nMaxWeight = 0, nWeight = 0;
-    pwalletMain->GetStakeWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
+    pwalletMain->GetSproutWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
 
     Object obj, diff, weight;
     obj.push_back(Pair("Blocks",        (int)nBestHeight));
@@ -40,22 +40,22 @@ Value getmininginfo(const Array& params, bool fHelp)
     obj.push_back(Pair("Current Block Tx",(uint64_t)nLastBlockTx));
 
     diff.push_back(Pair("Proof of Work",        GetDifficulty()));
-    diff.push_back(Pair("Proof of Stake",       GetDifficulty(GetLastBlockIndex(pindexBest, true))));
-    diff.push_back(Pair("Search Interval",      (int)nLastBeanStakeSearchInterval));
+    diff.push_back(Pair("Proof of Sprout",       GetDifficulty(GetLastBlockIndex(pindexBest, true))));
+    diff.push_back(Pair("Search Interval",      (int)nLastBeanSproutSearchInterval));
     obj.push_back(Pair("Difficulty",    diff));
 
     obj.push_back(Pair("Block Value",    (uint64_t)GetProofOfWorkReward(0)));
     obj.push_back(Pair("Net MH/s",     GetPoWMHashPS()));
-    obj.push_back(Pair("Net Stake Weight", GetPoSKernelPS()));
+    obj.push_back(Pair("Net Sprout Weight", GetPoSKernelPS()));
     obj.push_back(Pair("Errors",        GetWarnings("statusbar")));
     obj.push_back(Pair("Pooled Tx",      (uint64_t)mempool.size()));
 
     weight.push_back(Pair("Minimum",    (uint64_t)nMinWeight));
     weight.push_back(Pair("Maximum",    (uint64_t)nMaxWeight));
     weight.push_back(Pair("Combined",  (uint64_t)nWeight));
-    obj.push_back(Pair("Stake Weight", weight));
+    obj.push_back(Pair("Sprout Weight", weight));
 
-    obj.push_back(Pair("Stake Interest",    (uint64_t)bean_YEAR_REWARD));
+    obj.push_back(Pair("Sprout Interest",    (uint64_t)bean_YEAR_REWARD));
     obj.push_back(Pair("Testnet",       fTestNet));
     return obj;
 }
@@ -68,10 +68,10 @@ Value getsproutinginfo(const Array& params, bool fHelp)
             "Returns an object containing sprouting-related information.");
 
     uint64_t nMinWeight = 0, nMaxWeight = 0, nWeight = 0;
-    pwalletMain->GetStakeWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
+    pwalletMain->GetSproutWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
 
     uint64_t nNetworkWeight = GetPoSKernelPS();
-    bool sprouting = nLastBeanStakeSearchInterval && nWeight;
+    bool sprouting = nLastBeanSproutSearchInterval && nWeight;
     int nExpectedTime = sprouting ? (nTargetSpacing * nNetworkWeight / nWeight) : -1;
 
     Object obj;
@@ -85,10 +85,10 @@ Value getsproutinginfo(const Array& params, bool fHelp)
     obj.push_back(Pair("Pooled Tx", (uint64_t)mempool.size()));
 
     obj.push_back(Pair("Difficulty", GetDifficulty(GetLastBlockIndex(pindexBest, true))));
-    obj.push_back(Pair("Search Interval", (int)nLastBeanStakeSearchInterval));
+    obj.push_back(Pair("Search Interval", (int)nLastBeanSproutSearchInterval));
 
     obj.push_back(Pair("Weight", (uint64_t)nWeight));
-    obj.push_back(Pair("Net Stake Weight", (uint64_t)nNetworkWeight));
+    obj.push_back(Pair("Net Sprout Weight", (uint64_t)nNetworkWeight));
 
     obj.push_back(Pair("Expected Time", nExpectedTime));
 
@@ -435,7 +435,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
         uint256 txHash = tx.GetHash();
         setTxIndex[txHash] = i++;
 
-        if (tx.IsBeanBase() || tx.IsBeanStake())
+        if (tx.IsBeanBase() || tx.IsBeanSprout())
             continue;
 
         Object entry;

@@ -208,7 +208,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+3"/>
         <source>For sprouting only</source>
-        <translation>Només per a fer &quot;stake&quot;</translation>
+        <translation>Només per a fer &quot;sprout&quot;</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -1117,22 +1117,22 @@ Address: %4
     <message>
         <location line="+117"/>
         <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="unfinished">Fent &quot;stake&quot;.&lt;br&gt;El teu pes és %1&lt;br&gt;El pes de la xarxa és %2&lt;br&gt;El temps estimat per a guanyar una recompensa és 3%</translation>
+        <translation type="unfinished">Fent &quot;sprout&quot;.&lt;br&gt;El teu pes és %1&lt;br&gt;El pes de la xarxa és %2&lt;br&gt;El temps estimat per a guanyar una recompensa és 3%</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Not sprouting because wallet is locked</source>
-        <translation type="unfinished">No s&apos;està fent &quot;stake&quot; perquè el moneder esa bloquejat</translation>
+        <translation type="unfinished">No s&apos;està fent &quot;sprout&quot; perquè el moneder esa bloquejat</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not sprouting because wallet is offline</source>
-        <translation type="unfinished">No s&apos;està fent &quot;stake&quot; perquè el moneder està fora de línia</translation>
+        <translation type="unfinished">No s&apos;està fent &quot;sprout&quot; perquè el moneder està fora de línia</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not sprouting because wallet is syncing</source>
-        <translation type="unfinished">No s&apos;està fent &quot;stake&quot; perquè el moneder està sincronitzant</translation>
+        <translation type="unfinished">No s&apos;està fent &quot;sprout&quot; perquè el moneder està sincronitzant</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1142,7 +1142,7 @@ Address: %4
     <message>
         <location line="+2"/>
         <source>Not sprouting</source>
-        <translation type="unfinished">No s&apos;està fent &quot;stake&quot; </translation>
+        <translation type="unfinished">No s&apos;està fent &quot;sprout&quot; </translation>
     </message>
 </context>
 <context>
@@ -1349,23 +1349,23 @@ Address: %4
     </message>
     <message>
         <source>Sprouting.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="obsolete">Fent &quot;stake&quot;.&lt;br&gt;El teu pes és %1&lt;br&gt;El pes de la xarxa és %2&lt;br&gt;El temps estimat per a guanyar una recompensa és 3%</translation>
+        <translation type="obsolete">Fent &quot;sprout&quot;.&lt;br&gt;El teu pes és %1&lt;br&gt;El pes de la xarxa és %2&lt;br&gt;El temps estimat per a guanyar una recompensa és 3%</translation>
     </message>
     <message>
         <source>Not sprouting because wallet is locked</source>
-        <translation type="obsolete">No s&apos;està fent &quot;stake&quot; perquè el moneder esa bloquejat</translation>
+        <translation type="obsolete">No s&apos;està fent &quot;sprout&quot; perquè el moneder esa bloquejat</translation>
     </message>
     <message>
         <source>Not sprouting because wallet is offline</source>
-        <translation type="obsolete">No s&apos;està fent &quot;stake&quot; perquè el moneder està fora de línia</translation>
+        <translation type="obsolete">No s&apos;està fent &quot;sprout&quot; perquè el moneder està fora de línia</translation>
     </message>
     <message>
         <source>Not sprouting because wallet is syncing</source>
-        <translation type="obsolete">No s&apos;està fent &quot;stake&quot; perquè el moneder està sincronitzant</translation>
+        <translation type="obsolete">No s&apos;està fent &quot;sprout&quot; perquè el moneder està sincronitzant</translation>
     </message>
     <message>
         <source>Not sprouting because you don&apos;t have mature coins</source>
-        <translation type="obsolete">No s&apos;està fent &quot;stake&quot; perquè no tens monedes madures</translation>
+        <translation type="obsolete">No s&apos;està fent &quot;sprout&quot; perquè no tens monedes madures</translation>
     </message>
     <message numerus="yes">
         <source>%n second(s) ago</source>
@@ -1505,7 +1505,7 @@ Address: %4
     </message>
     <message>
         <source>Not sprouting</source>
-        <translation type="obsolete">No s&apos;està fent &quot;stake&quot; </translation>
+        <translation type="obsolete">No s&apos;està fent &quot;sprout&quot; </translation>
     </message>
     <message>
         <source>A fatal error occurred. BitBean can no longer continue safely and will quit.</source>
@@ -1874,7 +1874,7 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <source>Reserved amount does not participate in sprouting and is therefore spendable at any time.</source>
-        <translation type="obsolete">La quantitat reservada no participa en fer &quot;stake&quot; i per tant esta disponible en qualsevol moment.</translation>
+        <translation type="obsolete">La quantitat reservada no participa en fer &quot;sprout&quot; i per tant esta disponible en qualsevol moment.</translation>
     </message>
     <message>
         <location line="-15"/>
@@ -2109,8 +2109,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
         <translation>La informació mostrada pot estar fora de data. El seu moneder es sincronitza automàticament amb la xarxa BitBean després d&apos;establir una connexió, però aquest procés no s&apos;ha completat encara.</translation>
     </message>
     <message>
-        <source>Stake:</source>
-        <translation type="obsolete">En &quot;stake&quot;:</translation>
+        <source>Sprout:</source>
+        <translation type="obsolete">En &quot;sprout&quot;:</translation>
     </message>
     <message>
         <location line="-331"/>
@@ -2256,8 +2256,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
         <translation type="obsolete">Total de transaccions que encara no s&apos;han confirmat, i encara no compten per al balanç actual</translation>
     </message>
     <message>
-        <source>Total of coins that was staked, and do not yet count toward the current balance</source>
-        <translation type="obsolete">Total de les monedes que s&apos;han posat a fer &quot;stake&quot; (en joc, aposta), i encara no compten per al balanç actual</translation>
+        <source>Total of coins that was sproutd, and do not yet count toward the current balance</source>
+        <translation type="obsolete">Total de les monedes que s&apos;han posat a fer &quot;sprout&quot; (en joc, aposta), i encara no compten per al balanç actual</translation>
     </message>
     <message>
         <location filename="../overviewpage.cpp" line="+130"/>
@@ -4090,7 +4090,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4509,7 +4509,7 @@ Executar una ordre quan es rep un avís rellevant (%s en cmd es substitueix per 
     <message>
         <location line="+1"/>
         <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
-        <translation type="unfinished">Error: Cartera bloquejada nomès per a fer &quot;stake&quot;, no es pot de crear la transacció</translation>
+        <translation type="unfinished">Error: Cartera bloquejada nomès per a fer &quot;sprout&quot;, no es pot de crear la transacció</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4638,8 +4638,8 @@ Executar una ordre quan es rep un avís rellevant (%s en cmd es substitueix per 
         <translation type="obsolete">Enllaçar a l&apos;adreça donada. Utilitzeu la notació [host]:port per a IPv6</translation>
     </message>
     <message>
-        <source>Stake your coins to support network and gain reward (default: 1)</source>
-        <translation type="obsolete">Posa les teves monedes a fer &quot;stake&quot; per donar suport a la xarxa i obtenir una recompensa (per defecte: 1)</translation>
+        <source>Sprout your coins to support network and gain reward (default: 1)</source>
+        <translation type="obsolete">Posa les teves monedes a fer &quot;sprout&quot; per donar suport a la xarxa i obtenir una recompensa (per defecte: 1)</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
@@ -4974,7 +4974,7 @@ Executar una ordre quan es rep un avís rellevant (%s en cmd es substitueix per 
     </message>
     <message>
         <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
-        <translation type="obsolete">Error: Cartera bloquejada nomès per a fer &quot;stake&quot;, no es pot de crear la transacció</translation>
+        <translation type="obsolete">Error: Cartera bloquejada nomès per a fer &quot;sprout&quot;, no es pot de crear la transacció</translation>
     </message>
     <message>
         <source>WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers.</source>

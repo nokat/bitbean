@@ -18,13 +18,13 @@
 
 using namespace std;
 
-unsigned int nStakeSplitAge = 1 * 24 * 60 * 60;
-int64_t nStakeCombineThreshold = 1000 * bean;
+unsigned int nSproutSplitAge = 1 * 24 * 60 * 60;
+int64_t nSproutCombineThreshold = 1000 * bean;
 
 int64_t gcd(int64_t n,int64_t m) { return m == 0 ? n : gcd(m, n % m); }
 static uint64_t CoinWeightCost(const COutput &out)
 {
-    int64_t nTimeWeight = min((int64_t)GetTime() - (int64_t)out.tx->nTime, (int64_t)nStakeMaxAge);
+    int64_t nTimeWeight = min((int64_t)GetTime() - (int64_t)out.tx->nTime, (int64_t)nSproutMaxAge);
     CBigNum bnCoinDayWeight = CBigNum(out.tx->vout[out.i].nValue) * nTimeWeight / (24 * 60 * 60);
     return bnCoinDayWeight.getuint64();
 }
@@ -638,7 +638,7 @@ int CWalletTx::GetRequestCount() const
     int nRequests = -1;
     {
         LOCK(pwallet->cs_wallet);
-        if (IsBeanBase() || IsBeanStake())
+        if (IsBeanBase() || IsBeanSprout())
         {
             // Generated block
             if (hashBlock != 0)
@@ -690,7 +690,7 @@ void CWalletTx::GetAmounts(list<pair<CTxDestination, int64_t> >& listReceived,
     // Sent/received.
     BOOST_FOREACH(const CTxOut& txout, vout)
     {
-        // Skip special stake out
+        // Skip special sprout out
         if (txout.scriptPubKey.empty())
             continue;
 
@@ -881,7 +881,7 @@ void CWallet::ReacceptWalletTransactions()
         BOOST_FOREACH(PAIRTYPE(const uint256, CWalletTx)& item, mapWallet)
         {
             CWalletTx& wtx = item.second;
-            if ((wtx.IsBeanBase() && wtx.IsSpent(0)) || (wtx.IsBeanStake() && wtx.IsSpent(1)))
+            if ((wtx.IsBeanBase() && wtx.IsSpent(0)) || (wtx.IsBeanSprout() && wtx.IsSpent(1)))
                 continue;
 
             CTxIndex txindex;
@@ -915,7 +915,7 @@ void CWallet::ReacceptWalletTransactions()
             else
             {
                 // Re-accept any txes of ours that aren't already in a block
-                if (!(wtx.IsBeanBase() || wtx.IsBeanStake()))
+                if (!(wtx.IsBeanBase() || wtx.IsBeanSprout()))
                     wtx.AcceptWalletTransaction(txdb);
             }
         }
@@ -932,14 +932,14 @@ void CWalletTx::RelayWalletTransaction(CTxDB& txdb)
 {
     BOOST_FOREACH(const CMerkleTx& tx, vtxPrev)
     {
-        if (!(tx.IsBeanBase() || tx.IsBeanStake()))
+        if (!(tx.IsBeanBase() || tx.IsBeanSprout()))
         {
             uint256 hash = tx.GetHash();
             if (!txdb.ContainsTx(hash))
                 RelayTransaction((CTransaction)tx, hash);
         }
     }
-    if (!(IsBeanBase() || IsBeanStake()))
+    if (!(IsBeanBase() || IsBeanSprout()))
     {
         uint256 hash = GetHash();
         if (!txdb.ContainsTx(hash))
@@ -1080,7 +1080,7 @@ void CWallet::AvailableBeans(vector<COutput>& vBeans, bool fOnlyConfirmed, const
             if (pbean->IsBeanBase() && pbean->GetBlocksToMaturity() > 0)
                 continue;
 
-            if(pbean->IsBeanStake() && pbean->GetBlocksToMaturity() > 0)
+            if(pbean->IsBeanSprout() && pbean->GetBlocksToMaturity() > 0)
                 continue;
 
             int nDepth = pbean->GetDepthInMainChain();
@@ -1157,15 +1157,15 @@ static void ApproximateBestSubset(vector<pair<int64_t, pair<const CWalletTx*,uns
     }
 }
 
-// ppbean: total beans staked (non-spendable until maturity)
-int64_t CWallet::GetStake() const
+// ppbean: total beans sproutd (non-spendable until maturity)
+int64_t CWallet::GetSprout() const
 {
     int64_t nTotal = 0;
     LOCK(cs_wallet);
     for (map<uint256, CWalletTx>::const_iterator it = mapWallet.begin(); it != mapWallet.end(); ++it)
     {
         const CWalletTx* pbean = &(*it).second;
-        if (pbean->IsBeanStake() && pbean->GetBlocksToMaturity() > 0 && pbean->GetDepthInMainChain() > 0)
+        if (pbean->IsBeanSprout() && pbean->GetBlocksToMaturity() > 0 && pbean->GetDepthInMainChain() > 0)
             nTotal += CWallet::GetCredit(*pbean);
     }
     return nTotal;
@@ -1735,8 +1735,8 @@ bool CWallet::CreateTransaction(CScript scriptPubKey, int64_t nValue, CWalletTx&
     return CreateTransaction(vecSend, wtxNew, reservekey, nFeeRet, beanControl);
 }
 
-// Bitbean: get current stake weight
-bool CWallet::GetStakeWeight(const CKeyStore& keystore, uint64_t& nMinWeight, uint64_t& nMaxWeight, uint64_t& nWeight)
+// Bitbean: get current sprout weight
+bool CWallet::GetSproutWeight(const CKeyStore& keystore, uint64_t& nMinWeight, uint64_t& nMaxWeight, uint64_t& nWeight)
 {
     // Choose beans to use
     int64_t nBalance = GetBalance();
@@ -1777,13 +1777,13 @@ bool CWallet::GetStakeWeight(const CKeyStore& keystore, uint64_t& nMinWeight, ui
         }
 
         // Weight is greater than zero, but the maximum value isn't reached yet
-        if (nTimeWeight > 0 && nTimeWeight < nStakeMaxAge)
+        if (nTimeWeight > 0 && nTimeWeight < nSproutMaxAge)
         {
             nMinWeight += bnBeanDayWeight.getuint64();
         }
 
         // Maximum weight was reached
-        if (nTimeWeight == nStakeMaxAge)
+        if (nTimeWeight == nSproutMaxAge)
         {
             nMaxWeight += bnBeanDayWeight.getuint64();
         }
@@ -1792,7 +1792,7 @@ bool CWallet::GetStakeWeight(const CKeyStore& keystore, uint64_t& nMinWeight, ui
     return true;
 }
 
-bool CWallet::CreateBeanStake(const CKeyStore& keystore, unsigned int nBits, int64_t nSearchInterval, int64_t nFees, CTransaction& txNew, CKey& key)
+bool CWallet::CreateBeanSprout(const CKeyStore& keystore, unsigned int nBits, int64_t nSearchInterval, int64_t nFees, CTransaction& txNew, CKey& key)
 {
     CBlockIndex* pindexPrev = pindexBest;
     CBigNum bnTargetPerBeanDay;
@@ -1801,7 +1801,7 @@ bool CWallet::CreateBeanStake(const CKeyStore& keystore, unsigned int nBits, int
     txNew.vin.clear();
     txNew.vout.clear();
 
-    // Mark bean stake transaction
+    // Mark bean sprout transaction
     CScript scriptEmpty;
     scriptEmpty.clear();
     txNew.vout.push_back(CTxOut(0, scriptEmpty));
@@ -1844,22 +1844,22 @@ bool CWallet::CreateBeanStake(const CKeyStore& keystore, unsigned int nBits, int
                 continue;
         }
 
-        static int nMaxStakeSearchInterval = 60;
-        if (block.GetBlockTime() + nStakeMinAge > txNew.nTime - nMaxStakeSearchInterval)
+        static int nMaxSproutSearchInterval = 60;
+        if (block.GetBlockTime() + nSproutMinAge > txNew.nTime - nMaxSproutSearchInterval)
             continue; // only count beans meeting min age requirement
 
         bool fKernelFound = false;
-        for (unsigned int n=0; n<min(nSearchInterval,(int64_t)nMaxStakeSearchInterval) && !fKernelFound && !fShutdown && pindexPrev == pindexBest; n++)
+        for (unsigned int n=0; n<min(nSearchInterval,(int64_t)nMaxSproutSearchInterval) && !fKernelFound && !fShutdown && pindexPrev == pindexBest; n++)
         {
             // Search backward in time from the given txNew timestamp
-            // Search nSearchInterval seconds back up to nMaxStakeSearchInterval
-            uint256 hashProofOfStake = 0, targetProofOfStake = 0;
-            COutPoint prevoutStake = COutPoint(pbean.first->GetHash(), pbean.second);
-            if (CheckStakeKernelHash(nBits, block, txindex.pos.nTxPos - txindex.pos.nBlockPos, *pbean.first, prevoutStake, txNew.nTime - n, hashProofOfStake, targetProofOfStake))
+            // Search nSearchInterval seconds back up to nMaxSproutSearchInterval
+            uint256 hashProofOfSprout = 0, targetProofOfSprout = 0;
+            COutPoint prevoutSprout = COutPoint(pbean.first->GetHash(), pbean.second);
+            if (CheckSproutKernelHash(nBits, block, txindex.pos.nTxPos - txindex.pos.nBlockPos, *pbean.first, prevoutSprout, txNew.nTime - n, hashProofOfSprout, targetProofOfSprout))
             {
                 // Found a kernel
                 if (fDebug && GetBoolArg("-printbeansprout"))
-                    printf("CreateBeanStake : kernel found\n");
+                    printf("CreateBeanSprout : kernel found\n");
                 vector<valtype> vSolutions;
                 txnouttype whichType;
                 CScript scriptPubKeyOut;
@@ -1867,15 +1867,15 @@ bool CWallet::CreateBeanStake(const CKeyStore& keystore, unsigned int nBits, int
                 if (!Solver(scriptPubKeyKernel, whichType, vSolutions))
                 {
                     if (fDebug && GetBoolArg("-printbeansprout"))
-                        printf("CreateBeanStake : failed to parse kernel\n");
+                        printf("CreateBeanSprout : failed to parse kernel\n");
                     break;
                 }
                 if (fDebug && GetBoolArg("-printbeansprout"))
-                    printf("CreateBeanStake : parsed kernel type=%d\n", whichType);
+                    printf("CreateBeanSprout : parsed kernel type=%d\n", whichType);
                 if (whichType != TX_PUBKEY && whichType != TX_PUBKEYHASH)
                 {
                     if (fDebug && GetBoolArg("-printbeansprout"))
-                        printf("CreateBeanStake : no support for kernel type=%d\n", whichType);
+                        printf("CreateBeanSprout : no support for kernel type=%d\n", whichType);
                     break;  // only support pay to public key and pay to address
                 }
                 if (whichType == TX_PUBKEYHASH) // pay to address type
@@ -1884,7 +1884,7 @@ bool CWallet::CreateBeanStake(const CKeyStore& keystore, unsigned int nBits, int
                     if (!keystore.GetKey(uint160(vSolutions[0]), key))
                     {
                         if (fDebug && GetBoolArg("-printbeansprout"))
-                            printf("CreateBeanStake : failed to get key for kernel type=%d\n", whichType);
+                            printf("CreateBeanSprout : failed to get key for kernel type=%d\n", whichType);
                         break;  // unable to find corresponding public key
                     }
                     scriptPubKeyOut << key.GetPubKey() << OP_CHECKSIG;
@@ -1895,14 +1895,14 @@ bool CWallet::CreateBeanStake(const CKeyStore& keystore, unsigned int nBits, int
                     if (!keystore.GetKey(Hash160(vchPubKey), key))
                     {
                         if (fDebug && GetBoolArg("-printbeansprout"))
-                            printf("CreateBeanStake : failed to get key for kernel type=%d\n", whichType);
+                            printf("CreateBeanSprout : failed to get key for kernel type=%d\n", whichType);
                         break;  // unable to find corresponding public key
                     }
 
                 if (key.GetPubKey() != vchPubKey)
                 {
                     if (fDebug && GetBoolArg("-printbeansprout"))
-                        printf("CreateBeanStake : invalid key for kernel type=%d\n", whichType);
+                        printf("CreateBeanSprout : invalid key for kernel type=%d\n", whichType);
                         break; // keys mismatch
                     }
 
@@ -1915,10 +1915,10 @@ bool CWallet::CreateBeanStake(const CKeyStore& keystore, unsigned int nBits, int
                 vwtxPrev.push_back(pbean.first);
                 txNew.vout.push_back(CTxOut(0, scriptPubKeyOut));
 
-                if (GetWeight(block.GetBlockTime(), (int64_t)txNew.nTime) < nStakeSplitAge)
-                    txNew.vout.push_back(CTxOut(0, scriptPubKeyOut)); //split stake
+                if (GetWeight(block.GetBlockTime(), (int64_t)txNew.nTime) < nSproutSplitAge)
+                    txNew.vout.push_back(CTxOut(0, scriptPubKeyOut)); //split sprout
                 if (fDebug && GetBoolArg("-printbeansprout"))
-                    printf("CreateBeanStake : added kernel type=%d\n", whichType);
+                    printf("CreateBeanSprout : added kernel type=%d\n", whichType);
                 fKernelFound = true;
                 break;
             }
@@ -1944,16 +1944,16 @@ bool CWallet::CreateBeanStake(const CKeyStore& keystore, unsigned int nBits, int
             if (txNew.vin.size() >= 100)
                 break;
             // Stop adding more inputs if value is already pretty significant
-            if (nCredit >= nStakeCombineThreshold)
+            if (nCredit >= nSproutCombineThreshold)
                 break;
             // Stop adding inputs if reached reserve limit
             if (nCredit + pbean.first->vout[pbean.second].nValue > nBalance - nReserveBalance)
                 break;
             // Do not add additional significant input
-            if (pbean.first->vout[pbean.second].nValue >= nStakeCombineThreshold)
+            if (pbean.first->vout[pbean.second].nValue >= nSproutCombineThreshold)
                 continue;
             // Do not add input that is still too young
-            if (nTimeWeight < nStakeMinAge)
+            if (nTimeWeight < nSproutMinAge)
                 continue;
 
             txNew.vin.push_back(CTxIn(pbean.first->GetHash(), pbean.second));
@@ -1967,9 +1967,9 @@ bool CWallet::CreateBeanStake(const CKeyStore& keystore, unsigned int nBits, int
         uint64_t nBeanAge;
         CTxDB txdb("r");
         if (!txNew.GetBeanAge(txdb, nBeanAge))
-            return error("CreateBeanStake : failed to calculate bean age");
+            return error("CreateBeanSprout : failed to calculate bean age");
 
-        int64_t nReward = GetProofOfStakeReward(nBeanAge, nFees);
+        int64_t nReward = GetProofOfSproutReward(nBeanAge, nFees);
         if (nReward <= 0)
             return false;
 
@@ -1990,13 +1990,13 @@ bool CWallet::CreateBeanStake(const CKeyStore& keystore, unsigned int nBits, int
     BOOST_FOREACH(const CWalletTx* pbean, vwtxPrev)
     {
         if (!SignSignature(*this, *pbean, txNew, nIn++))
-            return error("CreateBeanStake : failed to sign beansprout");
+            return error("CreateBeanSprout : failed to sign beansprout");
     }
 
     // Limit size
     unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
     if (nBytes >= MAX_BLOCK_SIZE_GEN/5)
-        return error("CreateBeanStake : exceeded beansprout size limit");
+        return error("CreateBeanSprout : exceeded beansprout size limit");
 
     // Successfully generated beansprout
     return true;
@@ -2167,10 +2167,10 @@ void CWallet::PrintWallet(const CBlock& block)
             CWalletTx& wtx = mapWallet[block.vtx[0].GetHash()];
             printf("    mine:  %d  %d  %"PRId64"", wtx.GetDepthInMainChain(), wtx.GetBlocksToMaturity(), wtx.GetCredit());
         }
-        if (block.IsProofOfStake() && mapWallet.count(block.vtx[1].GetHash()))
+        if (block.IsProofOfSprout() && mapWallet.count(block.vtx[1].GetHash()))
         {
             CWalletTx& wtx = mapWallet[block.vtx[1].GetHash()];
-            printf("    stake: %d  %d  %"PRId64"", wtx.GetDepthInMainChain(), wtx.GetBlocksToMaturity(), wtx.GetCredit());
+            printf("    sprout: %d  %d  %"PRId64"", wtx.GetDepthInMainChain(), wtx.GetBlocksToMaturity(), wtx.GetCredit());
          }
 
     }
@@ -2383,7 +2383,7 @@ std::map<CTxDestination, int64_t> CWallet::GetAddressBalances()
             if (!pbean->IsFinal() || !pbean->IsTrusted())
                 continue;
 
-            if ((pbean->IsBeanBase() || pbean->IsBeanStake()) && pbean->GetBlocksToMaturity() > 0)
+            if ((pbean->IsBeanBase() || pbean->IsBeanSprout()) && pbean->GetBlocksToMaturity() > 0)
                 continue;
 
             int nDepth = pbean->GetDepthInMainChain();
@@ -2546,7 +2546,7 @@ void CWallet::FixSpentBeans(int& nMismatchFound, int64_t& nBalanceInQuestion, bo
 // ppbean: disable transaction (only for beansprout)
 void CWallet::DisableTransaction(const CTransaction &tx)
 {
-    if (!tx.IsBeanStake() || !IsFromMe(tx))
+    if (!tx.IsBeanSprout() || !IsFromMe(tx))
         return; // only disconnecting beansprout requires marking input unspent
 
     LOCK(cs_wallet);

@@ -3385,7 +3385,7 @@ Si plica non existat, crea eam cum permissionibus ut solus eius dominus eam lege
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

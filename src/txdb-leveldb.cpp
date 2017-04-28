@@ -368,9 +368,9 @@ bool CTxDB::LoadBlockIndex()
         pindexNew->nMint          = diskindex.nMint;
         pindexNew->nMoneySupply   = diskindex.nMoneySupply;
         pindexNew->nFlags         = diskindex.nFlags;
-        pindexNew->nStakeModifier = diskindex.nStakeModifier;
-        pindexNew->prevoutStake   = diskindex.prevoutStake;
-        pindexNew->nStakeTime     = diskindex.nStakeTime;
+        pindexNew->nSproutModifier = diskindex.nSproutModifier;
+        pindexNew->prevoutSprout   = diskindex.prevoutSprout;
+        pindexNew->nSproutTime     = diskindex.nSproutTime;
         pindexNew->hashProof      = diskindex.hashProof;
         pindexNew->nVersion       = diskindex.nVersion;
         pindexNew->hashMerkleRoot = diskindex.hashMerkleRoot;
@@ -387,9 +387,9 @@ bool CTxDB::LoadBlockIndex()
             return error("LoadBlockIndex() : CheckIndex failed at %d", pindexNew->nHeight);
         }
 
-        // Bitbean: build setStakeSeen
-        if (pindexNew->IsProofOfStake())
-            setStakeSeen.insert(make_pair(pindexNew->prevoutStake, pindexNew->nStakeTime));
+        // Bitbean: build setSproutSeen
+        if (pindexNew->IsProofOfSprout())
+            setSproutSeen.insert(make_pair(pindexNew->prevoutSprout, pindexNew->nSproutTime));
 
         iterator->Next();
     }
@@ -411,10 +411,10 @@ bool CTxDB::LoadBlockIndex()
     {
         CBlockIndex* pindex = item.second;
         pindex->nChainTrust = (pindex->pprev ? pindex->pprev->nChainTrust : 0) + pindex->GetBlockTrust();
-        // Bitbean: calculate stake modifier checksum
-        pindex->nStakeModifierChecksum = GetStakeModifierChecksum(pindex);
-        if (!CheckStakeModifierCheckpoints(pindex->nHeight, pindex->nStakeModifierChecksum))
-            return error("CTxDB::LoadBlockIndex() : Failed stake modifier checkpoint height=%d, modifier=0x%016"PRIx64, pindex->nHeight, pindex->nStakeModifier);
+        // Bitbean: calculate sprout modifier checksum
+        pindex->nSproutModifierChecksum = GetSproutModifierChecksum(pindex);
+        if (!CheckSproutModifierCheckpoints(pindex->nHeight, pindex->nSproutModifierChecksum))
+            return error("CTxDB::LoadBlockIndex() : Failed sprout modifier checkpoint height=%d, modifier=0x%016"PRIx64, pindex->nHeight, pindex->nSproutModifier);
     }
 
     // Load hashBestChain pointer to end of best chain

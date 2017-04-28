@@ -12,14 +12,14 @@ using namespace std;
 
 typedef std::map<int, unsigned int> MapModifierCheckpoints;
 
-// Hard checkpoints of stake modifiers to ensure they are deterministic
-static std::map<int, unsigned int> mapStakeModifierCheckpoints =
+// Hard checkpoints of sprout modifiers to ensure they are deterministic
+static std::map<int, unsigned int> mapSproutModifierCheckpoints =
     boost::assign::map_list_of
 	(0, 0xfd11f4e7)
     ;
 
-// Hard checkpoints of stake modifiers to ensure they are deterministic (testNet)
-static std::map<int, unsigned int> mapStakeModifierCheckpointsTestNet =
+// Hard checkpoints of sprout modifiers to ensure they are deterministic (testNet)
+static std::map<int, unsigned int> mapSproutModifierCheckpointsTestNet =
     boost::assign::map_list_of
 	(0, 0x0e00670b)
     ;
@@ -31,36 +31,36 @@ int64_t GetWeight(int64_t nIntervalBeginning, int64_t nIntervalEnd)
     // this change increases active beans participating the hash and helps
     // to secure the network when proof-of-sprout difficulty is low
 
-    return min(nIntervalEnd - nIntervalBeginning - nStakeMinAge, (int64_t)nStakeMaxAge);
+    return min(nIntervalEnd - nIntervalBeginning - nSproutMinAge, (int64_t)nSproutMaxAge);
 }
 
-// Get the last stake modifier and its generation time from a given block
-static bool GetLastStakeModifier(const CBlockIndex* pindex, uint64_t& nStakeModifier, int64_t& nModifierTime)
+// Get the last sprout modifier and its generation time from a given block
+static bool GetLastSproutModifier(const CBlockIndex* pindex, uint64_t& nSproutModifier, int64_t& nModifierTime)
 {
     if (!pindex)
-        return error("GetLastStakeModifier: null pindex");
-    while (pindex && pindex->pprev && !pindex->GeneratedStakeModifier())
+        return error("GetLastSproutModifier: null pindex");
+    while (pindex && pindex->pprev && !pindex->GeneratedSproutModifier())
         pindex = pindex->pprev;
-    if (!pindex->GeneratedStakeModifier())
-        return error("GetLastStakeModifier: no generation at genesis block");
-    nStakeModifier = pindex->nStakeModifier;
+    if (!pindex->GeneratedSproutModifier())
+        return error("GetLastSproutModifier: no generation at genesis block");
+    nSproutModifier = pindex->nSproutModifier;
     nModifierTime = pindex->GetBlockTime();
     return true;
 }
 
 // Get selection interval section (in seconds)
-static int64_t GetStakeModifierSelectionIntervalSection(int nSection)
+static int64_t GetSproutModifierSelectionIntervalSection(int nSection)
 {
     assert (nSection >= 0 && nSection < 64);
     return (nModifierInterval * 63 / (63 + ((63 - nSection) * (MODIFIER_INTERVAL_RATIO - 1))));
 }
 
-// Get stake modifier selection interval (in seconds)
-static int64_t GetStakeModifierSelectionInterval()
+// Get sprout modifier selection interval (in seconds)
+static int64_t GetSproutModifierSelectionInterval()
 {
     int64_t nSelectionInterval = 0;
     for (int nSection=0; nSection<64; nSection++)
-        nSelectionInterval += GetStakeModifierSelectionIntervalSection(nSection);
+        nSelectionInterval += GetSproutModifierSelectionIntervalSection(nSection);
     return nSelectionInterval;
 }
 
@@ -68,7 +68,7 @@ static int64_t GetStakeModifierSelectionInterval()
 // already selected blocks in vSelectedBlocks, and with timestamp up to
 // nSelectionIntervalStop.
 static bool SelectBlockFromCandidates(vector<pair<int64_t, uint256> >& vSortedByTimestamp, map<uint256, const CBlockIndex*>& mapSelectedBlocks,
-    int64_t nSelectionIntervalStop, uint64_t nStakeModifierPrev, const CBlockIndex** pindexSelected)
+    int64_t nSelectionIntervalStop, uint64_t nSproutModifierPrev, const CBlockIndex** pindexSelected)
 {
     bool fSelected = false;
     uint256 hashBest = 0;
@@ -83,14 +83,14 @@ static bool SelectBlockFromCandidates(vector<pair<int64_t, uint256> >& vSortedBy
         if (mapSelectedBlocks.count(pindex->GetBlockHash()) > 0)
             continue;
         // compute the selection hash by hashing its proof-hash and the
-        // previous proof-of-stake modifier
+        // previous proof-of-sprout modifier
         CDataStream ss(SER_GETHASH, 0);
-        ss << pindex->hashProof << nStakeModifierPrev;
+        ss << pindex->hashProof << nSproutModifierPrev;
         uint256 hashSelection = Hash(ss.begin(), ss.end());
-        // the selection hash is divided by 2**32 so that proof-of-stake block
+        // the selection hash is divided by 2**32 so that proof-of-sprout block
         // is always favored over proof-of-work block. this is to preserve
         // the energy efficiency property
-        if (pindex->IsProofOfStake())
+        if (pindex->IsProofOfSprout())
             hashSelection >>= 32;
         if (fSelected && hashSelection < hashBest)
         {
@@ -104,41 +104,41 @@ static bool SelectBlockFromCandidates(vector<pair<int64_t, uint256> >& vSortedBy
             *pindexSelected = (const CBlockIndex*) pindex;
         }
     }
-    if (fDebug && GetBoolArg("-printstakemodifier"))
+    if (fDebug && GetBoolArg("-printsproutmodifier"))
         printf("SelectBlockFromCandidates: selection hash=%s\n", hashBest.ToString().c_str());
     return fSelected;
 }
 
-// Stake Modifier (hash modifier of proof-of-stake):
-// The purpose of stake modifier is to prevent a txout (bean) owner from
-// computing future proof-of-stake generated by this txout at the time
+// Sprout Modifier (hash modifier of proof-of-sprout):
+// The purpose of sprout modifier is to prevent a txout (bean) owner from
+// computing future proof-of-sprout generated by this txout at the time
 // of transaction confirmation. To meet kernel protocol, the txout
-// must hash with a future stake modifier to generate the proof.
-// Stake modifier consists of bits each of which is contributed from a
+// must hash with a future sprout modifier to generate the proof.
+// Sprout modifier consists of bits each of which is contributed from a
 // selected block of a given block group in the past.
 // The selection of a block is based on a hash of the block's proof-hash and
-// the previous stake modifier.
-// Stake modifier is recomputed at a fixed time interval instead of every
+// the previous sprout modifier.
+// Sprout modifier is recomputed at a fixed time interval instead of every
 // block. This is to make it difficult for an attacker to gain control of
-// additional bits in the stake modifier, even after generating a chain of
+// additional bits in the sprout modifier, even after generating a chain of
 // blocks.
-bool ComputeNextStakeModifier(const CBlockIndex* pindexPrev, uint64_t& nStakeModifier, bool& fGeneratedStakeModifier)
+bool ComputeNextSproutModifier(const CBlockIndex* pindexPrev, uint64_t& nSproutModifier, bool& fGeneratedSproutModifier)
 {
-    nStakeModifier = 0;
-    fGeneratedStakeModifier = false;
+    nSproutModifier = 0;
+    fGeneratedSproutModifier = false;
     if (!pindexPrev)
     {
-        fGeneratedStakeModifier = true;
+        fGeneratedSproutModifier = true;
         return true;  // genesis block's modifier is 0
     }
-    // First find current stake modifier and its generation block time
-    // if it's not old enough, return the same stake modifier
+    // First find current sprout modifier and its generation block time
+    // if it's not old enough, return the same sprout modifier
     int64_t nModifierTime = 0;
-    if (!GetLastStakeModifier(pindexPrev, nStakeModifier, nModifierTime))
-        return error("ComputeNextStakeModifier: unable to get last modifier");
+    if (!GetLastSproutModifier(pindexPrev, nSproutModifier, nModifierTime))
+        return error("ComputeNextSproutModifier: unable to get last modifier");
     if (fDebug)
     {
-        printf("ComputeNextStakeModifier: prev modifier=0x%016"PRIx64" time=%s\n", nStakeModifier, DateTimeStrFormat(nModifierTime).c_str());
+        printf("ComputeNextSproutModifier: prev modifier=0x%016"PRIx64" time=%s\n", nSproutModifier, DateTimeStrFormat(nModifierTime).c_str());
     }
     if (nModifierTime / nModifierInterval >= pindexPrev->GetBlockTime() / nModifierInterval)
         return true;
@@ -146,7 +146,7 @@ bool ComputeNextStakeModifier(const CBlockIndex* pindexPrev, uint64_t& nStakeMod
     // Sort candidate blocks by timestamp
     vector<pair<int64_t, uint256> > vSortedByTimestamp;
     vSortedByTimestamp.reserve(64 * nModifierInterval / nTargetSpacing);
-    int64_t nSelectionInterval = GetStakeModifierSelectionInterval();
+    int64_t nSelectionInterval = GetSproutModifierSelectionInterval();
     int64_t nSelectionIntervalStart = (pindexPrev->GetBlockTime() / nModifierInterval) * nModifierInterval - nSelectionInterval;
     const CBlockIndex* pindex = pindexPrev;
     while (pindex && pindex->GetBlockTime() >= nSelectionIntervalStart)
@@ -158,27 +158,27 @@ bool ComputeNextStakeModifier(const CBlockIndex* pindexPrev, uint64_t& nStakeMod
     reverse(vSortedByTimestamp.begin(), vSortedByTimestamp.end());
     sort(vSortedByTimestamp.begin(), vSortedByTimestamp.end());
 
-    // Select 64 blocks from candidate blocks to generate stake modifier
-    uint64_t nStakeModifierNew = 0;
+    // Select 64 blocks from candidate blocks to generate sprout modifier
+    uint64_t nSproutModifierNew = 0;
     int64_t nSelectionIntervalStop = nSelectionIntervalStart;
     map<uint256, const CBlockIndex*> mapSelectedBlocks;
     for (int nRound=0; nRound<min(64, (int)vSortedByTimestamp.size()); nRound++)
     {
         // add an interval section to the current selection round
-        nSelectionIntervalStop += GetStakeModifierSelectionIntervalSection(nRound);
+        nSelectionIntervalStop += GetSproutModifierSelectionIntervalSection(nRound);
         // select a block from the candidates of current round
-        if (!SelectBlockFromCandidates(vSortedByTimestamp, mapSelectedBlocks, nSelectionIntervalStop, nStakeModifier, &pindex))
-            return error("ComputeNextStakeModifier: unable to select block at round %d", nRound);
+        if (!SelectBlockFromCandidates(vSortedByTimestamp, mapSelectedBlocks, nSelectionIntervalStop, nSproutModifier, &pindex))
+            return error("ComputeNextSproutModifier: unable to select block at round %d", nRound);
         // write the entropy bit of the selected block
-        nStakeModifierNew |= (((uint64_t)pindex->GetStakeEntropyBit()) << nRound);
+        nSproutModifierNew |= (((uint64_t)pindex->GetSproutEntropyBit()) << nRound);
         // add the selected block from candidates to selected list
         mapSelectedBlocks.insert(make_pair(pindex->GetBlockHash(), pindex));
-        if (fDebug && GetBoolArg("-printstakemodifier"))
-            printf("ComputeNextStakeModifier: selected round %d stop=%s height=%d bit=%d\n", nRound, DateTimeStrFormat(nSelectionIntervalStop).c_str(), pindex->nHeight, pindex->GetStakeEntropyBit());
+        if (fDebug && GetBoolArg("-printsproutmodifier"))
+            printf("ComputeNextSproutModifier: selected round %d stop=%s height=%d bit=%d\n", nRound, DateTimeStrFormat(nSelectionIntervalStop).c_str(), pindex->nHeight, pindex->GetSproutEntropyBit());
     }
 
     // Print selection map for visualization of the selected blocks
-    if (fDebug && GetBoolArg("-printstakemodifier"))
+    if (fDebug && GetBoolArg("-printsproutmodifier"))
     {
         string strSelectionMap = "";
         // '-' indicates proof-of-work blocks not selected
@@ -186,77 +186,77 @@ bool ComputeNextStakeModifier(const CBlockIndex* pindexPrev, uint64_t& nStakeMod
         pindex = pindexPrev;
         while (pindex && pindex->nHeight >= nHeightFirstCandidate)
         {
-            // '=' indicates proof-of-stake blocks not selected
-            if (pindex->IsProofOfStake())
+            // '=' indicates proof-of-sprout blocks not selected
+            if (pindex->IsProofOfSprout())
                 strSelectionMap.replace(pindex->nHeight - nHeightFirstCandidate, 1, "=");
             pindex = pindex->pprev;
         }
         BOOST_FOREACH(const PAIRTYPE(uint256, const CBlockIndex*)& item, mapSelectedBlocks)
         {
-            // 'S' indicates selected proof-of-stake blocks
+            // 'S' indicates selected proof-of-sprout blocks
             // 'W' indicates selected proof-of-work blocks
-            strSelectionMap.replace(item.second->nHeight - nHeightFirstCandidate, 1, item.second->IsProofOfStake()? "S" : "W");
+            strSelectionMap.replace(item.second->nHeight - nHeightFirstCandidate, 1, item.second->IsProofOfSprout()? "S" : "W");
         }
-        printf("ComputeNextStakeModifier: selection height [%d, %d] map %s\n", nHeightFirstCandidate, pindexPrev->nHeight, strSelectionMap.c_str());
+        printf("ComputeNextSproutModifier: selection height [%d, %d] map %s\n", nHeightFirstCandidate, pindexPrev->nHeight, strSelectionMap.c_str());
     }
     if (fDebug)
     {
-        printf("ComputeNextStakeModifier: new modifier=0x%016"PRIx64" time=%s\n", nStakeModifierNew, DateTimeStrFormat(pindexPrev->GetBlockTime()).c_str());
+        printf("ComputeNextSproutModifier: new modifier=0x%016"PRIx64" time=%s\n", nSproutModifierNew, DateTimeStrFormat(pindexPrev->GetBlockTime()).c_str());
     }
 
-    nStakeModifier = nStakeModifierNew;
-    fGeneratedStakeModifier = true;
+    nSproutModifier = nSproutModifierNew;
+    fGeneratedSproutModifier = true;
     return true;
 }
 
-// The stake modifier used to hash for a stake kernel is chosen as the stake
+// The sprout modifier used to hash for a sprout kernel is chosen as the sprout
 // modifier about a selection interval later than the bean generating the kernel
-static bool GetKernelStakeModifier(uint256 hashBlockFrom, uint64_t& nStakeModifier, int& nStakeModifierHeight, int64_t& nStakeModifierTime, bool fPrintProofOfStake)
+static bool GetKernelSproutModifier(uint256 hashBlockFrom, uint64_t& nSproutModifier, int& nSproutModifierHeight, int64_t& nSproutModifierTime, bool fPrintProofOfSprout)
 {
-    nStakeModifier = 0;
+    nSproutModifier = 0;
     if (!mapBlockIndex.count(hashBlockFrom))
-        return error("GetKernelStakeModifier() : block not indexed");
+        return error("GetKernelSproutModifier() : block not indexed");
     const CBlockIndex* pindexFrom = mapBlockIndex[hashBlockFrom];
-    nStakeModifierHeight = pindexFrom->nHeight;
-    nStakeModifierTime = pindexFrom->GetBlockTime();
-    int64_t nStakeModifierSelectionInterval = GetStakeModifierSelectionInterval();
+    nSproutModifierHeight = pindexFrom->nHeight;
+    nSproutModifierTime = pindexFrom->GetBlockTime();
+    int64_t nSproutModifierSelectionInterval = GetSproutModifierSelectionInterval();
     const CBlockIndex* pindex = pindexFrom;
-    // loop to find the stake modifier later by a selection interval
-    while (nStakeModifierTime < pindexFrom->GetBlockTime() + nStakeModifierSelectionInterval)
+    // loop to find the sprout modifier later by a selection interval
+    while (nSproutModifierTime < pindexFrom->GetBlockTime() + nSproutModifierSelectionInterval)
     {
         if (!pindex->pnext)
         {   // reached best block; may happen if node is behind on block chain
-            if (fPrintProofOfStake || (pindex->GetBlockTime() + nStakeMinAge - nStakeModifierSelectionInterval > GetAdjustedTime()))
-                return error("GetKernelStakeModifier() : reached best block %s at height %d from block %s",
+            if (fPrintProofOfSprout || (pindex->GetBlockTime() + nSproutMinAge - nSproutModifierSelectionInterval > GetAdjustedTime()))
+                return error("GetKernelSproutModifier() : reached best block %s at height %d from block %s",
                     pindex->GetBlockHash().ToString().c_str(), pindex->nHeight, hashBlockFrom.ToString().c_str());
             else
                 return false;
         }
         pindex = pindex->pnext;
-        if (pindex->GeneratedStakeModifier())
+        if (pindex->GeneratedSproutModifier())
         {
-            nStakeModifierHeight = pindex->nHeight;
-            nStakeModifierTime = pindex->GetBlockTime();
+            nSproutModifierHeight = pindex->nHeight;
+            nSproutModifierTime = pindex->GetBlockTime();
         }
     }
-    nStakeModifier = pindex->nStakeModifier;
+    nSproutModifier = pindex->nSproutModifier;
     return true;
 }
 
 // bitbean kernel protocol
 // beans sprouting must meet hash target according to the protocol:
 // kernel (input 0) must meet the formula
-//     hash(nStakeModifier + txPrev.block.nTime + txPrev.offset + txPrev.nTime + txPrev.vout.n + nTime) < bnTarget * nBeanDayWeight
+//     hash(nSproutModifier + txPrev.block.nTime + txPrev.offset + txPrev.nTime + txPrev.vout.n + nTime) < bnTarget * nBeanDayWeight
 // this ensures that the chance of getting a newly sprouted bean is proportional to the
 // amount of bean age one owns.
 // The reason this hash is chosen is the following:
-//   nStakeModifier: scrambles computation to make it very difficult to precompute
-//                  future proof-of-stake at the time of the bean's confirmation
+//   nSproutModifier: scrambles computation to make it very difficult to precompute
+//                  future proof-of-sprout at the time of the bean's confirmation
 //   txPrev.block.nTime: prevent nodes from guessing a good timestamp to
 //                       generate transaction for future advantage
 //   txPrev.offset: offset of txPrev inside block, to reduce the chance of
 //                  nodes generating beansprout at the same time
-//   txPrev.nTime: reduce the chance of nodes generating beamstake at the same
+//   txPrev.nTime: reduce the chance of nodes generating beamsprout at the same
 //                 time
 //   txPrev.vout.n: output number of txPrev, to reduce the chance of nodes
 //                  generating beansprout at the same time
@@ -264,14 +264,14 @@ static bool GetKernelStakeModifier(uint256 hashBlockFrom, uint64_t& nStakeModifi
 //   quantities so as to generate blocks faster, degrading the system back into
 //   a proof-of-work situation.
 //
-bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned int nTxPrevOffset, const CTransaction& txPrev, const COutPoint& prevout, unsigned int nTimeTx, uint256& hashProofOfStake, uint256& targetProofOfStake, bool fPrintProofOfStake)
+bool CheckSproutKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned int nTxPrevOffset, const CTransaction& txPrev, const COutPoint& prevout, unsigned int nTimeTx, uint256& hashProofOfSprout, uint256& targetProofOfSprout, bool fPrintProofOfSprout)
 {
     if (nTimeTx < txPrev.nTime)  // Transaction timestamp violation
-        return error("CheckStakeKernelHash() : nTime violation");
+        return error("CheckSproutKernelHash() : nTime violation");
 
     unsigned int nTimeBlockFrom = blockFrom.GetBlockTime();
-    if (nTimeBlockFrom + nStakeMinAge > nTimeTx) // Min age requirement
-        return error("CheckStakeKernelHash() : min age violation");
+    if (nTimeBlockFrom + nSproutMinAge > nTimeTx) // Min age requirement
+        return error("CheckSproutKernelHash() : min age violation");
 
     CBigNum bnTargetPerBeanDay;
     bnTargetPerBeanDay.SetCompact(nBits);
@@ -280,58 +280,58 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned 
     uint256 hashBlockFrom = blockFrom.GetHash();
 
     CBigNum bnBeanDayWeight = CBigNum(nValueIn) * GetWeight((int64_t)txPrev.nTime, (int64_t)nTimeTx) / bean / (24 * 60 * 60);
-    targetProofOfStake = (bnBeanDayWeight * bnTargetPerBeanDay).getuint256();
+    targetProofOfSprout = (bnBeanDayWeight * bnTargetPerBeanDay).getuint256();
 
     // Calculate hash
     CDataStream ss(SER_GETHASH, 0);
-    uint64_t nStakeModifier = 0;
-    int nStakeModifierHeight = 0;
-    int64_t nStakeModifierTime = 0;
+    uint64_t nSproutModifier = 0;
+    int nSproutModifierHeight = 0;
+    int64_t nSproutModifierTime = 0;
 
-    if (!GetKernelStakeModifier(hashBlockFrom, nStakeModifier, nStakeModifierHeight, nStakeModifierTime, fPrintProofOfStake))
+    if (!GetKernelSproutModifier(hashBlockFrom, nSproutModifier, nSproutModifierHeight, nSproutModifierTime, fPrintProofOfSprout))
         return false;
-    ss << nStakeModifier;
+    ss << nSproutModifier;
 
     ss << nTimeBlockFrom << nTxPrevOffset << txPrev.nTime << prevout.n << nTimeTx;
-    hashProofOfStake = Hash(ss.begin(), ss.end());
-    if (fPrintProofOfStake)
+    hashProofOfSprout = Hash(ss.begin(), ss.end());
+    if (fPrintProofOfSprout)
     {
-        printf("CheckStakeKernelHash() : using modifier 0x%016"PRIx64" at height=%d timestamp=%s for block from height=%d timestamp=%s\n",
-            nStakeModifier, nStakeModifierHeight,
-            DateTimeStrFormat(nStakeModifierTime).c_str(),
+        printf("CheckSproutKernelHash() : using modifier 0x%016"PRIx64" at height=%d timestamp=%s for block from height=%d timestamp=%s\n",
+            nSproutModifier, nSproutModifierHeight,
+            DateTimeStrFormat(nSproutModifierTime).c_str(),
             mapBlockIndex[hashBlockFrom]->nHeight,
             DateTimeStrFormat(blockFrom.GetBlockTime()).c_str());
-        printf("CheckStakeKernelHash() : check modifier=0x%016"PRIx64" nTimeBlockFrom=%u nTxPrevOffset=%u nTimeTxPrev=%u nPrevout=%u nTimeTx=%u hashProof=%s\n",
-            nStakeModifier,
+        printf("CheckSproutKernelHash() : check modifier=0x%016"PRIx64" nTimeBlockFrom=%u nTxPrevOffset=%u nTimeTxPrev=%u nPrevout=%u nTimeTx=%u hashProof=%s\n",
+            nSproutModifier,
             nTimeBlockFrom, nTxPrevOffset, txPrev.nTime, prevout.n, nTimeTx,
-            hashProofOfStake.ToString().c_str());
+            hashProofOfSprout.ToString().c_str());
     }
 
-    // Now check if proof-of-stake hash meets target protocol
-    if (CBigNum(hashProofOfStake) > bnBeanDayWeight * bnTargetPerBeanDay)
+    // Now check if proof-of-sprout hash meets target protocol
+    if (CBigNum(hashProofOfSprout) > bnBeanDayWeight * bnTargetPerBeanDay)
         return false;
-    if (fDebug && !fPrintProofOfStake)
+    if (fDebug && !fPrintProofOfSprout)
     {
-        printf("CheckStakeKernelHash() : using modifier 0x%016"PRIx64" at height=%d timestamp=%s for block from height=%d timestamp=%s\n",
-            nStakeModifier, nStakeModifierHeight,
-            DateTimeStrFormat(nStakeModifierTime).c_str(),
+        printf("CheckSproutKernelHash() : using modifier 0x%016"PRIx64" at height=%d timestamp=%s for block from height=%d timestamp=%s\n",
+            nSproutModifier, nSproutModifierHeight,
+            DateTimeStrFormat(nSproutModifierTime).c_str(),
             mapBlockIndex[hashBlockFrom]->nHeight,
             DateTimeStrFormat(blockFrom.GetBlockTime()).c_str());
-        printf("CheckStakeKernelHash() : pass modifier=0x%016"PRIx64" nTimeBlockFrom=%u nTxPrevOffset=%u nTimeTxPrev=%u nPrevout=%u nTimeTx=%u hashProof=%s\n",
-            nStakeModifier,
+        printf("CheckSproutKernelHash() : pass modifier=0x%016"PRIx64" nTimeBlockFrom=%u nTxPrevOffset=%u nTimeTxPrev=%u nPrevout=%u nTimeTx=%u hashProof=%s\n",
+            nSproutModifier,
             nTimeBlockFrom, nTxPrevOffset, txPrev.nTime, prevout.n, nTimeTx,
-            hashProofOfStake.ToString().c_str());
+            hashProofOfSprout.ToString().c_str());
     }
     return true;
 }
 
-// Check kernel hash target and beanstake signature
-bool CheckProofOfStake(const CTransaction& tx, unsigned int nBits, uint256& hashProofOfStake, uint256& targetProofOfStake)
+// Check kernel hash target and beansprout signature
+bool CheckProofOfSprout(const CTransaction& tx, unsigned int nBits, uint256& hashProofOfSprout, uint256& targetProofOfSprout)
 {
-    if (!tx.IsBeanStake())
-        return error("CheckProofOfStake() : called on non-beansprout %s", tx.GetHash().ToString().c_str());
+    if (!tx.IsBeanSprout())
+        return error("CheckProofOfSprout() : called on non-beansprout %s", tx.GetHash().ToString().c_str());
 
-    // Kernel (input 0) must match the stake hash target per bean age (nBits)
+    // Kernel (input 0) must match the sprout hash target per bean age (nBits)
     const CTxIn& txin = tx.vin[0];
 
     // First try finding the previous transaction in database
@@ -339,50 +339,50 @@ bool CheckProofOfStake(const CTransaction& tx, unsigned int nBits, uint256& hash
     CTransaction txPrev;
     CTxIndex txindex;
     if (!txPrev.ReadFromDisk(txdb, txin.prevout, txindex))
-        return tx.DoS(1, error("CheckProofOfStake() : INFO: read txPrev failed"));  // previous transaction not in main chain, may occur during initial download
+        return tx.DoS(1, error("CheckProofOfSprout() : INFO: read txPrev failed"));  // previous transaction not in main chain, may occur during initial download
 
     // Verify signature
     if (!VerifySignature(txPrev, tx, 0, false, 0))
-        return tx.DoS(100, error("CheckProofOfStake() : VerifySignature failed on beansprout %s", tx.GetHash().ToString().c_str()));
+        return tx.DoS(100, error("CheckProofOfSprout() : VerifySignature failed on beansprout %s", tx.GetHash().ToString().c_str()));
 
     // Read block header
     CBlock block;
     if (!block.ReadFromDisk(txindex.pos.nFile, txindex.pos.nBlockPos, false))
-        return fDebug? error("CheckProofOfStake() : read block failed") : false; // unable to read block of previous transaction
+        return fDebug? error("CheckProofOfSprout() : read block failed") : false; // unable to read block of previous transaction
 
-    if (!CheckStakeKernelHash(nBits, block, txindex.pos.nTxPos - txindex.pos.nBlockPos, txPrev, txin.prevout, tx.nTime, hashProofOfStake, targetProofOfStake, fDebug))
-        return tx.DoS(1, error("CheckProofOfStake() : INFO: check kernel failed on beansprout %s, hashProof=%s", tx.GetHash().ToString().c_str(), hashProofOfStake.ToString().c_str())); // may occur during initial download or if behind on block chain sync
+    if (!CheckSproutKernelHash(nBits, block, txindex.pos.nTxPos - txindex.pos.nBlockPos, txPrev, txin.prevout, tx.nTime, hashProofOfSprout, targetProofOfSprout, fDebug))
+        return tx.DoS(1, error("CheckProofOfSprout() : INFO: check kernel failed on beansprout %s, hashProof=%s", tx.GetHash().ToString().c_str(), hashProofOfSprout.ToString().c_str())); // may occur during initial download or if behind on block chain sync
 
     return true;
 }
 
 // Check whether the beansprout timestamp meets protocol
-bool CheckBeanStakeTimestamp(int64_t nTimeBlock, int64_t nTimeTx)
+bool CheckBeanSproutTimestamp(int64_t nTimeBlock, int64_t nTimeTx)
 {
     // v0.3 protocol
     return (nTimeBlock == nTimeTx);
 }
 
-// Get stake modifier checksum
-unsigned int GetStakeModifierChecksum(const CBlockIndex* pindex)
+// Get sprout modifier checksum
+unsigned int GetSproutModifierChecksum(const CBlockIndex* pindex)
 {
     //assert (pindex->pprev || pindex->GetBlockHash() == (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet));
-    // Hash previous checksum with flags, hashProofOfStake and nStakeModifier
+    // Hash previous checksum with flags, hashProofOfSprout and nSproutModifier
     CDataStream ss(SER_GETHASH, 0);
     if (pindex->pprev)
-        ss << pindex->pprev->nStakeModifierChecksum;
-    ss << pindex->nFlags << (pindex->IsProofOfStake() ? pindex->hashProof : 0) << pindex->nStakeModifier;
+        ss << pindex->pprev->nSproutModifierChecksum;
+    ss << pindex->nFlags << (pindex->IsProofOfSprout() ? pindex->hashProof : 0) << pindex->nSproutModifier;
     uint256 hashChecksum = Hash(ss.begin(), ss.end());
     hashChecksum >>= (256 - 32);
     return hashChecksum.Get64();
 }
 
-// Check stake modifier hard checkpoints
-bool CheckStakeModifierCheckpoints(int nHeight, unsigned int nStakeModifierChecksum)
+// Check sprout modifier hard checkpoints
+bool CheckSproutModifierCheckpoints(int nHeight, unsigned int nSproutModifierChecksum)
 {
-    MapModifierCheckpoints& checkpoints = (fTestNet ? mapStakeModifierCheckpointsTestNet : mapStakeModifierCheckpoints);
+    MapModifierCheckpoints& checkpoints = (fTestNet ? mapSproutModifierCheckpointsTestNet : mapSproutModifierCheckpoints);
 
     if (checkpoints.count(nHeight))
-        return nStakeModifierChecksum == checkpoints[nHeight];
+        return nSproutModifierChecksum == checkpoints[nHeight];
     return true;
 }

@@ -2052,7 +2052,7 @@ Address: %4
         <translation>Отображаемая информация может быть устаревшей. Ваш бумажник автоматически синхронизируется с сетью BitBean после подключения, но этот процесс пока не завершён.</translation>
     </message>
     <message>
-        <source>Stake:</source>
+        <source>Sprout:</source>
         <translation type="obsolete">Доля:</translation>
     </message>
     <message>
@@ -2199,8 +2199,8 @@ Address: %4
         <translation type="obsolete">Общая сумма всех транзакций, которые до сих пор не подтверждены, и до сих пор не учитываются в текущем балансе</translation>
     </message>
     <message>
-        <source>Total of coins that was staked, and do not yet count toward the current balance</source>
-        <translation type="obsolete">Общая сумма всех монет, используемых для Proof-of-Stake, и не учитывающихся на балансе</translation>
+        <source>Total of coins that was sproutd, and do not yet count toward the current balance</source>
+        <translation type="obsolete">Общая сумма всех монет, используемых для Proof-of-Sprout, и не учитывающихся на балансе</translation>
     </message>
     <message>
         <location filename="../overviewpage.cpp" line="+130"/>
@@ -3990,7 +3990,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

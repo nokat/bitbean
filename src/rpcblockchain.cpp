@@ -73,26 +73,26 @@ double GetPoWMHashPS()
 double GetPoSKernelPS()
 {
     int nPoSInterval = 72;
-    double dStakeKernelsTriedAvg = 0;
-    int nStakesHandled = 0, nStakesTime = 0;
+    double dSproutKernelsTriedAvg = 0;
+    int nSproutsHandled = 0, nSproutsTime = 0;
 
     CBlockIndex* pindex = pindexBest;;
-    CBlockIndex* pindexPrevStake = NULL;
+    CBlockIndex* pindexPrevSprout = NULL;
 
-    while (pindex && nStakesHandled < nPoSInterval)
+    while (pindex && nSproutsHandled < nPoSInterval)
     {
-        if (pindex->IsProofOfStake())
+        if (pindex->IsProofOfSprout())
         {
-            dStakeKernelsTriedAvg += GetDifficulty(pindex) * 4294967296.0;
-            nStakesTime += pindexPrevStake ? (pindexPrevStake->nTime - pindex->nTime) : 0;
-            pindexPrevStake = pindex;
-            nStakesHandled++;
+            dSproutKernelsTriedAvg += GetDifficulty(pindex) * 4294967296.0;
+            nSproutsTime += pindexPrevSprout ? (pindexPrevSprout->nTime - pindex->nTime) : 0;
+            pindexPrevSprout = pindex;
+            nSproutsHandled++;
         }
 
         pindex = pindex->pprev;
     }
 
-    return nStakesTime ? dStakeKernelsTriedAvg / nStakesTime : 0;
+    return nSproutsTime ? dSproutKernelsTriedAvg / nSproutsTime : 0;
 }
 
 Object blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool fPrintTransactionDetail)
@@ -120,11 +120,11 @@ Object blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool fPri
     if (blockindex->pnext)
         result.push_back(Pair("nextblockhash", blockindex->pnext->GetBlockHash().GetHex()));
 
-    result.push_back(Pair("flags", strprintf("%s%s", blockindex->IsProofOfStake()? "proof-of-stake" : "proof-of-work", blockindex->GeneratedStakeModifier()? " stake-modifier": "")));
+    result.push_back(Pair("flags", strprintf("%s%s", blockindex->IsProofOfSprout()? "proof-of-sprout" : "proof-of-work", blockindex->GeneratedSproutModifier()? " sprout-modifier": "")));
     result.push_back(Pair("proofhash", blockindex->hashProof.GetHex()));
-    result.push_back(Pair("entropybit", (int)blockindex->GetStakeEntropyBit()));
-    result.push_back(Pair("modifier", strprintf("%016"PRIx64, blockindex->nStakeModifier)));
-    result.push_back(Pair("modifierchecksum", strprintf("%08x", blockindex->nStakeModifierChecksum)));
+    result.push_back(Pair("entropybit", (int)blockindex->GetSproutEntropyBit()));
+    result.push_back(Pair("modifier", strprintf("%016"PRIx64, blockindex->nSproutModifier)));
+    result.push_back(Pair("modifierchecksum", strprintf("%08x", blockindex->nSproutModifierChecksum)));
     Array txinfo;
     BOOST_FOREACH (const CTransaction& tx, block.vtx)
     {
@@ -143,7 +143,7 @@ Object blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool fPri
 
     result.push_back(Pair("tx", txinfo));
 
-    if (block.IsProofOfStake())
+    if (block.IsProofOfSprout())
         result.push_back(Pair("signature", HexStr(block.vchBlockSig.begin(), block.vchBlockSig.end())));
 
     return result;
@@ -179,8 +179,8 @@ Value getdifficulty(const Array& params, bool fHelp)
 
     Object obj;
     obj.push_back(Pair("proof-of-work",        GetDifficulty()));
-    obj.push_back(Pair("proof-of-stake",       GetDifficulty(GetLastBlockIndex(pindexBest, true))));
-    obj.push_back(Pair("search-interval",      (int)nLastBeanStakeSearchInterval));
+    obj.push_back(Pair("proof-of-sprout",       GetDifficulty(GetLastBlockIndex(pindexBest, true))));
+    obj.push_back(Pair("search-interval",      (int)nLastBeanSproutSearchInterval));
     return obj;
 }
 

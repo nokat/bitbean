@@ -63,7 +63,7 @@
 #include <iostream>
 
 extern CWallet* pwalletMain;
-extern int64_t nLastBeanStakeSearchInterval;
+extern int64_t nLastBeanSproutSearchInterval;
 double GetPoSKernelPS();
 
 BitbeanGUI::BitbeanGUI(QWidget *parent):
@@ -1033,17 +1033,17 @@ void BitbeanGUI::updateWeight()
         return;
 
     uint64_t nMinWeight = 0, nMaxWeight = 0;
-    pwalletMain->GetStakeWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
+    pwalletMain->GetSproutWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
 }
 
 void BitbeanGUI::updateSproutingIcon()
 {
     // Mitigate freezing of inital block downloads, as updateWeight requires mutex lock
-    if (nLastBeanStakeSearchInterval && pwalletMain && !IsInitialBlockDownload())
+    if (nLastBeanSproutSearchInterval && pwalletMain && !IsInitialBlockDownload())
     {
         updateWeight();
 
-        if (nLastBeanStakeSearchInterval && nWeight)
+        if (nLastBeanSproutSearchInterval && nWeight)
         {
             uint64_t nWeight = this->nWeight;
             uint64_t nNetworkWeight = GetPoSKernelPS();

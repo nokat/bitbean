@@ -2120,7 +2120,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation>Zobrazené informácie môžu byť zastaralé. Vaša peňaženka sa automaticky synchronizuje so sieťou BitBean po nadviazaní spojenia, ale tento proces nie je ešte dokončený.</translation>
     </message>
     <message>
-        <source>Stake:</source>
+        <source>Sprout:</source>
         <translation type="obsolete">V stávke:</translation>
     </message>
     <message>
@@ -2267,7 +2267,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <translation type="obsolete">Súčet transakcií, ktoré neboli ešte potvrdené, a ešte nezapočítané do aktuálneho zostatku</translation>
     </message>
     <message>
-        <source>Total of coins that was staked, and do not yet count toward the current balance</source>
+        <source>Total of coins that was sproutd, and do not yet count toward the current balance</source>
         <translation type="obsolete">Súčet mincí, ktoré sú v stávke a ešte neboli započítané do aktuálneho zostatku</translation>
     </message>
     <message>
@@ -4102,7 +4102,7 @@ Ak súbor neexistuje, vytvorte ho s oprávnením pre čítanie len vlastníkom (
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4657,7 +4657,7 @@ Ak súbor neexistuje, vytvorte ho s oprávnením pre čítanie len vlastníkom (
         <translation type="obsolete">Spojiť do danej adresy. Použite [host]:port zápis pre IPv6</translation>
     </message>
     <message>
-        <source>Stake your coins to support network and gain reward (default: 1)</source>
+        <source>Sprout your coins to support network and gain reward (default: 1)</source>
         <translation type="obsolete">Nechajte stávkovať vaše mince pre podporu siete a získajte odmenu (predvolené: 1)</translation>
     </message>
     <message>

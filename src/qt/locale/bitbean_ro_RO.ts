@@ -1131,17 +1131,17 @@ Adresa: %4
     <message>
         <location line="+6"/>
         <source>Not sprouting because wallet is locked</source>
-        <translation type="unfinished">Nu este in modul stake deoarece portofelul este blocat</translation>
+        <translation type="unfinished">Nu este in modul sprout deoarece portofelul este blocat</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not sprouting because wallet is offline</source>
-        <translation type="unfinished">Nu este in modul stake deoarece portofelul este offline</translation>
+        <translation type="unfinished">Nu este in modul sprout deoarece portofelul este offline</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not sprouting because wallet is syncing</source>
-        <translation type="unfinished">Nu este in modul stake deoarece portofelul se sincronizeaza</translation>
+        <translation type="unfinished">Nu este in modul sprout deoarece portofelul se sincronizeaza</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1362,19 +1362,19 @@ Adresa: %4
     </message>
     <message>
         <source>Not sprouting because wallet is locked</source>
-        <translation type="obsolete">Nu este in modul stake deoarece portofelul este blocat</translation>
+        <translation type="obsolete">Nu este in modul sprout deoarece portofelul este blocat</translation>
     </message>
     <message>
         <source>Not sprouting because wallet is offline</source>
-        <translation type="obsolete">Nu este in modul stake deoarece portofelul este offline</translation>
+        <translation type="obsolete">Nu este in modul sprout deoarece portofelul este offline</translation>
     </message>
     <message>
         <source>Not sprouting because wallet is syncing</source>
-        <translation type="obsolete">Nu este in modul stake deoarece portofelul se sincronizeaza</translation>
+        <translation type="obsolete">Nu este in modul sprout deoarece portofelul se sincronizeaza</translation>
     </message>
     <message>
         <source>Not sprouting because you don&apos;t have mature coins</source>
-        <translation type="obsolete">Nu este in modul stake deoarece nu sunt destule monede maturate</translation>
+        <translation type="obsolete">Nu este in modul sprout deoarece nu sunt destule monede maturate</translation>
     </message>
     <message numerus="yes">
         <source>%n second(s) ago</source>
@@ -2122,8 +2122,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
         <translation>Informatia afisata poate fi depasita.  Portofel se sincronizează automat cu rețeaua BitBean după ce se stabilește o conexiune, dar acest proces nu s-a finalizat încă.</translation>
     </message>
     <message>
-        <source>Stake:</source>
-        <translation type="obsolete">Stake:</translation>
+        <source>Sprout:</source>
+        <translation type="obsolete">Sprout:</translation>
     </message>
     <message>
         <location line="-331"/>
@@ -2269,8 +2269,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
         <translation type="obsolete">Total al tranzacțiilor care nu au fost confirmate  încă și nu contează față de balanța curentă</translation>
     </message>
     <message>
-        <source>Total of coins that was staked, and do not yet count toward the current balance</source>
-        <translation type="obsolete">Totalul de monede care au fost in stake si nu sunt numarate in balanta curenta</translation>
+        <source>Total of coins that was sproutd, and do not yet count toward the current balance</source>
+        <translation type="obsolete">Totalul de monede care au fost in sprout si nu sunt numarate in balanta curenta</translation>
     </message>
     <message>
         <location filename="../overviewpage.cpp" line="+130"/>
@@ -4103,7 +4103,7 @@ Dacă fișierul nu există, creează-l cu permisiuni de citire doar de către pr
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4658,8 +4658,8 @@ Dacă fișierul nu există, creează-l cu permisiuni de citire doar de către pr
         <translation type="obsolete">Leaga la o adresa data. Utilizeaza notatie [host]:port pt IPv6</translation>
     </message>
     <message>
-        <source>Stake your coins to support network and gain reward (default: 1)</source>
-        <translation type="obsolete">Pune monedele in modul stake pentru a ajuta reteaua si a castiva bonusuri(implicit: 1)</translation>
+        <source>Sprout your coins to support network and gain reward (default: 1)</source>
+        <translation type="obsolete">Pune monedele in modul sprout pentru a ajuta reteaua si a castiva bonusuri(implicit: 1)</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>

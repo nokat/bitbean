@@ -54,11 +54,11 @@ inline int64_t FutureDrift(int64_t nTime) { return nTime + 10 * 60; } // up to 1
 extern CScript beanBASE_FLAGS;
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex*> mapBlockIndex;
-extern std::set<std::pair<COutPoint, unsigned int> > setStakeSeen;
+extern std::set<std::pair<COutPoint, unsigned int> > setSproutSeen;
 extern CBlockIndex* pindexGenesisBlock;
 extern unsigned int nTargetSpacing;
-extern unsigned int nStakeMinAge;
-extern unsigned int nStakeMaxAge;
+extern unsigned int nSproutMinAge;
+extern unsigned int nSproutMaxAge;
 extern unsigned int nNodeLifespan;
 extern int nBeanbaseMaturity;
 extern int nBestHeight;
@@ -69,7 +69,7 @@ extern CBlockIndex* pindexBest;
 extern unsigned int nTransactionsUpdated;
 extern uint64_t nLastBlockTx;
 extern uint64_t nLastBlockSize;
-extern int64_t nLastBeanStakeSearchInterval;
+extern int64_t nLastBeanSproutSearchInterval;
 extern const std::string strMessageMagic;
 extern int64_t nTimeBestReceived;
 extern CCriticalSection cs_setpwalletRegistered;
@@ -110,18 +110,18 @@ bool SendMessages(CNode* pto, bool fSendTrickle);
 void ThreadImport(void *parg);
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits);
-unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake);
+unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfSprout);
 int64_t GetProofOfWorkReward(int64_t nFees);
-int64_t GetProofOfStakeReward(int64_t nBeanAge, int64_t nFees);
+int64_t GetProofOfSproutReward(int64_t nBeanAge, int64_t nFees);
 unsigned int ComputeMinWork(unsigned int nBase, int64_t nTime);
-unsigned int ComputeMinStake(unsigned int nBase, int64_t nTime, unsigned int nBlockTime);
+unsigned int ComputeMinSprout(unsigned int nBase, int64_t nTime, unsigned int nBlockTime);
 int GetNumBlocksOfPeers();
 bool IsInitialBlockDownload();
 std::string GetWarnings(std::string strFor);
 bool GetTransaction(const uint256 &hash, CTransaction &tx, uint256 &hashBlock);
 uint256 WantedByOrphan(const CBlock* pblockOrphan);
-const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfStake);
-void StakeMiner(CWallet *pwallet);
+const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfSprout);
+void SproutMiner(CWallet *pwallet);
 void ResendWalletTransactions(bool fForce = false);
 
 
@@ -527,9 +527,9 @@ public:
 
     }
 
-    bool IsBeanStake() const
+    bool IsBeanSprout() const
     {
-        // ppbean: the bean stake transaction is marked with the first output empty
+        // ppbean: the bean sprout transaction is marked with the first output empty
         return (vin.size() > 0 && (!vin[0].prevout.IsNull()) && vout.size() >= 2 && vout[0].IsEmpty());
     }
 
@@ -630,14 +630,14 @@ public:
     std::string ToStringShort() const
     {
         std::string str;
-        str += strprintf("%s %s", GetHash().ToString().c_str(), IsBeanBase()? "base" : (IsBeanStake()? "stake" : "user"));
+        str += strprintf("%s %s", GetHash().ToString().c_str(), IsBeanBase()? "base" : (IsBeanSprout()? "sprout" : "user"));
         return str;
     }
 
     std::string ToString() const
     {
         std::string str;
-        str += IsBeanBase()? "Beanbase" : (IsBeanStake()? "Beanstake" : "CTransaction");
+        str += IsBeanBase()? "Beanbase" : (IsBeanSprout()? "Beansprout" : "CTransaction");
         str += strprintf("(hash=%s, nTime=%d, ver=%d, vin.size=%"PRIszu", vout.size=%"PRIszu", nLockTime=%d)\n",
             GetHash().ToString().substr(0,10).c_str(),
             nTime,
@@ -925,30 +925,30 @@ public:
 
     void UpdateTime(const CBlockIndex* pindexPrev);
 
-    // entropy bit for stake modifier if chosen by modifier
-    unsigned int GetStakeEntropyBit() const
+    // entropy bit for sprout modifier if chosen by modifier
+    unsigned int GetSproutEntropyBit() const
     {
         // Take last bit of block hash as entropy bit
         unsigned int nEntropyBit = ((GetHash().Get64()) & 1llu);
-        if (fDebug && GetBoolArg("-printstakemodifier"))
-            printf("GetStakeEntropyBit: hashBlock=%s nEntropyBit=%u\n", GetHash().ToString().c_str(), nEntropyBit);
+        if (fDebug && GetBoolArg("-printsproutmodifier"))
+            printf("GetSproutEntropyBit: hashBlock=%s nEntropyBit=%u\n", GetHash().ToString().c_str(), nEntropyBit);
         return nEntropyBit;
     }
 
-    // ppbean: two types of block: proof-of-work or proof-of-stake
-    bool IsProofOfStake() const
+    // ppbean: two types of block: proof-of-work or proof-of-sprout
+    bool IsProofOfSprout() const
     {
-        return (vtx.size() > 1 && vtx[1].IsBeanStake());
+        return (vtx.size() > 1 && vtx[1].IsBeanSprout());
     }
 
     bool IsProofOfWork() const
     {
-        return !IsProofOfStake();
+        return !IsProofOfSprout();
     }
 
-    std::pair<COutPoint, unsigned int> GetProofOfStake() const
+    std::pair<COutPoint, unsigned int> GetProofOfSprout() const
     {
-        return IsProofOfStake()? std::make_pair(vtx[1].vin[0].prevout, vtx[1].nTime) : std::make_pair(COutPoint(), (unsigned int)0);
+        return IsProofOfSprout()? std::make_pair(vtx[1].vin[0].prevout, vtx[1].nTime) : std::make_pair(COutPoint(), (unsigned int)0);
     }
 
     // ppbean: get max transaction timestamp
@@ -1132,17 +1132,17 @@ public:
     unsigned int nFlags;  // ppbean: block index flags
     enum
     {
-        BLOCK_PROOF_OF_STAKE = (1 << 0), // is proof-of-stake block
-        BLOCK_STAKE_ENTROPY  = (1 << 1), // entropy bit for stake modifier
-        BLOCK_STAKE_MODIFIER = (1 << 2), // regenerated stake modifier
+        BLOCK_PROOF_OF_SPROUT = (1 << 0), // is proof-of-sprout block
+        BLOCK_SPROUT_ENTROPY  = (1 << 1), // entropy bit for sprout modifier
+        BLOCK_SPROUT_MODIFIER = (1 << 2), // regenerated sprout modifier
     };
 
-    uint64_t nStakeModifier; // hash modifier for proof-of-stake
-    unsigned int nStakeModifierChecksum; // checksum of index; in-memeory only
+    uint64_t nSproutModifier; // hash modifier for proof-of-sprout
+    unsigned int nSproutModifierChecksum; // checksum of index; in-memeory only
 
-    // proof-of-stake specific fields
-    COutPoint prevoutStake;
-    unsigned int nStakeTime;
+    // proof-of-sprout specific fields
+    COutPoint prevoutSprout;
+    unsigned int nSproutTime;
 
     uint256 hashProof;
 
@@ -1165,11 +1165,11 @@ public:
         nMint = 0;
         nMoneySupply = 0;
         nFlags = 0;
-        nStakeModifier = 0;
-        nStakeModifierChecksum = 0;
+        nSproutModifier = 0;
+        nSproutModifierChecksum = 0;
         hashProof = 0;
-        prevoutStake.SetNull();
-        nStakeTime = 0;
+        prevoutSprout.SetNull();
+        nSproutTime = 0;
 
         nVersion       = 0;
         hashMerkleRoot = 0;
@@ -1190,19 +1190,19 @@ public:
         nMint = 0;
         nMoneySupply = 0;
         nFlags = 0;
-        nStakeModifier = 0;
-        nStakeModifierChecksum = 0;
+        nSproutModifier = 0;
+        nSproutModifierChecksum = 0;
         hashProof = 0;
-        if (block.IsProofOfStake())
+        if (block.IsProofOfSprout())
         {
-            SetProofOfStake();
-            prevoutStake = block.vtx[1].vin[0].prevout;
-            nStakeTime = block.vtx[1].nTime;
+            SetProofOfSprout();
+            prevoutSprout = block.vtx[1].vin[0].prevout;
+            nSproutTime = block.vtx[1].nTime;
         }
         else
         {
-            prevoutStake.SetNull();
-            nStakeTime = 0;
+            prevoutSprout.SetNull();
+            nSproutTime = 0;
         }
 
         nVersion       = block.nVersion;
@@ -1278,53 +1278,53 @@ public:
 
     bool IsProofOfWork() const
     {
-        return !(nFlags & BLOCK_PROOF_OF_STAKE);
+        return !(nFlags & BLOCK_PROOF_OF_SPROUT);
     }
 
-    bool IsProofOfStake() const
+    bool IsProofOfSprout() const
     {
-        return (nFlags & BLOCK_PROOF_OF_STAKE);
+        return (nFlags & BLOCK_PROOF_OF_SPROUT);
     }
 
-    void SetProofOfStake()
+    void SetProofOfSprout()
     {
-        nFlags |= BLOCK_PROOF_OF_STAKE;
+        nFlags |= BLOCK_PROOF_OF_SPROUT;
     }
 
-    unsigned int GetStakeEntropyBit() const
+    unsigned int GetSproutEntropyBit() const
     {
-        return ((nFlags & BLOCK_STAKE_ENTROPY) >> 1);
+        return ((nFlags & BLOCK_SPROUT_ENTROPY) >> 1);
     }
 
-    bool SetStakeEntropyBit(unsigned int nEntropyBit)
+    bool SetSproutEntropyBit(unsigned int nEntropyBit)
     {
         if (nEntropyBit > 1)
             return false;
-        nFlags |= (nEntropyBit? BLOCK_STAKE_ENTROPY : 0);
+        nFlags |= (nEntropyBit? BLOCK_SPROUT_ENTROPY : 0);
         return true;
     }
 
-    bool GeneratedStakeModifier() const
+    bool GeneratedSproutModifier() const
     {
-        return (nFlags & BLOCK_STAKE_MODIFIER);
+        return (nFlags & BLOCK_SPROUT_MODIFIER);
     }
 
-    void SetStakeModifier(uint64_t nModifier, bool fGeneratedStakeModifier)
+    void SetSproutModifier(uint64_t nModifier, bool fGeneratedSproutModifier)
     {
-        nStakeModifier = nModifier;
-        if (fGeneratedStakeModifier)
-            nFlags |= BLOCK_STAKE_MODIFIER;
+        nSproutModifier = nModifier;
+        if (fGeneratedSproutModifier)
+            nFlags |= BLOCK_SPROUT_MODIFIER;
     }
 
     std::string ToString() const
     {
-        return strprintf("CBlockIndex(nprev=%p, pnext=%p, nFile=%u, nBlockPos=%-6d nHeight=%d, nMint=%s, nMoneySupply=%s, nFlags=(%s)(%d)(%s), nStakeModifier=%016"PRIx64", nStakeModifierChecksum=%08x, hashProof=%s, prevoutStake=(%s), nStakeTime=%d merkle=%s, hashBlock=%s)",
+        return strprintf("CBlockIndex(nprev=%p, pnext=%p, nFile=%u, nBlockPos=%-6d nHeight=%d, nMint=%s, nMoneySupply=%s, nFlags=(%s)(%d)(%s), nSproutModifier=%016"PRIx64", nSproutModifierChecksum=%08x, hashProof=%s, prevoutSprout=(%s), nSproutTime=%d merkle=%s, hashBlock=%s)",
             pprev, pnext, nFile, nBlockPos, nHeight,
             FormatMoney(nMint).c_str(), FormatMoney(nMoneySupply).c_str(),
-            GeneratedStakeModifier() ? "MOD" : "-", GetStakeEntropyBit(), IsProofOfStake()? "PoS" : "PoW",
-            nStakeModifier, nStakeModifierChecksum,
+            GeneratedSproutModifier() ? "MOD" : "-", GetSproutEntropyBit(), IsProofOfSprout()? "PoS" : "PoW",
+            nSproutModifier, nSproutModifierChecksum,
             hashProof.ToString().c_str(),
-            prevoutStake.ToString().c_str(), nStakeTime,
+            prevoutSprout.ToString().c_str(), nSproutTime,
             hashMerkleRoot.ToString().c_str(),
             GetBlockHash().ToString().c_str());
     }
@@ -1372,16 +1372,16 @@ public:
         READWRITE(nMint);
         READWRITE(nMoneySupply);
         READWRITE(nFlags);
-        READWRITE(nStakeModifier);
-        if (IsProofOfStake())
+        READWRITE(nSproutModifier);
+        if (IsProofOfSprout())
         {
-            READWRITE(prevoutStake);
-            READWRITE(nStakeTime);
+            READWRITE(prevoutSprout);
+            READWRITE(nSproutTime);
         }
         else if (fRead)
         {
-            const_cast<CDiskBlockIndex*>(this)->prevoutStake.SetNull();
-            const_cast<CDiskBlockIndex*>(this)->nStakeTime = 0;
+            const_cast<CDiskBlockIndex*>(this)->prevoutSprout.SetNull();
+            const_cast<CDiskBlockIndex*>(this)->nSproutTime = 0;
         }
         READWRITE(hashProof);
 

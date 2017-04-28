@@ -104,7 +104,8 @@ void Shutdown(void* parg)
     // Make this thread recognisable as the shutdown thread
     RenameThread("BitBean-shutoff");
     nTransactionsUpdated++;
-//        CTxDB().Close();
+    StopRPCThreads();
+
     if (pwalletMain)
         bitdb.Flush(false);
     StopNode();
@@ -120,6 +121,11 @@ void Shutdown(void* parg)
     UnregisterWallet(pwalletMain);
     delete pwalletMain;
     printf("BitBean exited\n\n");
+
+#ifndef QT_GUI
+    // ensure daemon is able to exit properly
+    exit(0);
+#endif
 }
 
 //
@@ -157,6 +163,7 @@ void HandleSIGHUP(int)
 #if !defined(QT_GUI)
 bool AppInit(int argc, char* argv[])
 {
+    boost::thread_group threadGroup;
     bool fRet = false;
     try
     {
@@ -199,7 +206,7 @@ bool AppInit(int argc, char* argv[])
             exit(ret);
         }
 
-        fRet = AppInit2();
+        fRet = AppInit2(threadGroup);
     }
     catch (std::exception& e) {
         PrintException(&e, "AppInit()");
@@ -207,7 +214,11 @@ bool AppInit(int argc, char* argv[])
         PrintException(NULL, "AppInit()");
     }
     if (!fRet)
+    {
         Shutdown(NULL);
+        threadGroup.interrupt_all();
+        threadGroup.join_all();
+    }
     return fRet;
 }
 
@@ -310,6 +321,7 @@ std::string HelpMessage()
         "  -rpcport=<port>        " + _("Listen for JSON-RPC connections on <port> (default: 22461 or testnet: 25715)") + "\n" +
         "  -rpcallowip=<ip>       " + _("Allow JSON-RPC connections from specified IP address") + "\n" +
         "  -rpcconnect=<ip>       " + _("Send commands to node running on <ip> (default: 127.0.0.1)") + "\n" +
+        "  -rpcthreads=<n>        " + _("Sets the number of threads to use for RPC calls (default: 4)") +"\n" +
         "  -blocknotify=<cmd>     " + _("Execute command when the best block changes (%s in cmd is replaced by block hash)") + "\n" +
         "  -walletnotify=<cmd>    " + _("Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)") + "\n" +
         "  -confchange            " + _("Require a confirmations for change (default: 0)") + "\n" +
@@ -341,7 +353,7 @@ std::string HelpMessage()
 /** Initialize bitbean.
  *  @pre Parameters should be parsed and config file should be read.
  */
-bool AppInit2()
+bool AppInit2(boost::thread_group& threadGroup)
 {
     // ********************************************************* Step 1: setup
 #ifdef _MSC_VER
@@ -384,6 +396,8 @@ bool AppInit2()
     sa_hup.sa_flags = 0;
     sigaction(SIGHUP, &sa_hup, NULL);
 #endif
+
+threadGroup.create_thread(boost::bind(&DetectShutdownThread, &threadGroup));
 
     // ********************************************************* Step 2: parameter interactions
 
@@ -894,11 +908,11 @@ bool AppInit2()
     printf("mapWallet.size() = %"PRIszu"\n",       pwalletMain->mapWallet.size());
     printf("mapAddressBook.size() = %"PRIszu"\n",  pwalletMain->mapAddressBook.size());
 
-    if (!NewThread(StartNode, NULL))
+    if (!NewThread(StartNode, (void*)&threadGroup))
         InitError(_("Error: could not start node"));
 
     if (fServer)
-        NewThread(ThreadRPCServer, NULL);
+        StartRPCThreads();
 
     // ********************************************************* Step 12: finished
 

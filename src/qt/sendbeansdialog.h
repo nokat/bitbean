@@ -39,7 +39,7 @@ public slots:
     void accept();
     SendBeansEntry *addEntry();
     void updateRemoveEnabled();
-    void setBalance(qint64 balance, qint64 stake, qint64 unconfirmedBalance, qint64 immatureBalance);
+    void setBalance(qint64 balance, qint64 sprout, qint64 unconfirmedBalance, qint64 immatureBalance);
 
 private:
     Ui::SendBeansDialog *ui;

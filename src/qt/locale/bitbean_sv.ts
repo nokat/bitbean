@@ -1867,7 +1867,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
     </message>
     <message>
         <source>Reserved amount does not participate in sprouting and is therefore spendable at any time.</source>
-        <translation type="obsolete">Reserverad mängd deltar inte i stake-processen och kan därför spenderas när som helst.</translation>
+        <translation type="obsolete">Reserverad mängd deltar inte i sprout-processen och kan därför spenderas när som helst.</translation>
     </message>
     <message>
         <location line="-15"/>
@@ -2102,8 +2102,8 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation>Den visade informationen kan vara gammal. Din plånbok synkroniseras automatiskt med BitBean nätverket efter att en anslutning skapats, men denna process är inte klar än.</translation>
     </message>
     <message>
-        <source>Stake:</source>
-        <translation type="obsolete">Stake:</translation>
+        <source>Sprout:</source>
+        <translation type="obsolete">Sprout:</translation>
     </message>
     <message>
         <location line="-331"/>
@@ -2249,8 +2249,8 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
         <translation type="obsolete">Totala antalet transaktioner inte har blivit bekräftade än och därför inte räknas mot det totala saldot</translation>
     </message>
     <message>
-        <source>Total of coins that was staked, and do not yet count toward the current balance</source>
-        <translation type="obsolete">Antal coins som var i stake-processen, och räknas ännu inte till nuvarande saldo</translation>
+        <source>Total of coins that was sproutd, and do not yet count toward the current balance</source>
+        <translation type="obsolete">Antal coins som var i sprout-processen, och räknas ännu inte till nuvarande saldo</translation>
     </message>
     <message>
         <location filename="../overviewpage.cpp" line="+130"/>
@@ -4081,7 +4081,7 @@ Om filen inte existerar, skapa den med filrättigheten endast läsbar för ägar
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4507,7 +4507,7 @@ Om filen inte existerar, skapa den med filrättigheten endast läsbar för ägar
     <message>
         <location line="+1"/>
         <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
-        <translation type="unfinished">Fel: Plånboken öppnad endast för stake-process, kan inte skapa transaktion.</translation>
+        <translation type="unfinished">Fel: Plånboken öppnad endast för sprout-process, kan inte skapa transaktion.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4636,8 +4636,8 @@ Om filen inte existerar, skapa den med filrättigheten endast läsbar för ägar
         <translation type="obsolete">Bind till angiven adress. Använd [host]:port för IPv6</translation>
     </message>
     <message>
-        <source>Stake your coins to support network and gain reward (default: 1)</source>
-        <translation type="obsolete">Använd dina coins för stake-processen, du upprätthåller då nätverket och får belöning (förval: 1)</translation>
+        <source>Sprout your coins to support network and gain reward (default: 1)</source>
+        <translation type="obsolete">Använd dina coins för sprout-processen, du upprätthåller då nätverket och får belöning (förval: 1)</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
@@ -4963,7 +4963,7 @@ till exempel: alertnotify=echo %%s | mail -s &quot;BitBean Varning&quot; admin@f
     </message>
     <message>
         <source>Error: Wallet unlocked for sprouting only, unable to create transaction.</source>
-        <translation type="obsolete">Fel: Plånboken öppnad endast för stake-process, kan inte skapa transaktion.</translation>
+        <translation type="obsolete">Fel: Plånboken öppnad endast för sprout-process, kan inte skapa transaktion.</translation>
     </message>
     <message>
         <source>WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers.</source>

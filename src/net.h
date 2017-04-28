@@ -80,16 +80,8 @@ enum
 /** Thread types */
 enum threadId
 {
-    THREAD_SOCKETHANDLER,
-    THREAD_OPENCONNECTIONS,
-    THREAD_MESSAGEHANDLER,
-    THREAD_RPCLISTENER,
-    THREAD_DNSSEED,
-    THREAD_ADDEDCONNECTIONS,
-    THREAD_DUMPADDRESS,
-    THREAD_RPCHANDLER,
     THREAD_IMPORT,
-    THREAD_STAKE_MINER,
+    THREAD_SPROUT_MINER,
 
     THREAD_MAX
 };
@@ -626,7 +618,7 @@ public:
     // Denial-of-service detection/prevention
     // The idea is to detect peers that are behaving
     // badly and disconnect/ban them, but do it in a
-    // one-coding-mistake-won't-shatter-the-entire-network
+    // one-coding-misprout-won't-shatter-the-entire-network
     // way.
     // IMPORTANT:  There should be nothing I can give a
     // node that it will forward on that will make that

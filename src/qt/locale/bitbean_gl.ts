@@ -3767,7 +3767,7 @@ Se o arquivo non existe, debes crealo con permisos de so lectura para o propieta
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

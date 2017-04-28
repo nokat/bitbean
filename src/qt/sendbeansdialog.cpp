@@ -94,7 +94,7 @@ void SendBeansDialog::setModel(WalletModel *model)
     }
     if(model && model->getOptionsModel())
     {
-        setBalance(model->getBalance(), model->getStake(), model->getUnconfirmedBalance(), model->getImmatureBalance());
+        setBalance(model->getBalance(), model->getSprout(), model->getUnconfirmedBalance(), model->getImmatureBalance());
         connect(model, SIGNAL(balanceChanged(qint64, qint64, qint64, qint64)), this, SLOT(setBalance(qint64, qint64, qint64, qint64)));
         connect(model->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
 
@@ -346,9 +346,9 @@ bool SendBeansDialog::handleURI(const QString &uri)
     return false;
 }
 
-void SendBeansDialog::setBalance(qint64 balance, qint64 stake, qint64 unconfirmedBalance, qint64 immatureBalance)
+void SendBeansDialog::setBalance(qint64 balance, qint64 sprout, qint64 unconfirmedBalance, qint64 immatureBalance)
 {
-    Q_UNUSED(stake);
+    Q_UNUSED(sprout);
     Q_UNUSED(unconfirmedBalance);
     Q_UNUSED(immatureBalance);
     if(!model || !model->getOptionsModel())

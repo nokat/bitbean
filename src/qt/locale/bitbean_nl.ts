@@ -1140,7 +1140,7 @@ Adres: %4
     <message>
         <location line="+2"/>
         <source>Not sprouting</source>
-        <translation type="unfinished">Niet aan het staken.</translation>
+        <translation type="unfinished">Niet aan het sproutn.</translation>
     </message>
 </context>
 <context>
@@ -1497,7 +1497,7 @@ Adres: %4
     </message>
     <message>
         <source>Not sprouting</source>
-        <translation type="obsolete">Niet aan het staken.</translation>
+        <translation type="obsolete">Niet aan het sproutn.</translation>
     </message>
     <message>
         <source>A fatal error occurred. BitBean can no longer continue safely and will quit.</source>
@@ -2101,8 +2101,8 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>De weergegeven informatie kan verouderd zijn, Je portemonnee synchroniseerd automatisch met het BitBean netwerk nadat er verbindig is gemaakt, maar dit proces is nog niet voltooid.</translation>
     </message>
     <message>
-        <source>Stake:</source>
-        <translation type="obsolete">Stake:</translation>
+        <source>Sprout:</source>
+        <translation type="obsolete">Sprout:</translation>
     </message>
     <message>
         <location line="-331"/>
@@ -2248,8 +2248,8 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="obsolete">Totaal van de transacties die nog moeten worden bevestigd, en nog niet mee voor het huidige balans</translation>
     </message>
     <message>
-        <source>Total of coins that was staked, and do not yet count toward the current balance</source>
-        <translation type="obsolete">Totaal aantal munten dat was staked, en nog niet telt voor huidige balans.</translation>
+        <source>Total of coins that was sproutd, and do not yet count toward the current balance</source>
+        <translation type="obsolete">Totaal aantal munten dat was sproutd, en nog niet telt voor huidige balans.</translation>
     </message>
     <message>
         <location filename="../overviewpage.cpp" line="+130"/>
@@ -4079,7 +4079,7 @@ Als het bestand niet bestaat, maak het dan aan, met een alleen-lezen permissie.<
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4634,8 +4634,8 @@ Als het bestand niet bestaat, maak het dan aan, met een alleen-lezen permissie.<
         <translation type="obsolete">Koppel aan gegeven adres. Gebruik [host]:poort notatie voor IPv6</translation>
     </message>
     <message>
-        <source>Stake your coins to support network and gain reward (default: 1)</source>
-        <translation type="obsolete">Stake je munten om netwerk te supporten en krijg hiervoor beloning (standaard: 1)</translation>
+        <source>Sprout your coins to support network and gain reward (default: 1)</source>
+        <translation type="obsolete">Sprout je munten om netwerk te supporten en krijg hiervoor beloning (standaard: 1)</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>

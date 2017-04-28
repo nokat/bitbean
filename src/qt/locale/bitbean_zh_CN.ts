@@ -2066,7 +2066,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <translation>所显示的信息尚未更新，建立连接后钱包客户端会自动和网络进行同步，但目前该过程尚未完成。</translation>
     </message>
     <message>
-        <source>Stake:</source>
+        <source>Sprout:</source>
         <translation type="obsolete">用于权益累积：</translation>
     </message>
     <message>
@@ -2213,7 +2213,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <translation type="obsolete">尚未确认的交易总额（不计入目前钱包余额）</translation>
     </message>
     <message>
-        <source>Total of coins that was staked, and do not yet count toward the current balance</source>
+        <source>Total of coins that was sproutd, and do not yet count toward the current balance</source>
         <translation type="obsolete">正在进行权益累积的货币总额（不计入目前钱包余额）</translation>
     </message>
     <message>
@@ -4046,7 +4046,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4604,7 +4604,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
         <translation type="obsolete">以IPv6 [host]:端口绑定给定地址</translation>
     </message>
     <message>
-        <source>Stake your coins to support network and gain reward (default: 1)</source>
+        <source>Sprout your coins to support network and gain reward (default: 1)</source>
         <translation type="obsolete">进行权益累积以支持黑币网络并获得报酬(默认: 1)</translation>
     </message>
     <message>

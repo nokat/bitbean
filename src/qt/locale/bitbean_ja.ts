@@ -2078,7 +2078,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <translation>表示されている情報は時間遅れている。接続したら、ウォレットは自動的にブラックコインネットワークと同期しますが過程は完了してません。</translation>
     </message>
     <message>
-        <source>Stake:</source>
+        <source>Sprout:</source>
         <translation type="obsolete">賭け金：</translation>
     </message>
     <message>
@@ -2225,7 +2225,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <translation type="obsolete">未確認の合計で、まだ現在の残高に含まれていない。</translation>
     </message>
     <message>
-        <source>Total of coins that was staked, and do not yet count toward the current balance</source>
+        <source>Total of coins that was sproutd, and do not yet count toward the current balance</source>
         <translation type="obsolete">賭けているコインの合計で、まだ現在の残高に含まれていない。</translation>
     </message>
     <message>
@@ -4053,7 +4053,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4608,7 +4608,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
         <translation type="obsolete">アドレスに結ぶ。IPv6のばい、[host]:port 表記法を使ってください。</translation>
     </message>
     <message>
-        <source>Stake your coins to support network and gain reward (default: 1)</source>
+        <source>Sprout your coins to support network and gain reward (default: 1)</source>
         <translation type="obsolete">褒奨金をもらうためと、ブラックコインネットワークをサッポートするために、コインを賭ける(デファルト：1)</translation>
     </message>
     <message>

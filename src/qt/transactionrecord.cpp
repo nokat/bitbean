@@ -31,7 +31,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
     uint256 hash = wtx.GetHash(), hashPrev = 0;
     std::map<std::string, std::string> mapValue = wtx.mapValue;
 
-    if (nNet > 0 || wtx.IsBeanBase() || wtx.IsBeanStake())
+    if (nNet > 0 || wtx.IsBeanBase() || wtx.IsBeanSprout())
     {
         //
         // Credit
@@ -61,9 +61,9 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                     // Generated (proof-of-work)
                     sub.type = TransactionRecord::Generated;
                 }
-                if (wtx.IsBeanStake())
+                if (wtx.IsBeanSprout())
                 {
-                    // Generated (proof-of-stake)
+                    // Generated (proof-of-sprout)
 
                     if (hashPrev == hash)
                         continue; // last beansprout output

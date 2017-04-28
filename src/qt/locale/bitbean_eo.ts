@@ -3582,7 +3582,7 @@ Se la dosiero ne ekzistas, kreu ĝin kun permeso &quot;nur posedanto rajtas leg
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

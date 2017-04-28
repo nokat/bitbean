@@ -3368,7 +3368,7 @@ Nung ing file ala ya, gawa ka gamit ing owner-readable-only file permissions.</t
     </message>
     <message>
         <location line="+1"/>
-        <source>Stake your beans to support network and gain reward (default: 1)</source>
+        <source>Sprout your beans to support network and gain reward (default: 1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
