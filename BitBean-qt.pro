@@ -240,7 +240,8 @@ HEADERS += src/qt/bitbeangui.h \
     src/netbase.h \
     src/clientversion.h \
     src/qt/paymentserver.h \
-    src/qt/trafficgraphwidget.h
+    src/qt/trafficgraphwidget.h \
+    src/qt/intro.h
 
 SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -308,6 +309,7 @@ SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/scrypt-x86_64.S \
     src/scrypt.cpp \
     src/pbkdf2.cpp \
+    src/qt/intro.cpp
 
 RESOURCES += \
     src/qt/bitbean.qrc
@@ -325,6 +327,7 @@ FORMS += \
     src/qt/forms/askpassphrasedialog.ui \
     src/qt/forms/rpcconsole.ui \
     src/qt/forms/optionsdialog.ui \
+    src/qt/forms/intro.ui
 
 contains(USE_QRCODE, 1) {
 HEADERS += src/qt/qrcodedialog.h
