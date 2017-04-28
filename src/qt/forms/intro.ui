@@ -20,7 +20,7 @@
       <string notr="true">QLabel { font-style:italic; }</string>
      </property>
      <property name="text">
-      <string>Welcome to BitBean-Qt.</string>
+      <string>Welcome to BitBean Digital Cash</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
