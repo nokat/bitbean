@@ -24,6 +24,7 @@
 #include "askpassphrasedialog.h"
 #include "notificator.h"
 #include "guiutil.h"
+#include "ui_interface.h"
 #include "rpcconsole.h"
 #include "ui_interface.h"
 #include "wallet.h"
@@ -277,6 +278,10 @@ void BitbeanGUI::createActions()
     encryptWalletAction->setCheckable(true);
     backupWalletAction = new QAction(QIcon(":/icons/filesave"), tr("&Backup Vault..."), this);
     backupWalletAction->setToolTip(tr("Backup wallet to another location"));
+    dumpWalletAction = new QAction(QIcon(":/icons/exportkey"), tr("&Export Key Pairs..."), this);
+    dumpWalletAction->setStatusTip(tr("Export Key Pair to a text file"));
+    importWalletAction = new QAction(QIcon(":/icons/importkey"), tr("&Import Key Pairs..."), this);
+    importWalletAction->setStatusTip(tr("Import a text file containing a key pair"));
     changePassphraseAction = new QAction(QIcon(":/icons/key"), tr("&Change Passphrase..."), this);
     changePassphraseAction->setToolTip(tr("Change the passphrase used for vault encryption"));
     unlockWalletAction = new QAction(QIcon(":/icons/lock_open"), tr("&Unlock Vault..."), this);
@@ -298,6 +303,8 @@ void BitbeanGUI::createActions()
     connect(toggleHideAction, SIGNAL(triggered()), this, SLOT(toggleHidden()));
     connect(encryptWalletAction, SIGNAL(triggered(bool)), this, SLOT(encryptWallet(bool)));
     connect(backupWalletAction, SIGNAL(triggered()), this, SLOT(backupWallet()));
+    connect(dumpWalletAction, SIGNAL(triggered()), this, SLOT(dumpWallet()));
+    connect(importWalletAction, SIGNAL(triggered()), this, SLOT(importWallet()));
     connect(changePassphraseAction, SIGNAL(triggered()), this, SLOT(changePassphrase()));
     connect(unlockWalletAction, SIGNAL(triggered()), this, SLOT(unlockWallet()));
     connect(lockWalletAction, SIGNAL(triggered()), this, SLOT(lockWallet()));
@@ -321,6 +328,9 @@ void BitbeanGUI::createMenuBar()
     // Configure the menus
     QMenu *file = appMenuBar->addMenu(tr("&File"));
     file->addAction(backupWalletAction);
+    file->addSeparator();
+    file->addAction(dumpWalletAction);
+    file->addAction(importWalletAction);
     file->addAction(exportAction);
     file->addAction(signMessageAction);
     file->addAction(verifyMessageAction);
@@ -675,18 +685,18 @@ void BitbeanGUI::message(const QString &title, const QString &message, unsigned 
         }
 
         // Display message
-        if (style & CClientUIInterface::MODAL) {
-            // Check for buttons, use OK as default, if none was supplied
-            QMessageBox::StandardButton buttons;
-            if (!(buttons = (QMessageBox::StandardButton)(style & CClientUIInterface::BTN_MASK)))
-                buttons = QMessageBox::Ok;
+               if (style & CClientUIInterface::MODAL) {
+                   // Check for buttons, use OK as default, if none was supplied
+                   QMessageBox::StandardButton buttons;
+                   if (!(buttons = (QMessageBox::StandardButton)(style & CClientUIInterface::BTN_MASK)))
+                       buttons = QMessageBox::Ok;
 
-            QMessageBox mBox((QMessageBox::Icon)nMBoxIcon, strTitle, message, buttons);
-            mBox.exec();
-        }
-        else
-                notificator->notify((Notificator::Class)nNotifyIcon, strTitle, message);
-    }
+                   QMessageBox mBox((QMessageBox::Icon)nMBoxIcon, strTitle, message, buttons);
+                   mBox.exec();
+               }
+               else
+                       notificator->notify((Notificator::Class)nNotifyIcon, strTitle, message);
+           }
 
 void BitbeanGUI::changeEvent(QEvent *e)
 {
@@ -952,6 +962,73 @@ void BitbeanGUI::backupWallet()
         else
             message(tr("Backup Successful"), tr("Keypair data was successfully saved to the new location."),
                     CClientUIInterface::MSG_INFORMATION);
+    }
+}
+
+void BitbeanGUI::dumpWallet()
+{
+   if(!walletModel)
+      return;
+
+   WalletModel::UnlockContext ctx(walletModel->requestUnlock());
+   if(!ctx.isValid())
+   {
+       // Unlock vault failed or was cancelled
+       return;
+   }
+
+#if QT_VERSION < 0x050000
+    QString saveDir = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+#else
+    QString saveDir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+#endif
+    QString filename = QFileDialog::getSaveFileName(this, tr("Export Key Pair"), saveDir, tr("KeyPair(*.txt)"));
+    if(!filename.isEmpty()) {
+        if(!walletModel->dumpWallet(filename)) {
+            message(tr("Export Key Pair Failed"),
+                         tr("An error happened while trying to save the keys to your location.\n"
+                            "Keys were not saved")
+                      ,CClientUIInterface::MSG_ERROR);
+        }
+        else
+          message(tr("Export of Key Pair was Successful"),
+                       tr("Keys were saved to this file:\n%2")
+                       .arg(filename)
+                      ,CClientUIInterface::MSG_INFORMATION);
+    }
+}
+
+void BitbeanGUI::importWallet()
+{
+   if(!walletModel)
+      return;
+
+   WalletModel::UnlockContext ctx(walletModel->requestUnlock());
+   if(!ctx.isValid())
+   {
+       // Unlock vault failed or was cancelled
+       return;
+   }
+
+#if QT_VERSION < 0x050000
+    QString openDir = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+#else
+    QString openDir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+#endif
+    QString filename = QFileDialog::getOpenFileName(this, tr("Import Key Pair"), openDir, tr("KeyPair(*.txt)"));
+    if(!filename.isEmpty()) {
+        if(!walletModel->importWallet(filename)) {
+            message(tr("Import of Key Pair Failed"),
+                         tr("An error happened while trying to import the keys.\n"
+                            "Some or all keys from:\n %1,\n were not imported into your vault.")
+                         .arg(filename)
+                      ,CClientUIInterface::MSG_ERROR);
+        }
+        else
+          message(tr("Import of Key Pair was Successful"),
+                       tr("All keys from:\n %1,\n were imported into your vault.")
+                       .arg(filename)
+                      ,CClientUIInterface::MSG_INFORMATION);
     }
 }
 

@@ -42,6 +42,8 @@
         <file alias="sprout">res/icons/sprout.png</file>
         <file alias="signmessage">res/icons/signmessage.png</file>
         <file alias="verifymessage">res/icons/verifymessage.png</file>
+        <file alias="importkey">res/icons/importkey.png</file>
+        <file alias="exportkey">res/icons/exportkey.png</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="about">res/images/about.png</file>
