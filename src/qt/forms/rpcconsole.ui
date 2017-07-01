@@ -607,7 +607,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Show the BitBean-Qt help message to get a list with possible BitBean command-line options.</string>
+        <string>Show the BitBean help message to get a list with possible BitBean command-line options.</string>
        </property>
        <property name="text">
         <string>&amp;Show</string>

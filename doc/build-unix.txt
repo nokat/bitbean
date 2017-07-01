@@ -69,7 +69,7 @@ emerge -av1 --noreplace boost openssl sys-libs/db
 Take the following steps to build:
  cd ${BitBean_DIR}/src
  make -f makefile.unix
- strip BitBeand
+ strip bitbeand
 
 
 Notes

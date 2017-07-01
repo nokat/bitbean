@@ -7,7 +7,7 @@ OpenSSL Toolkit (http://www.openssl.org/).  This product includes cryptographic
 software written by Eric Young (eay@cryptsoft.com).
 
 
-Mac OS X BitBeand build instructions
+Mac OS X bitbeand build instructions
 Laszlo Hanyecz <solar@heliacal.net>
 Douglas Huff <dhuff@jrbobdobbs.org>
 
@@ -41,14 +41,14 @@ sudo port install boost db53 openssl
 Optionally install qrencode (and set USE_QRCODE=1):
 sudo port install qrencode
 
-4.  Now you should be able to build BitBeand:
+4.  Now you should be able to build bitbeand:
 
 cd BitBean/src
 make -f makefile.osx
 
 Run:
-  ./BitBeand --help  # for a list of command-line options.
+  ./bitbeand --help  # for a list of command-line options.
 Run
-  ./BitBeand -daemon # to start the Testbean daemon.
+  ./bitbeand -daemon # to start the Testbean daemon.
 Run
-  ./BitBeand help # When the daemon is running, to get a list of RPC commands
+  ./bitbeand help # When the daemon is running, to get a list of RPC commands

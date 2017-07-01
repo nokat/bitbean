@@ -1,0 +1,4 @@
+*.exe
+bitbean
+bitbeand
+build.h

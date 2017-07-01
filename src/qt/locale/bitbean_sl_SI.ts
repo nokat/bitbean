@@ -609,12 +609,12 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
 <context>
     <name>BitbeanGUI</name>
     <message>
-        <location filename="../bitbean.cpp" line="+104"/>
+        <location filename="../bitbean.cpp" line="+106"/>
         <source>A fatal error occurred. BitBean can no longer continue safely and will quit.</source>
         <translation type="unfinished">Prišlo je do usodne napake. Program BitBean se ne more več varno nadaljevati in se bo zato zaprl. </translation>
     </message>
     <message>
-        <location filename="../bitbeangui.cpp" line="+85"/>
+        <location filename="../bitbeangui.cpp" line="+86"/>
         <source>BitBean</source>
         <translation type="unfinished">BitBean</translation>
     </message>
@@ -736,7 +736,7 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
         <translation type="unfinished">Napravi varnostno kopijo denarnice na drugo lokacijo</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+5"/>
         <source>&amp;Change Passphrase...</source>
         <translation type="unfinished">&amp;Spremeni geslo ...</translation>
     </message>
@@ -793,12 +793,12 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
         <translation type="unfinished">Odpri razhroščevalno in diagnostično konzolo</translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+32"/>
         <source>&amp;File</source>
         <translation type="unfinished">&amp;Datoteka</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+11"/>
         <source>&amp;Settings</source>
         <translation type="unfinished">&amp;Nastavitve</translation>
     </message>
@@ -985,7 +985,7 @@ Naslov: %4
         <translation type="obsolete">Prišlo je do napake ob poskušanju shranjevanja datoteke denarnice na novo lokacijo.</translation>
     </message>
     <message numerus="yes">
-        <location line="+106"/>
+        <location line="+173"/>
         <source>%n second(s)</source>
         <translation type="unfinished">
             <numerusform>%n sekundo</numerusform>
@@ -1005,8 +1005,8 @@ Naslov: %4
         </translation>
     </message>
     <message numerus="yes">
-        <location line="-454"/>
-        <location line="+458"/>
+        <location line="-521"/>
+        <location line="+525"/>
         <source>%n hour(s)</source>
         <translation type="unfinished">
             <numerusform>%n ura</numerusform>
@@ -1016,7 +1016,7 @@ Naslov: %4
         </translation>
     </message>
     <message>
-        <location line="-788"/>
+        <location line="-864"/>
         <source>&amp;Encrypt Vault...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1031,7 +1031,27 @@ Naslov: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+2"/>
+        <source>&amp;Export Key Pairs...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Export Key Pair to a text file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Import Key Pairs...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Import a text file containing a key pair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
         <source>Change the passphrase used for vault encryption</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1046,7 +1066,7 @@ Naslov: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+296"/>
+        <location line="+301"/>
         <source>Processed %1 of %2 (estimated) blocks of transaction history.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1057,7 +1077,7 @@ Naslov: %4
     </message>
     <message numerus="yes">
         <location line="+25"/>
-        <location line="+458"/>
+        <location line="+525"/>
         <source>%n day(s)</source>
         <translation type="unfinished">
             <numerusform>%n dan</numerusform>
@@ -1067,7 +1087,7 @@ Naslov: %4
         </translation>
     </message>
     <message numerus="yes">
-        <location line="-454"/>
+        <location line="-521"/>
         <source>%n week(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1127,7 +1147,70 @@ Naslov: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+118"/>
+        <location line="+22"/>
+        <source>Export Key Pair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <location line="+33"/>
+        <source>KeyPair(*.txt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-30"/>
+        <source>Export Key Pair Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>An error happened while trying to save the keys to your location.
+Keys were not saved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Export of Key Pair was Successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Keys were saved to this file:
+%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Import Key Pair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Import of Key Pair Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>An error happened while trying to import the keys.
+Some or all keys from:
+ %1,
+ were not imported into your vault.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Import of Key Pair was Successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>All keys from:
+ %1,
+ were imported into your vault.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+119"/>
         <source>Bean Sprout Info:&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1838,15 +1921,38 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
     </message>
 </context>
 <context>
+    <name>FreespaceChecker</name>
+    <message>
+        <location filename="../intro.cpp" line="+60"/>
+        <source>A new data directory will be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <source>Directory already exists. Add &lt;code&gt;%1name&lt;/code&gt; if you intend to create a new directory here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Path already exists, and is not a directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Cannot create data directory here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GUIUtil::HelpMessageBox</name>
     <message>
         <location filename="../guiutil.cpp" line="+433"/>
-        <location line="+12"/>
-        <source>BitBean-Qt</source>
-        <translation>BitBean-Qt</translation>
+        <location line="+13"/>
+        <source>BitBean</source>
+        <translation>BitBean</translation>
     </message>
     <message>
-        <location line="-12"/>
+        <location line="-13"/>
         <source>version</source>
         <translation>različica</translation>
     </message>
@@ -1879,6 +1985,59 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
         <location line="+1"/>
         <source>Show splash screen on startup (default: 1)</source>
         <translation>Prikaži splash screen ob zagonu (default: 1)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Choose data directory on startup (default: 0)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Intro</name>
+    <message>
+        <location filename="../forms/intro.ui" line="+14"/>
+        <source>Welcome</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Welcome to BitBean Digital Cash</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>As this is the first time the program is launched, you can choose where BitBean will store its data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>BitBean will download and store a copy of the BitBean block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Use the default data directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Use a custom data directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../intro.cpp" line="+100"/>
+        <source>Error</source>
+        <translation type="unfinished">Napaka</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>GB of free space available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>(of %1GB needed)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2301,6 +2460,29 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <location filename="../bitbean.cpp" line="+89"/>
+        <source>BitBean</source>
+        <translation type="unfinished">BitBean</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../intro.cpp" line="-32"/>
+        <source>Bitcoin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Error: Specified data directory &quot;%1&quot; can not be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QRCodeDialog</name>
     <message>
         <location filename="../forms/qrcodedialog.ui" line="+192"/>
@@ -2456,8 +2638,8 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
     </message>
     <message>
         <location line="+19"/>
-        <source>Show the BitBean-Qt help message to get a list with possible BitBean command-line options.</source>
-        <translation>Prikaži BitBean-Qt sporočilo za pomoč , ki prikaže vse možnosti ukazne vrstice BitBean aplikacije</translation>
+        <source>Show the BitBean help message to get a list with possible BitBean command-line options.</source>
+        <translation>Prikaži BitBean sporočilo za pomoč , ki prikaže vse možnosti ukazne vrstice BitBean aplikacije</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -3977,7 +4159,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+1"/>
-        <source>Send command to -server or BitBeand</source>
+        <source>Send command to -server or bitbeand</source>
         <translation type="unfinished">Pošlji ukaz na -server ali Testoind</translation>
     </message>
     <message>
@@ -4012,7 +4194,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+1"/>
-        <source>Specify pid file (default: BitBeand.pid)</source>
+        <source>Specify pid file (default: bitbeand.pid)</source>
         <translation type="unfinished">Določi pid datoteko (privzeto: BitBean.pid)</translation>
     </message>
     <message>
@@ -4617,7 +4799,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
         <translation type="obsolete">Uporaba:</translation>
     </message>
     <message>
-        <source>Send command to -server or BitBeand</source>
+        <source>Send command to -server or bitbeand</source>
         <translation type="obsolete">Pošlji ukaz na -server ali Testoind</translation>
     </message>
     <message>
@@ -4637,7 +4819,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
         <translation type="obsolete">Določi konfiguracijsko datoteko (privzeto: BitBean.conf)</translation>
     </message>
     <message>
-        <source>Specify pid file (default: BitBeand.pid)</source>
+        <source>Specify pid file (default: bitbeand.pid)</source>
         <translation type="obsolete">Določi pid datoteko (privzeto: BitBean.pid)</translation>
     </message>
     <message>

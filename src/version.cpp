@@ -7,12 +7,9 @@
 #include "version.h"
 
 // Name of client reported in the 'version' message. Report the same name
-// for both bitbeand and bitbean-qt, to make it harder for attackers to
+// for both bitbeand and bitbean, to make it harder for attackers to
 // target servers or GUI users specifically.
 const std::string CLIENT_NAME("Bean Core");
-
-// Client version number
-#define CLIENT_VERSION_SUFFIX   "RC1"
 
 
 // The following part of the code determines the CLIENT_BUILD variable.

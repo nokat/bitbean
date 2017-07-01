@@ -2,7 +2,7 @@
 * update translations (ping BitBeaner on IRC [#BitBean or #beancore on Freenode] for now)
 
 * update (commit) version in sources
-  BitBean-qt.pro
+  BitBeano
   src/version.h
   share/setup.nsi
   doc/README*
@@ -39,7 +39,7 @@
    ./bin/gbuild ../BitBean/contrib/gitian-descriptors/deps-win32.yml
    cp build/out/BitBean-deps-0.0.3.zip inputs/
 
-  * Build BitBeand and BitBean-qt on Linux32, Linux64, and Win32:
+  * Build bitbeand and BitBean Linux32, Linux64, and Win32:
    ./bin/gbuild --commit BitBean=v${VERSION} ../BitBean/contrib/gitian-descriptors/gitian.yml
    ./bin/gsign --signer $SIGNER --release ${VERSION} --destination ../gitian.sigs/ ../BitBean/contrib/gitian-descriptors/gitian.yml
    pushd build/out
@@ -75,18 +75,18 @@
   See this blog post for how Gavin set up his build environment to build the OSX
   release; note that a patched version of macdeployqt is not needed anymore, as
   the required functionality and fixes are implemented directly in macdeployqtplus:
-    http://gavintech.blogspot.com/2011/11/deploying-BitBean-qt-on-osx.html
+    http://gavintech.blogspot.com/2011/11/deploying-BitBean-osx.html
   Gavin also had trouble with the macports py27-appscript package; he
   ended up installing a version that worked with: /usr/bin/easy_install-2.7 appscript
 
-  qmake RELEASE=1 USE_QRCODE=1 BitBean-qt.pro
+  qmake RELEASE=1 USE_QRCODE=1 BitBeano
   make
   export QTDIR=/opt/local/share/qt4  # needed to find translations/qt_*.qm files
   T=$(contrib/qt_translations.py $QTDIR/translations src/qt/locale)
-  python2.7 contrib/macdeploy/macdeployqtplus BitBean-Qt.app -add-qt-tr $T -dmg -fancy contrib/macdeploy/fancy.plist
+  python2.7 contrib/macdeploy/macdeployqtplus BitBean.app -add-qt-tr $T -dmg -fancy contrib/macdeploy/fancy.plist
 
  Build output expected:
-  BitBean-Qt.dmg
+  BitBean.dmg
 
 * upload builds to SourceForge
 

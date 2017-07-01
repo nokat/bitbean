@@ -1,11 +1,11 @@
 #include "aboutdialog.h"
 #include "ui_aboutdialog.h"
-
 #include "clientmodel.h"
+#include "version.h"
 
 // Copyright year (2009-this)
 // Todo: update this when changing our copyright comments in the source
-const int ABOUTDIALOG_COPYRIGHT_YEAR = 2016;
+const int ABOUTDIALOG_COPYRIGHT_YEAR = 2017;
 
 AboutDialog::AboutDialog(QWidget *parent) :
     QDialog(parent),

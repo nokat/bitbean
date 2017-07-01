@@ -37,7 +37,7 @@ private slots:
     void on_openDebugLogfileButton_clicked();
     //** open bitbean.conf from current datadir */
     void on_openConfigfileButton_clicked();
-    /** display messagebox with program parameters (same as bitbean-qt --help) */
+    /** display messagebox with program parameters (same as bitbean --help) */
     void on_showCLOptionsButton_clicked();
     void on_closeButton_clicked();
     /** change the time range of the network traffic graph */

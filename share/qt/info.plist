@@ -7,13 +7,13 @@
         <key>CFBundlePackageType</key>
         <string>APPL</string>
         <key>CFBundleGetInfoString</key>
-        <string>BitBean-Qt</string>
+        <string>BitBean</string>
         <key>CFBundleSignature</key>
         <string>????</string>
         <key>CFBundleExecutable</key>
-        <string>BitBean-Qt</string>
+        <string>BitBean</string>
         <key>CFBundleIdentifier</key>
-        <string>org.bitbean.BitBean-Qt</string>
+        <string>org.bitbean.BitBean</string>
         <key>CFBundleURLTypes</key>
         <array>
           <dict>

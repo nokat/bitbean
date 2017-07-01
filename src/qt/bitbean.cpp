@@ -165,9 +165,9 @@ int main(int argc, char *argv[])
     app.setOrganizationName("BitBean");
     //XXX app.setOrganizationDomain("bitbean.org");
     if(GetBoolArg("-testnet")) // Separate UI settings for testnet
-        app.setApplicationName("BitBean-Qt-testnet");
+        app.setApplicationName("BitBean-testnet");
     else
-        app.setApplicationName("BitBean-Qt");
+        app.setApplicationName("BitBean");
 
     // Now that QSettings are accessible, initialize translations
     QTranslator qtTranslatorBase, qtTranslator, translatorBase, translator;
@@ -279,7 +279,7 @@ int main(int argc, char *argv[])
                 window.setWalletModel(0);
                 guiref = 0;
             }
-            // Shutdown the core and its threads, but don't exit Bitbean-Qt here
+            // Shutdown the core and its threads, but don't exit Bitbeanre
             Shutdown(NULL);
             threadGroup.interrupt_all();
             threadGroup.join_all();

@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = BitBean-qt
+TARGET = bitbean
 VERSION = 1.1.2.1
 QT += core gui network
 INCLUDEPATH += src src/json src/qt
@@ -341,7 +341,7 @@ SOURCES += src/qt/test/test_main.cpp \
 HEADERS += src/qt/test/uritests.h
 DEPENDPATH += src/qt/test
 QT += testlib
-TARGET = BitBean-qt_test
+TARGET = bitbean_test
 DEFINES += BITBEAN_QT_TEST
 }
 
@@ -398,7 +398,7 @@ QMAKE_EXTRA_COMPILERS += TSQM
 
 # "Other files" to show in Qt Creator
 OTHER_FILES += \
-    doc/*.rst doc/*.txt doc/README README.md res/bitbean-qt.rc
+    doc/*.rst doc/*.txt doc/README README.md res/bitbean.rc
 
 # platform specific defaults, if not overridden on command line
 isEmpty(BOOST_LIB_SUFFIX) {
@@ -485,7 +485,7 @@ macx: {
     QMAKE_CXXFLAGS += -stdlib=libstdc++
 
     ICON = src/qt/res/icons/bitbean.icns
-    TARGET = "BitBean-Qt"
+    TARGET = "BitBean"
 
     QMAKE_CFLAGS_THREAD += -pthread
     QMAKE_CXXFLAGS_THREAD += -pthread
@@ -494,7 +494,7 @@ macx: {
 
 
 windows:DEFINES += WIN32
-windows:RC_FILE = src/qt/res/bitbean-qt.rc
+windows:RC_FILE = src/qt/res/bitbean.rc
 
 windows:!contains(MINGW_THREAD_BUGFIX, 0) {
     # At least qmake's win32-g++-cross profile is missing the -lmingwthrd

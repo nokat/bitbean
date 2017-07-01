@@ -98,7 +98,7 @@ namespace GUIUtil
     bool GetStartOnSystemStartup();
     bool SetStartOnSystemStartup(bool fAutoStart);
 
-    /** Help message for Bitbean-Qt, shown with --help. */
+    /** Help message for Bitbeanhown with --help. */
     class HelpMessageBox : public QMessageBox
     {
         Q_OBJECT

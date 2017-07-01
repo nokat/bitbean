@@ -1,4 +1,4 @@
-BitBean-qt: Qt5 GUI for BitBean
+BitBeant5 GUI for BitBean
 ===============================
 
 Build instructions
@@ -24,9 +24,9 @@ then execute the following:
     qmake
     make
 
-Alternatively, install Qt Creator and open the `BitBean-qt.pro` file.
+Alternatively, install Qt Creator and open the `BitBeano` file.
 
-An executable named `BitBean-qt` will be built.
+An executable named `BitBeanill be built.
 
 
 Windows
