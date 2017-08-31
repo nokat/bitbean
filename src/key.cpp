@@ -447,7 +447,12 @@ bool CKey::Verify(uint256 hash, const std::vector<unsigned char>& vchSigParm)
     std::vector<unsigned char> vchSig(vchSigParm.begin(), vchSigParm.end());
     if (vchSig.size() > 1 && vchSig[1] & 0x80)
     {
-        unsigned char nLengthBytes = vchSig[1] & 0x7f;
+        size_t nLengthBytes = vchSig[1] & 0x7f;
+
+        // Prevent invalid memory access
+        if (vchSig.size() < 2 + nLengthBytes)
+            return false;
+
         if (nLengthBytes > 4)
         {
             unsigned char nExtraBytes = nLengthBytes - 4;
