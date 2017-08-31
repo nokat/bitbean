@@ -439,8 +439,26 @@ bool CKey::SetCompactSignature(uint256 hash, const std::vector<unsigned char>& v
     return false;
 }
 
-bool CKey::Verify(uint256 hash, const std::vector<unsigned char>& vchSig)
+bool CKey::Verify(uint256 hash, const std::vector<unsigned char>& vchSigParm)
 {
+    // Use a crafted signature length descriptor, to prevent invalid keys, by removing extra length bytes
+    // Fixes incompatible OpenSSL implimentations, that use different validation rules dependant on C 'long int' sizes
+    // Lays the foundation for implimenting libsecp256k1 library in a future release
+    std::vector<unsigned char> vchSig(vchSigParm.begin(), vchSigParm.end());
+    if (vchSig.size() > 1 && vchSig[1] & 0x80)
+    {
+        unsigned char nLengthBytes = vchSig[1] & 0x7f;
+        if (nLengthBytes > 4)
+        {
+            unsigned char nExtraBytes = nLengthBytes - 4;
+            for (unsigned char i = 0; i < nExtraBytes; i++)
+                if (vchSig[2 + i])
+                    return false;
+            vchSig.erase(vchSig.begin() + 2, vchSig.begin() + 2 + nExtraBytes);
+            vchSig[1] = 0x80 | (nLengthBytes - nExtraBytes);
+        }
+    }
+
     if (vchSig.empty())
         return false;
 
