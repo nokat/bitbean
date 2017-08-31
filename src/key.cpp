@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2015 Bean Core www.bitbean.org
+// Copyright (c) 2015-2017 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -447,9 +447,10 @@ bool CKey::Verify(uint256 hash, const std::vector<unsigned char>& vchSigParm)
     std::vector<unsigned char> vchSig(vchSigParm.begin(), vchSigParm.end());
     if (vchSig.size() > 1 && vchSig[1] & 0x80)
     {
-        size_t nLengthBytes = vchSig[1] & 0x7f;
+        size_t nLengthBytes = vchSig[1];
 
         // Prevent invalid memory access
+        // additional check on nExtraBytes
         if (vchSig.size() < 2 + nLengthBytes)
             return false;
 
