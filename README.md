@@ -31,11 +31,9 @@ transaction capabilities has been sorely overlooked.
 The BitBean developers believe that progress should never be held back.
 Proof of Sprout Crypto-currencies use a considerably smaller amount of energy and
 allows everyone to be involved in the network, without prohibitively expensive
-propriatary hardware as required to mine Bitcoin. The energy used mining Scrypt
-beans for years to prolong the days of GPU mining was a truly enormous waste of
-resources on a global scale. Why hold back progress? BitBean encourages it,
-allowing everyone with even a small investment in BitBean to participate in the
-network and currencies success!
+propriatary hardware as required to mine Bitcoin. Why hold back progress? BitBean encourages it,
+allowing everyone with even a small investment to participate in the
+networks success!
 
 BitBean Specifications
 ------------------------------------------------------------------------------------------
