@@ -14,6 +14,9 @@
 #include <string.h>
 #endif
 
+// Dump addresses to peers.dat every 10 minutes (600s)
+#define DUMP_ADDRESSES_INTERVAL 600
+
 using namespace std;
 using namespace boost;
 
@@ -1625,7 +1628,7 @@ void StartNode(void* parg)
     threadGroup->create_thread(boost::bind(&TraceThread<void (*)()>, "msghand", &ThreadMessageHandler));
 
     // Dump network addresses
-    threadGroup->create_thread(boost::bind(&LoopForever<void (*)()>, "dumpaddr", &DumpAddresses, 10000));
+    threadGroup->create_thread(boost::bind(&LoopForever<void (*)()>, "dumpaddr", &DumpAddresses, DUMP_ADDRESSES_INTERVAL * 10000));
 
     // Mine proof-of-sprout blocks in the background
     if (!GetBoolArg("-sprout", true))
