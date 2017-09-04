@@ -1265,24 +1265,12 @@ bool CheckSig(vector<unsigned char> vchSig, vector<unsigned char> vchPubKey, CSc
     if (signatureCache.Get(sighash, vchSig, vchPubKey))
         return true;
 
-    CKey key;
-    if (!key.SetPubKey(vchPubKey))
-        return false;
-
-    if (!key.Verify(sighash, vchSig))
+   if (!CPubKey(vchPubKey).Verify(sighash, vchsig))
         return false;
 
     signatureCache.Set(sighash, vchSig, vchPubKey);
     return true;
 }
-
-
-
-
-
-
-
-
 
 //
 // Return public keys or hashes from scriptPubKey, for 'standard' transaction types.
@@ -2018,12 +2006,12 @@ void CScript::SetDestination(const CTxDestination& dest)
     boost::apply_visitor(CScriptVisitor(this), dest);
 }
 
-void CScript::SetMultisig(int nRequired, const std::vector<CKey>& keys)
+void CScript::SetMultisig(int nRequired, const std::vector<CCPubKey>& keys)
 {
     this->clear();
 
     *this << EncodeOP_N(nRequired);
-    BOOST_FOREACH(const CKey& key, keys)
-        *this << key.GetPubKey();
+    BOOST_FOREACH(const CPubKey& key, keys)
+        *this << key;
     *this << EncodeOP_N(keys.size()) << OP_CHECKMULTISIG;
 }
