@@ -68,11 +68,9 @@ OBJS= \
     obj/wallet.o \
     obj/walletdb.o \
     obj/noui.o \
+    obj/hash.o \
     obj/kernel.o \
-    obj/pbkdf2.o \
-    obj/scrypt.o \
-    obj/scrypt-x86.o \
-    obj/scrypt-x86_64.o \
+    obj/pbkdf2.o
 
 all: BitBeand.exe
 
@@ -86,13 +84,6 @@ obj/txdb-leveldb.o: leveldb/libleveldb.a
 
 obj/%.o: %.cpp $(HEADERS)
 	g++ -c $(CFLAGS) -o $@ $<
-
-
-obj/scrypt-x86.o: scrypt-x86.S
-	$(CXX) -c $(xCXXFLAGS) -MMD -o $@ $<
-
-obj/scrypt-x86_64.o: scrypt-x86_64.S
-	$(CXX) -c $(xCXXFLAGS) -MMD -o $@ $<
 
 BitBeand.exe: $(OBJS:obj/%=obj/%)
 	g++ $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)

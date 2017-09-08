@@ -89,11 +89,9 @@ OBJS= \
     obj/wallet.o \
     obj/walletdb.o \
     obj/noui.o \
+    obj/hash.o \
     obj/pbkdf2.o \
-    obj/kernel.o \
-    obj/scrypt.o \
-    obj/scrypt-x86.o \
-    obj/scrypt-x86_64.o \
+    obj/kernel.o
     
 all: BitBeand
 
@@ -119,12 +117,6 @@ obj/%.o: %.cpp
 	  sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
-
-obj/scrypt-x86.o: scrypt-x86.S
-	$(CXX) -c $(xCXXFLAGS) -MMD -o $@ $<
-
-obj/scrypt-x86_64.o: scrypt-x86_64.S
-	$(CXX) -c $(xCXXFLAGS) -MMD -o $@ $<
 
 BitBeand: $(OBJS:obj/%=obj/%)
 	$(CXX) $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)

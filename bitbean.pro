@@ -259,6 +259,7 @@ SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/version.cpp \
     src/sync.cpp \
     src/util.cpp \
+    src/hash.cpp \
     src/netbase.cpp \
     src/key.cpp \
     src/script.cpp \
