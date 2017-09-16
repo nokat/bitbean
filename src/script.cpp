@@ -1271,7 +1271,7 @@ bool CheckSig(vector<unsigned char> vchSig, vector<unsigned char> vchPubKey, CSc
     if (signatureCache.Get(sighash, vchSig, vchPubKey))
         return true;
 
-   if (!CPubKey(vchPubKey).Verify(sighash, vchsig))
+   if (!CPubKey(vchPubKey).Verify(sighash, vchSig))
         return false;
 
     signatureCache.Set(sighash, vchSig, vchPubKey);
@@ -2012,7 +2012,7 @@ void CScript::SetDestination(const CTxDestination& dest)
     boost::apply_visitor(CScriptVisitor(this), dest);
 }
 
-void CScript::SetMultisig(int nRequired, const std::vector<CCPubKey>& keys)
+void CScript::SetMultisig(int nRequired, const std::vector<CPubKey>& keys)
 {
     this->clear();
 

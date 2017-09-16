@@ -6,6 +6,7 @@
 #ifndef BITBEAN_KEYSTORE_H
 #define BITBEAN_KEYSTORE_H
 
+#include <stdint.h>
 #include "crypter.h"
 #include "sync.h"
 #include <boost/signals2/signal.hpp>
