@@ -899,7 +899,7 @@ void BitbeanGUI::handleURI(QString strURI)
         gotoSendBeansPage();
     }
     else
-        message(tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid BitBean address or malformed URI parameters."),
+        message(tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid Bean cash address or malformed URI parameters."),
                 CClientUIInterface::ICON_WARNING);
 }
 
