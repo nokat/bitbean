@@ -727,7 +727,6 @@ threadGroup.create_thread(boost::bind(&DetectShutdownThread, &threadGroup));
     }
 
     uiInterface.InitMessage(_("Loading block index..."));
-    printf("Loading block index...\n");
     nStart = GetTimeMillis();
     if (!LoadBlockIndex())
         return InitError(_("Error loading blkindex.dat"));
@@ -775,7 +774,6 @@ threadGroup.create_thread(boost::bind(&DetectShutdownThread, &threadGroup));
     // ********************************************************* Step 8: load wallet
 
     uiInterface.InitMessage(_("Loading wallet..."));
-    printf("Loading wallet...\n");
     nStart = GetTimeMillis();
     bool fFirstRun = true;
     pwalletMain = new CWallet(strWalletFileName);
@@ -882,7 +880,6 @@ threadGroup.create_thread(boost::bind(&DetectShutdownThread, &threadGroup));
     // ********************************************************* Step 10: load peers
 
     uiInterface.InitMessage(_("Loading addresses..."));
-    printf("Loading addresses...\n");
     nStart = GetTimeMillis();
 
     {
@@ -917,8 +914,6 @@ threadGroup.create_thread(boost::bind(&DetectShutdownThread, &threadGroup));
     // ********************************************************* Step 12: finished
 
     uiInterface.InitMessage(_("Done loading"));
-    printf("Done loading\n");
-
     if (!strErrors.str().empty())
         return InitError(strErrors.str());
 
