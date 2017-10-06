@@ -1,3 +1,5 @@
+// Copyright (c) 2017 Bean Core www.beancash.org
+
 #include <boost/test/unit_test.hpp>
 
 #include "main.h"
@@ -42,7 +44,7 @@ static void add_coin(int64 nValue, int nAge = 6*24, bool fIsFromMe = false, int 
 
 static void empty_wallet(void)
 {
-    BOOST_FOREACH(COutput output, vCoins)
+    for (COutput output : vCoins)
         delete output.tx;
     vCoins.clear();
 }

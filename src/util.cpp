@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2015 Bean Core www.bitbean.org
+// Copyright (c) 2015-2017 Bean Core www.beancash.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,7 +27,6 @@ namespace boost {
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
-#include <boost/foreach.hpp>
 #include <boost/thread.hpp>
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
@@ -477,7 +476,7 @@ static const signed char phexdigit[256] =
 
 bool IsHex(const string& str)
 {
-    BOOST_FOREACH(unsigned char c, str)
+    for (unsigned char c : str)
     {
         if (phexdigit[c] < 0)
             return false;
@@ -553,7 +552,7 @@ void ParseParameters(int argc, const char* const argv[])
     }
 
     // New 0.6 features:
-    BOOST_FOREACH(const PAIRTYPE(string,string)& entry, mapArgs)
+    for (const std::pair<string,string>& entry : mapArgs)
     {
         string name = entry.first;
 
@@ -961,7 +960,7 @@ std::string EncodeDumpTime(int64_t nTime) {
 
 std::string EncodeDumpString(const std::string &str) {
     std::stringstream ret;
-    BOOST_FOREACH(unsigned char c, str) {
+    for (unsigned char c : str) {
         if (c <= 32 || c >= 128 || c == '%') {
             ret << '%' << HexStr(&c, &c + 1);
         } else {
@@ -1292,7 +1291,7 @@ void AddTimeData(const CNetAddr& ip, int64_t nTime)
             {
                 // If nobody has a time different than ours but within 5 minutes of ours, give a warning
                 bool fMatch = false;
-                BOOST_FOREACH(int64_t nOffset, vSorted)
+                for (int64_t nOffset : vSorted)
                     if (nOffset != 0 && abs64(nOffset) < 5 * 60)
                         fMatch = true;
 
@@ -1307,7 +1306,7 @@ void AddTimeData(const CNetAddr& ip, int64_t nTime)
             }
         }
         if (fDebug) {
-            BOOST_FOREACH(int64_t n, vSorted)
+            for (int64_t n : vSorted)
                 printf("%+" PRId64 "  ", n);
             printf("|  ");
         }

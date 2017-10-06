@@ -1,3 +1,5 @@
+// Copyright (c) 2017 Bean Core www.beancash.org
+
 #include "walletmodel.h"
 #include "guiconstants.h"
 #include "optionsmodel.h"
@@ -147,7 +149,7 @@ WalletModel::SendBeansReturn WalletModel::sendBeans(const QList<SendBeansRecipie
     std::vector<COutput> vBeans;
     wallet->AvailableBeans(vBeans, true, beanControl);
 
-    BOOST_FOREACH(const COutput& out, vBeans)
+    for (const COutput& out : vBeans)
         nBalance += out.tx->vout[out.i].nValue;
 
     if(total > nBalance)
@@ -396,7 +398,7 @@ bool WalletModel::getPubKey(const CKeyID &address, CPubKey& vchPubKeyOut) const
 // returns a list of COutputs from COutPoints
 void WalletModel::getOutputs(const std::vector<COutPoint>& vOutpoints, std::vector<COutput>& vOutputs)
 {
-    BOOST_FOREACH(const COutPoint& outpoint, vOutpoints)
+    for (const COutPoint& outpoint : vOutpoints)
     {
         if (!wallet->mapWallet.count(outpoint.hash)) continue;
         int nDepth = wallet->mapWallet[outpoint.hash].GetDepthInMainChain();
@@ -414,7 +416,7 @@ void WalletModel::listBeans(std::map<QString, std::vector<COutput> >& mapBeans) 
     std::vector<COutPoint> vLockedBeans;
 
     // add locked beans
-    BOOST_FOREACH(const COutPoint& outpoint, vLockedBeans)
+    for (const COutPoint& outpoint : vLockedBeans)
     {
         if (!wallet->mapWallet.count(outpoint.hash)) continue;
         int nDepth = wallet->mapWallet[outpoint.hash].GetDepthInMainChain();
@@ -423,7 +425,7 @@ void WalletModel::listBeans(std::map<QString, std::vector<COutput> >& mapBeans) 
         vBeans.push_back(out);
     }
 
-    BOOST_FOREACH(const COutput& out, vBeans)
+    for (const COutput& out : vBeans)
     {
         COutput cout = out;
 

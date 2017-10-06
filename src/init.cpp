@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2015 Bean Core www.bitbean.org
+// Copyright (c) 2015-2017 Bean Core www.beancash.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 //
@@ -609,7 +609,7 @@ threadGroup.create_thread(boost::bind(&DetectShutdownThread, &threadGroup));
 
     if (mapArgs.count("-onlynet")) {
         std::set<enum Network> nets;
-        BOOST_FOREACH(std::string snet, mapMultiArgs["-onlynet"]) {
+        for (std::string snet : mapMultiArgs["-onlynet"]) {
             enum Network net = ParseNetwork(snet);
             if (net == NET_UNROUTABLE)
                 return InitError(strprintf(_("Unknown network specified in -onlynet: '%s'"), snet.c_str()));
@@ -662,7 +662,7 @@ threadGroup.create_thread(boost::bind(&DetectShutdownThread, &threadGroup));
     {
         std::string strError;
         if (mapArgs.count("-bind")) {
-            BOOST_FOREACH(std::string strBind, mapMultiArgs["-bind"]) {
+            for (std::string strBind : mapMultiArgs["-bind"]) {
                 CService addrBind;
                 if (!Lookup(strBind.c_str(), addrBind, GetListenPort(), false))
                     return InitError(strprintf(_("Cannot resolve -bind address: '%s'"), strBind.c_str()));
@@ -682,7 +682,7 @@ threadGroup.create_thread(boost::bind(&DetectShutdownThread, &threadGroup));
 
     if (mapArgs.count("-externalip"))
     {
-        BOOST_FOREACH(string strAddr, mapMultiArgs["-externalip"]) {
+        for (string strAddr : mapMultiArgs["-externalip"]) {
             CService addrLocal(strAddr, GetListenPort(), fNameLookup);
             if (!addrLocal.IsValid())
                 return InitError(strprintf(_("Cannot resolve -externalip address: '%s'"), strAddr.c_str()));
@@ -705,7 +705,7 @@ threadGroup.create_thread(boost::bind(&DetectShutdownThread, &threadGroup));
             InitError(_("Unable to sign checkpoint, wrong checkpointkey?\n"));
     }
 
-    BOOST_FOREACH(string strDest, mapMultiArgs["-seednode"])
+    for (string strDest : mapMultiArgs["-seednode"])
         AddOneShot(strDest);
 
     // ********************************************************* Step 7: load blockchain 
@@ -872,7 +872,7 @@ threadGroup.create_thread(boost::bind(&DetectShutdownThread, &threadGroup));
     std::vector<boost::filesystem::path> *vPath = new std::vector<boost::filesystem::path>();
     if (mapArgs.count("-loadblock"))
     {
-        BOOST_FOREACH(string strFile, mapMultiArgs["-loadblock"])
+        for (string strFile : mapMultiArgs["-loadblock"])
         vPath->push_back(strFile);
     }
     NewThread(ThreadImport, vPath);

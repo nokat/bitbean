@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2013 The Novacoin developers
-// Copyright (c) 2015 Bean Core www.bitbean.org
+// Copyright (c) 2015-2017 Bean Core www.beancash.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -73,7 +73,7 @@ public:
     {
         printf("COrphan(hash=%s, dPriority=%.1f, dFeePerKb=%.1f)\n",
                ptx->GetHash().ToString().substr(0,10).c_str(), dPriority, dFeePerKb);
-        BOOST_FOREACH(uint256 hash, setDependsOn)
+        for (uint256 hash : setDependsOn)
             printf("   setDependsOn %s\n", hash.ToString().substr(0,10).c_str());
     }
 };
@@ -111,7 +111,7 @@ public:
 CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfSprout, int64_t* pFees)
 {
     // Create new block
-    auto_ptr<CBlock> pblock(new CBlock());
+    unique_ptr<CBlock> pblock(new CBlock());
     if (!pblock.get())
         return NULL;
 
@@ -192,7 +192,7 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfSprout, int64_t* pFees)
             double dPriority = 0;
             int64_t nTotalIn = 0;
             bool fMissingInputs = false;
-            BOOST_FOREACH(const CTxIn& txin, tx.vin)
+            for (const CTxIn& txin : tx.vin)
             {
                 // Read prev transaction
                 CTransaction txPrev;
@@ -339,7 +339,7 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfSprout, int64_t* pFees)
             uint256 hash = tx.GetHash();
             if (mapDependers.count(hash))
             {
-                BOOST_FOREACH(COrphan* porphan, mapDependers[hash])
+                for (COrphan* porphan : mapDependers[hash])
                 {
                     if (!porphan->setDependsOn.empty())
                     {
@@ -564,7 +564,7 @@ void SproutMiner(CWallet *pwallet)
         // Create new block
         //
         int64_t nFees;
-        auto_ptr<CBlock> pblock(CreateNewBlock(pwallet, true, &nFees));
+        unique_ptr<CBlock> pblock(CreateNewBlock(pwallet, true, &nFees));
         if (!pblock.get())
             return;
 

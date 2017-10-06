@@ -7,6 +7,7 @@ DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE __NO_SYSTEM_INCLU
 CONFIG += no_include_pwd
 CONFIG += thread
 CONFIG += static
+QMAKE_CXXFLAGS += -std=c++11
 
 win32:os2 {
     CONFIG += release
@@ -479,7 +480,8 @@ macx: {
 
     DEFINES += MAC_OSX MSG_NOSIGNAL=0
     # osx 10.9 has changed the stdlib default to libc++. To prevent some link error, you may need to use libstdc++
-    QMAKE_CXXFLAGS += -stdlib=libstdc++
+    # QMAKE_CXXFLAGS += -stdlib=libstdc++
+
 
     ICON = src/qt/res/icons/bitbean.icns
     TARGET = "BitBean"
