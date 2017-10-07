@@ -5,11 +5,12 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 //
 
+#include "init.h"
+#include "main.h"
 #include "txdb.h"
 #include "walletdb.h"
 #include "bitbeanrpc.h"
 #include "net.h"
-#include "init.h"
 #include "util.h"
 #include "ui_interface.h"
 #include "checkpoints.h"
@@ -601,6 +602,10 @@ threadGroup.create_thread(boost::bind(&DetectShutdownThread, &threadGroup));
     }
 
     // ********************************************************* Step 6: network initialization
+
+    SetProcessMessagesHandler(ProcessMessages);
+    SetSendMessagesHandler(SendMessages);
+    SetStartShutdownHandler(StartShutdown);
 
     int nSocksVersion = GetArg("-socks", 5);
 
