@@ -109,7 +109,8 @@ INCLUDEPATH += src/leveldb/include src/leveldb/helpers
 LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
 SOURCES += src/txdb-leveldb.cpp \
     src/qt/paymentserver.cpp \
-    src/qt/trafficgraphwidget.cpp
+    src/qt/trafficgraphwidget.cpp \
+    src/base58.cpp
 
 !win32 {
     # we use QMAKE_CXXFLAGS_RELEASE even without RELEASE=1 because we use RELEASE to indicate linking preferences not -O preferences
@@ -257,6 +258,7 @@ SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/qt/editaddressdialog.cpp \
     src/qt/bitbeanaddressvalidator.cpp \
     src/alert.cpp \
+    src/base58.cpp \
     src/version.cpp \
     src/sync.cpp \
     src/util.cpp \
@@ -480,7 +482,7 @@ macx: {
 
     DEFINES += MAC_OSX MSG_NOSIGNAL=0
     # osx 10.9 has changed the stdlib default to libc++. To prevent some link error, you may need to use libstdc++
-    # QMAKE_CXXFLAGS += -stdlib=libstdc++
+    QMAKE_CXXFLAGS += -stdlib=libstdc++
 
 
     ICON = src/qt/res/icons/bitbean.icns
