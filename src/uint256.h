@@ -568,6 +568,57 @@ public:
         else
             *this = 0;
     }
+
+/**
+ * The "compact" format is a representation of a whole
+ * number N using an unsigned 32 bit number similar to a
+ * floating point format.
+ * The most significant 8 bits are the unsigned exponent of base 256.
+ * This exponent can be thought of as "number of bytes of N".
+ * The lower 23 bits are the mantissa.
+ * Bit number 24 (0x800000) represents the sign of N.
+ * N = (-1^sign) * mantissa * 256^(exponent-3)
+ *
+ * Satoshi's original implementation used BN_bn2mpi() and BN_mpi2bn().
+ * MPI uses the most significant bit of the first byte as sign.
+ * Thus 0x1234560000 is compact (0x05123456)
+ * and  0xc0de000000 is compact (0x0600c0de)
+ * (0x05c0de00) would be -0x40de000000
+ *
+ * Bean Cash only uses this "compact" format for encoding difficulty
+ * targets, which are unsigned 256bit quantities.  Thus, all the
+ * complexities of the sign bit and using base 256 are probably an
+ * implementation accident.
+ *
+ * This implementation directly uses shifts instead of going
+ * through an intermediate MPI representation.
+ */
+
+    CBigNum& SetCompact(unsigned int nCompact)
+    {
+        unsigned int nSize = nCompact >> 24;
+        std::vector<unsigned char> vch(4 + nSize);
+        vch[3] = nSize;
+        if (nSize >= 1) vch[4] = (nCompact >> 16) & 0xff;
+        if (nSize >= 2) vch[5] = (nCompact >> 8) & 0xff;
+        if (nSize >= 3) vch[6] = (nCompact >> 0) & 0xff;
+        BN_mpi2bn(&vch[0], vch.size(), this);
+        return *this;
+    }
+
+    unsigned int GetCompact() const
+    {
+        unsigned int nSize = BN_bn2mpi(this, NULL);
+        std::vector<unsigned char> vch(nSize);
+        nSize -= 4;
+        BN_bn2mpi(this, &vch[0]);
+        unsigned int nCompact = nSize << 24;
+        if (nSize >= 1) nCompact |= (vch[4] << 16);
+        if (nSize >= 2) nCompact |= (vch[5] << 8);
+        if (nSize >= 3) nCompact |= (vch[6] << 0);
+        return nCompact;
+    }
+
 };
 
 inline bool operator==(const uint256& a, uint64_t b)                         { return (base_uint256)a == b; }

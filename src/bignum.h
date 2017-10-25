@@ -319,31 +319,6 @@ public:
         return vch;
     }
 
-    CBigNum& SetCompact(unsigned int nCompact)
-    {
-        unsigned int nSize = nCompact >> 24;
-        std::vector<unsigned char> vch(4 + nSize);
-        vch[3] = nSize;
-        if (nSize >= 1) vch[4] = (nCompact >> 16) & 0xff;
-        if (nSize >= 2) vch[5] = (nCompact >> 8) & 0xff;
-        if (nSize >= 3) vch[6] = (nCompact >> 0) & 0xff;
-        BN_mpi2bn(&vch[0], vch.size(), this);
-        return *this;
-    }
-
-    unsigned int GetCompact() const
-    {
-        unsigned int nSize = BN_bn2mpi(this, NULL);
-        std::vector<unsigned char> vch(nSize);
-        nSize -= 4;
-        BN_bn2mpi(this, &vch[0]);
-        unsigned int nCompact = nSize << 24;
-        if (nSize >= 1) nCompact |= (vch[4] << 16);
-        if (nSize >= 2) nCompact |= (vch[5] << 8);
-        if (nSize >= 3) nCompact |= (vch[6] << 0);
-        return nCompact;
-    }
-
     void SetHex(const std::string& str)
     {
         // skip 0x

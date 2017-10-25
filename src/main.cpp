@@ -38,9 +38,9 @@ unsigned int nTransactionsUpdated = 0;
 map<uint256, CBlockIndex*> mapBlockIndex;
 set<pair<COutPoint, unsigned int> > setSproutSeen;
 
-CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // Starting Difficulty: results with 0,000244140625 proof-of-work difficulty
-CBigNum bnProofOfSproutLimit(~uint256(0) >> 20);
-CBigNum bnProofOfWorkLimitTestNet(~uint256(0) >> 16);
+bnProofOfWorkLimit(~uint256(0) >> 20); // Starting Difficulty: results with 0,000244140625 proof-of-work difficulty
+bnProofOfSproutLimit(~uint256(0) >> 20);
+bnProofOfWorkLimitTestNet(~uint256(0) >> 16);
 
 static const int64_t nTargetTimespan = 60 * 60;  // BitBean - every 1 hour
 unsigned int nTargetSpacing = 1 * 60; // BitBean - 1 minute
@@ -1032,9 +1032,9 @@ int64_t GetProofOfSproutReward(int64_t nBeanAge, int64_t nFees)
 //
 // maximum nBits value could possible be required nTime after
 //
-unsigned int ComputeMaxBits(CBigNum bnTargetLimit, unsigned int nBase, int64_t nTime)
+unsigned int ComputeMaxBits(uint256 bnTargetLimit, unsigned int nBase, int64_t nTime)
 {
-    CBigNum bnResult;
+    uint256 bnResult;
     bnResult.SetCompact(nBase);
     bnResult *= 2;
     while (nTime > 0 && bnResult < bnTargetLimit)
@@ -1078,7 +1078,7 @@ unsigned int ComputeMinWork(unsigned int nBase, int64_t nTime)
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfSprout)
 {
 
-	CBigNum bnTargetLimit = fProofOfSprout ? bnProofOfSproutLimit : bnProofOfWorkLimit;
+    uint256 bnTargetLimit = fProofOfSprout ? bnProofOfSproutLimit : bnProofOfWorkLimit;
 
     if (pindexLast == NULL)
         return bnTargetLimit.GetCompact(); // genesis block
@@ -1094,9 +1094,12 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
     if (nActualSpacing < 0)
         nActualSpacing = nTargetSpacing;
 
-    // ppbean: target change every block
-    // ppbean: retarget with exponential moving toward target spacing
-    CBigNum bnNew;
+    /**
+     * Target change every block.
+     * Retarget with exponential moving toward target spacing.
+     */
+
+    uint256 bnNew;
     bnNew.SetCompact(pindexPrev->nBits);
     bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
     bnNew /= ((nInterval + 1) * nTargetSpacing);
@@ -1110,15 +1113,17 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits)
 {
-    CBigNum bnTarget;
-    bnTarget.SetCompact(nBits);
+    bool fNegative;
+    bool fOverflow;
+    uint256 bnTarget;
+    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
 
     // Check range
-    if (bnTarget <= 0 || bnTarget > bnProofOfWorkLimit)
+    if (fNegative || bnTarget == 0 || fOverflow || bnTarget > bnProofOfWorkLimit)
         return error("CheckProofOfWork() : nBits below minimum work");
 
     // Check proof of work matches claimed amount
-    if (hash > bnTarget.getuint256())
+    if (hash > bnTarget)
         return error("CheckProofOfWork() : hash doesn't match nBits");
 
     return true;
@@ -1150,7 +1155,7 @@ void static InvalidChainFound(CBlockIndex* pindexNew)
     if (pindexNew->nChainTrust > nBestInvalidTrust)
     {
         nBestInvalidTrust = pindexNew->nChainTrust;
-        CTxDB().WriteBestInvalidTrust(CBigNum(nBestInvalidTrust));
+        CTxDB().WriteBestInvalidTrust(uint256(nBestInvalidTrust));
         uiInterface.NotifyBlocksChanged();
     }
 
@@ -1159,11 +1164,11 @@ void static InvalidChainFound(CBlockIndex* pindexNew)
 
     printf("InvalidChainFound: invalid block=%s  height=%d  trust=%s  blocktrust=%" PRId64 "  date=%s\n",
       pindexNew->GetBlockHash().ToString().substr(0,20).c_str(), pindexNew->nHeight,
-      CBigNum(pindexNew->nChainTrust).ToString().c_str(), nBestInvalidBlockTrust.Get64(),
+      uint256(pindexNew->nChainTrust).ToString().c_str(), nBestInvalidBlockTrust.Get64(),
       DateTimeStrFormat("%x %H:%M:%S", pindexNew->GetBlockTime()).c_str());
     printf("InvalidChainFound:  current best=%s  height=%d  trust=%s  blocktrust=%" PRId64 "  date=%s\n",
       hashBestChain.ToString().substr(0,20).c_str(), nBestHeight,
-      CBigNum(pindexBest->nChainTrust).ToString().c_str(),
+      uint256(pindexBest->nChainTrust).ToString().c_str(),
       nBestBlockTrust.Get64(),
       DateTimeStrFormat("%x %H:%M:%S", pindexBest->GetBlockTime()).c_str());
 }
@@ -1853,7 +1858,7 @@ bool CBlock::SetBestChain(CTxDB& txdb, CBlockIndex* pindexNew)
 
     printf("SetBestChain: new best=%s  height=%d  trust=%s  blocktrust=%" PRId64 "  date=%s\n",
       hashBestChain.ToString().substr(0,20).c_str(), nBestHeight,
-      CBigNum(nBestChainTrust).ToString().c_str(),
+      uint256(nBestChainTrust).ToString().c_str(),
       nBestBlockTrust.Get64(),
       DateTimeStrFormat("%x %H:%M:%S", pindexBest->GetBlockTime()).c_str());
 
@@ -1886,16 +1891,19 @@ bool CBlock::SetBestChain(CTxDB& txdb, CBlockIndex* pindexNew)
     return true;
 }
 
-// ppbean: total bean age spent in transaction, in the unit of bean-days.
-// Only those beans meeting minimum age requirement counts. As those
-// transactions not in main chain are not currently indexed so we
-// might not find out about their bean age. Older transactions are
-// guaranteed to be in main chain by sync-checkpoint. This rule is
-// introduced to help nodes establish a consistent view of the bean
-// age (trust score) of competing branches.
+/**
+ * Total bean age spent in a transaction, is measured in bean-days.
+ * Only those beans meeting minimum age requirement are counted.
+ * Transactions not in the main chain are not currently indexed so we
+ * might not find out about their bean age.
+ * Older transactions are guaranteed to be in main chain by sync-checkpoint.
+ * This rule is introduced to help nodes establish a consistent view of the bean age
+ * or trust score of competing branches.
+ */
+
 bool CTransaction::GetBeanAge(CTxDB& txdb, uint64_t& nBeanAge) const
 {
-    CBigNum bnCentSecond = 0;  // bean age in the unit of cent-seconds
+    uint256 bnCentSecond = 0;  // bean age in the unit of cent-seconds
     nBeanAge = 0;
 
     if (IsBeanBase())
@@ -1919,20 +1927,20 @@ bool CTransaction::GetBeanAge(CTxDB& txdb, uint64_t& nBeanAge) const
             continue; // only count beans meeting min age requirement
 
         int64_t nValueIn = txPrev.vout[txin.prevout.n].nValue;
-        bnCentSecond += CBigNum(nValueIn) * (nTime-txPrev.nTime) / CENT;
+        bnCentSecond += uint256(nValueIn) * (nTime-txPrev.nTime) / CENT;
 
         if (fDebug && GetBoolArg("-printbeanage"))
             printf("bean age nValueIn=%" PRId64 " nTimeDiff=%d bnCentSecond=%s\n", nValueIn, nTime - txPrev.nTime, bnCentSecond.ToString().c_str());
     }
 
-    CBigNum bnBeanDay = bnCentSecond * CENT / bean / (24 * 60 * 60);
+    uint256 bnBeanDay = bnCentSecond * CENT / bean / (24 * 60 * 60);
     if (fDebug && GetBoolArg("-printbeanage"))
         printf("bean age bnBeanDay=%s\n", bnBeanDay.ToString().c_str());
     nBeanAge = bnBeanDay.getuint64();
     return true;
 }
 
-// ppbean: total bean age spent in block, in the unit of bean-days.
+// Total bean age spent in block, in the unit of bean-days.
 bool CBlock::GetBeanAge(uint64_t& nBeanAge) const
 {
     nBeanAge = 0;
@@ -2211,13 +2219,19 @@ bool CBlock::AcceptBlock()
 
 uint256 CBlockIndex::GetBlockTrust() const
 {
-    CBigNum bnTarget;
-    bnTarget.SetCompact(nBits);
+    uint256 bnTarget;
+    bool fNegative;
+    bool fOverflow;
+    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
+    if (fNegative || fOverflow || bnTarget == 0)
+            return 0;
+    /**
+     * We need to compute 2**256 / (bnTarget+1), but this is too large for uint256.
+     * So, 2**256 is at least as large as bnTarget + 1, or it is queal to ((2**256 - bnTarget -1) / (bnTarget+1)) +1
+     * Reduced this can be represented as:  ~bnTarget / (nTarget+1) + 1
+     */
 
-    if (bnTarget <= 0)
-        return 0;
-
-    return ((CBigNum(1)<<256) / (bnTarget+1)).getuint256();
+    return (~bnTarget / (bnTarget + 1)) + 1;
 }
 
 bool CBlockIndex::IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRequired, unsigned int nToCheck)
@@ -2256,16 +2270,17 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock)
     {
         // Extra checks to prevent "fill up memory by spamming with bogus blocks"
         int64_t deltaTime = pblock->GetBlockTime() - pcheckpoint->nTime;
-        CBigNum bnNewBlock;
-        bnNewBlock.SetCompact(pblock->nBits);
-        CBigNum bnRequired;
+        bool fOverflow = false;
+        uint256 bnNewBlock;
+        bnNewBlock.SetCompact(block.nBits, NULL, &fOverflow);
+        uint256 bnRequired;
 
         if (pblock->IsProofOfSprout())
             bnRequired.SetCompact(ComputeMinSprout(GetLastBlockIndex(pcheckpoint, true)->nBits, deltaTime, pblock->nTime));
         else
             bnRequired.SetCompact(ComputeMinWork(GetLastBlockIndex(pcheckpoint, false)->nBits, deltaTime));
 
-        if (bnNewBlock > bnRequired)
+        if (fOverflow || bnNewBlock > bnRequired)
         {
             if (pfrom)
                 pfrom->Misbehaving(100);
@@ -2478,7 +2493,7 @@ FILE* AppendBlockFile(unsigned int& nFileRet)
 
 bool LoadBlockIndex(bool fAllowNew)
 {
-    CBigNum bnTrustedModulus;
+    uint256 bnTrustedModulus;
 
     if (fTestNet)
     {

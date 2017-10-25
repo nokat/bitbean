@@ -6,13 +6,10 @@
 #ifndef BITBEAN_MAIN_H
 #define BITBEAN_MAIN_H
 
-#include "bignum.h"
 #include "sync.h"
 #include "net.h"
 #include "script.h"
-
 #include "util.h"
-
 
 #include <iostream>
 #include <list>
