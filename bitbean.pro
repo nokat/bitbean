@@ -180,7 +180,6 @@ HEADERS += src/qt/bitbeangui.h \
     src/alert.h \
     src/addrman.h \
     src/base58.h \
-    src/bignum.h \
     src/checkpoints.h \
     src/compat.h \
     src/beancontrol.h \
