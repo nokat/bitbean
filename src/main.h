@@ -921,7 +921,7 @@ public:
     unsigned int GetSproutEntropyBit() const
     {
         // Take last bit of block hash as entropy bit
-        unsigned int nEntropyBit = ((GetHash().Get64()) & 1llu);
+        unsigned int nEntropyBit = ((GetHash().GetLow64()) & 1llu);
         if (fDebug && GetBoolArg("-printsproutmodifier"))
             printf("GetSproutEntropyBit: hashBlock=%s nEntropyBit=%u\n", GetHash().ToString().c_str(), nEntropyBit);
         return nEntropyBit;

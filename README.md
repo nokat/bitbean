@@ -1,82 +1,110 @@
 
-"BitBean is Bitcoin's Big Little Brother - Fast..Simple..Secure..More Than Digital Cash!"
+"Bean Cash is Bitcoin's Big Little Brother - Fast..Simple..Secure..More Than a Digital Currency!"
 
-http://www.bitbean.org
+http://www.beancash.org
 
-==========================================================================================
-
-
-What Is BitBean?
-------------------------------------------------------------------------------------------
-
-Bitbeans (Ticker: BITB) is a new Digital Currency, designed for scale-ability,
-speed, and lightening fast transactions! It features an innovative Proof of Sprout
-algorithm that more closely resembles traditional Proof of Work crypto currencies.
-BitBean is the first crypto to impliment 20MB blocks, based off Gavin Andersen's
-proposals to fix Bitcoin's scale-ability limitations.
-BitBean is designed from the ground-up to be transaction-centric and superior form
-of currency for on-line and brick-and-mortar businesses. Inovative new implimentations
-are planned for BitBean that will set it appart from the rest of the crypto curriencies
-and lead in the mass adoption of crypto curriencies in the market place.
+=====================================================================================================
 
 
-Why BitBean?
-------------------------------------------------------------------------------------------
+What Is Bean Cash?
+-----------------------------------------------------------------------------------------------------
 
-It is the goal of the BitBean developers (Bean Core) for everyone involved in the
-Cryptocurrency revolution to have access to the exciting developments that have
-been taking place. An ASIC-friendly, mixed PoW/PoS bean with eventual anonymous
-transaction capabilities has been sorely overlooked.
+Bean Cash (Ticker: BEAN) is a re-brand of BitBean (Ticker: BitBean).
+Bean Cash brings forward BitBean's legacy, of a lightening-fast, rock-solid network, with a
+mature blockchain--that is nearly 3 years old! 3 years is a long time in the "crypto-currency"
+space! In this time, BitBean has not had a hardfork or transaction roll-back. Bean Core will
+continue to move development forward with Bean Cash, while working to maintain the integrity
+of the blockchain. As core developers of Bean Cash, Bean Core sees its role as a steward.
+The very first purchaser of BitBean that may have transfered their BitBean to a Digital Cash
+(a "paper wallet"), should be able to redeem those tokens 90 years later, as "Bean Cash". If
+this is possible in 90 years, then Bean Core and developers of Bean Cash, will have filled
+the mission:  "To be an enduring digital currency, with high integrity, a store of value and
+a means of exchange of value in every day transactions -- that stands the test of time!"
 
-The BitBean developers believe that progress should never be held back.
-Proof of Sprout Crypto-currencies use a considerably smaller amount of energy and
-allows everyone to be involved in the network, without prohibitively expensive
-propriatary hardware as required to mine Bitcoin. Why hold back progress? BitBean encourages it,
-allowing everyone with even a small investment to participate in the
-networks success!
+Bean Cash is a digital currency and network, designed for scalability,
+speed, and lightening fast transactions! It features an innovative Proof of Bean (PoB)
+algorithm that more closely resembles traditional Proof of Work (PoW) crypto currencies.
+Bean Cash is the first digital currency to implement 20MB blocks, based off Gavin Andersen's
+proposals to fix Bitcoin's scalability limitations. Bean Cash is designed from the ground-up
+to be a transaction-centric and superior form of currency, for exchange of value in on-line
+purchases (idealy suited for microtransactions) and purchases with traditional
+brick-and-mortar merchants.
 
-BitBean Specifications
-------------------------------------------------------------------------------------------
+In it's mission to be a transaction-centric currency, a digital currency with real use. One
+of the main goals for Bean Cash is solving the "last mile" issue in the digital currency space.
+Instramental in this objective will be working with companies that are willing to implement
+Bean Cash at the Point of Sale/Service. Bean Cash is designed to support a network with over
+1,300 TPS (Transactions Per Second), effecively being able to compete with companies such as
+PayPal.
 
-**Bean Generation**: Pure Proof of Sprout with Proof of Work period upon release
+As developers of Bean Cash, we are not looking to re-impliment a transaction system, based on
+the "Check/Cheque" model (et al. Bitcoin), where a merchant approves a transaction based on
+simple verification, and settlement happens much latter. That kind of model does not provide
+any more value than existing, charge back prone, credit cards.
+
+Rather than use archaic models of the past, Bean Cash will allow merchants to verify, validate
+and settle transactions in near real time (a minute or less on average for a single confirmation
+transaction.) This is magnitudes faster than Bitcoin (10-30 times, or substantually more if
+transactions are back-logged), while providing no risk, with transactions being posted in near
+real time to the Bean Cash blockchain. This provides real value by allowing  merchants to reduce
+risk, fraud, and costs as their percentage of Bean Cash transactions increases in their business.
+Fundamently, a zero confirmation transaction does not help to solve a real-world problem,
+as merchants still bear risk as with existing traditional payment methods
+(checks/cheques/Credit-Debit cards).
+
+To learn more about Bean Cash, visit our website:  http://www.beancash.org or chat live with
+our community at:  https://livechat.beancash.org
+
+Alternatively, if you are a merchant with questions or interested in adopting Bean Cash in your
+business, you may contact Bean Core via telephone:  1 (406) 213-4656
+
+
+
+Bean Cash Specifications
+-----------------------------------------------------------------------------------------------------
+
+**Bean Generation**: Pure Proof of Bean (PoB), Proof of Work (PoW) distribution ended at block 10,000
 
 **Proof of Work Algorithm**: SHA-256
 
-**PoW Block Reward**: 100000 BITB
+**PoW Block Reward**: 100000 BEAN
 
 **PoW Blocks**: 10000
+
+**PoB Block Reward**: 1000 BEAN (1 SPROUT)
                           
-**PoW Target Blocktime**: 1 minute
+**Target Blocktime**: 1 minute
 
 **RPC Port**: 22461
 
 **Port**: 22460
 
-**Time to Maturity**: 100 Confirmations
+**Time to Maturity**: 110 Confirmations
 
-**Proof of Sprout Reward**: 1000 BITB per block
+**Minimum Time for Beans To Be Elgible to Sprout**: 6 hours
 
-**Minimum Bean Sprout Age**: 6 hours
+**Maximum Supply (over 95+ years)**: 50 Billion BEAN
 
 
-BitBean Monetary Units
+Bean Cash Monetary Units
 ------------------------------------------------------------------------------------------
 
-Sprout = 1,000 BitBeans
-BitB = 1 BitBean
-mBitB = .001 BitBean
-uBitB = .000001 BitBean
-nokat = .00000001 BitBean
+Sprout = ß1,000 (BEAN)
+Bean = ß1 (BEAN)
+mBitB = ß.001 (BEAN)
+uBitB = ß.000001 (BEAN)
+Adzuki = ß.00000001 (BEAN)
 
 Support
 ------------------------------------------------------------------------------------------
-www.bitbean.org
+www.beancash.org
+Community Support:  https://livechat.beancash.org
 Twitter:  @BitBeanCoin
-admin@bitbean.org
-Live Public Chat:  http://teamchat.bitbean.org (Firefox recommended)
-IRC: #bitbean (Freenode IRC Network)
+admin@beancash.org
+
+IRC: #beancash (Freenode IRC Network)
 
 Telephone Support:  +1 (406) 213-4656  
-(Free for first 10 minutes. 50k BITB/per hour with 1hr. minimum)
+(Free for first 15 minutes. 10k BEAN/per hour with 1hr. minimum)
 
-Developer support:  #beancore on the Freenode IRC Network
+Developer support:  #beancore on the Freenode IRC Network or devcore@beancash.org

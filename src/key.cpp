@@ -1,8 +1,9 @@
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2015-2017 Bean Core www.bitbean.org
+// Copyright (c) 2015-2017 Bean Core www.beancash.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include <openssl/bn.h>
 #include <openssl/ecdsa.h>
 #include <openssl/rand.h>
 #include <openssl/obj_mac.h>

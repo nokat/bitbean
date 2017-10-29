@@ -109,8 +109,7 @@ INCLUDEPATH += src/leveldb/include src/leveldb/helpers
 LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
 SOURCES += src/txdb-leveldb.cpp \
     src/qt/paymentserver.cpp \
-    src/qt/trafficgraphwidget.cpp \
-    src/base58.cpp
+    src/qt/trafficgraphwidget.cpp
 
 !win32 {
     # we use QMAKE_CXXFLAGS_RELEASE even without RELEASE=1 because we use RELEASE to indicate linking preferences not -O preferences
@@ -242,7 +241,8 @@ HEADERS += src/qt/bitbeangui.h \
     src/clientversion.h \
     src/qt/paymentserver.h \
     src/qt/trafficgraphwidget.h \
-    src/qt/intro.h
+    src/qt/intro.h \
+    src/bignum.h
 
 SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/qt/transactiontablemodel.cpp \
