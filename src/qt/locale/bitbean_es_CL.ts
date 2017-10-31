@@ -163,7 +163,7 @@ Eric Young (eay@cryptsoft.com) y UPnP software escrito por Thomas Bernard.</tran
 <context>
     <name>AddressTableModel</name>
     <message>
-        <location filename="../addresstablemodel.cpp" line="+144"/>
+        <location filename="../addresstablemodel.cpp" line="+146"/>
         <source>Label</source>
         <translation>Etiqueta</translation>
     </message>
@@ -431,7 +431,7 @@ Eric Young (eay@cryptsoft.com) y UPnP software escrito por Thomas Bernard.</tran
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../beancontroldialog.cpp" line="+36"/>
+        <location filename="../beancontroldialog.cpp" line="+38"/>
         <source>Copy address</source>
         <translation type="unfinished">Copia dirección</translation>
     </message>
@@ -860,12 +860,11 @@ Dirección: %4</translation>
     </message>
     <message>
         <location line="-17"/>
-        <location line="+17"/>
         <source>URI can not be parsed! This can be caused by an invalid BitBean address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+36"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation type="unfinished">La billetera esta &lt;b&gt;codificada&lt;/b&gt; y actualmente &lt;b&gt;desbloqueda&lt;/b&gt;</translation>
     </message>
@@ -1027,7 +1026,12 @@ Dirección: %4</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+288"/>
+        <location line="+231"/>
+        <source>URI can not be parsed! This can be caused by an invalid Bean cash address or malformed URI parameters.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+57"/>
         <source>There was an error trying to save the keypair data to the new location.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1428,7 +1432,7 @@ Dirección: %4</translation>
 <context>
     <name>GUIUtil::HelpMessageBox</name>
     <message>
-        <location filename="../guiutil.cpp" line="+433"/>
+        <location filename="../guiutil.cpp" line="+434"/>
         <location line="+13"/>
         <source>BitBean</source>
         <translation type="unfinished"></translation>
@@ -2855,7 +2859,7 @@ Dirección: %4</translation>
 <context>
     <name>TransactionDesc</name>
     <message>
-        <location filename="../transactiondesc.cpp" line="+19"/>
+        <location filename="../transactiondesc.cpp" line="+21"/>
         <source>Open until %1</source>
         <translation>Abierto hasta %1</translation>
     </message>

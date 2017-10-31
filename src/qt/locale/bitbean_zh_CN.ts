@@ -168,7 +168,7 @@ This product includes software developed by the OpenSSL Project for use in the O
 <context>
     <name>AddressTableModel</name>
     <message>
-        <location filename="../addresstablemodel.cpp" line="+144"/>
+        <location filename="../addresstablemodel.cpp" line="+146"/>
         <source>Label</source>
         <translation>标签</translation>
     </message>
@@ -444,7 +444,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation type="unfinished">优先级</translation>
     </message>
     <message>
-        <location filename="../beancontroldialog.cpp" line="+36"/>
+        <location filename="../beancontroldialog.cpp" line="+38"/>
         <source>Copy address</source>
         <translation type="unfinished">复制地址</translation>
     </message>
@@ -934,12 +934,11 @@ Address: %4
     </message>
     <message>
         <location line="-17"/>
-        <location line="+17"/>
         <source>URI can not be parsed! This can be caused by an invalid BitBean address or malformed URI parameters.</source>
         <translation type="unfinished">无法解析URI：无效的黑币地址或错误的URI参数。</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+36"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation type="unfinished">钱包已被&lt;b&gt;加密&lt;/b&gt;，当前为&lt;b&gt;解锁&lt;/b&gt;状态</translation>
     </message>
@@ -1100,7 +1099,12 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+288"/>
+        <location line="+231"/>
+        <source>URI can not be parsed! This can be caused by an invalid Bean cash address or malformed URI parameters.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+57"/>
         <source>There was an error trying to save the keypair data to the new location.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1877,7 +1881,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
 <context>
     <name>GUIUtil::HelpMessageBox</name>
     <message>
-        <location filename="../guiutil.cpp" line="+433"/>
+        <location filename="../guiutil.cpp" line="+434"/>
         <location line="+13"/>
         <source>BitBean</source>
         <translation>黑币客户端bitbean</translation>
@@ -3496,7 +3500,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
 <context>
     <name>TransactionDesc</name>
     <message>
-        <location filename="../transactiondesc.cpp" line="+19"/>
+        <location filename="../transactiondesc.cpp" line="+21"/>
         <source>Open until %1</source>
         <translation>至 %1 个数据块时开启</translation>
     </message>

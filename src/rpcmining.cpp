@@ -4,6 +4,7 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include "chainparams.h"
 #include "main.h"
 #include "db.h"
 #include "txdb.h"
@@ -56,7 +57,7 @@ Value getmininginfo(const Array& params, bool fHelp)
     obj.push_back(Pair("Sprout Weight", weight));
 
     obj.push_back(Pair("Sprout Interest",    (uint64_t)bean_YEAR_REWARD));
-    obj.push_back(Pair("Testnet",       fTestNet));
+    obj.push_back(Pair("Testnet",       TestNet()));
     return obj;
 }
 

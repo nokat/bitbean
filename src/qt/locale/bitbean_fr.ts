@@ -168,7 +168,7 @@ This product includes software developed by the OpenSSL Project for use in the O
 <context>
     <name>AddressTableModel</name>
     <message>
-        <location filename="../addresstablemodel.cpp" line="+144"/>
+        <location filename="../addresstablemodel.cpp" line="+146"/>
         <source>Label</source>
         <translation>Étiquette</translation>
     </message>
@@ -444,7 +444,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation type="unfinished">Priorité</translation>
     </message>
     <message>
-        <location filename="../beancontroldialog.cpp" line="+36"/>
+        <location filename="../beancontroldialog.cpp" line="+38"/>
         <source>Copy address</source>
         <translation type="unfinished">Copier l’adresse</translation>
     </message>
@@ -947,12 +947,11 @@ Adresse : %4
     </message>
     <message>
         <location line="-17"/>
-        <location line="+17"/>
         <source>URI can not be parsed! This can be caused by an invalid BitBean address or malformed URI parameters.</source>
         <translation type="unfinished">L&apos;adresse du portefeuille BitBean n&apos;as pas pu être correctement identifiée, car invalide ou malformée.</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+36"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation type="unfinished">Le portefeuille est &lt;b&gt;chiffré&lt;/b&gt; et est actuellement &lt;b&gt;déverrouillé&lt;/b&gt;</translation>
     </message>
@@ -1118,7 +1117,12 @@ Adresse : %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+288"/>
+        <location line="+231"/>
+        <source>URI can not be parsed! This can be caused by an invalid Bean cash address or malformed URI parameters.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+57"/>
         <source>There was an error trying to save the keypair data to the new location.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1912,7 +1916,7 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
 <context>
     <name>GUIUtil::HelpMessageBox</name>
     <message>
-        <location filename="../guiutil.cpp" line="+433"/>
+        <location filename="../guiutil.cpp" line="+434"/>
         <location line="+13"/>
         <source>BitBean</source>
         <translation>BitBean</translation>
@@ -3531,7 +3535,7 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
 <context>
     <name>TransactionDesc</name>
     <message>
-        <location filename="../transactiondesc.cpp" line="+19"/>
+        <location filename="../transactiondesc.cpp" line="+21"/>
         <source>Open until %1</source>
         <translation>Ouvert jusqu&apos;à %1</translation>
     </message>

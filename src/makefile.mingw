@@ -70,7 +70,8 @@ OBJS= \
     obj/noui.o \
     obj/hash.o \
     obj/kernel.o \
-    obj/pbkdf2.o
+    obj/pbkdf2.o \
+    obj/chainparams.o
 
 all: BitBeand.exe
 

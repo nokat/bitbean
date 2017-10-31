@@ -7,6 +7,7 @@
 
 #include "init.h"
 #include "main.h"
+#include "chainparams.h"
 #include "txdb.h"
 #include "walletdb.h"
 #include "bitbeanrpc.h"
@@ -203,6 +204,10 @@ bool AppInit(int argc, char* argv[])
 
         if (fCommandLine)
         {
+            if (!SelectParamsFromCommandLine()) {
+                fprintf(stderr, "Error: invalid combination of -regtest and -testnet.\n");
+                return false;
+            }
             int ret = CommandLineRPC(argc, argv);
             exit(ret);
         }
@@ -314,6 +319,8 @@ std::string HelpMessage()
         "  -logtimestamps         " + _("Prepend debug output with timestamp") + "\n" +
         "  -shrinkdebugfile       " + _("Shrink debug.log file on client startup (default: 1 when no -debug)") + "\n" +
         "  -printtoconsole        " + _("Send trace/debug info to console instead of debug.log file") + "\n" +
+        "  -regtest               " + _("Enter regression test mode, which uses a special chain in which blocks can be"
+                                        "solved instantly. This is intended for regression testing tools and app development.") + "\n";
 #ifdef WIN32
         "  -printtodebugger       " + _("Send trace/debug info to debugger") + "\n" +
 #endif
@@ -420,7 +427,9 @@ threadGroup.create_thread(boost::bind(&DetectShutdownThread, &threadGroup));
 
     nDerivationMethodIndex = 0;
 
-    fTestNet = GetBoolArg("-testnet");
+    if (!SelectParamsFromCommandLine()) {
+        return InitError("Invalid combination of -testnet and -regtest.");
+        }
 
     if (mapArgs.count("-bind")) {
         // when specifying an explicit binding address, you want to listen on it

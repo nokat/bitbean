@@ -18,8 +18,7 @@ BOOST_AUTO_TEST_CASE(base58_EncodeBase58)
 {
     Array tests = read_json("base58_encode_decode.json");
 
-    for (Value& tv : tests)
-    {
+    for (Value& tv : tests) {
         Array test = tv.get_array();
         std::string strTest = write_string(tv, false);
         if (test.size() < 2) // Allow for extra stuff (useful for comments)
@@ -41,8 +40,7 @@ BOOST_AUTO_TEST_CASE(base58_DecodeBase58)
     Array tests = read_json("base58_encode_decode.json");
     std::vector<unsigned char> result;
 
-    for (Value& tv : tests)
-    {
+    for (Value& tv : tests) {
         Array test = tv.get_array();
         std::string strTest = write_string(tv, false);
         if (test.size() < 2) // Allow for extra stuff (useful for comments)
@@ -56,7 +54,7 @@ BOOST_AUTO_TEST_CASE(base58_DecodeBase58)
         BOOST_CHECK_MESSAGE(result.size() == expected.size() && std::equal(result.begin(), result.end(), expected.begin()), strTest);
     }
 
-    BOOST_CHECK(!DecodeBase58("invalid", result));
+    BOOST_CHECK(!DecodeBase58("invalid", result))
 }
 
 // Visitor to check address type
@@ -108,13 +106,11 @@ BOOST_AUTO_TEST_CASE(base58_keys_valid_parse)
 {
     Array tests = read_json("base58_keys_valid.json");
     std::vector<unsigned char> result;
-    CBitcoinSecret secret;
-    CBitcoinAddress addr;
-    // Save global state
-    bool fTestNet_stored = fTestNet;
+    CBitbeanSecret secret;
+    CBitbeanAddress addr;
 
-    for (Value& tv : tests)
-    {
+
+    for (Value& tv : tests) {
         Array test = tv.get_array();
         std::string strTest = write_string(tv, false);
         if (test.size() < 3) // Allow for extra stuff (useful for comments)
@@ -127,12 +123,15 @@ BOOST_AUTO_TEST_CASE(base58_keys_valid_parse)
         const Object &metadata = test[2].get_obj();
         bool isPrivkey = find_value(metadata, "isPrivkey").get_bool();
         bool isTestnet = find_value(metadata, "isTestnet").get_bool();
-        fTestNet = isTestnet; // Override testnet flag
+        if (isTestnet)
+            SelectParams(CChainParams::TESTNET);
+        else
+            SelectParams(CChainParams::MAIN);
         if(isPrivkey)
         {
             bool isCompressed = find_value(metadata, "isCompressed").get_bool();
             // Must be valid private key
-            // Note: CBitcoinSecret::SetString tests isValid, whereas CBitcoinAddress does not!
+            // Note: CBitbeanSecret::SetString tests isValid, whereas CBitbeanAddress does not!
             BOOST_CHECK_MESSAGE(secret.SetString(exp_base58string), "!SetString:"+ strTest);
             BOOST_CHECK_MESSAGE(secret.IsValid(), "!IsValid:" + strTest);
             bool fCompressedOut = false;
@@ -159,8 +158,7 @@ BOOST_AUTO_TEST_CASE(base58_keys_valid_parse)
             BOOST_CHECK_MESSAGE(!secret.IsValid(), "IsValid pubkey as privkey:" + strTest);
         }
     }
-    // Restore global state
-    fTestNet = fTestNet_stored;
+    SelectParams(CChainParams::MAIN);
 }
 
 // Goal: check that generated keys match test vectors
@@ -168,11 +166,8 @@ BOOST_AUTO_TEST_CASE(base58_keys_valid_gen)
 {
     Array tests = read_json("base58_keys_valid.json");
     std::vector<unsigned char> result;
-    // Save global state
-    bool fTestNet_stored = fTestNet;
 
-    for (Value& tv : tests)
-    {
+    for (Value& tv : tests) {
         Array test = tv.get_array();
         std::string strTest = write_string(tv, false);
         if (test.size() < 3) // Allow for extra stuff (useful for comments)
@@ -185,11 +180,14 @@ BOOST_AUTO_TEST_CASE(base58_keys_valid_gen)
         const Object &metadata = test[2].get_obj();
         bool isPrivkey = find_value(metadata, "isPrivkey").get_bool();
         bool isTestnet = find_value(metadata, "isTestnet").get_bool();
-        fTestNet = isTestnet; // Override testnet flag
+        if (isTestnet)
+            SelectParams(CChainParams::TESTNET);
+        else
+            SelectParams(CChainParams::MAIN);
         if(isPrivkey)
         {
             bool isCompressed = find_value(metadata, "isCompressed").get_bool();
-            CBitcoinSecret secret;
+            CBitbeanSecret secret;
             secret.SetSecret(CSecret(exp_payload.begin(), exp_payload.end()), isCompressed);
             BOOST_CHECK_MESSAGE(secret.ToString() == exp_base58string, "result mismatch: " + strTest);
         }
@@ -214,19 +212,18 @@ BOOST_AUTO_TEST_CASE(base58_keys_valid_gen)
                 BOOST_ERROR("Bad addrtype: " << strTest);
                 continue;
             }
-            CBitcoinAddress addrOut;
-            BOOST_CHECK_MESSAGE(boost::apply_visitor(CBitcoinAddressVisitor(&addrOut), dest), "encode dest: " + strTest);
+            CBitbeanAddress addrOut;
+            BOOST_CHECK_MESSAGE(boost::apply_visitor(CBitbeanAddressVisitor(&addrOut), dest), "encode dest: " + strTest);
             BOOST_CHECK_MESSAGE(addrOut.ToString() == exp_base58string, "mismatch: " + strTest);
         }
     }
 
     // Visiting a CNoDestination must fail
-    CBitcoinAddress dummyAddr;
+    CBitbeanAddress dummyAddr;
     CTxDestination nodest = CNoDestination();
-    BOOST_CHECK(!boost::apply_visitor(CBitcoinAddressVisitor(&dummyAddr), nodest));
+    BOOST_CHECK(!boost::apply_visitor(CBitbeanAddressVisitor(&dummyAddr), nodest))
 
-    // Restore global state
-    fTestNet = fTestNet_stored;
+    SelectParams(CChainParams::MAIN);
 }
 
 // Goal: check that base58 parsing code is robust against a variety of corrupted data
@@ -234,11 +231,10 @@ BOOST_AUTO_TEST_CASE(base58_keys_invalid)
 {
     Array tests = read_json("base58_keys_invalid.json"); // Negative testcases
     std::vector<unsigned char> result;
-    CBitcoinSecret secret;
-    CBitcoinAddress addr;
+    CBitbeanSecret secret;
+    CBitbeanAddress addr;
 
-    for (Value& tv : tests)
-    {
+    for (Value& tv : tests) {
         Array test = tv.get_array();
         std::string strTest = write_string(tv, false);
         if (test.size() < 1) // Allow for extra stuff (useful for comments)

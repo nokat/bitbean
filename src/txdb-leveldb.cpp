@@ -20,6 +20,7 @@
 #include "txdb.h"
 #include "util.h"
 #include "main.h"
+#include "chainparams.h"
 
 using namespace std;
 using namespace boost;
@@ -380,7 +381,7 @@ bool CTxDB::LoadBlockIndex()
         pindexNew->nNonce         = diskindex.nNonce;
 
         // Watch for genesis block
-        if (pindexGenesisBlock == NULL && blockHash == (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet))
+        if (pindexGenesisBlock == NULL && blockHash == Params().HashGenesisBlock())
             pindexGenesisBlock = pindexNew;
 
         if (!pindexNew->CheckIndex()) {

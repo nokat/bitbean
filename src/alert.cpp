@@ -19,11 +19,6 @@ using namespace std;
 map<uint256, CAlert> mapAlerts;
 CCriticalSection cs_mapAlerts;
 
-static const char* pszMainKey = "020dd8d110163315b5ed74293dcb6a69fc4a2ed0e549af37f69d4ecf99e1a21f40";
-
-static const char* pszTestKey = "029ce30d356cdbee7553659bdd7a0bea8088791dd57c2ae7c04d28dcdd3b786861";
-
-
 void CUnsignedAlert::SetNull()
 {
     nVersion = 1;
@@ -146,7 +141,7 @@ bool CAlert::RelayTo(CNode* pnode) const
 
 bool CAlert::CheckSignature() const
 {
-    CPubKey key(ParseHex(fTestNet ? pszTestKey : pszMainKey));
+    CPubKey key(Params().AlertKey());
     if (!key.Verify(Hash(vchMsg.begin(), vchMsg.end()), vchSig))
         return error("CAlert::CheckSignature() : verify signature failed");
 

@@ -273,13 +273,13 @@ bool CheckSproutKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned
     if (nTimeBlockFrom + nSproutMinAge > nTimeTx) // Min age requirement
         return error("CheckSproutKernelHash() : min age violation");
 
-    CBigNum bnTargetPerBeanDay;
+    uint256 bnTargetPerBeanDay;
     bnTargetPerBeanDay.SetCompact(nBits);
     int64_t nValueIn = txPrev.vout[prevout.n].nValue;
 
     uint256 hashBlockFrom = blockFrom.GetHash();
 
-    CBigNum bnBeanDayWeight = CBigNum(nValueIn) * GetWeight((int64_t)txPrev.nTime, (int64_t)nTimeTx) / bean / (24 * 60 * 60);
+    uint256 bnBeanDayWeight = uint256(nValueIn) * GetWeight((int64_t)txPrev.nTime, (int64_t)nTimeTx) / bean / (24 * 60 * 60);
     targetProofOfSprout = (bnBeanDayWeight * bnTargetPerBeanDay).getuint256();
 
     // Calculate hash
@@ -308,7 +308,7 @@ bool CheckSproutKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned
     }
 
     // Now check if proof-of-sprout hash meets target protocol
-    if (CBigNum(hashProofOfSprout) > bnBeanDayWeight * bnTargetPerBeanDay)
+    if (uint256(hashProofOfSprout) > bnBeanDayWeight * bnTargetPerBeanDay)
         return false;
     if (fDebug && !fPrintProofOfSprout)
     {
@@ -366,7 +366,7 @@ bool CheckBeanSproutTimestamp(int64_t nTimeBlock, int64_t nTimeTx)
 // Get sprout modifier checksum
 unsigned int GetSproutModifierChecksum(const CBlockIndex* pindex)
 {
-    //assert (pindex->pprev || pindex->GetBlockHash() == (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet));
+    //assert (pindex->pprev || pindex->GetBlockHash() == (Params().HashGenesisBlock());
     // Hash previous checksum with flags, hashProofOfSprout and nSproutModifier
     CDataStream ss(SER_GETHASH, 0);
     if (pindex->pprev)
@@ -380,7 +380,7 @@ unsigned int GetSproutModifierChecksum(const CBlockIndex* pindex)
 // Check sprout modifier hard checkpoints
 bool CheckSproutModifierCheckpoints(int nHeight, unsigned int nSproutModifierChecksum)
 {
-    MapModifierCheckpoints& checkpoints = (fTestNet ? mapSproutModifierCheckpointsTestNet : mapSproutModifierCheckpoints);
+    MapModifierCheckpoints& checkpoints = (TestNet() ? mapSproutModifierCheckpointsTestNet : mapSproutModifierCheckpoints);
 
     if (checkpoints.count(nHeight))
         return nSproutModifierChecksum == checkpoints[nHeight];

@@ -242,7 +242,8 @@ HEADERS += src/qt/bitbeangui.h \
     src/qt/paymentserver.h \
     src/qt/trafficgraphwidget.h \
     src/qt/intro.h \
-    src/bignum.h
+    src/bignum.h \
+    src/chainparams.h
 
 SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -257,6 +258,7 @@ SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/qt/editaddressdialog.cpp \
     src/qt/bitbeanaddressvalidator.cpp \
     src/alert.cpp \
+    src/chainparams.cpp \
     src/base58.cpp \
     src/version.cpp \
     src/sync.cpp \
