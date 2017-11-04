@@ -294,11 +294,6 @@ public:
         return !(a == b);
     }
 
-    std::string ToStringShort() const
-    {
-        return strprintf(" %s %d", prevout.hash.ToString().c_str(), prevout.n);
-    }
-
     std::string ToString() const
     {
         std::string str;
@@ -385,11 +380,6 @@ public:
     friend bool operator!=(const CTxOut& a, const CTxOut& b)
     {
         return !(a == b);
-    }
-
-    std::string ToStringShort() const
-    {
-        return strprintf(" out %s %s", FormatMoney(nValue).c_str(), scriptPubKey.ToString(true).c_str());
     }
 
     std::string ToString() const
@@ -618,13 +608,6 @@ public:
     friend bool operator!=(const CTransaction& a, const CTransaction& b)
     {
         return !(a == b);
-    }
-
-    std::string ToStringShort() const
-    {
-        std::string str;
-        str += strprintf("%s %s", GetHash().ToString().c_str(), IsBeanBase()? "base" : (IsBeanSprout()? "sprout" : "user"));
-        return str;
     }
 
     std::string ToString() const
