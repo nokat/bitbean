@@ -572,7 +572,7 @@ public:
         std::string str;
         str += IsBeanBase()? "Beanbase" : (IsBeanSprout()? "Beansprout" : "CTransaction");
         str += strprintf("(hash=%s, nTime=%d, ver=%d, vin.size=%" PRIszu ", vout.size=%" PRIszu ", nLockTime=%d)\n",
-            GetHash().ToString().substr(0,10).c_str(),
+            GetHash().ToString().c_str(),
             nTime,
             nVersion,
             vin.size(),
@@ -1010,7 +1010,7 @@ public:
         }
         printf("  vMerkleTree: ");
         for (unsigned int i = 0; i < vMerkleTree.size(); i++)
-            printf("%s ", vMerkleTree[i].ToString().substr(0,10).c_str());
+            printf("%s ", vMerkleTree[i].ToString().c_str());
         printf("\n");
     }
 
