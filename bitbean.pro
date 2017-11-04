@@ -189,6 +189,7 @@ HEADERS += src/qt/bitbeangui.h \
     src/kernel.h \
     src/pbkdf2.h \
     src/serialize.h \
+    src/core.h \
     src/main.h \
     src/miner.h \
     src/net.h \
@@ -243,7 +244,7 @@ HEADERS += src/qt/bitbeangui.h \
     src/qt/trafficgraphwidget.h \
     src/qt/intro.h \
     src/bignum.h \
-    src/chainparams.h
+    src/chainparams.h \
 
 SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -267,6 +268,7 @@ SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/netbase.cpp \
     src/key.cpp \
     src/script.cpp \
+    src/core.cpp \
     src/main.cpp \
     src/miner.cpp \
     src/init.cpp \
