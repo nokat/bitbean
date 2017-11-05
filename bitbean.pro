@@ -245,6 +245,7 @@ HEADERS += src/qt/bitbeangui.h \
     src/qt/intro.h \
     src/bignum.h \
     src/chainparams.h \
+    src/chainparamsseeds.h
 
 SOURCES += src/qt/bitbean.cpp src/qt/bitbeangui.cpp \
     src/qt/transactiontablemodel.cpp \

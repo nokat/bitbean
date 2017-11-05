@@ -19,19 +19,23 @@ struct SeedSpec6 {
     uint16_t port;
 };
 
-#include "chainparams.h"
+#include "chainparamsseeds.h"
 
 //
 // Main network
 //
 
-// Convert the pnSeeds6 array into usable address objects.
+
+/** Convert the pnSeeds6 array into usable address objects. **/
 static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data, unsigned int count)
 {
-    // It'll only connect to one or two seed nodes because once it connects,
-    // it'll get a pile of addresses with newer timestamps.
-    // Seed nodes are given a random 'last seen time' of between one and two
-    // weeks ago.
+    /**
+     * It'll only connect to one or two seed nodes because once it connects,
+     * it'll get a pile of addresses with newer timestamps.
+     * Seed nodes are given a random 'last seen time' of between one and two
+     * weeks ago.
+     */
+
     const int64_t nOneWeek = 7*24*60*60;
     for (unsigned int i = 0; i < count; i++)
     {
@@ -46,9 +50,12 @@ static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data
 class CMainParams : public CChainParams {
 public:
     CMainParams() {
-        // The message start string is designed to be unlikely to occur in normal data.
-        // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
-        // a large 4-byte int at any alignment.
+        /**
+         * The message start string is designed to be unlikely to occur in normal data.
+         * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
+         * a large 4-byte int at any alignment.
+         */
+
         pchMessageStart[0] = 0xa4;
         pchMessageStart[1] = 0xd2;
         pchMessageStart[2] = 0xf8;
@@ -67,6 +74,7 @@ public:
         //    CTxIn(COutPoint(0000000000, 4294967295), coinbase 00012a24323020466562203230313420426974636f696e2041544d7320636f6d6520746f20555341)
         //    CTxOut(empty)
         //  vMerkleTree: 12630d16a9
+
         const char* pszTimestamp = "13 Feb 2015 - BitBean launches and changes the world with it's awesomeness";
         CTransaction txNew;
         txNew.nTime = 1423862862;
@@ -157,6 +165,7 @@ static CTestNetParams testNetParams;
 //
 // Regression test
 //
+
 class CRegTestParams : public CTestNetParams {
 public:
     CRegTestParams() {
