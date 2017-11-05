@@ -68,8 +68,6 @@ extern uint64_t nLastBlockSize;
 extern int64_t nLastBeanSproutSearchInterval;
 extern const std::string strMessageMagic;
 extern int64_t nTimeBestReceived;
-extern CCriticalSection cs_setpwalletRegistered;
-extern std::set<CWallet*> setpwalletRegistered;
 extern bool fImporting;
 extern std::map<uint256, CBlock*> mapOrphanBlocks;
 
@@ -89,11 +87,17 @@ static const uint64_t nMinDiskSpace = 52428800;
 class CReserveKey;
 class CTxDB;
 class CTxIndex;
+class CWalletInterface;
 
-void RegisterWallet(CWallet* pwalletIn);
-void UnregisterWallet(CWallet* pwalletIn);
-void SyncWithWallets(const CTransaction& tx, const CBlock* pblock = NULL, bool fUpdate = false, bool fConnect = true);
+/** Register a wallet to receive updates from core */
+void RegisterWallet(CWalletInterface* pwalletIn);
+/** Unregister a wallet from core */
+void UnregisterWallet(CWalletInterface* pwalletIn);
 
+/** Push an updated transaction to all registered wallets */
+void SyncWithWallets(const CTransaction& tx, const CBlock* pblock = NULL, bool fConnect = true);
+/** Ask wallets to resend their transactions */
+void ResendWalletTransactions(bool fForce = false);
 
 /** Register with a network node to receive its signals */
 void RegisterNodeSignals(CNodeSignals& nodeSignals);
@@ -126,12 +130,9 @@ bool GetTransaction(const uint256 &hash, CTransaction &tx, uint256 &hashBlock);
 uint256 WantedByOrphan(const CBlock* pblockOrphan);
 const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfSprout);
 void SproutMiner(CWallet *pwallet);
-void ResendWalletTransactions(bool fForce = false);
 
 /** Try to add transactions to memory pool **/
 bool AcceptToMemoryPool(CTMemPool& pool, CTransaction &tx, bool fLimitFree, bool* pfMissingInputs);
-
-bool GetWalletFile(CWallet* pwallet, std::string &strWalletFileOut);
 
 /** Position on disk for a particular transaction. */
 class CDiskTxPos
@@ -1530,5 +1531,18 @@ public:
 };
 
 extern CTxMemPool mempool;
+
+class CWalletInterface {
+protected:
+    virtual void SyncTransaction(const CTransaction &tx, const CBlock *pblock, bool fConnect) =0;
+    virtual void EraseFromWallet(const uint256 &hash) =0;
+    virtual void SetBestChain(const CBlockLocator &locator) =0;
+    virtual void UpdatedTransaction(const uint256 &hash) =0;
+    virtual void Inventory(const uint256 &hash) =0;
+    virtual void ResendWalletTransactions(bool fForce) =0;
+    friend void ::RegisterWallet(CWalletInterface*);
+    friend void ::UnregisterWallet(CWalletInterface*);
+    friend void ::UnregisterAllWallets();
+};
 
 #endif
