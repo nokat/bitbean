@@ -26,6 +26,8 @@ class CAddress;
 class CInv;
 class CNode;
 
+class CTxMemPool;
+
 static const int LAST_POW_BLOCK = 10000;
 
 static const unsigned int MAX_BLOCK_SIZE = 20000000;
@@ -118,14 +120,8 @@ const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfSpr
 void SproutMiner(CWallet *pwallet);
 void ResendWalletTransactions(bool fForce = false);
 
-
-
-
-
-
-
-
-
+/** Try to add transactions to memory pool **/
+bool AcceptToMemoryPool(CTMemPool& pool, CTransaction &tx, bool fLimitFree, bool* pfMissingInputs);
 
 bool GetWalletFile(CWallet* pwallet, std::string &strWalletFileOut);
 
@@ -627,7 +623,6 @@ public:
                        const CBlockIndex* pindexBlock, bool fBlock, bool fMiner);
     bool ClientConnectInputs();
     bool CheckTransaction() const;
-    bool AcceptToMemoryPool(CTxDB& txdb, bool fCheckInputs=true, bool* pfMissingInputs=NULL);
     bool GetBeanAge(CTxDB& txdb, uint64_t& nBeanAge) const;  // ppbean: get transaction bean age
 
 protected:
@@ -690,7 +685,6 @@ public:
     int GetDepthInMainChain() const { CBlockIndex *pindexRet; return GetDepthInMainChain(pindexRet); }
     bool IsInMainChain() const { CBlockIndex *pindexRet; return GetDepthInMainChainINTERNAL(pindexRet) > 0; }
     int GetBlocksToMaturity() const;
-    bool AcceptToMemoryPool(CTxDB& txdb, bool fCheckInputs=true);
     bool AcceptToMemoryPool();
 };
 
@@ -1500,8 +1494,6 @@ public:
     std::map<uint256, CTransaction> mapTx;
     std::map<COutPoint, CInPoint> mapNextTx;
 
-    bool accept(CTxDB& txdb, CTransaction &tx,
-                bool fCheckInputs, bool* pfMissingInputs);
     bool addUnchecked(const uint256& hash, CTransaction &tx);
     bool remove(const CTransaction &tx, bool fRecursive = false);
     bool removeConflicts(const CTransaction &tx);
