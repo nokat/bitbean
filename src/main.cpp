@@ -566,8 +566,7 @@ int64_t CTransaction::GetMinFee(unsigned int nBlockSize, enum GetMinFee_mode mod
 }
 
 
-bool AcceptToMemoryPool(CTxMemPool& pool, CTransaction &tx, bool fCheckInputs,
-                        bool* pfMissingInputs)
+bool AcceptToMemoryPool(CTxMemPool& pool, CTransaction &tx, bool fLimitFree, bool* pfMissingInputs)
 {
     AssertLockHeld(cs_main);
     if (pfMissingInputs)
@@ -590,7 +589,6 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CTransaction &tx, bool fCheckInputs,
 
     // Is it already in the memory pool?
     uint256 hash = tx.GetHash();
-        if (fCheckInputs)
         if (pool.exists(hash))
             return false;
 
@@ -625,7 +623,6 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CTransaction &tx, bool fCheckInputs,
     }
     }
 
-    if (fCheckInputs)
     {
         CTxDB txdb("r");
 
@@ -645,47 +642,54 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CTransaction &tx, bool fCheckInputs,
             return false;
         }
 
-        // Check for non-standard pay-to-script-hash in inputs
+        /** Check for non-standard pay-to-script-hash in inputs **/
         if (!TestNet() && !tx.AreInputsStandard(mapInputs))
             return error("AcceptToMemoryPool : nonstandard transaction input");
 
-        // Note: if you modify this code to accept non-standard transactions, then
-        // you should add code here to check that the transaction does a
-        // reasonable number of ECDSA signature verifications.
+        /**
+         * Note: if you modify this code to accept non-standard transactions, then
+         * you should add code here to check that the transaction does a
+         * reasonable number of ECDSA signature verifications.
+         */
 
         int64_t nFees = tx.GetValueIn(mapInputs)-tx.GetValueOut();
         unsigned int nSize = ::GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION);
 
-        // Don't accept it if it can't get into a block
+        /** Don't accept it if it can't get into a block **/
         int64_t txMinFee = tx.GetMinFee(1000, GMF_RELAY, nSize);
-        if (nFees < txMinFee)
+        if (fLimitFree && nFees < txMinFee)
             return error("AcceptToMemoryPool : not enough fees %s, %" PRId64 " < %" PRId64,
                          hash.ToString().c_str(),
                          nFees, txMinFee);
 
-        // Continuously rate-limit free transactions
-        // This mitigates 'penny-flooding' -- sending thousands of free transactions just to
-        // be annoying or make others' transactions take longer to confirm.
-        if (nFees < MIN_RELAY_TX_FEE)
+        /**
+         * Continuously rate-limit free transactions
+         * This mitigates 'penny-flooding' -- sending thousands of free transactions just to
+         * be annoying or make others' transactions take longer to confirm.
+         */
+
+        if (fLimitFree && nFees < MIN_RELAY_TX_FEE)
         {
-            static CCriticalSection cs;
             static double dFreeCount;
             static int64_t nLastTime;
             int64_t nNow = GetTime();
 
-            {
-                LOCK(pool.cs);
-                // Use an exponentially decaying ~10-minute window:
-                dFreeCount *= pow(1.0 - 1.0/600.0, (double)(nNow - nLastTime));
-                nLastTime = nNow;
-                // -limitfreerelay unit is thousand-bytes-per-minute
-                // At default rate it would take over a month to fill 1GB
-                if (dFreeCount > GetArg("-limitfreerelay", 15)*10*1000 && !IsFromMe(tx))
-                    return error("AcceptToMemoryPool : free transaction rejected by rate limiter");
-                if (fDebug)
-                    printf("Rate limit dFreeCount: %g => %g\n", dFreeCount, dFreeCount+nSize);
-                dFreeCount += nSize;
-            }
+            LOCK(pool.cs);
+
+            /** Use an exponentially decaying ~10-minute window: **/
+            dFreeCount *= pow(1.0 - 1.0/600.0, (double)(nNow - nLastTime));
+            nLastTime = nNow;
+
+            /**
+             * -limitfreerelay unit is thousand-bytes-per-minute
+             * At default rate it would take over a month to fill 1GB
+             */
+
+            if (dFreeCount > GetArg("-limitfreerelay", 15)*10*1000 && !IsFromMe(tx))
+                return error("AcceptToMemoryPool : free transaction rejected by rate limiter");
+            if (fDebug)
+                printf("Rate limit dFreeCount: %g => %g\n", dFreeCount, dFreeCount+nSize);
+            dFreeCount += nSize;
         }
 
         // Check against previous transactions
@@ -845,7 +849,7 @@ bool CMerkleTx::AcceptToMemoryPool(bool fLimitFree)
 
 
 
-bool CWalletTx::AcceptWalletTransaction(CTxDB& txdb, bool fCheckInputs)
+bool CWalletTx::AcceptWalletTransaction(CTxDB& txdb)
 {
 
     {
@@ -1719,7 +1723,7 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
 
     // Resurrect memory transactions that were in the disconnected branch
     for (CTransaction& tx : vResurrect)
-        tx.AcceptToMemoryPool(mempool, tx, false, NULL);
+        AcceptToMemoryPool(mempool, tx, false, NULL);
 
     // Delete redundant memory transactions that are in the connected branch
     for (CTransaction& tx : vDelete) {
@@ -3300,7 +3304,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
                     }
                     else if (!fMissingInputs2)
                     {
-                        // invalid orphan
+                        // invalid or too-little-fee orphan
                         vEraseQueue.push_back(orphanTxHash);
                         printf("   removed invalid orphan tx %s\n", orphanTxHash.ToString().c_str());
                     }
