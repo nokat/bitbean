@@ -236,6 +236,8 @@ void static EraseOrphanTx(uint256 hash)
     for (const CTxIn& txin : it->second.vin)
     {
         map<uint256, set<uint256> >::iterator itPrev = mapOrphanTransactionsByPrev.find(txin.prevout.hash);
+        if (itPrev == mapOrphanTransactionsByPrev.end())
+                continue;
         itPrev->second.erase(hash);
         if (itPrev->second.empty())
             mapOrphanTransactionsByPrev.erase(itPrev);
