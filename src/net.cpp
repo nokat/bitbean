@@ -89,6 +89,10 @@ void SetStartShutdownHandler(StartShutdownHandler handler)
 
 static CSemaphore *semOutbound = NULL;
 
+// Signals for message handling
+static CNodeSignals g_signals;
+CNodeSignals& GetNodeSignals() {return g_signals; }
+
 void AddOneShot(string strDest)
 {
     LOCK(cs_vOneShots);
@@ -1391,7 +1395,7 @@ void ThreadMessageHandler()
             {
                 TRY_LOCK(pnode->cs_vRecvMsg, lockRecv);
                 if (lockRecv)
-                    if (!ProcessMessages(pnode))
+                    if (!g_signals.ProcessMessages(pnode))
                         pnode->CloseSocketDisconnect();
             }
             boost::this_thread::interruption_point();
@@ -1399,8 +1403,8 @@ void ThreadMessageHandler()
             // Send messages
             {
                 TRY_LOCK(pnode->cs_vSend, lockSend);
-                if (lockSend && fnSendMessages)
-                    fnSendMessages(pnode, pnode == pnodeTrickle);
+                if (lockSend)
+                    g_signals.SendMessages(pnode, pnode == pnodeTrickle);
             }
             boost::this_thread::interruption_point();
         }

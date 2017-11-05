@@ -201,10 +201,22 @@ void ResendWalletTransactions(bool fForce)
         pwallet->ResendWalletTransactions(fForce);
 }
 
+//////////////////////////////////////////////////////////////////////////////
+//
+// Registration of network node signals.
+//
 
+void RegisterNodeSignals(CNodeSignals& nodeSignals)
+{
+    nodeSignals.ProcessMessages.connect(&ProcessMessages);
+    nodeSignals.SendMessages.connect(&SendMessages);
+}
 
-
-
+void UnregisterNodeSignals(CNodeSignals& nodeSignals)
+{
+    nodeSignals.ProcessMessages.disconnect(&ProcessMessages);
+    nodeSignals.SendMessages.disconnect(&SendMessages);
+}
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -218,13 +230,15 @@ bool AddOrphanTx(const CTransaction& tx)
     if (mapOrphanTransactions.count(hash))
         return false;
 
-    // Ignore big transactions, to avoid a
-    // send-big-orphans memory exhaustion attack. If a peer has a legitimate
-    // large transaction with a missing parent then we assume
-    // it will rebroadcast it later, after the parent transaction(s)
-    // have been mined or received.
-    // 10,000 orphans, each of which is at most 5,000 bytes big is
-    // at most 500 megabytes of orphans:
+    /**
+     * Ignore big transactions, to avoid a
+     * send-big-orphans memory exhaustion attack. If a peer has a legitimate
+     * large transaction with a missing parent then we assume
+     * it will rebroadcast it later, after the parent transaction(s)
+     * have been mined or received.
+     * 10,000 orphans, each of which is at most 5,000 bytes big is
+     * at most 500 megabytes of orphans:
+     */
 
     size_t nSize = tx.GetSerializeSize(SER_NETWORK, CTransaction::CURRENT_VERSION);
 
