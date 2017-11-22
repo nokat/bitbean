@@ -1,5 +1,5 @@
 #include "optionsmodel.h"
-#include "bitcoinunits.h"
+#include "bitbeanunits.h"
 #include <QSettings>
 
 #include "init.h"
@@ -39,23 +39,24 @@ void OptionsModel::Init()
     QSettings settings;
 
     // These are Qt-only settings:
-    nDisplayUnit = settings.value("nDisplayUnit", BitcoinUnits::BTC).toInt();
+    nDisplayUnit = settings.value("nDisplayUnit", BitbeanUnits::BitB).toInt();
     bDisplayAddresses = settings.value("bDisplayAddresses", false).toBool();
     fMinimizeToTray = settings.value("fMinimizeToTray", false).toBool();
     fMinimizeOnClose = settings.value("fMinimizeOnClose", false).toBool();
-    fCoinControlFeatures = settings.value("fCoinControlFeatures", false).toBool();
+    fBeanControlFeatures = settings.value("fBeanControlFeatures", false).toBool();
     nTransactionFee = settings.value("nTransactionFee").toLongLong();
     nReserveBalance = settings.value("nReserveBalance").toLongLong();
     language = settings.value("language", "").toString();
 
-    // These are shared with core Bitcoin; we want
+    // These are shared with Bitbean core; we want
     // command-line options to override the GUI settings:
-    if (settings.contains("fUseUPnP"))
-        SoftSetBoolArg("-upnp", settings.value("fUseUPnP").toBool());
     if (settings.contains("addrProxy") && settings.value("fUseProxy").toBool())
         SoftSetArg("-proxy", settings.value("addrProxy").toString().toStdString());
     if (settings.contains("nSocksVersion") && settings.value("fUseProxy").toBool())
         SoftSetArg("-socks", settings.value("nSocksVersion").toString().toStdString());
+    if (settings.contains("fMinimizeCoinAge"))
+        SoftSetBoolArg("-minimizebeanage",
+                       settings.value("fMinimizeCoinAge").toBool());
     if (settings.contains("detachDB"))
         SoftSetBoolArg("-detachdb", settings.value("detachDB").toBool());
     if (!language.isEmpty())
@@ -78,11 +79,12 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return QVariant(GUIUtil::GetStartOnSystemStartup());
         case MinimizeToTray:
             return QVariant(fMinimizeToTray);
-        case MapPortUPnP:
-            return settings.value("fUseUPnP", GetBoolArg("-upnp", true));
         case MinimizeOnClose:
             return QVariant(fMinimizeOnClose);
-        case ProxyUse:
+        case ProxyUse: {
+            proxyType proxy;
+                 return QVariant(GetProxy(NET_IPV4, proxy));
+            }
             return settings.value("fUseProxy", false);
         case ProxyIP: {
             proxyType proxy;
@@ -98,8 +100,13 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             else
                 return QVariant(9050);
         }
-        case ProxySocksVersion:
-            return settings.value("nSocksVersion", 5);
+        case ProxySocksVersion: {
+            proxyType proxy;
+            if (GetProxy(NET_IPV4, proxy))
+                return QVariant(proxy.second);
+            else
+                return QVariant(5);
+        }
         case Fee:
             return QVariant((qint64) nTransactionFee);
         case ReserveBalance:
@@ -112,8 +119,10 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return QVariant(bitdb.GetDetach());
         case Language:
             return settings.value("language", "");
-        case CoinControlFeatures:
-            return QVariant(fCoinControlFeatures);
+        case BeanControlFeatures:
+            return QVariant(fBeanControlFeatures);
+        case MinimizeCoinAge:
+            return settings.value("fMinimizeCoinAge", GetBoolArg("-minimizebeanage", false));
         default:
             return QVariant();
         }
@@ -136,18 +145,13 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
             fMinimizeToTray = value.toBool();
             settings.setValue("fMinimizeToTray", fMinimizeToTray);
             break;
-        case MapPortUPnP:
-            fUseUPnP = value.toBool();
-            settings.setValue("fUseUPnP", fUseUPnP);
-            MapPort();
-            break;
         case MinimizeOnClose:
             fMinimizeOnClose = value.toBool();
             settings.setValue("fMinimizeOnClose", fMinimizeOnClose);
             break;
         case ProxyUse:
             settings.setValue("fUseProxy", value.toBool());
-            ApplyProxySettings();
+            successful = ApplyProxySettings();
             break;
         case ProxyIP: {
             proxyType proxy;
@@ -208,11 +212,15 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
         case Language:
             settings.setValue("language", value);
             break;
-        case CoinControlFeatures: {
-            fCoinControlFeatures = value.toBool();
-            settings.setValue("fCoinControlFeatures", fCoinControlFeatures);
-            emit coinControlFeaturesChanged(fCoinControlFeatures);
+        case BeanControlFeatures: {
+            fBeanControlFeatures = value.toBool();
+            settings.setValue("fBeanControlFeatures", fBeanControlFeatures);
+            emit beanControlFeaturesChanged(fBeanControlFeatures);
             }
+            break;
+        case MinimizeCoinAge:
+            fMinimizeCoinAge = value.toBool();
+            settings.setValue("fMinimizeCoinAge", fMinimizeCoinAge);
             break;
         default:
             break;
@@ -233,27 +241,8 @@ qint64 OptionsModel::getReserveBalance()
     return nReserveBalance;
 }
 
-bool OptionsModel::getCoinControlFeatures()
+bool OptionsModel::getBeanControlFeatures()
 {
-    return fCoinControlFeatures;
+    return fBeanControlFeatures;
 }
 
-bool OptionsModel::getMinimizeToTray()
-{
-    return fMinimizeToTray;
-}
-
-bool OptionsModel::getMinimizeOnClose()
-{
-    return fMinimizeOnClose;
-}
-
-int OptionsModel::getDisplayUnit()
-{
-    return nDisplayUnit;
-}
-
-bool OptionsModel::getDisplayAddresses()
-{
-    return bDisplayAddresses;
-}

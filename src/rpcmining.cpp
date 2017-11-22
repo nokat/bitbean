@@ -1,14 +1,16 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2015-2017 Bean Core www.beancash.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include "chainparams.h"
 #include "main.h"
 #include "db.h"
 #include "txdb.h"
 #include "init.h"
 #include "miner.h"
-#include "bitcoinrpc.h"
+#include "bitbeanrpc.h"
 
 using namespace json_spirit;
 using namespace std;
@@ -31,7 +33,7 @@ Value getmininginfo(const Array& params, bool fHelp)
             "Returns an object containing mining-related information.");
 
     uint64_t nMinWeight = 0, nMaxWeight = 0, nWeight = 0;
-    pwalletMain->GetStakeWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
+    pwalletMain->GetSproutWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
 
     Object obj, diff, weight;
     obj.push_back(Pair("Blocks",        (int)nBestHeight));
@@ -39,44 +41,44 @@ Value getmininginfo(const Array& params, bool fHelp)
     obj.push_back(Pair("Current Block Tx",(uint64_t)nLastBlockTx));
 
     diff.push_back(Pair("Proof of Work",        GetDifficulty()));
-    diff.push_back(Pair("Proof of Stake",       GetDifficulty(GetLastBlockIndex(pindexBest, true))));
-    diff.push_back(Pair("Search Interval",      (int)nLastCoinStakeSearchInterval));
+    diff.push_back(Pair("Proof of Sprout",       GetDifficulty(GetLastBlockIndex(pindexBest, true))));
+    diff.push_back(Pair("Search Interval",      (int)nLastBeanSproutSearchInterval));
     obj.push_back(Pair("Difficulty",    diff));
 
     obj.push_back(Pair("Block Value",    (uint64_t)GetProofOfWorkReward(0)));
     obj.push_back(Pair("Net MH/s",     GetPoWMHashPS()));
-    obj.push_back(Pair("Net Stake Weight", GetPoSKernelPS()));
+    obj.push_back(Pair("Net Sprout Weight", GetPoSKernelPS()));
     obj.push_back(Pair("Errors",        GetWarnings("statusbar")));
     obj.push_back(Pair("Pooled Tx",      (uint64_t)mempool.size()));
 
     weight.push_back(Pair("Minimum",    (uint64_t)nMinWeight));
     weight.push_back(Pair("Maximum",    (uint64_t)nMaxWeight));
     weight.push_back(Pair("Combined",  (uint64_t)nWeight));
-    obj.push_back(Pair("Stake Weight", weight));
+    obj.push_back(Pair("Sprout Weight", weight));
 
-    obj.push_back(Pair("Stake Interest",    (uint64_t)COIN_YEAR_REWARD));
-    obj.push_back(Pair("Testnet",       fTestNet));
+    obj.push_back(Pair("Sprout Interest",    (uint64_t)bean_YEAR_REWARD));
+    obj.push_back(Pair("Testnet",       TestNet()));
     return obj;
 }
 
-Value getstakinginfo(const Array& params, bool fHelp)
+Value getsproutinginfo(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
         throw runtime_error(
-            "getstakinginfo\n"
-            "Returns an object containing staking-related information.");
+            "getsproutinginfo\n"
+            "Returns an object containing sprouting-related information.");
 
     uint64_t nMinWeight = 0, nMaxWeight = 0, nWeight = 0;
-    pwalletMain->GetStakeWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
+    pwalletMain->GetSproutWeight(*pwalletMain, nMinWeight, nMaxWeight, nWeight);
 
     uint64_t nNetworkWeight = GetPoSKernelPS();
-    bool staking = nLastCoinStakeSearchInterval && nWeight;
-    int nExpectedTime = staking ? (nTargetSpacing * nNetworkWeight / nWeight) : -1;
+    bool sprouting = nLastBeanSproutSearchInterval && nWeight;
+    int nExpectedTime = sprouting ? (nTargetSpacing * nNetworkWeight / nWeight) : -1;
 
     Object obj;
 
-    obj.push_back(Pair("Enabled", GetBoolArg("-staking", true)));
-    obj.push_back(Pair("Staking", staking));
+    obj.push_back(Pair("Enabled", GetBoolArg("-sprouting", true)));
+    obj.push_back(Pair("Sprouting", sprouting));
     obj.push_back(Pair("Errors", GetWarnings("statusbar")));
 
     obj.push_back(Pair("Current Block Size", (uint64_t)nLastBlockSize));
@@ -84,10 +86,10 @@ Value getstakinginfo(const Array& params, bool fHelp)
     obj.push_back(Pair("Pooled Tx", (uint64_t)mempool.size()));
 
     obj.push_back(Pair("Difficulty", GetDifficulty(GetLastBlockIndex(pindexBest, true))));
-    obj.push_back(Pair("Search Interval", (int)nLastCoinStakeSearchInterval));
+    obj.push_back(Pair("Search Interval", (int)nLastBeanSproutSearchInterval));
 
     obj.push_back(Pair("Weight", (uint64_t)nWeight));
-    obj.push_back(Pair("Net Stake Weight", (uint64_t)nNetworkWeight));
+    obj.push_back(Pair("Net Sprout Weight", (uint64_t)nNetworkWeight));
 
     obj.push_back(Pair("Expected Time", nExpectedTime));
 
@@ -98,8 +100,8 @@ Value getworkex(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 2)
         throw runtime_error(
-            "getworkex [data, coinbase]\n"
-            "If [data, coinbase] is not specified, returns extended work data.\n"
+            "getworkex [data, beanbase]\n"
+            "If [data, beanbase] is not specified, returns extended work data.\n"
         );
 
     if (vNodes.empty())
@@ -130,7 +132,7 @@ Value getworkex(const Array& params, bool fHelp)
             {
                 // Deallocate old blocks since they're obsolete now
                 mapNewBlock.clear();
-                BOOST_FOREACH(CBlock* pblock, vNewBlock)
+                for (CBlock* pblock : vNewBlock)
                     delete pblock;
                 vNewBlock.clear();
             }
@@ -162,9 +164,9 @@ Value getworkex(const Array& params, bool fHelp)
         char phash1[64];
         FormatHashBuffers(pblock, pmidstate, pdata, phash1);
 
-        uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
+        uint256 hashTarget = uint256().SetCompact(pblock->nBits);
 
-        CTransaction coinbaseTx = pblock->vtx[0];
+        CTransaction beanbaseTx = pblock->vtx[0];
         std::vector<uint256> merkle = pblock->GetMerkleBranch(0);
 
         Object result;
@@ -172,12 +174,12 @@ Value getworkex(const Array& params, bool fHelp)
         result.push_back(Pair("target",   HexStr(BEGIN(hashTarget), END(hashTarget))));
 
         CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
-        ssTx << coinbaseTx;
-        result.push_back(Pair("coinbase", HexStr(ssTx.begin(), ssTx.end())));
+        ssTx << beanbaseTx;
+        result.push_back(Pair("beanbase", HexStr(ssTx.begin(), ssTx.end())));
 
         Array merkle_arr;
 
-        BOOST_FOREACH(uint256 merkleh, merkle) {
+        for (uint256 merkleh : merkle) {
             merkle_arr.push_back(HexStr(BEGIN(merkleh), END(merkleh)));
         }
 
@@ -190,10 +192,10 @@ Value getworkex(const Array& params, bool fHelp)
     {
         // Parse parameters
         vector<unsigned char> vchData = ParseHex(params[0].get_str());
-        vector<unsigned char> coinbase;
+        vector<unsigned char> beanbase;
 
         if(params.size() == 2)
-            coinbase = ParseHex(params[1].get_str());
+            beanbase = ParseHex(params[1].get_str());
 
         if (vchData.size() != 128)
             throw JSONRPCError(-8, "Invalid parameter");
@@ -212,10 +214,10 @@ Value getworkex(const Array& params, bool fHelp)
         pblock->nTime = pdata->nTime;
         pblock->nNonce = pdata->nNonce;
 
-        if(coinbase.size() == 0)
+        if(beanbase.size() == 0)
             pblock->vtx[0].vin[0].scriptSig = mapNewBlock[pdata->hashMerkleRoot].second;
         else
-            CDataStream(coinbase, SER_NETWORK, PROTOCOL_VERSION) >> pblock->vtx[0]; // FIXME - HACK!
+            CDataStream(beanbase, SER_NETWORK, PROTOCOL_VERSION) >> pblock->vtx[0]; // FIXME - HACK!
 
         pblock->hashMerkleRoot = pblock->BuildMerkleTree();
 
@@ -264,7 +266,7 @@ Value getwork(const Array& params, bool fHelp)
             {
                 // Deallocate old blocks since they're obsolete now
                 mapNewBlock.clear();
-                BOOST_FOREACH(CBlock* pblock, vNewBlock)
+                for (CBlock* pblock : vNewBlock)
                     delete pblock;
                 vNewBlock.clear();
             }
@@ -304,7 +306,7 @@ Value getwork(const Array& params, bool fHelp)
         char phash1[64];
         FormatHashBuffers(pblock, pmidstate, pdata, phash1);
 
-        uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
+        uint256 hashTarget = uint256().SetCompact(pblock->nBits);
 
         Object result;
         result.push_back(Pair("midstate", HexStr(BEGIN(pmidstate), END(pmidstate)))); // deprecated
@@ -348,9 +350,9 @@ Value getblocktemplate(const Array& params, bool fHelp)
             "Returns data needed to construct a block to work on:\n"
             "  \"version\" : block version\n"
             "  \"previousblockhash\" : hash of current highest block\n"
-            "  \"transactions\" : contents of non-coinbase transactions that should be included in the next block\n"
-            "  \"coinbaseaux\" : data that should be included in coinbase\n"
-            "  \"coinbasevalue\" : maximum allowable input to coinbase transaction, including the generation award and transaction fees\n"
+            "  \"transactions\" : contents of non-beanbase transactions that should be included in the next block\n"
+            "  \"beanbaseaux\" : data that should be included in beanbase\n"
+            "  \"beanbasevalue\" : maximum allowable input to beanbase transaction, including the generation award and transaction fees\n"
             "  \"target\" : hash target\n"
             "  \"mintime\" : minimum timestamp appropriate for next block\n"
             "  \"curtime\" : current timestamp\n"
@@ -360,7 +362,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
             "  \"sizelimit\" : limit of block size\n"
             "  \"bits\" : compressed target of next block\n"
             "  \"height\" : height of the next block\n"
-            "See https://en.bitcoin.it/wiki/BIP_0022 for full specification.");
+            "See https://en.bitbean.it/wiki/BIP_0022 for full specification.");
 
     std::string strMode = "template";
     if (params.size() > 0)
@@ -429,12 +431,12 @@ Value getblocktemplate(const Array& params, bool fHelp)
     map<uint256, int64_t> setTxIndex;
     int i = 0;
     CTxDB txdb("r");
-    BOOST_FOREACH (CTransaction& tx, pblock->vtx)
+    for (CTransaction& tx : pblock->vtx)
     {
         uint256 txHash = tx.GetHash();
         setTxIndex[txHash] = i++;
 
-        if (tx.IsCoinBase() || tx.IsCoinStake())
+        if (tx.IsBeanBase() || tx.IsBeanSprout())
             continue;
 
         Object entry;
@@ -453,7 +455,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
             entry.push_back(Pair("fee", (int64_t)(tx.GetValueIn(mapInputs) - tx.GetValueOut())));
 
             Array deps;
-            BOOST_FOREACH (MapPrevTx::value_type& inp, mapInputs)
+            for (MapPrevTx::value_type& inp : mapInputs)
             {
                 if (setTxIndex.count(inp.first))
                     deps.push_back(setTxIndex[inp.first]);
@@ -469,9 +471,9 @@ Value getblocktemplate(const Array& params, bool fHelp)
     }
 
     Object aux;
-    aux.push_back(Pair("flags", HexStr(COINBASE_FLAGS.begin(), COINBASE_FLAGS.end())));
+    aux.push_back(Pair("flags", HexStr(beanBASE_FLAGS.begin(), beanBASE_FLAGS.end())));
 
-    uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
+    uint256 hashTarget = uint256().SetCompact(pblock->nBits);
 
     static Array aMutable;
     if (aMutable.empty())
@@ -485,8 +487,8 @@ Value getblocktemplate(const Array& params, bool fHelp)
     result.push_back(Pair("version", pblock->nVersion));
     result.push_back(Pair("previousblockhash", pblock->hashPrevBlock.GetHex()));
     result.push_back(Pair("transactions", transactions));
-    result.push_back(Pair("coinbaseaux", aux));
-    result.push_back(Pair("coinbasevalue", (int64_t)pblock->vtx[0].vout[0].nValue));
+    result.push_back(Pair("beanbaseaux", aux));
+    result.push_back(Pair("beanbasevalue", (int64_t)pblock->vtx[0].vout[0].nValue));
     result.push_back(Pair("target", hashTarget.GetHex()));
     result.push_back(Pair("mintime", (int64_t)pindexPrev->GetPastTimeLimit()+1));
     result.push_back(Pair("mutable", aMutable));
@@ -507,7 +509,7 @@ Value submitblock(const Array& params, bool fHelp)
             "submitblock <hex data> [optional-params-obj]\n"
             "[optional-params-obj] parameter is currently ignored.\n"
             "Attempts to submit new block to network.\n"
-            "See https://en.bitcoin.it/wiki/BIP_0022 for full specification.");
+            "See https://en.bitbean.it/wiki/BIP_0022 for full specification.");
 
     vector<unsigned char> blockData(ParseHex(params[0].get_str()));
     CDataStream ssBlock(blockData, SER_NETWORK, PROTOCOL_VERSION);

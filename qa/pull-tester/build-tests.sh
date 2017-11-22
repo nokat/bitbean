@@ -1,5 +1,6 @@
 #!/bin/bash
 # Copyright (c) 2013 The Bitcoin Core developers
+# Copyright (c) 2015 Bean Core www.bitbean.org
 # Distributed under the MIT/X11 software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #
@@ -22,10 +23,10 @@ if [ $# -lt 2 ]; then
   exit 1
 fi
 
-DISTDIR=bitcoin-0.9.99
+DISTDIR=bitbean-1.1.0RC
 
 # Cross-compile for windows first (breaking the mingw/windows build is most common)
-cd /c/deps/bitcoin-master
+cd /c/deps/bitbean-master
 make distdir
 mkdir -p win32-build
 rsync -av $DISTDIR/ win32-build/
@@ -40,7 +41,7 @@ fi
 make -j$JOBS
 
 # And compile for Linux:
-cd /c/deps/bitcoin-master
+cd /c/deps/bitbean-master
 make distdir
 mkdir -p linux-build
 rsync -av $DISTDIR/ linux-build/
@@ -58,41 +59,41 @@ make -j$JOBS
 if [ -d "$OUT_DIR" -a -w "$OUT_DIR" ]; then
   set +e
   # Windows:
-  cp /c/deps/bitcoin-master/win32-build/src/bitcoind.exe $OUT_DIR/bitcoind.exe
-  cp /c/deps/bitcoin-master/win32-build/src/test/test_bitcoin.exe $OUT_DIR/test_bitcoin.exe
-  cp /c/deps/bitcoin-master/win32-build/src/qt/bitcoind-qt.exe $OUT_DIR/bitcoin-qt.exe
+  cp /c/deps/bitbean-master/win32-build/src/bitbeand.exe $OUT_DIR/bitbeand.exe
+  cp /c/deps/bitbean-master/win32-build/src/test/test_bitbean.exe $OUT_DIR/test_bitbean.exe
+  cp /c/deps/bitbean-master/win32-build/src/qt/bitbeand-qt.exe $OUT_DIR/bitbean-qt.exe
   # Linux:
-  cp /c/deps/bitcoin-master/linux-build/src/bitcoind $OUT_DIR/bitcoind
-  cp /c/deps/bitcoin-master/linux-build/src/test/test_bitcoin $OUT_DIR/test_bitcoin
-  cp /c/deps/bitcoin-master/linux-build/src/qt/bitcoind-qt $OUT_DIR/bitcoin-qt
+  cp /c/deps/bitbean-master/linux-build/src/bitbeand $OUT_DIR/bitbeand
+  cp /c/deps/bitbean-master/linux-build/src/test/test_bitbean $OUT_DIR/test_bitbean
+  cp /c/deps/bitbean-master/linux-build/src/qt/bitbeand-qt $OUT_DIR/bitbean-qt
   set -e
 fi
 
 # Run unit tests and blockchain-tester on Linux:
-cd /c/deps/bitcoin-master/linux-build
+cd /c/deps/bitbean-master/linux-build
 make check
 
 # Run RPC integration test on Linux:
-/c/deps/bitcoin-master/qa/rpc-tests/wallet.sh /c/deps/bitcoin-master/linux-build/src
-/c/deps/bitcoin-master/qa/rpc-tests/listtransactions.py --srcdir /c/deps/bitcoin-master/linux-build/src
+/c/deps/bitbean-master/qa/rpc-tests/wallet.sh /c/deps/bitbean-master/linux-build/src
+/c/deps/bitbean-master/qa/rpc-tests/listtransactions.py --srcdir /c/deps/bitbean-master/linux-build/src
 # Clean up cache/ directory that the python regression tests create
 rm -rf cache
 
 if [ $RUN_EXPENSIVE_TESTS = 1 ]; then
   # Run unit tests and blockchain-tester on Windows:
-  cd /c/deps/bitcoin-master/win32-build
+  cd /c/deps/bitbean-master/win32-build
   make check
 fi
 
 # Clean up builds (pull-tester machine doesn't have infinite disk space)
-cd /c/deps/bitcoin-master/linux-build
+cd /c/deps/bitbean-master/linux-build
 make clean
-cd /c/deps/bitcoin-master/win32-build
+cd /c/deps/bitbean-master/win32-build
 make clean
 
 # TODO: Fix code coverage builds on pull-tester machine
 # # Test code coverage
-# cd /c/deps/bitcoin-master
+# cd /c/deps/bitbean-master
 # make distdir
 # mv $DISTDIR linux-coverage-build
 # cd linux-coverage-build

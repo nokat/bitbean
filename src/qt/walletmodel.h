@@ -16,13 +16,13 @@ class CPubKey;
 class COutput;
 class COutPoint;
 class uint256;
-class CCoinControl;
+class CBeanControl;
 
 QT_BEGIN_NAMESPACE
 class QTimer;
 QT_END_NAMESPACE
 
-class SendCoinsRecipient
+class SendBeansRecipient
 {
 public:
     QString address;
@@ -30,7 +30,7 @@ public:
     qint64 amount;
 };
 
-/** Interface to Bitcoin wallet from Qt view code. */
+/** Interface to Bitbean wallet from Qt view code. */
 class WalletModel : public QObject
 {
     Q_OBJECT
@@ -39,7 +39,7 @@ public:
     explicit WalletModel(CWallet *wallet, OptionsModel *optionsModel, QObject *parent = 0);
     ~WalletModel();
 
-    enum StatusCode // Returned by sendCoins
+    enum StatusCode // Returned by sendBeans
     {
         OK,
         InvalidAmount,
@@ -64,19 +64,18 @@ public:
     TransactionTableModel *getTransactionTableModel();
 
     qint64 getBalance() const;
-    qint64 getStake() const;
+    qint64 getSprout() const;
     qint64 getUnconfirmedBalance() const;
     qint64 getImmatureBalance() const;
-    int getNumTransactions() const;
     EncryptionStatus getEncryptionStatus() const;
 
     // Check address for validity
     bool validateAddress(const QString &address);
 
-    // Return status record for SendCoins, contains error id + information
-    struct SendCoinsReturn
+    // Return status record for SendBeans, contains error id + information
+    struct SendBeansReturn
     {
-        SendCoinsReturn(StatusCode status=Aborted,
+        SendBeansReturn(StatusCode status=Aborted,
                          qint64 fee=0,
                          QString hex=QString()):
             status(status), fee(fee), hex(hex) {}
@@ -85,8 +84,8 @@ public:
         QString hex; // is filled with the transaction hash if status is "OK"
     };
 
-    // Send coins to a list of recipients
-    SendCoinsReturn sendCoins(const QList<SendCoinsRecipient> &recipients, const CCoinControl *coinControl=NULL);
+    // Send beans to a list of recipients
+    SendBeansReturn sendBeans(const QList<SendBeansRecipient> &recipients, const CBeanControl *beanControl=NULL);
 
     // Wallet encryption
     bool setWalletEncrypted(bool encrypted, const SecureString &passphrase);
@@ -95,6 +94,9 @@ public:
     bool changePassphrase(const SecureString &oldPass, const SecureString &newPass);
     // Wallet backup
     bool backupWallet(const QString &filename);
+
+    bool dumpWallet(const QString &filename);
+    bool importWallet(const QString &filename);
 
     // RAI object for unlocking wallet, returned by requestUnlock()
     class UnlockContext
@@ -120,11 +122,11 @@ public:
 
     bool getPubKey(const CKeyID &address, CPubKey& vchPubKeyOut) const;
     void getOutputs(const std::vector<COutPoint>& vOutpoints, std::vector<COutput>& vOutputs);
-    void listCoins(std::map<QString, std::vector<COutput> >& mapCoins) const;
-    bool isLockedCoin(uint256 hash, unsigned int n) const;
-    void lockCoin(COutPoint& output);
-    void unlockCoin(COutPoint& output);
-    void listLockedCoins(std::vector<COutPoint>& vOutpts);
+    void listBeans(std::map<QString, std::vector<COutput> >& mapBeans) const;
+    bool isLockedBean(uint256 hash, unsigned int n) const;
+    void lockBean(COutPoint& output);
+    void unlockBean(COutPoint& output);
+    void listLockedBeans(std::vector<COutPoint>& vOutpts);
 
 private:
     CWallet *wallet;
@@ -138,10 +140,9 @@ private:
 
     // Cache some values to be able to detect changes
     qint64 cachedBalance;
-    qint64 cachedStake;
+    qint64 cachedSprout;
     qint64 cachedUnconfirmedBalance;
     qint64 cachedImmatureBalance;
-    qint64 cachedNumTransactions;
     EncryptionStatus cachedEncryptionStatus;
     int cachedNumBlocks;
 
@@ -164,10 +165,7 @@ public slots:
 
 signals:
     // Signal that balance in wallet changed
-    void balanceChanged(qint64 balance, qint64 stake, qint64 unconfirmedBalance, qint64 immatureBalance);
-
-    // Number of transactions in wallet changed
-    void numTransactionsChanged(int count);
+    void balanceChanged(qint64 balance, qint64 sprout, qint64 unconfirmedBalance, qint64 immatureBalance);
 
     // Encryption status of wallet changed
     void encryptionStatusChanged(int status);
@@ -178,7 +176,7 @@ signals:
     void requireUnlock();
 
     // Asynchronous error notification
-    void error(const QString &title, const QString &message, bool modal);
+    void message(const QString &title, const QString &message, unsigned int style);
 };
 
 

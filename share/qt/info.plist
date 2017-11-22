@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="0.9">
+<dict>
+        <key>CFBundleIconFile</key>
+        <string>bitbean.icns</string>
+        <key>CFBundlePackageType</key>
+        <string>APPL</string>
+        <key>CFBundleGetInfoString</key>
+        <string>BitBean</string>
+        <key>CFBundleSignature</key>
+        <string>????</string>
+        <key>CFBundleExecutable</key>
+        <string>BitBean</string>
+        <key>CFBundleIdentifier</key>
+        <string>org.bitbean.BitBean</string>
+        <key>CFBundleURLTypes</key>
+        <array>
+          <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLName</key>
+            <string>org.bitbean.BitbeanPayment</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+              <string>bitbean</string>
+            </array>
+          </dict>
+        </array>
+        <key>NSPrincipalClass</key>
+        <string>NSApplication</string>
+</dict>
+</plist>

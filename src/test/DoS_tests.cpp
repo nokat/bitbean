@@ -1,3 +1,4 @@
+// Copyright (c) 2017 Bean Core www.beancash.org
 //
 // Unit tests for denial-of-service detection/prevention code
 //
@@ -8,6 +9,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/foreach.hpp>
 
+#include "chainparams.h"
 #include "main.h"
 #include "wallet.h"
 #include "net.h"
@@ -25,7 +27,7 @@ CService ip(uint32_t i)
 {
     struct in_addr s;
     s.s_addr = i;
-    return CService(CNetAddr(s), GetDefaultPort());
+    return CService(CNetAddr(s), Params().GetDefaultPort());
 }
 
 BOOST_AUTO_TEST_SUITE(DoS_tests)
@@ -66,7 +68,7 @@ BOOST_AUTO_TEST_CASE(DoS_banscore)
 BOOST_AUTO_TEST_CASE(DoS_bantime)
 {
     CNode::ClearBanned();
-    int64 nStartTime = GetTime();
+    int64_t nStartTime = GetTime();
     SetMockTime(nStartTime); // Overrides future calls to GetTime()
 
     CAddress addr(ip(0xa0b0c001));
@@ -82,15 +84,15 @@ BOOST_AUTO_TEST_CASE(DoS_bantime)
     BOOST_CHECK(!CNode::IsBanned(addr));
 }
 
-static bool CheckNBits(unsigned int nbits1, int64 time1, unsigned int nbits2, int64 time2)\
+static bool CheckNBits(unsigned int nbits1, int64_t time1, unsigned int nbits2, int64_t time2)\
 {
     if (time1 > time2)
         return CheckNBits(nbits2, time2, nbits1, time1);
-    int64 deltaTime = time2-time1;
+    int64_t deltaTime = time2-time1;
 
-    CBigNum required;
+    uint256 required;
     required.SetCompact(ComputeMinWork(nbits1, deltaTime));
-    CBigNum have;
+    uint256 have;
     have.SetCompact(nbits2);
     return (have <= required);
 }
@@ -101,7 +103,7 @@ BOOST_AUTO_TEST_CASE(DoS_checknbits)
 
     // Timestamps,nBits from the bitcoin blockchain.
     // These are the block-chain checkpoint blocks
-    typedef std::map<int64, unsigned int> BlockData;
+    typedef std::map<int64_t, unsigned int> BlockData;
     BlockData chainData =
         map_list_of(1239852051,486604799)(1262749024,486594666)
         (1279305360,469854461)(1280200847,469830746)(1281678674,469809688)
@@ -110,9 +112,9 @@ BOOST_AUTO_TEST_CASE(DoS_checknbits)
 
     // Make sure CheckNBits considers every combination of block-chain-lock-in-points
     // "sane":
-    BOOST_FOREACH(const BlockData::value_type& i, chainData)
+    for (const BlockData::value_type& i : chainData)
     {
-        BOOST_FOREACH(const BlockData::value_type& j, chainData)
+        for (const BlockData::value_type& j : chainData)
         {
             BOOST_CHECK(CheckNBits(i.second, i.first, j.second, j.first));
         }

@@ -3,7 +3,7 @@
 
 #include "addresstablemodel.h"
 #include "optionsmodel.h"
-#include "bitcoingui.h"
+#include "bitbeangui.h"
 #include "editaddressdialog.h"
 #include "csvmodelwriter.h"
 #include "guiutil.h"
@@ -62,8 +62,9 @@ AddressBookPage::AddressBookPage(Mode mode, Tabs tab, QWidget *parent) :
     }
 
     // Context menu actions
-    QAction *copyLabelAction = new QAction(tr("Copy &Label"), this);
+
     QAction *copyAddressAction = new QAction(ui->copyToClipboard->text(), this);
+    QAction *copyLabelAction = new QAction(tr("Copy &Label"), this);
     QAction *editAction = new QAction(tr("&Edit"), this);
     QAction *showQRCodeAction = new QAction(ui->showQRCode->text(), this);
     QAction *signMessageAction = new QAction(ui->signMessage->text(), this);
@@ -78,7 +79,9 @@ AddressBookPage::AddressBookPage(Mode mode, Tabs tab, QWidget *parent) :
     if(tab == SendingTab)
         contextMenu->addAction(deleteAction);
     contextMenu->addSeparator();
+    #ifdef USE_QRCODE
     contextMenu->addAction(showQRCodeAction);
+    #endif
     if(tab == ReceivingTab)
         contextMenu->addAction(signMessageAction);
     else if(tab == SendingTab)
@@ -184,30 +187,26 @@ void AddressBookPage::on_signMessage_clicked()
 {
     QTableView *table = ui->tableView;
     QModelIndexList indexes = table->selectionModel()->selectedRows(AddressTableModel::Address);
-    QString addr;
 
     foreach (QModelIndex index, indexes)
     {
-        QVariant address = index.data();
-        addr = address.toString();
+        QString address = index.data().toString();
+        emit signMessage(address);
     }
 
-    emit signMessage(addr);
-}
+   }
 
 void AddressBookPage::on_verifyMessage_clicked()
 {
     QTableView *table = ui->tableView;
     QModelIndexList indexes = table->selectionModel()->selectedRows(AddressTableModel::Address);
-    QString addr;
 
     foreach (QModelIndex index, indexes)
     {
-        QVariant address = index.data();
-        addr = address.toString();
+        QString address = index.data().toString();
+        emit verifyMessage(address);
     }
 
-    emit verifyMessage(addr);
 }
 
 void AddressBookPage::on_newAddressButton_clicked()
@@ -341,11 +340,12 @@ void AddressBookPage::on_showQRCode_clicked()
 
     foreach (QModelIndex index, indexes)
     {
-        QString address = index.data().toString(), label = index.sibling(index.row(), 0).data(Qt::EditRole).toString();
+        QString address = index.data().toString();
+        QString label = index.sibling(index.row(),0).data(Qt::EditRole).toString();
 
         QRCodeDialog *dialog = new QRCodeDialog(address, label, tab == ReceivingTab, this);
-        if(optionsModel)
-            dialog->setModel(optionsModel);
+        dialog->setModel(optionsModel);
+
         dialog->setAttribute(Qt::WA_DeleteOnClose);
         dialog->show();
     }
@@ -361,7 +361,7 @@ void AddressBookPage::contextualMenu(const QPoint &point)
     }
 }
 
-void AddressBookPage::selectNewAddress(const QModelIndex &parent, int begin, int end)
+void AddressBookPage::selectNewAddress(const QModelIndex &parent, int begin, int /*end*/)
 {
     QModelIndex idx = proxyModel->mapFromSource(model->index(begin, AddressTableModel::Address, parent));
     if(idx.isValid() && (idx.data(Qt::EditRole).toString() == newAddressToSelect))

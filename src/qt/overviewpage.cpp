@@ -2,24 +2,41 @@
 #include "ui_overviewpage.h"
 
 #include "walletmodel.h"
-#include "bitcoinunits.h"
+#include "bitbeanunits.h"
 #include "optionsmodel.h"
 #include "transactiontablemodel.h"
 #include "transactionfilterproxy.h"
 #include "guiutil.h"
 #include "guiconstants.h"
+#include "bitbeanrpc.h"
+#include "init.h"
+#include "base58.h"
+#include "main.h"
+#include "wallet.h"
+#include "bitbeanrpc.h"
 
 #include <QAbstractItemDelegate>
 #include <QPainter>
+#include <QIcon>
+#include <QWidget>
+#include <QLabel>
+#include <QTimer>
+#include <QFrame>
+#include <sstream>
+#include <string>
+
 
 #define DECORATION_SIZE 64
-#define NUM_ITEMS 3
+#define NUM_ITEMS 6
+
+extern CWallet* pwalletMain;
+double GetPoSKernelPS();
 
 class TxViewDelegate : public QAbstractItemDelegate
 {
     Q_OBJECT
 public:
-    TxViewDelegate(): QAbstractItemDelegate(), unit(BitcoinUnits::BTC)
+    TxViewDelegate(): QAbstractItemDelegate(), unit(BitbeanUnits::BitB)
     {
 
     }
@@ -66,7 +83,7 @@ public:
             foreground = option.palette.color(QPalette::Text);
         }
         painter->setPen(foreground);
-        QString amountText = BitcoinUnits::formatWithUnit(unit, amount, true);
+        QString amountText = BitbeanUnits::formatWithUnit(unit, amount, true);
         if(!confirmed)
         {
             amountText = QString("[") + amountText + QString("]");
@@ -93,7 +110,7 @@ OverviewPage::OverviewPage(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OverviewPage),
     currentBalance(-1),
-    currentStake(0),
+    currentSprout(0),
     currentUnconfirmedBalance(-1),
     currentImmatureBalance(-1),
     txdelegate(new TxViewDelegate()),
@@ -123,23 +140,18 @@ void OverviewPage::handleTransactionClicked(const QModelIndex &index)
         emit transactionClicked(filter->mapToSource(index));
 }
 
-OverviewPage::~OverviewPage()
-{
-    delete ui;
-}
-
-void OverviewPage::setBalance(qint64 balance, qint64 stake, qint64 unconfirmedBalance, qint64 immatureBalance)
+void OverviewPage::setBalance(qint64 balance, qint64 sprout, qint64 unconfirmedBalance, qint64 immatureBalance)
 {
     int unit = model->getOptionsModel()->getDisplayUnit();
     currentBalance = balance;
-    currentStake = stake;
+    currentSprout = sprout;
     currentUnconfirmedBalance = unconfirmedBalance;
     currentImmatureBalance = immatureBalance;
-    ui->labelBalance->setText(BitcoinUnits::formatWithUnit(unit, balance));
-    ui->labelStake->setText(BitcoinUnits::formatWithUnit(unit, stake));
-    ui->labelUnconfirmed->setText(BitcoinUnits::formatWithUnit(unit, unconfirmedBalance));
-    ui->labelImmature->setText(BitcoinUnits::formatWithUnit(unit, immatureBalance));
-    ui->labelTotal->setText(BitcoinUnits::formatWithUnit(unit, balance + stake + unconfirmedBalance + immatureBalance));
+    ui->labelSpendable->setText(BitbeanUnits::formatWithUnit(unit, balance));
+    ui->labelSprouting->setText(BitbeanUnits::formatWithUnit(unit, sprout));
+    ui->labelUnconfirmed->setText(BitbeanUnits::formatWithUnit(unit, unconfirmedBalance));
+    ui->labelImmature->setText(BitbeanUnits::formatWithUnit(unit, immatureBalance));
+    ui->labelTotal->setText(BitbeanUnits::formatWithUnit(unit, balance + sprout + unconfirmedBalance + immatureBalance));
 
     // only show immature (newly mined) balance if it's non-zero, so as not to complicate things
     // for the non-mining users
@@ -166,14 +178,24 @@ void OverviewPage::setModel(WalletModel *model)
         ui->listTransactions->setModelColumn(TransactionTableModel::ToAddress);
 
         // Keep up to date with wallet
-        setBalance(model->getBalance(), model->getStake(), model->getUnconfirmedBalance(), model->getImmatureBalance());
+        setBalance(model->getBalance(), model->getSprout(), model->getUnconfirmedBalance(), model->getImmatureBalance());
         connect(model, SIGNAL(balanceChanged(qint64, qint64, qint64, qint64)), this, SLOT(setBalance(qint64, qint64, qint64, qint64)));
 
         connect(model->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
     }
 
     // update the display unit, to not use the default ("BTC")
+    // - no longer needed -
     updateDisplayUnit();
+
+    // update BitBean Network Information
+
+    updateNetworkinfo();
+
+    // BitBean Network Information Update Timer (every minute)
+    QTimer *timerNetworkStats = new QTimer();
+    connect (timerNetworkStats, SIGNAL(timeout()), this, SLOT(updateNetworkinfo()));
+            timerNetworkStats->start(60 * 1000);
 }
 
 void OverviewPage::updateDisplayUnit()
@@ -181,7 +203,7 @@ void OverviewPage::updateDisplayUnit()
     if(model && model->getOptionsModel())
     {
         if(currentBalance != -1)
-            setBalance(currentBalance, model->getStake(), currentUnconfirmedBalance, currentImmatureBalance);
+            setBalance(currentBalance, model->getSprout(), currentUnconfirmedBalance, currentImmatureBalance);
 
         // Update txdelegate->unit with the current unit
         txdelegate->unit = model->getOptionsModel()->getDisplayUnit();
@@ -194,4 +216,119 @@ void OverviewPage::showOutOfSyncWarning(bool fShow)
 {
     ui->labelWalletStatus->setVisible(fShow);
     ui->labelTransactionsStatus->setVisible(fShow);
+}
+
+void OverviewPage::updateNetworkinfo()
+{
+    // StalkHeight
+    int stalkHeight = pindexBest->nHeight;
+
+    // Bean Network Weight
+    int beanWeight = GetPoSKernelPS();
+
+    // Sprouting Difficulty
+    double sproutingDifficulty = GetDifficulty(GetLastBlockIndex(pindexBest, true));
+
+    // Connections
+    int otherStalks = this->modelNetworkinfo->getNumConnections();
+
+    // Total Beans
+    int64_t Beans = ((pindexBest->nMoneySupply)/100000000);
+
+
+    QString height = QString::number(stalkHeight);
+    QString weight = QString::number(beanWeight);
+    QString difficulty = QString::number(sproutingDifficulty, 'f', 6);
+    QString connections = QString::number(otherStalks);
+    QString totalbeans = QLocale::system().toString((qlonglong)Beans);
+
+    // Display StalkHeight
+    if(stalkHeight > heightPrevious)
+    {
+        ui->stalkBox->setText("<b><font color=\"black\">" + height + "</font></b>");
+    }
+    else
+    {
+        ui->stalkBox->setText(height);
+    }
+
+    // Display Bean Weight on the Network
+    if(beanWeight > weightPrevious)
+    {
+        ui->weightBox->setText("<b><font color=\"black\">" + weight + "</font></b>");
+    }
+    else if (beanWeight < weightPrevious)
+    {
+        ui->weightBox->setText("<b><font color=\"grey\">" + weight + "</font></b>");
+    }
+    else
+    {
+        ui->weightBox->setText(weight);
+    }
+
+    // Display Sprouting Difficulty
+    if(sproutingDifficulty > difficultyPrevious)
+    {
+        ui->sproutBox->setText("<b><font color=\"black\">" + difficulty + "</font></b>");
+    }
+    else if(sproutingDifficulty < difficultyPrevious)
+    {
+        ui->sproutBox->setText("<b><font color=\"grey\">" + difficulty + "</font></b>");
+    }
+    else
+    {
+        ui->sproutBox->setText(difficulty);
+    }
+
+        // Display Connections
+    if(otherStalks > connectionsPrevious)
+    {
+        ui->connectionBox->setText("<b><font color=\"black\">" + connections + "</font></b>");
+    }
+    else if(otherStalks < connectionsPrevious)
+    {
+        ui->connectionBox->setText("<b><font color=\"grey\">" + connections + "</font></b>");
+    }
+    else
+    {
+        ui->connectionBox->setText(connections);
+    }
+
+    // Display Total Beans
+    if(Beans > totalbeansPrevious)
+    {
+        ui->beanBox->setText("<b><font color=\"black\">" + totalbeans + "</font></b>");
+    }
+    else if(Beans < totalbeansPrevious)
+    {
+        ui->beanBox->setText("<b><font color=\"gray\">" + totalbeans + "</font></b>");
+    }
+    else
+    {
+        ui->beanBox->setText(totalbeans);
+    }
+
+
+    updatePrevious(stalkHeight, beanWeight, sproutingDifficulty, otherStalks, Beans);
+
+}
+
+void OverviewPage::updatePrevious(int stalkHeight, int beanWeight, double sproutingDifficulty, int otherStalks, double Beans)
+{
+    heightPrevious = stalkHeight;
+    weightPrevious = beanWeight;
+    difficultyPrevious = sproutingDifficulty;
+    connectionsPrevious = otherStalks;
+    totalbeansPrevious = Beans;
+}
+
+void OverviewPage::setNetworkinfo(ClientModel *modelNetworkinfo)
+{
+    updateNetworkinfo();
+    this->modelNetworkinfo = modelNetworkinfo;
+}
+
+OverviewPage::~OverviewPage()
+{
+    delete ui;
 }

@@ -1,6 +1,6 @@
-#include <boost/test/unit_test.hpp>
+// Copyright (c) 2017 Bean Core www.beancash.org
 
-#include <boost/foreach.hpp>
+#include <boost/test/unit_test.hpp>
 
 #include "init.h"
 #include "wallet.h"
@@ -9,14 +9,14 @@
 BOOST_AUTO_TEST_SUITE(accounting_tests)
 
 static void
-GetResults(CWalletDB& walletdb, std::map<int64, CAccountingEntry>& results)
+GetResults(CWalletDB& walletdb, std::map<int64_t, CAccountingEntry>& results)
 {
     std::list<CAccountingEntry> aes;
 
     results.clear();
     BOOST_CHECK(walletdb.ReorderTransactions(pwalletMain) == DB_LOAD_OK);
     walletdb.ListAccountCreditDebit("", aes);
-    BOOST_FOREACH(CAccountingEntry& ae, aes)
+    for (CAccountingEntry& ae : aes)
     {
         results[ae.nOrderPos] = ae;
     }
@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(acc_orderupgrade)
     std::vector<CWalletTx*> vpwtx;
     CWalletTx wtx;
     CAccountingEntry ae;
-    std::map<int64, CAccountingEntry> results;
+    std::map<int64_t, CAccountingEntry> results;
 
     ae.strAccount = "";
     ae.nCreditDebit = 1;

@@ -13,7 +13,7 @@ class QDateTime;
 class QTimer;
 QT_END_NAMESPACE
 
-/** Model for Bitcoin network client. */
+/** Model for Bitbean network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT
@@ -27,12 +27,19 @@ public:
     int getNumBlocks() const;
     int getNumBlocksAtStartup();
 
+    quint64 getTotalBytesRecv() const;
+    quint64 getTotalBytesSent() const;
+
+
+    double getVerificationProgress() const;
     QDateTime getLastBlockDate() const;
 
     //! Return true if client connected to testnet
     bool isTestNet() const;
     //! Return true if core is doing initial block download
     bool inInitialBlockDownload() const;
+    //! Return true if core is importing blocks
+        bool isImporting() const;
     //! Return conservative estimate of total number of blocks, or 0 if unknown
     int getNumBlocksOfPeers() const;
     //! Return warnings to be displayed in status bar
@@ -58,9 +65,10 @@ private:
 signals:
     void numConnectionsChanged(int count);
     void numBlocksChanged(int count, int countOfPeers);
+    void bytesChanged(quint64 totalBytesIn, quint64 totalBytesOut);
 
-    //! Asynchronous error notification
-    void error(const QString &title, const QString &message, bool modal);
+    //! Asynchronous message notification
+    void message(const QString &title, const QString &message, unsigned int style);
 
 public slots:
     void updateTimer();

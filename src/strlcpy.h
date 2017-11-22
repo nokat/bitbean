@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 1998 Todd C. Miller <Todd.Miller@courtesan.com>
+ * Copyright (c) 2015 Bean Core www.bitbean.org
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -13,8 +14,8 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#ifndef BITCOIN_STRLCPY_H
-#define BITCOIN_STRLCPY_H
+#ifndef BITBEAN_STRLCPY_H
+#define BITBEAN_STRLCPY_H
 
 #include <stdlib.h>
 #include <string.h>

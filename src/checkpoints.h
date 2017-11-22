@@ -1,8 +1,9 @@
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2015 Bean Core www.bitbean.org
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BITCOIN_CHECKPOINT_H
-#define  BITCOIN_CHECKPOINT_H
+#ifndef BITBEAN_CHECKPOINT_H
+#define  BITBEAN_CHECKPOINT_H
 
 #include <map>
 #include "net.h"
@@ -43,6 +44,8 @@ namespace Checkpoints
     // Returns last CBlockIndex* in mapBlockIndex that is a checkpoint
     CBlockIndex* GetLastCheckpoint(const std::map<uint256, CBlockIndex*>& mapBlockIndex);
 
+    double GuessVerificationProgress(CBlockIndex *pindex);
+
     extern uint256 hashSyncCheckpoint;
     extern CSyncCheckpoint checkpointMessage;
     extern uint256 hashInvalidCheckpoint;
@@ -61,7 +64,7 @@ namespace Checkpoints
     bool IsMatureSyncCheckpoint();
 }
 
-// ppcoin: synchronized checkpoint
+// ppbean: synchronized checkpoint
 class CUnsignedSyncCheckpoint
 {
 public:

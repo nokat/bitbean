@@ -1,4 +1,4 @@
-BitBean-qt: Qt5 GUI for BitBean
+BitBeant5 GUI for BitBean
 ===============================
 
 Build instructions
@@ -24,9 +24,9 @@ then execute the following:
     qmake
     make
 
-Alternatively, install Qt Creator and open the `Testcoin-qt.pro` file.
+Alternatively, install Qt Creator and open the `BitBeano` file.
 
-An executable named `Testcoin-qt` will be built.
+An executable named `BitBeanill be built.
 
 
 Windows
@@ -57,7 +57,7 @@ Mac OS X
 ::
 
 	sudo port selfupdate
-	sudo port install boost db48 miniupnpc
+	sudo port install boost db53
 
 - Open the .pro file in Qt Creator and build as normal (cmd-B)
 
@@ -67,30 +67,6 @@ Mac OS X
 
 Build configuration options
 ============================
-
-UPNnP port forwarding
----------------------
-
-To use UPnP for port forwarding behind a NAT router (recommended, as more connections overall allow for a faster and more stable Testcoin experience), pass the following argument to qmake:
-
-::
-
-    qmake "USE_UPNP=1"
-
-(in **Qt Creator**, you can find the setting for additional qmake arguments under "Projects" -> "Build Settings" -> "Build Steps", then click "Details" next to **qmake**)
-
-This requires miniupnpc for UPnP port mapping.  It can be downloaded from
-http://miniupnp.tuxfamily.org/files/.  UPnP support is not compiled in by default.
-
-Set USE_UPNP to a different value to control this:
-
-+------------+--------------------------------------------------------------------------+
-| USE_UPNP=- | no UPnP support, miniupnpc not required;                                 |
-+------------+--------------------------------------------------------------------------+
-| USE_UPNP=0 | (the default) built with UPnP, support turned off by default at runtime; |
-+------------+--------------------------------------------------------------------------+
-| USE_UPNP=1 | build with UPnP support turned on by default at runtime.                 |
-+------------+--------------------------------------------------------------------------+
 
 Notification support for recent (k)ubuntu versions
 ---------------------------------------------------
@@ -136,7 +112,7 @@ Ubuntu 11.10 warning
 ====================
 
 Ubuntu 11.10 has a package called 'qt-at-spi' installed by default.  At the time of writing, having that package
-installed causes Testcoin-qt to crash intermittently.  The issue has been reported as `launchpad bug 857790`_, but
+installed causes Testbean-qt to crash intermittently.  The issue has been reported as `launchpad bug 857790`_, but
 isn't yet fixed.
 
 Until the bug is fixed, you can remove the qt-at-spi package to work around the problem, though this will presumably

@@ -1,7 +1,7 @@
 #include "guiutil.h"
-#include "bitcoinaddressvalidator.h"
+#include "bitbeanaddressvalidator.h"
 #include "walletmodel.h"
-#include "bitcoinunits.h"
+#include "bitbeanunits.h"
 #include "util.h"
 #include "init.h"
 
@@ -52,7 +52,7 @@ QString dateTimeStr(qint64 nTime)
     return dateTimeStr(QDateTime::fromTime_t((qint32)nTime));
 }
 
-QFont bitcoinAddressFont()
+QFont bitbeanAddressFont()
 {
     QFont font("Monospace");
 #if QT_VERSION >= 0x040800
@@ -65,9 +65,9 @@ QFont bitcoinAddressFont()
 
 void setupAddressWidget(QLineEdit *widget, QWidget *parent)
 {
-    widget->setMaxLength(BitcoinAddressValidator::MaxAddressLength);
-    widget->setValidator(new BitcoinAddressValidator(parent));
-    widget->setFont(bitcoinAddressFont());
+    widget->setMaxLength(BitbeanAddressValidator::MaxAddressLength);
+    widget->setValidator(new BitbeanAddressValidator(parent));
+    widget->setFont(bitbeanAddressFont());
 }
 
 void setupAmountWidget(QLineEdit *widget, QWidget *parent)
@@ -79,13 +79,13 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
     widget->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
 }
 
-bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
+bool parseBitbeanURI(const QUrl &uri, SendBeansRecipient *out)
 {
-    // NovaCoin: check prefix
-    if(uri.scheme() != QString("BitBean"))
+    // Bitbean: check prefix
+    if(!uri.isValid() || uri.scheme() != QString("BitBean"))
         return false;
 
-    SendCoinsRecipient rv;
+    SendBeansRecipient rv;
     rv.address = uri.path();
     rv.amount = 0;
     QList<QPair<QString, QString> > items = uri.queryItems();
@@ -107,7 +107,7 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!BitcoinUnits::parse(BitcoinUnits::BTC, i->second, &rv.amount))
+                if(!BitbeanUnits::parse(BitbeanUnits::BitB, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -125,18 +125,18 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
     return true;
 }
 
-bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
+bool parseBitbeanURI(QString uri, SendBeansRecipient *out)
 {
     // Convert BitBean:// to BitBean:
     //
-    //    Cannot handle this later, because bitcoin:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because bitbean:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
     if(uri.startsWith("BitBean://"))
     {
         uri.replace(0, 12, "BitBean:");
     }
     QUrl uriInstance(uri);
-    return parseBitcoinURI(uriInstance, out);
+    return parseBitbeanURI(uriInstance, out);
 }
 
 QString HtmlEscape(const QString& str, bool fMultiLine)
@@ -163,7 +163,8 @@ void copyEntryData(QAbstractItemView *view, int column, int role)
     if(!selection.isEmpty())
     {
         // Copy first item
-        QApplication::clipboard()->setText(selection.at(0).data(role).toString());
+        QClipboard::Mode mode = QApplication::clipboard()->supportsSelection() ? QClipboard::Selection : QClipboard::Clipboard;
+        QApplication::clipboard()->setText(selection.at(0).data(role).toString(), mode);
     }
 }
 
@@ -250,6 +251,15 @@ void openDebugLogfile()
         QDesktopServices::openUrl(QUrl::fromLocalFile(QString::fromStdString(pathDebug.string())));
 }
 
+void openConfigfile()
+{
+    boost::filesystem::path pathConf = GetDataDir() / "bitbean.conf";
+
+    /* Open bitbean.conf with the associated application */
+    if (boost::filesystem::exists(pathConf))
+        QDesktopServices::openUrl(QUrl::fromLocalFile(QString::fromStdString(pathConf.string())));
+}
+
 ToolTipToRichTextFilter::ToolTipToRichTextFilter(int size_threshold, QObject *parent) :
     QObject(parent), size_threshold(size_threshold)
 {
@@ -282,7 +292,7 @@ boost::filesystem::path static StartupShortcutPath()
 
 bool GetStartOnSystemStartup()
 {
-    // check for Bitcoin.lnk
+    // check for Bitbean.lnk
     return boost::filesystem::exists(StartupShortcutPath());
 }
 
@@ -397,7 +407,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         boost::filesystem::ofstream optionFile(GetAutostartFilePath(), std::ios_base::out|std::ios_base::trunc);
         if (!optionFile.good())
             return false;
-        // Write a bitcoin.desktop file to the autostart directory:
+        // Write a bitbean.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         optionFile << "Name=BitBean\n";
@@ -421,19 +431,20 @@ bool SetStartOnSystemStartup(bool fAutoStart) { return false; }
 HelpMessageBox::HelpMessageBox(QWidget *parent) :
     QMessageBox(parent)
 {
-    header = tr("BitBean-Qt") + " " + tr("version") + " " +
+    header = tr("BitBean") + " " + tr("version") + " " +
         QString::fromStdString(FormatFullVersion()) + "\n\n" +
         tr("Usage:") + "\n" +
-        "  BitBean-qt [" + tr("command-line options") + "]                     " + "\n";
+        "  bitbean [" + tr("command-line options") + "]                     " + "\n";
 
     coreOptions = QString::fromStdString(HelpMessage());
 
     uiOptions = tr("UI options") + ":\n" +
         "  -lang=<lang>           " + tr("Set language, for example \"de_DE\" (default: system locale)") + "\n" +
         "  -min                   " + tr("Start minimized") + "\n" +
-        "  -splash                " + tr("Show splash screen on startup (default: 1)") + "\n";
+        "  -splash                " + tr("Show splash screen on startup (default: 1)") + "\n" +
+        "  -choosedatadir         " + tr("Choose data directory on startup (default: 0)") + "\n";
 
-    setWindowTitle(tr("BitBean-Qt"));
+    setWindowTitle(tr("BitBean"));
     setTextFormat(Qt::PlainText);
     // setMinimumWidth is ignored for QMessageBox so put in non-breaking spaces to make it wider.
     setText(header + QString(QChar(0x2003)).repeated(50));

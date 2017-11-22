@@ -8,7 +8,7 @@ namespace Ui {
 }
 class ClientModel;
 
-/** Local Bitcoin RPC console. */
+/** Local Bitbean RPC console. */
 class RPCConsole: public QDialog
 {
     Q_OBJECT
@@ -35,8 +35,17 @@ private slots:
     void on_tabWidget_currentChanged(int index);
     /** open the debug.log from the current datadir */
     void on_openDebugLogfileButton_clicked();
-    /** display messagebox with program parameters (same as bitcoin-qt --help) */
+    //** open bitbean.conf from current datadir */
+    void on_openConfigfileButton_clicked();
+    /** display messagebox with program parameters (same as bitbean --help) */
     void on_showCLOptionsButton_clicked();
+    void on_closeButton_clicked();
+    /** change the time range of the network traffic graph */
+        void on_sldGraphRange_valueChanged(int value);
+        /** update traffic statistics */
+        void updateTrafficStats(quint64 totalBytesIn, quint64 totalBytesOut);
+        /** clear traffic graph */
+        void on_btnClearTrafficGraph_clicked();
 
 public slots:
     void clear();
@@ -55,6 +64,9 @@ signals:
     void cmdRequest(const QString &command);
 
 private:
+    static QString FormatBytes(quint64 bytes);
+    void setTrafficGraphRange(int mins);
+
     Ui::RPCConsole *ui;
     ClientModel *clientModel;
     QStringList history;

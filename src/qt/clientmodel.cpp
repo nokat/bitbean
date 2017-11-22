@@ -4,8 +4,10 @@
 #include "addresstablemodel.h"
 #include "transactiontablemodel.h"
 
+#include "chainparams.h"
 #include "alert.h"
 #include "main.h"
+#include "checkpoints.h"
 #include "ui_interface.h"
 
 #include <QDateTime>
@@ -48,12 +50,27 @@ int ClientModel::getNumBlocksAtStartup()
     return numBlocksAtStartup;
 }
 
+quint64 ClientModel::getTotalBytesRecv() const
+{
+    return CNode::GetTotalBytesRecv();
+}
+
+quint64 ClientModel::getTotalBytesSent() const
+{
+    return CNode::GetTotalBytesSent();
+}
+
 QDateTime ClientModel::getLastBlockDate() const
 {
     if (pindexBest)
         return QDateTime::fromTime_t(pindexBest->GetBlockTime());
     else
         return QDateTime::fromTime_t(1393221600); // Genesis block's time
+}
+
+double ClientModel::getVerificationProgress() const
+{
+    return Checkpoints::GuessVerificationProgress(pindexBest);
 }
 
 void ClientModel::updateTimer()
@@ -70,6 +87,8 @@ void ClientModel::updateTimer()
 
         emit numBlocksChanged(newNumBlocks, newNumBlocksOfPeers);
     }
+
+        emit bytesChanged(getTotalBytesRecv(), getTotalBytesSent());
 }
 
 void ClientModel::updateNumConnections(int numConnections)
@@ -87,7 +106,8 @@ void ClientModel::updateAlert(const QString &hash, int status)
         CAlert alert = CAlert::getAlertByHash(hash_256);
         if(!alert.IsNull())
         {
-            emit error(tr("Network Alert"), QString::fromStdString(alert.strStatusBar), false);
+            emit message(tr("Network Alert"), QString::fromStdString(alert.strStatusBar),
+                CClientUIInterface::ICON_ERROR);
         }
     }
 
@@ -98,12 +118,17 @@ void ClientModel::updateAlert(const QString &hash, int status)
 
 bool ClientModel::isTestNet() const
 {
-    return fTestNet;
+    return TestNet();
 }
 
 bool ClientModel::inInitialBlockDownload() const
 {
     return IsInitialBlockDownload();
+}
+
+bool ClientModel::isImporting() const
+{
+    return fImporting;
 }
 
 int ClientModel::getNumBlocksOfPeers() const

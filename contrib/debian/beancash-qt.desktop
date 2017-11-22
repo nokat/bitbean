@@ -1,0 +1,23 @@
+[Desktop Entry]
+Categories=Office;
+Comment[en_US]=Bean P2P Digital Cash
+Comment=Bean P2P Digital Cash
+Comment[fr]=BeanCash, numéraire numérique par pair
+Comment[tr]=BeanCash, dijital eşler arası nakit
+Encoding=UTF-8
+Exec=/usr/bin/beancash-qt
+GenericName[en_US]=
+GenericName=
+Icon=/home/shawn/projects/CKeyRefactor/bitbean-core/src/qt/res/icons/bitbean-80.png
+MimeType=
+Name[en_US]=BeanCash
+Name=BeanCash
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

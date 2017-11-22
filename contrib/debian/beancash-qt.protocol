@@ -1,0 +1,11 @@
+[Protocol]
+exec=beancash-qt '%u'
+protocol=beancash
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false
